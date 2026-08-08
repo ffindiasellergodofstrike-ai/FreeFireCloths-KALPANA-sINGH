@@ -31,7 +31,7 @@ export default function RefundPolicy() {
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Operational Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.freefirestore.shop</p>
-            <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
 
           <p>At FREE FIRE STORE, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
@@ -67,7 +67,7 @@ export default function RefundPolicy() {
           </ul>
 
           <h2>4. DAMAGED, DEFECTIVE, OR INCORRECT ITEMS</h2>
-          <p>If you receive an item that is damaged, defective, or incorrect (wrong product, wrong size, or wrong colour), please contact us within <strong>48 hours</strong> of delivery at contactkalpnaji@gmail.com or +91 9793970031.</p>
+          <p>If you receive an item that is damaged, defective, or incorrect (wrong product, wrong size, or wrong colour), please contact us within <strong>48 hours</strong> of delivery at contactkalpnaji@gmail.com or +91 9319969384.</p>
           <p>You must provide:</p>
           <ul>
             <li>Your Order ID and registered mobile number</li>
@@ -80,7 +80,7 @@ export default function RefundPolicy() {
           <h2>5. HOW TO INITIATE A RETURN</h2>
           <p><strong>Step 1:</strong> Contact us within 7 days of delivery:<br />
           Email: <strong>contactkalpnaji@gmail.com</strong><br />
-          Phone / WhatsApp: <strong>+91 9793970031</strong></p>
+          Phone / WhatsApp: <strong>+91 9319969384</strong></p>
           <p><strong>Step 2:</strong> Share your Order ID, registered mobile number, reason for return, and clear photographs of the item and its original packaging.</p>
           <p><strong>Step 3:</strong> Our support team will review your request and respond with an approval or rejection within 1 to 2 business days.</p>
           <p><strong>Step 4:</strong> If approved, we will arrange a reverse pickup from your delivery address (subject to pin code serviceability). You will receive a call or message from our courier partner to schedule the pickup.</p>
@@ -101,7 +101,7 @@ export default function RefundPolicy() {
             <p>PRANNATHPUR BACHHARIYA, KADIPUR,</p>
             <p>AKHANDNAGAR, SULTANPUR,</p>
             <p>UTTAR PRADESH, INDIA, 228171</p>
-            <p>Phone: +91 9793970031</p>
+            <p>Phone: +91 9319969384</p>
           </div>
           <p><strong>Important instructions for self-shipped returns:</strong></p>
           <ul>
@@ -196,7 +196,7 @@ export default function RefundPolicy() {
           <h2>11. ORDER CANCELLATION AND REFUND</h2>
           <p><strong>Cancellation by Customer (Before Dispatch):</strong></p>
           <ul>
-            <li>You may cancel your order within 24 hours of placing it by contacting us at contactkalpnaji@gmail.com or +91 9793970031.</li>
+            <li>You may cancel your order within 24 hours of placing it by contacting us at contactkalpnaji@gmail.com or +91 9319969384.</li>
             <li>A full refund will be processed to your original payment method within 5 to 7 business days.</li>
             <li>COD orders cancelled before dispatch will not attract any cancellation charge.</li>
           </ul>
@@ -223,7 +223,7 @@ export default function RefundPolicy() {
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
@@ -235,7 +235,7 @@ export default function RefundPolicy() {
             <p><strong>Business Name:</strong> FREE FIRE STORE</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
-            <p><strong>Phone / WhatsApp:</strong> +91 9793970031</p>
+            <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.freefirestore.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>

@@ -38,7 +38,7 @@ export default function Footer() {
             <div className="footer-col">
               <h4>CONTACT</h4>
               <div className="fc-contact"><i className="fa fa-envelope"></i><span>contactkalpnaji@gmail.com</span></div>
-              <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9793970031</span></div>
+              <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9319969384</span></div>
               <div className="fc-contact"><i className="fa fa-map-marker-alt"></i><span>PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
             </div>
           </div>

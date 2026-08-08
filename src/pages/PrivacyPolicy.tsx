@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.freefirestore.shop</p>
-            <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
 
           <p>FREE FIRE STORE ("we", "us", "our") is owned and operated by Kalpana Singh. This Privacy Policy describes how we collect, use, store, and disclose your personal information when you visit or make a purchase from our Site.</p>
@@ -291,7 +291,7 @@ export default function PrivacyPolicy() {
             </table>
           </div>
           <p>To exercise any of these rights, contact us at:</p>
-          <p><strong>Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+          <p><strong>Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           <p>We will respond within a reasonable time as required by law and will not discriminate against you for exercising these rights.</p>
 
           <h2>SECTION 9 — CHILDREN'S PRIVACY</h2>
@@ -330,7 +330,7 @@ export default function PrivacyPolicy() {
             <p><strong>Designation:</strong> Proprietor & Grievance Officer</p>
             <p><strong>Business:</strong> FREE FIRE STORE</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
@@ -342,7 +342,7 @@ export default function PrivacyPolicy() {
             <p><strong>Business:</strong> FREE FIRE STORE</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.freefirestore.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
