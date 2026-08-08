@@ -214,7 +214,6 @@ try {
   // Let's generate a merged PRODUCTS array output text!
   // To keep it simple and preserve the exact original products:
   const originalProductsList = [
-    {id:1,cat:'men',name:'Classic Oxford Shirt',price:899,orig:1499,sizes:['S','M','L','XL','XXL'],rating:4.5,reviews:89,desc:'Premium cotton Oxford shirt with a relaxed fit. Perfect for office and casual wear.',badge:'SALE'},
     {id:2,cat:'men',name:'Slim Fit Chinos',price:1199,orig:1899,sizes:['28','30','32','34','36'],rating:4.3,reviews:64,desc:'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.',badge:'SALE'},
     {id:3,cat:'men',name:'Premium Hoodie',price:1499,orig:0,sizes:['S','M','L','XL'],rating:4.7,reviews:112,desc:'Ultra-soft fleece hoodie with a kangaroo pocket. Perfect for cool evenings.',badge:'NEW'},
     {id:4,cat:'men',name:'Graphic Tee Pack (3)',price:699,orig:999,sizes:['S','M','L','XL','XXL'],rating:4.2,reviews:201,desc:'Pack of 3 premium cotton graphic tees. Machine washable, durable prints.',badge:'SALE'},

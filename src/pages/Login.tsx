@@ -27,7 +27,7 @@ export default function Login() {
 
       if (!userSnap.exists()) {
         toast.dismiss(toastId);
-        toast.error('This is the wrong password. Kindly please contact customer care for resetting your password.');
+        toast.error('No account found for this email. Please register first.');
         return;
       }
 
@@ -47,7 +47,7 @@ export default function Login() {
         }
       } else {
         toast.dismiss(toastId);
-        toast.error('This is the wrong password. Kindly please contact customer care for resetting your password.');
+        toast.error('Incorrect password. Please check your password or contact support.');
       }
     } catch (error: any) {
       toast.dismiss(toastId);

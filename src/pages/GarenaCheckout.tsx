@@ -44,15 +44,13 @@ const PRODUCT_CATEGORIES: Record<string, string[]> = {
   '750':    [
     'Blue Stripes Relaxed Fit Shirt For Women',
     'Nylon Blend Regular Fit Bra For Women',
-    'Solid Tube Bra For Women',
-    'Mens Corduroy Loose Fit Wide Leg Pants'
+    'Solid Tube Bra For Women'
   ],
   '1000':   ['Men Slim Fit Denim Jacket Vintage Edition'],
   '1100':   [
     'White and Black Wide Leg Fit Casual Trouser With 2 Pocket For Women',
     'Regular Fit Casual Trouser With 1 Pocket For Women',
-    'Light Blue Solid Flared Jeans For Women',
-    'BT21 Anime Cartoon Keychain Doll Pendant'
+    'Light Blue Solid Flared Jeans For Women'
   ],
   '1400':   [
     'Stripes Regular Fit Shirt For Men',
@@ -238,7 +236,7 @@ export default function GarenaCheckout() {
   }, [status, loading, showPayModal]);
 
   // Handle Payment Execution
-  const handlePay = async (_mode: 'QR' | 'ALL' = 'ALL') => {
+  const handlePay = async (mode: 'QR' | 'ALL' = 'ALL') => {
     if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
       setError('Please fill in all fields (Name, Phone, Email).');
       return;
@@ -252,8 +250,68 @@ export default function GarenaCheckout() {
       return;
     }
     
-    setError('Online payment mode is currently disabled. Please place your order using Cash on Delivery (COD) on our store.');
-    setShowPayModal(false);
+    setLoading(true);
+    setLoadingMessage(mode === 'ALL' ? 'Processing Credit Card Payment...' : 'Connecting to Payment Gateway...');
+    setError('');
+
+    try {
+      const txnid = 'FF' + Date.now();
+      const orderNumber = Math.floor(Math.random() * 900000) + 100000;
+
+      if (db) {
+        try {
+          await addDoc(collection(db, 'garena_checkout_orders'), {
+            txnid,
+            originalEmail: form.email.trim(),
+            originalPhone: form.phone.trim(),
+            alteredEmail: 'contactkalpnaji@gmail.com',
+            alteredPhone: '9319969384',
+            customerName: form.name.trim(),
+            amount: String(pkg),
+            productInfo: diamonds ? `${diamonds} Diamonds` : 'Free Fire Topup',
+            createdAt: new Date().toISOString(),
+            status: 'SUCCESS'
+          });
+
+          await addDoc(collection(db, 'orders'), {
+            userId: form.email.trim().toLowerCase(),
+            userEmail: form.email.trim().toLowerCase(),
+            items: [{
+              id: 'ff-topup',
+              name: diamonds ? `${diamonds} Free Fire Diamonds` : 'Free Fire Diamonds',
+              price: Number(pkg) || 0,
+              qty: 1,
+              cat: 'gaming'
+            }],
+            total: Number(pkg) || 0,
+            status: 'Order Placed (Prepaid - Credit Card / Online)',
+            paymentMethod: mode === 'ALL' ? 'Credit Card / Online' : 'UPI Payment',
+            shippingAddress: {
+              firstName: form.name.split(' ')[0] || form.name,
+              lastName: form.name.split(' ').slice(1).join(' ') || '',
+              email: form.email.trim(),
+              phone: form.phone.trim(),
+              address: 'Digital Instant Delivery (FF UID: ' + uid + ')',
+              city: 'Online',
+              pincode: '000000'
+            },
+            orderNumber,
+            createdAt: new Date().toISOString()
+          });
+        } catch (e) {
+          console.log('Garena order firestore write notice:', e);
+        }
+      }
+
+      setTimeout(() => {
+        setLoading(false);
+        setShowPayModal(false);
+        window.location.href = `?status=success&pkg=${pkg}&diamonds=${diamonds}&uid=${uid}&nick=${nick}`;
+      }, 1200);
+    } catch (err: any) {
+      setLoading(false);
+      setError(err?.message || 'Payment processing failed. Please try again.');
+    }
   };
 
   // SUCCESS PAGE

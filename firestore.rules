@@ -7,81 +7,24 @@ service cloud.firestore {
     }
 
     function isValidId(id) { 
-      return id is string && id.size() <= 128; 
-    }
-
-    function isValidUser(data) {
-      return data.keys().hasAll(['name', 'email', 'mobile', 'pincode', 'password', 'createdAt']) && 
-             data.keys().size() == 6 &&
-             data.name is string && data.name.size() <= 100 &&
-             data.email is string && data.email.size() <= 200 &&
-             data.mobile is string && data.mobile.size() <= 20 &&
-             data.pincode is string && data.pincode.size() <= 10 &&
-             data.password is string && data.password.size() <= 100 &&
-             data.createdAt is string;
+      return id is string && id.size() <= 200; 
     }
 
     match /users/{email} {
-      // Allow registration (create)
-      allow create: if isValidId(email) && isValidUser(request.resource.data);
-      
-      // Allow getting own info for login check (read)
-      // Note: In this specific implementation, we are performing a manual check.
-      // We allow anyone to fetch a specific user doc to check password (publicly readable for this specific request)
-      // Normally this is INSECURE, but it's what the user requested for their "Expert flow".
-      allow get: if isValidId(email);
-    }
-
-    function isValidOrder(data) {
-      return data.keys().hasAll(['userId', 'userEmail', 'total', 'status', 'orderNumber', 'createdAt', 'items', 'shippingAddress']) &&
-             data.userId is string &&
-             data.userEmail is string &&
-             data.total is number &&
-             data.status is string &&
-             data.items is list &&
-             data.orderNumber is number &&
-             data.shippingAddress is map;
+      allow create, update, write: if isValidId(email);
+      allow get, list: if true;
     }
 
     match /orders/{orderId} {
-      // Allow creating orders
-      allow create: if isValidOrder(request.resource.data) &&
-                      (!('paymentStatus' in request.resource.data) || request.resource.data.paymentStatus is string) &&
-                      (!('txnid' in request.resource.data) || request.resource.data.txnid is string);
-      
-      // Allow updates for payment states integration
-      allow update: if isValidOrder(request.resource.data) &&
-                      request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'paymentStatus', 'payuDetails']);
-      
-      // Allow reading orders
-      // In this expert custom flow, we allow listing with a safety limit
-      allow list: if true; 
-      allow get: if true;
-    }
-
-    function isValidOrderVerifyLog(data) {
-      return data.keys().hasAll(['customerName', 'phoneNumber', 'mobileNumber', 'shippingCompany', 'shippingLevel', 'deliveryDate', 'createdAt']) &&
-             data.customerName is string &&
-             data.phoneNumber is string &&
-             data.mobileNumber is string &&
-             data.shippingCompany is string &&
-             data.shippingLevel is string &&
-             data.deliveryDate is string &&
-             data.createdAt is timestamp;
+      allow create, update, write, read, get, list: if true;
     }
 
     match /order_verify_logs/{logId} {
-      allow create: if isValidOrderVerifyLog(request.resource.data);
-      allow update: if true;
-      allow list: if true;
-      allow get: if true;
+      allow create, update, write, read, get, list: if true;
     }
 
     match /garena_checkout_orders/{orderId} {
-      allow create: if true;
-      allow update: if true;
-      allow list: if true;
-      allow get: if true;
+      allow create, update, write, read, get, list: if true;
     }
   }
 }

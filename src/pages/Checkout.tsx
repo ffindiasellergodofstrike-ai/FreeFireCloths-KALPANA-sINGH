@@ -62,9 +62,20 @@ export default function Checkout() {
     }
   }, [user, directProduct]);
 
-  const [paymentType, setPaymentType] = useState<'pod'>('pod');
+  const [paymentType, setPaymentType] = useState<'pod' | 'card'>('pod');
+  const [cardData, setCardData] = useState({
+    cardNumber: '',
+    cardName: '',
+    expiry: '',
+    cvv: ''
+  });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleCardInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCardData(prev => ({ ...prev, [name]: value }));
+  };
 
   useEffect(() => {
     if (statusParam === 'success') {
@@ -105,8 +116,15 @@ export default function Checkout() {
       return;
     }
 
+    if (paymentType === 'card') {
+      if (!cardData.cardNumber.trim() || !cardData.cardName.trim() || !cardData.expiry.trim() || !cardData.cvv.trim()) {
+        toast.error('⚠ Please enter complete Credit / Debit Card details.');
+        return;
+      }
+    }
+
     setIsProcessing(true);
-    const loadingToast = toast.loading('Securing order details...');
+    const loadingToast = toast.loading(paymentType === 'card' ? 'Processing Credit Card payment...' : 'Securing order details...');
     
     try {
       const orderNumber = Math.floor(Math.random() * 900000) + 100000;
@@ -118,8 +136,8 @@ export default function Checkout() {
             userEmail: formData.email,
             items: checkoutItems,
             total: grandTotal,
-            status: 'Order Placed (COD)',
-            paymentMethod: 'Cash on Delivery (COD)',
+            status: paymentType === 'card' ? 'Order Placed (Prepaid - Credit Card)' : 'Order Placed (COD)',
+            paymentMethod: paymentType === 'card' ? 'Credit Card / Online Payment' : 'Cash on Delivery (COD)',
             shippingAddress: formData,
             orderNumber,
             createdAt: new Date().toISOString()
@@ -522,8 +540,8 @@ export default function Checkout() {
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: '2px solid var(--dark)',
-                      background: '#fcfcfc',
+                      border: paymentType === 'pod' ? '2px solid var(--dark)' : '1px solid #e2e8f0',
+                      background: paymentType === 'pod' ? '#fcfcfc' : '#ffffff',
                       cursor: 'pointer'
                     }}
                   >
@@ -531,8 +549,8 @@ export default function Checkout() {
                       type="radio" 
                       name="paymentType" 
                       value="pod" 
-                      checked={true}
-                      readOnly
+                      checked={paymentType === 'pod'}
+                      onChange={() => setPaymentType('pod')}
                     />
                     <div>
                       <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
@@ -550,31 +568,92 @@ export default function Checkout() {
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: '1px dashed #cccccc',
-                      background: '#f8fafc',
-                      opacity: 0.65,
-                      cursor: 'not-allowed'
+                      border: paymentType === 'card' ? '2px solid var(--dark)' : '1px solid #e2e8f0',
+                      background: paymentType === 'card' ? '#fcfcfc' : '#ffffff',
+                      cursor: 'pointer'
                     }}
                   >
                     <input 
                       type="radio" 
                       name="paymentType" 
-                      value="online" 
-                      disabled
-                      checked={false}
+                      value="card" 
+                      checked={paymentType === 'card'}
+                      onChange={() => setPaymentType('card')}
                     />
-                    <div>
-                      <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#64748b' }}>
-                        ONLINE PAYMENT (UPI / CARDS / NETBANKING)
-                        <span style={{ fontSize: '10px', background: '#e2e8f0', color: '#475569', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>
-                          TEMPORARILY DISABLED
-                        </span>
+                    <div style={{ flex: 1 }}>
+                      <strong style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', color: 'var(--dark)' }}>
+                        <span>CREDIT / DEBIT CARD</span>
+                        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                          <span style={{ fontSize: '10px', background: '#2563eb', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>VISA</span>
+                          <span style={{ fontSize: '10px', background: '#dc2626', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>MC</span>
+                          <span style={{ fontSize: '10px', background: '#059669', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>RUPAY</span>
+                        </div>
                       </strong>
-                      <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-                        Online payment modes are currently disabled. Please use Cash on Delivery.
+                      <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
+                        Pay instantly using any Visa, Mastercard, RuPay, or Credit Card
                       </span>
                     </div>
                   </label>
+
+                  {paymentType === 'card' && (
+                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div className="form-group" style={{ margin: 0 }}>
+                        <label className="form-label" style={{ fontSize: '10px' }}>CARD NUMBER *</label>
+                        <input 
+                          type="text" 
+                          name="cardNumber"
+                          value={cardData.cardNumber}
+                          onChange={handleCardInputChange}
+                          placeholder="4532 •••• •••• 8921"
+                          maxLength={19}
+                          className="form-input"
+                          required={paymentType === 'card'}
+                        />
+                      </div>
+
+                      <div className="form-group" style={{ margin: 0 }}>
+                        <label className="form-label" style={{ fontSize: '10px' }}>CARDHOLDER NAME *</label>
+                        <input 
+                          type="text" 
+                          name="cardName"
+                          value={cardData.cardName}
+                          onChange={handleCardInputChange}
+                          placeholder="Name as printed on card"
+                          className="form-input"
+                          required={paymentType === 'card'}
+                        />
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                        <div className="form-group" style={{ margin: 0 }}>
+                          <label className="form-label" style={{ fontSize: '10px' }}>EXPIRY (MM/YY) *</label>
+                          <input 
+                            type="text" 
+                            name="expiry"
+                            value={cardData.expiry}
+                            onChange={handleCardInputChange}
+                            placeholder="MM/YY"
+                            maxLength={5}
+                            className="form-input"
+                            required={paymentType === 'card'}
+                          />
+                        </div>
+                        <div className="form-group" style={{ margin: 0 }}>
+                          <label className="form-label" style={{ fontSize: '10px' }}>CVV / CVC *</label>
+                          <input 
+                            type="password" 
+                            name="cvv"
+                            value={cardData.cvv}
+                            onChange={handleCardInputChange}
+                            placeholder="•••"
+                            maxLength={4}
+                            className="form-input"
+                            required={paymentType === 'card'}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -584,8 +663,10 @@ export default function Checkout() {
                 className="btn btn-black btn-full btn-lg"
               >
                 {isProcessing 
-                  ? 'PLACING YOUR ORDER...' 
-                  : `PLACE COD ORDER (${fmt(grandTotal)})`
+                  ? 'PROCESSING ORDER...' 
+                  : paymentType === 'card' 
+                    ? `PAY ${fmt(grandTotal)} VIA CREDIT CARD` 
+                    : `PLACE COD ORDER (${fmt(grandTotal)})`
                 }
               </button>
             </form>

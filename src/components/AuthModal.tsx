@@ -40,8 +40,9 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
 
     setIsLoading(true);
     try {
+      const emailLower = formData.email.trim().toLowerCase();
       // Check if user exists
-      const userRef = doc(db, 'users', formData.email);
+      const userRef = doc(db, 'users', emailLower);
       const userSnap = await getDoc(userRef);
       
       if (userSnap.exists()) {
@@ -52,22 +53,22 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
 
       // Save user to Firestore
       const userData = {
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.mobile,
-        pincode: formData.pincode,
+        name: formData.name.trim(),
+        email: emailLower,
+        mobile: formData.mobile.trim(),
+        pincode: formData.pincode.trim(),
         password: formData.password,
         createdAt: new Date().toISOString()
       };
 
       await setDoc(userRef, userData);
 
-      setSuccessData({ email: formData.email, password: formData.password });
-      login(formData.email);
+      setSuccessData({ email: emailLower, password: formData.password });
+      login(emailLower, formData.name.trim(), formData.mobile.trim());
       toast.success('Account created successfully!');
-    } catch (error) {
-      console.error(error);
-      toast.error('Registration failed. Please try again.');
+    } catch (error: any) {
+      console.error("Registration error:", error);
+      toast.error(error?.message || 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -77,22 +78,28 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const userRef = doc(db, 'users', formData.email);
+      const emailLower = formData.email.trim().toLowerCase();
+      const userRef = doc(db, 'users', emailLower);
       const userSnap = await getDoc(userRef);
       
-      if (!userSnap.exists() || userSnap.data().password !== formData.password) {
-        toast.error('Invalid email or password.');
+      if (!userSnap.exists()) {
+        toast.error('No account found with this email. Please register first.');
         setIsLoading(false);
         return;
       }
 
-      login(formData.email);
-      toast.success('Logged in successfully!');
-      if (onSuccess) onSuccess();
-      closeAuthModal();
-    } catch (error) {
-      console.error(error);
-      toast.error('Login failed. Please try again.');
+      const userData = userSnap.data();
+      if (userData && userData.password === formData.password) {
+        login(emailLower, userData.name || '', userData.mobile || '');
+        toast.success('Logged in successfully!');
+        if (onSuccess) onSuccess();
+        closeAuthModal();
+      } else {
+        toast.error('Invalid password. Please try again.');
+      }
+    } catch (error: any) {
+      console.error("Login error:", error);
+      toast.error(error?.message || 'Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

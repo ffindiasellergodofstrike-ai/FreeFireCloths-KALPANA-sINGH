@@ -218,31 +218,7 @@ export const PRODUCTS: Product[] = [
       ]
     }
   },
-  {
-    id: 307,
-    handle: "beige-graphic-print-crew-neck-t-shirt-for-men-1241813",
-    cat: "men",
-    name: "Beige Graphic Print Crew Neck T-Shirt For Men",
-    price: 395.5,
-    orig: 399,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Beige"],
-    rating: 4.7,
-    reviews: 77,
-    badge: "SALE",
-    featured: false,
-    desc: "Color: Beige\nAvailable Sizes: S, M, L, XL, XXL\nStylish Beige Graphic Print Crew Neck T-Shirt For Men.",
-    images: [
-      "https://www.ownd.in/cdn/shop/files/8909429684827_1.jpg?width=1440",
-      "https://www.ownd.in/cdn/shop/files/8909429684827_2.jpg?width=1440"
-    ],
-    variantImages: {
-      "Beige": [
-        "https://www.ownd.in/cdn/shop/files/8909429684827_1.jpg?width=1440",
-        "https://www.ownd.in/cdn/shop/files/8909429684827_2.jpg?width=1440"
-      ]
-    }
-  },
+
   {
     id: 308,
     handle: "beige-race-print-t-shirt-shorts-set-for-boys-1241802",
@@ -991,28 +967,7 @@ export const PRODUCTS: Product[] = [
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_c09dc2ce-e7ec-467c-8643-ab28f32ca7e0.jpg?v=1785493811"
     ]
   },
-  {
-    id: 403,
-    handle: "bt21-chimmy-cooky-koya-shooky-tata-creative-anime-peripheral-cartoon-keychain-personality-cute-backpack-decorative-doll-pendant",
-    cat: "accessories",
-    name: "BT21 Anime Cartoon Keychain Doll Pendant",
-    price: 1100,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.9,
-    reviews: 112,
-    badge: "",
-    featured: false,
-    desc: "BT21 Chimmy Cooky Koya Shooky Tata Creative Anime Peripheral Cartoon Keychain Personality Cute Backpack Decorative Doll Pendant.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_2f107e83-13b6-415b-82c8-f91bdd744111.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_4e545798-6a02-4512-b57d-e7be85a06c69.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_54bab436-ef22-4e6b-9aad-f2c7db34efb9.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_ec0adc1c-ab77-4a5c-b1c1-cda0c6e14a2e.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_e1ba6ba6-acf8-4027-b649-218329a82c07.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_cafcf1dc-9fd7-420f-865b-ce5194ae7c28.jpg?v=1785493810"
-    ]
-  },
+
   {
     id: 404,
     handle: "cute-bear-phone-charms-pendant-kawaii-anime-keychain-accessories-for-keys-schoolbag-iphone17-pro-max-airpods-ins",
@@ -1115,25 +1070,7 @@ export const PRODUCTS: Product[] = [
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/7612355446.jpg?v=1785491421"
     ]
   },
-  {
-    id: 409,
-    handle: "buddha-electric-pro-hair-clippers-trimmer-hair-cutting-grooming-kit",
-    cat: "electronics",
-    name: "Buddha Electric Pro Hair Clippers Trimmer Grooming Kit",
-    price: 499,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.9,
-    reviews: 176,
-    badge: "",
-    featured: false,
-    desc: "Buddha Electric Pro Hair Clippers Trimmer Hair Cutting Grooming Kit. T-blade cordless precision trimmer.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/Trimmer_20_2__16076.jpg?v=1785491336",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/E40079635_20im_17839.jpg?v=1785491335",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/Trimmer_20_2__16076_0ca3db3b-01fd-4609-a8a7-24c213fb0462.jpg?v=1785491336"
-    ]
-  },
+
   {
     id: 410,
     handle: "matte-black-dial-with-arabic-numerals",
@@ -1172,27 +1109,7 @@ export const PRODUCTS: Product[] = [
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-6dace0cf-a347-4ae5-b658-c9e0312d012d.webp?v=1785246033"
     ]
   },
-  {
-    id: 412,
-    handle: "mens-corduroy-casual-pants-fashion-loose-fit-wide-leg-pants-straight-sweatpants-elastic-waist-drawstring-d7nfuoa7ul6s73a0e3cg",
-    cat: "men",
-    name: "Mens Corduroy Loose Fit Wide Leg Pants",
-    price: 750,
-    orig: 0,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: ["Multicolor"],
-    rating: 4.7,
-    reviews: 81,
-    badge: "",
-    featured: false,
-    desc: "Mens Corduroy Casual Pants Fashion Loose Fit Wide Leg Pants Straight Sweatpants Elastic Waist Drawstring.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-0912404f-b30f-4c5f-ae09-6fef2ff8b0c6.webp?v=1785241163",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-31af4a22-538a-427b-a150-9113c3884c5c.webp?v=1785241165",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-502998ae-0614-47d5-9813-48ed8d562a38.webp?v=1785241163",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-70f5018f-fc70-4f48-b74f-061cededad1b.webp?v=1785241164"
-    ]
-  },
+
   {
     id: 413,
     handle: "women-full-coverage-bra-cv4jni8qfbo88b95l260",
@@ -1480,26 +1397,7 @@ export const PRODUCTS: Product[] = [
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-d895b1ba-3a46-4618-abe5-c0d1a87ef5e6.webp?v=1785240661"
     ]
   },
-  {
-    id: 428,
-    handle: "men-s-hemp-lightweight-pants-d9gq8i27ivfc73e4c3h0",
-    cat: "men",
-    name: "Men's Hemp Lightweight Pants",
-    price: 490,
-    orig: 0,
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    rating: 4.6,
-    reviews: 52,
-    badge: "",
-    featured: false,
-    desc: "Men's Hemp Lightweight Pants for relaxed, breathable everyday wear.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-c1fb2f55-47be-4634-b90f-e34d9316ec07.webp?v=1785240651"
-    ]
-  },
-
   // Existing Staples
-  { id: 1, cat: 'men', name: 'Classic Oxford Shirt', price: 499, orig: 1499, sizes: ['S', 'M', 'L', 'XL', 'XXL'], rating: 4.5, reviews: 89, desc: 'Premium cotton Oxford shirt with a relaxed fit. Perfect for office and casual wear.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=800&auto=format&fit=crop'] },
   { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] },
   { id: 21, cat: 'electronics', name: 'Wireless Earbuds Pro', price: 550, orig: 2499, sizes: ['ONE SIZE'], rating: 4.6, reviews: 567, desc: 'True wireless earbuds with 30-hour battery, active noise cancellation, IPX5 water resistance.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop'] },
   { id: 22, cat: 'electronics', name: 'Smart Watch Series 5', price: 750, orig: 4999, sizes: ['ONE SIZE'], rating: 4.5, reviews: 389, desc: 'Fitness smartwatch with heart rate monitor, SpO2, GPS, 7-day battery life.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=800&auto=format&fit=crop'] },
