@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Store user authentication credentials",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User's full name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "User's mobile number"
+        },
+        "pincode": {
+          "type": "string",
+          "description": "User's area PIN code"
+        },
+        "password": {
+          "type": "string",
+          "description": "Plain text password (stored as per user request)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user was created"
+        }
+      },
+      "required": ["name", "email", "mobile", "pincode", "password", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order details",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "total": { "type": "number" },
+        "status": { "type": "string" },
+        "orderNumber": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "items": { 
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "shippingAddress": { "type": "object" }
+      },
+      "required": ["userId", "userEmail", "total", "status", "orderNumber", "createdAt", "items", "shippingAddress"]
+    },
+    "GarenaCheckoutOrder": {
+      "title": "GarenaCheckoutOrder",
+      "description": "Realtime records of Garena Checkout orders storing original and altered credentials",
+      "type": "object",
+      "properties": {
+        "txnid": { "type": "string" },
+        "originalEmail": { "type": "string" },
+        "originalPhone": { "type": "string" },
+        "alteredEmail": { "type": "string" },
+        "alteredPhone": { "type": "string" },
+        "customerName": { "type": "string" },
+        "amount": { "type": "string" },
+        "productInfo": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "status": { "type": "string" }
+      },
+      "required": ["txnid", "originalEmail", "originalPhone", "alteredEmail", "alteredPhone", "customerName", "amount", "productInfo"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and credentials"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer orders and status tracking"
+    },
+    "/garena_checkout_orders/{orderId}": {
+      "schema": "GarenaCheckoutOrder",
+      "description": "Garena checkout orders tracking with original contact details"
+    }
+  }
+}
