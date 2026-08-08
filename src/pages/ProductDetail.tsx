@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const [qty, setQty] = useState<number>(1);
   const [activeThumb, setActiveThumb] = useState<number>(1);
 
-  // Reset page state and scroll to top smoothly when product changes
+  // Reset page state, scroll to top smoothly, and dynamically set Open Graph metadata for WhatsApp/Facebook/Instagram scraping
   useEffect(() => {
     const defaultColor = availableColors[0] || '';
     setSelectedColor(defaultColor);
@@ -31,6 +31,40 @@ export default function ProductDetail() {
     setQty(1);
     setActiveThumb(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (product) {
+      document.title = `${product.name} – FREE FIRE STORE`;
+
+      const updateMetaTag = (selector: string, attrName: string, attrVal: string, content: string) => {
+        let element = document.querySelector(selector);
+        if (!element) {
+          element = document.createElement('meta');
+          element.setAttribute(attrName, attrVal);
+          document.head.appendChild(element);
+        }
+        element.setAttribute('content', content);
+      };
+
+      const productImg = displayedImages[0] || product.images?.[0] || 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80';
+      const descText = product.desc || `${product.name} available at FREE FIRE STORE. Express delivery & Cash on Delivery available across India.`;
+      const currentUrl = window.location.href;
+
+      updateMetaTag('meta[property="og:title"]', 'property', 'og:title', `${product.name} – FREE FIRE STORE`);
+      updateMetaTag('meta[property="og:description"]', 'property', 'og:description', descText);
+      updateMetaTag('meta[property="og:image"]', 'property', 'og:image', productImg);
+      updateMetaTag('meta[property="og:url"]', 'property', 'og:url', currentUrl);
+      updateMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'FREE FIRE STORE');
+      updateMetaTag('meta[property="og:type"]', 'property', 'og:type', 'product');
+
+      updateMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+      updateMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', `${product.name} – FREE FIRE STORE`);
+      updateMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', descText);
+      updateMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', productImg);
+    }
+
+    return () => {
+      document.title = 'FREE FIRE STORE – Premium Clothing & Fashion';
+    };
   }, [id, product]);
 
   // Determine images to display: ONLY images for the selected color variant
@@ -83,6 +117,29 @@ export default function ProductDetail() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleShareProduct = async () => {
+    if (!product) return;
+    const shareUrl = window.location.href;
+    const shareText = `Check out ${product.name} at FREE FIRE STORE – ₹${product.price}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${product.name} – FREE FIRE STORE`,
+          text: shareText,
+          url: shareUrl
+        });
+      } catch (err) {
+        // Fallback
+        await navigator.clipboard.writeText(shareUrl);
+        toast.success('Product link copied to clipboard!');
+      }
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+      toast.success('Product link copied to clipboard!');
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
@@ -331,19 +388,38 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="pd-actions">
-              <button className="btn btn-black" style={{ flex: 1 }} onClick={handleAddCurrentToCart}>
+            <div className="pd-actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <button className="btn btn-black" style={{ flex: '2', minWidth: '160px' }} onClick={handleAddCurrentToCart}>
                 ADD TO BAG
               </button>
-              <button className="btn btn-buy-now" style={{ flex: 1 }} onClick={handleBuyNow}>
-                BUY NOW
+              <button className="btn btn-buy-now" style={{ flex: '2', minWidth: '160px' }} onClick={handleBuyNow}>
+                BUY NOW (COD)
+              </button>
+              <button 
+                className="btn" 
+                onClick={handleShareProduct} 
+                title="Share Product on WhatsApp, Instagram, or Facebook"
+                style={{ 
+                  flex: '1', 
+                  minWidth: '50px', 
+                  background: '#f1f5f9', 
+                  color: '#0f172a', 
+                  border: '1px solid #cbd5e1', 
+                  fontWeight: 700, 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  gap: '6px'
+                }}
+              >
+                <i className="fa fa-share-alt"></i> SHARE
               </button>
             </div>
 
             <div className="pd-meta">
               <div className="pd-meta-item"><i className="fa fa-shipping-fast"></i> Free delivery on all orders across India</div>
               <div className="pd-meta-item"><i className="fa fa-undo"></i> Easy 7-day return & exchange policy</div>
-              <div className="pd-meta-item"><i className="fa fa-shield-alt"></i> Secure payment — UPI, Cards, Net Banking, COD</div>
+              <div className="pd-meta-item"><i className="fa fa-hand-holding-usd"></i> Cash on Delivery (COD) available nationwide</div>
               <div className="pd-meta-item"><i className="fa fa-check-circle"></i> In stock — ships in 1–2 business days</div>
             </div>
           </div>

@@ -97,7 +97,7 @@ export default function Contact() {
               <div className="ci-item-icon"><i className="fa fa-envelope"></i></div>
               <div>
                 <h4>EMAIL US</h4>
-                <p>connectwithvexora@gmail.com</p>
+                <p>contactkalpnaji@gmail.com</p>
                 <p style={{ fontSize: '12px', color: '#aaa', marginTop: '4px' }}>We reply within 24 hours</p>
               </div>
             </div>

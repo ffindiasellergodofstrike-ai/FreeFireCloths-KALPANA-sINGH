@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function Footer() {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <footer className="footer" id="site-footer">
@@ -12,12 +14,7 @@ export default function Footer() {
             <div className="footer-brand">
               <span className="logo" onClick={() => navigate('/')}>FREE FIRE STORE</span>
               <p>Your trusted destination for premium fashion & lifestyle products. Delivered across India with love.</p>
-              <div className="social-links">
-                <a href="#"><i className="fab fa-instagram"></i></a>
-                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                <a href="#"><i className="fab fa-twitter"></i></a>
-                <a href="#"><i className="fab fa-youtube"></i></a>
-              </div>
+
             </div>
             <div className="footer-col">
               <h4>QUICK LINKS</h4>
@@ -36,11 +33,11 @@ export default function Footer() {
               <Link to="/policies/shipping">Shipping Policy</Link>
               <Link to="/policies/terms">Terms of Service</Link>
               <Link to="/contact">Contact Us</Link>
-              <Link to="/my-orders">Track Order</Link>
+              {user && <Link to="/my-orders">Track Order</Link>}
             </div>
             <div className="footer-col">
               <h4>CONTACT</h4>
-              <div className="fc-contact"><i className="fa fa-envelope"></i><span>connectwithvexora@gmail.com</span></div>
+              <div className="fc-contact"><i className="fa fa-envelope"></i><span>contactkalpnaji@gmail.com</span></div>
               <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9793970031</span></div>
               <div className="fc-contact"><i className="fa fa-map-marker-alt"></i><span>PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
             </div>
