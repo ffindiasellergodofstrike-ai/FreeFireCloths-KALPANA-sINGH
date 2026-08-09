@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ImagePreloader from './components/ImagePreloader';
+import AuthModal from './components/AuthModal';
 
 import Home from './pages/Home';
 import Collection from './pages/Collection';
@@ -33,6 +34,7 @@ function StoreLayout() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
       <Navbar />
+      <AuthModal />
       <main style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />

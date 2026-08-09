@@ -393,7 +393,7 @@ export default function ProductDetail() {
                 ADD TO BAG
               </button>
               <button className="btn btn-buy-now" style={{ flex: '2', minWidth: '160px' }} onClick={handleBuyNow}>
-                BUY NOW (COD)
+                BUY NOW
               </button>
               <button 
                 className="btn" 

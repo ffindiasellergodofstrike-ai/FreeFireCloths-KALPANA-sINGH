@@ -2,72 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { useProducts } from '../context/ProductContext';
 import { toast } from 'sonner';
 
 export default function Navbar() {
   const { cart, removeFromCart, updateQty, getTotalPrice, cartCount, isCartOpen, setIsCartOpen } = useCart();
   const { user, logout } = useAuth();
-  const { addProduct } = useProducts();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [searchText, setSearchQuery] = useState('');
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-
-  // Admin form state
-  const [newProdName, setNewProdName] = useState('');
-  const [newProdCat, setNewProdCat] = useState<'men' | 'women' | 'electronics'>('men');
-  const [newProdPrice, setNewProdPrice] = useState('');
-  const [newProdOrig, setNewProdOrig] = useState('');
-  const [newProdImg, setNewProdImg] = useState('');
-  const [newProdDesc, setNewProdDesc] = useState('');
-  const [newProdSizes, setNewProdSizes] = useState('S, M, L, XL');
-
-  const handleAddProductSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newProdName.trim() || !newProdPrice || !newProdImg.trim() || !newProdDesc.trim()) {
-      toast.error('❌ Please fill in all required fields.');
-      return;
-    }
-
-    const priceNum = parseFloat(newProdPrice);
-    const origNum = newProdOrig ? parseFloat(newProdOrig) : 0;
-
-    if (isNaN(priceNum) || priceNum <= 0) {
-      toast.error('❌ Price must be a valid positive number.');
-      return;
-    }
-
-    const sizesArr = newProdSizes.split(',').map(s => s.trim()).filter(Boolean);
-
-    addProduct({
-      name: newProdName.trim(),
-      cat: newProdCat,
-      price: priceNum,
-      orig: origNum,
-      sizes: sizesArr.length > 0 ? sizesArr : ['ONE SIZE'],
-      desc: newProdDesc.trim(),
-      images: [newProdImg.trim()],
-      badge: '',
-    });
-
-    toast.success('🎉 Product added successfully! Visible in New Arrivals.');
-    setIsAdminOpen(false);
-
-    // Reset form
-    setNewProdName('');
-    setNewProdCat('men');
-    setNewProdPrice('');
-    setNewProdOrig('');
-    setNewProdImg('');
-    setNewProdDesc('');
-    setNewProdSizes('S, M, L, XL');
-    
-    // Auto-navigate to collection
-    navigate(`/collections/${newProdCat}`);
-  };
 
   const handleSearchSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchText.trim()) {
@@ -214,12 +158,6 @@ export default function Navbar() {
           <Link to="/collections/men" onClick={() => setMobileDrawerOpen(false)}>MEN</Link>
           <Link to="/collections/women" onClick={() => setMobileDrawerOpen(false)}>WOMEN</Link>
           <Link to="/collections/electronics" onClick={() => setMobileDrawerOpen(false)}>ELECTRONICS & ACCESSORIES</Link>
-          <button 
-            onClick={() => { setMobileDrawerOpen(false); setIsAdminOpen(true); }} 
-            style={{ display: 'block', background: 'none', border: 'none', padding: '0', textAlign: 'left', font: 'inherit', cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700', color: 'var(--accent)', marginTop: '8px' }}
-          >
-            ADD PRODUCT (ADMIN)
-          </button>
           <Link to={user ? "/my-orders" : "/login"} onClick={() => setMobileDrawerOpen(false)}>
             {user ? 'MY PROFILE & ORDERS' : 'LOGIN / REGISTER'}
           </Link>
@@ -343,120 +281,6 @@ export default function Navbar() {
             </button>
           </div>
         )}
-      </div>
-
-      {/* Admin Drawer Overlay */}
-      <div 
-        className={`admin-overlay ${isAdminOpen ? 'open' : ''}`} 
-        onClick={() => setIsAdminOpen(false)} 
-        id="admin-drawer-overlay"
-      />
-
-      {/* Admin Drawer */}
-      <div className={`admin-drawer ${isAdminOpen ? 'open' : ''}`} id="adminDrawer">
-        <div className="cart-head">
-          <h3>ADD NEW PRODUCT</h3>
-          <button className="cart-close" onClick={() => setIsAdminOpen(false)} id="admin-drawer-close-btn">
-            <i className="fa fa-times"></i>
-          </button>
-        </div>
-        <div className="cart-items" style={{ padding: '20px' }}>
-          <form onSubmit={handleAddProductSubmit}>
-            <div className="admin-form-group">
-              <label>Product Name *</label>
-              <input 
-                type="text" 
-                placeholder="e.g. Premium Cotton Shirt" 
-                value={newProdName}
-                onChange={(e) => setNewProdName(e.target.value)}
-                required
-              />
-            </div>
-            
-            <div className="admin-form-group">
-              <label>Category *</label>
-              <select 
-                value={newProdCat} 
-                onChange={(e) => setNewProdCat(e.target.value as any)}
-                required
-              >
-                <option value="men">Men</option>
-                <option value="women">Women</option>
-                <option value="electronics">Electronics & Accessories</option>
-              </select>
-            </div>
-
-            <div className="admin-form-group">
-              <label>Price (₹) *</label>
-              <input 
-                type="number" 
-                placeholder="e.g. 999" 
-                value={newProdPrice}
-                onChange={(e) => setNewProdPrice(e.target.value)}
-                required
-                min="1"
-              />
-            </div>
-
-            <div className="admin-form-group">
-              <label>Compare Price (₹) (0 if none)</label>
-              <input 
-                type="number" 
-                placeholder="e.g. 1499" 
-                value={newProdOrig}
-                onChange={(e) => setNewProdOrig(e.target.value)}
-              />
-            </div>
-
-            <div className="admin-form-group">
-              <label>Image URL *</label>
-              <input 
-                type="url" 
-                placeholder="Paste direct image link from Unsplash" 
-                value={newProdImg}
-                onChange={(e) => setNewProdImg(e.target.value)}
-                required
-              />
-              <div style={{ fontSize: '11px', color: 'var(--gray)', marginTop: '4px', lineHeight: '1.4' }}>
-                Quick tip: copy image link from unsplash or use:
-                <br />
-                <code style={{ background: '#f5f5f5', padding: '2px 4px', display: 'block', margin: '4px 0', wordBreak: 'break-all' }}>
-                  https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800
-                </code>
-              </div>
-            </div>
-
-            <div className="admin-form-group">
-              <label>Available Sizes (comma-separated)</label>
-              <input 
-                type="text" 
-                placeholder="e.g. S, M, L, XL or ONE SIZE" 
-                value={newProdSizes}
-                onChange={(e) => setNewProdSizes(e.target.value)}
-              />
-            </div>
-
-            <div className="admin-form-group">
-              <label>Description *</label>
-              <textarea 
-                rows={3} 
-                placeholder="Describe this product..." 
-                value={newProdDesc}
-                onChange={(e) => setNewProdDesc(e.target.value)}
-                required
-                style={{ width: '100%', padding: '10px 14px', border: '1px solid var(--border)', fontSize: '13px', outline: 'none' }}
-              />
-            </div>
-
-            <button 
-              type="submit" 
-              className="btn btn-black btn-full" 
-              style={{ padding: '12px', marginTop: '10px', fontSize: '12px', letterSpacing: '1.5px' }}
-            >
-              ADD TO STORE
-            </button>
-          </form>
-        </div>
       </div>
     </>
   );

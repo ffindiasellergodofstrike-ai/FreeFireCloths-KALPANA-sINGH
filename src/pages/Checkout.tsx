@@ -4,15 +4,15 @@ import { toast } from 'sonner';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { ShieldCheck, ShoppingBag, ArrowRight } from 'lucide-react';
+import { collection, addDoc, serverTimestamp, doc, getDoc, setDoc } from 'firebase/firestore';
+import { ShieldCheck, ShoppingBag, ArrowRight, UserCheck, Lock, Mail, Phone, User, X } from 'lucide-react';
 
 export default function Checkout() {
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { cart, clearCart, getTotalPrice, cartCount } = useCart();
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   
   const statusParam = searchParams.get('status');
   const messageParam = searchParams.get('message');
@@ -20,6 +20,82 @@ export default function Checkout() {
   const { product: directProduct, size: directSize, qty: directQty } = location.state || {};
   
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [modalTab, setModalTab] = useState<'login' | 'register'>('login');
+  const [modalEmail, setModalEmail] = useState('');
+  const [modalPassword, setModalPassword] = useState('');
+  const [modalName, setModalName] = useState('');
+  const [modalMobile, setModalMobile] = useState('');
+  const [isAuthSubmitting, setIsAuthSubmitting] = useState(false);
+
+  const handleModalLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!modalEmail.trim() || !modalPassword.trim()) {
+      toast.error('Please enter your email and password.');
+      return;
+    }
+    setIsAuthSubmitting(true);
+    try {
+      const emailLower = modalEmail.trim().toLowerCase();
+      const userRef = doc(db, 'users', emailLower);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        toast.error('No account found for this email. Switching to Register...');
+        setModalTab('register');
+        setIsAuthSubmitting(false);
+        return;
+      }
+
+      const userData = userSnap.data();
+      if (userData && userData.password === modalPassword) {
+        login(userData.email || emailLower, userData.name || '', userData.mobile || '');
+        toast.success(`Welcome back, ${userData.name || 'Customer'}!`);
+      } else {
+        toast.error('Incorrect password. Please check and try again.');
+      }
+    } catch (err: any) {
+      toast.error(err?.message || 'Login failed. Please try again.');
+    } finally {
+      setIsAuthSubmitting(false);
+    }
+  };
+
+  const handleModalRegister = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!modalName.trim() || !modalEmail.trim() || !modalMobile.trim() || !modalPassword.trim()) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
+    setIsAuthSubmitting(true);
+    try {
+      const emailLower = modalEmail.trim().toLowerCase();
+      const userRef = doc(db, 'users', emailLower);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        toast.error('An account already exists with this email. Switching to Sign In...');
+        setModalTab('login');
+        setIsAuthSubmitting(false);
+        return;
+      }
+
+      await setDoc(userRef, {
+        name: modalName.trim(),
+        email: emailLower,
+        mobile: modalMobile.trim(),
+        pincode: '',
+        password: modalPassword,
+        createdAt: new Date().toISOString()
+      });
+
+      login(emailLower, modalName.trim(), modalMobile.trim());
+      toast.success('Account created successfully!');
+    } catch (err: any) {
+      toast.error(err?.message || 'Registration failed. Please try again.');
+    } finally {
+      setIsAuthSubmitting(false);
+    }
+  };
 
   const checkoutItems = directProduct 
     ? [{ 
@@ -185,205 +261,309 @@ export default function Checkout() {
   return (
     <div id="checkout-page-root">
       {showLoginModal && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0, 0, 0, 0.65)',
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backdropFilter: 'blur(8px)',
-          padding: '16px'
-        }} id="checkout-login-modal">
-          <div style={{
-            background: '#ffffff',
-            maxWidth: '520px',
-            width: '100%',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 40px rgba(0,0,0,0.03)',
-            borderRadius: '0',
-            border: '1px solid #111111',
-            overflow: 'hidden',
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(15, 23, 42, 0.75)',
+            zIndex: 9999,
             display: 'flex',
-            flexDirection: 'column'
-          }}>
-            {/* Modal Top Header (E-Commerce Store Branding) */}
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(6px)',
+            padding: '12px'
+          }} 
+          id="checkout-login-modal"
+        >
+          <div 
+            style={{
+              background: '#ffffff',
+              maxWidth: '440px',
+              width: '100%',
+              maxHeight: '92vh',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
+              borderRadius: '20px',
+              border: '1px solid #f1f5f9',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            {/* Top Bar Header */}
             <div style={{
-              background: '#111111',
+              background: '#0f172a',
               color: '#ffffff',
-              padding: '20px 32px',
+              padding: '16px 20px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderBottom: '1px solid #333333'
+              borderBottom: '1px solid #1e293b'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ShoppingBag style={{ width: '18px', height: '18px', color: '#f8fafc' }} />
                 <span style={{
                   fontFamily: 'var(--font-h)',
-                  fontSize: '15px',
+                  fontSize: '13px',
                   fontWeight: 800,
-                  letterSpacing: '2px',
+                  letterSpacing: '1.5px',
                   textTransform: 'uppercase'
                 }}>
                   FREE FIRE STORE
                 </span>
               </div>
-              <span style={{
-                fontSize: '11px',
-                color: '#cccccc',
-                fontWeight: '600',
-                letterSpacing: '1px'
-              }}>
-                CUSTOMER ACCOUNT
-              </span>
+              <Link 
+                to="/" 
+                style={{
+                  color: '#94a3b8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  textDecoration: 'none'
+                }}
+              >
+                <X style={{ width: '18px', height: '18px' }} />
+              </Link>
             </div>
 
-            {/* Modal Body */}
-            <div style={{ padding: '36px 32px 32px' }}>
-              {/* Shopping Bag representation */}
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                <div style={{
-                  background: '#f4f4f5',
-                  padding: '18px',
-                  borderRadius: '50%',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+            {/* Modal Body - Scrollable */}
+            <div style={{ padding: '20px 20px 24px', overflowY: 'auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                <h2 style={{
+                  fontFamily: 'var(--font-h)',
+                  fontSize: '18px',
+                  fontWeight: 900,
+                  color: '#0f172a',
+                  marginBottom: '4px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
                 }}>
-                  <ShoppingBag style={{ width: '32px', height: '32px', color: '#111111' }} />
-                </div>
+                  Sign in to Complete Order
+                </h2>
+                <p style={{
+                  color: '#64748b',
+                  fontSize: '12px',
+                  lineHeight: '1.5',
+                  margin: 0
+                }}>
+                  Identify yourself for order tracking & instant delivery updates.
+                </p>
               </div>
 
-              <h2 style={{
-                fontFamily: 'var(--font-h)',
-                fontSize: '20px',
-                fontWeight: 900,
-                textAlign: 'center',
-                color: '#111111',
-                marginBottom: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}>
-                Sign in to Complete Order
-              </h2>
-
-              <p style={{
-                color: '#666666',
-                fontSize: '13px',
-                lineHeight: '1.6',
-                textAlign: 'center',
-                marginBottom: '24px',
-                maxWidth: '420px',
-                marginLeft: 'auto',
-                marginRight: 'auto'
-              }}>
-                To ensure smooth order processing and accurate parcel tracking, please identify yourself.
-              </p>
-
-              {/* Benefits Box */}
+              {/* Modern Auth Tab Switcher */}
               <div style={{
-                background: '#fafafa',
-                border: '1px solid #eaeaea',
-                padding: '16px 20px',
-                marginBottom: '28px',
                 display: 'flex',
-                flexDirection: 'column',
-                gap: '12px'
+                background: '#f1f5f9',
+                padding: '4px',
+                borderRadius: '12px',
+                marginBottom: '20px'
               }}>
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: '14px', color: '#111111' }}>⚡</span>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '800', fontFamily: 'var(--font-h)', color: '#111111', letterSpacing: '0.5px' }}>
-                      1-CLICK FAST CHECKOUT
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#71717a', marginTop: '1px' }}>
-                      Save delivery details for seamless future orders
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: '14px', color: '#111111' }}>📦</span>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '800', fontFamily: 'var(--font-h)', color: '#111111', letterSpacing: '0.5px' }}>
-                      REAL-TIME ORDER TRACKING
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#71717a', marginTop: '1px' }}>
-                      Track status updates and dynamic shipping in real-time
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: '14px', color: '#111111' }}>🏷️</span>
-                  <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '800', fontFamily: 'var(--font-h)', color: '#111111', letterSpacing: '0.5px' }}>
-                      MEMBER PRIVILEGES & REWARDS
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#71717a', marginTop: '1px' }}>
-                      Unlock exclusive coupons and automatic discount schemes
-                    </div>
-                  </div>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setModalTab('login')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: modalTab === 'login' ? '#ffffff' : 'transparent',
+                    color: modalTab === 'login' ? '#0f172a' : '#64748b',
+                    boxShadow: modalTab === 'login' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+                  }}
+                >
+                  LOG IN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setModalTab('register')}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    background: modalTab === 'register' ? '#ffffff' : 'transparent',
+                    color: modalTab === 'register' ? '#0f172a' : '#64748b',
+                    boxShadow: modalTab === 'register' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+                  }}
+                >
+                  CREATE ACCOUNT
+                </button>
               </div>
 
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <button 
-                  className="btn btn-black btn-full btn-lg" 
-                  onClick={() => navigate('/login')}
+              {/* Inline Form */}
+              <form onSubmit={modalTab === 'login' ? handleModalLogin : handleModalRegister} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {modalTab === 'register' && (
+                  <>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#475569', marginBottom: '4px' }}>
+                        Full Name *
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <User style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: '#94a3b8' }} />
+                        <input 
+                          type="text"
+                          required
+                          value={modalName}
+                          onChange={(e) => setModalName(e.target.value)}
+                          placeholder="Rahul Sharma"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px 10px 36px',
+                            fontSize: '15px',
+                            border: '1px solid #cbd5e1',
+                            borderRadius: '10px',
+                            outline: 'none',
+                            background: '#f8fafc'
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#475569', marginBottom: '4px' }}>
+                        Mobile Number *
+                      </label>
+                      <div style={{ position: 'relative' }}>
+                        <Phone style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: '#94a3b8' }} />
+                        <input 
+                          type="tel"
+                          required
+                          value={modalMobile}
+                          onChange={(e) => setModalMobile(e.target.value)}
+                          placeholder="+91 9876543210"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px 10px 36px',
+                            fontSize: '15px',
+                            border: '1px solid #cbd5e1',
+                            borderRadius: '10px',
+                            outline: 'none',
+                            background: '#f8fafc'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#475569', marginBottom: '4px' }}>
+                    Email Address *
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <Mail style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: '#94a3b8' }} />
+                    <input 
+                      type="email"
+                      required
+                      value={modalEmail}
+                      onChange={(e) => setModalEmail(e.target.value)}
+                      placeholder="yourname@gmail.com"
+                      style={{
+                        width: '100%',
+                        padding: '10px 12px 10px 36px',
+                        fontSize: '15px',
+                        border: '1px solid #cbd5e1',
+                        borderRadius: '10px',
+                        outline: 'none',
+                        background: '#f8fafc'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#475569', marginBottom: '4px' }}>
+                    Password *
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <Lock style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', width: '16px', height: '16px', color: '#94a3b8' }} />
+                    <input 
+                      type="password"
+                      required
+                      value={modalPassword}
+                      onChange={(e) => setModalPassword(e.target.value)}
+                      placeholder="••••••••"
+                      style={{
+                        width: '100%',
+                        padding: '10px 12px 10px 36px',
+                        fontSize: '15px',
+                        border: '1px solid #cbd5e1',
+                        borderRadius: '10px',
+                        outline: 'none',
+                        background: '#f8fafc'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isAuthSubmitting}
                   style={{
+                    width: '100%',
+                    padding: '12px',
+                    background: '#0f172a',
+                    color: '#ffffff',
+                    fontWeight: 800,
+                    fontSize: '12px',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderRadius: '10px',
+                    border: 'none',
                     cursor: 'pointer',
+                    marginTop: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
-                    fontFamily: 'var(--font-h)',
-                    fontSize: '12px',
-                    fontWeight: 800,
-                    letterSpacing: '1.5px',
-                    padding: '16px 20px',
-                    border: '1px solid #111111'
+                    opacity: isAuthSubmitting ? 0.7 : 1
                   }}
                 >
-                  LOG IN TO YOUR ACCOUNT <ArrowRight style={{ width: '16px', height: '16px' }} />
+                  {isAuthSubmitting ? (
+                    'PROCESSING...'
+                  ) : (
+                    modalTab === 'login' ? (
+                      <>LOG IN & CONTINUE <ArrowRight style={{ width: '14px', height: '14px' }} /></>
+                    ) : (
+                      <>CREATE ACCOUNT & CONTINUE <ArrowRight style={{ width: '14px', height: '14px' }} /></>
+                    )
+                  )}
                 </button>
-                
-                <button 
-                  className="btn btn-outline btn-full btn-lg" 
-                  onClick={() => navigate('/register')}
-                  style={{
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-h)',
-                    fontSize: '12px',
-                    fontWeight: 800,
-                    letterSpacing: '1.5px',
-                    padding: '16px 20px',
-                    border: '1px solid #dddddd'
-                  }}
-                >
-                  NEW CUSTOMER? CREATE ACCOUNT
-                </button>
+              </form>
 
+              {/* Alternative Navigation links */}
+              <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #f1f5f9', textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ fontSize: '11px', color: '#64748b' }}>
+                  Prefer full login page?{' '}
+                  <button 
+                    type="button" 
+                    onClick={() => navigate('/login')} 
+                    style={{ background: 'none', border: 'none', color: '#0f172a', fontWeight: 800, cursor: 'pointer', textDecoration: 'underline', padding: 0, font: 'inherit' }}
+                  >
+                    Go to Login Page
+                  </button>
+                </div>
+                
                 <Link 
                   to="/" 
                   style={{
                     fontSize: '11px',
-                    fontFamily: 'var(--font-h)',
-                    fontWeight: 700,
-                    letterSpacing: '1px',
-                    color: '#888888',
+                    color: '#94a3b8',
                     textDecoration: 'none',
-                    textTransform: 'uppercase',
-                    marginTop: '16px',
-                    display: 'inline-block',
-                    textAlign: 'center',
-                    transition: 'color 0.2s'
+                    fontWeight: 600,
+                    marginTop: '4px'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#111111')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#888888')}
                 >
-                  ← CANCEL AND RETURN TO STORE
+                  ← Return to Store
                 </Link>
               </div>
             </div>
@@ -568,92 +748,41 @@ export default function Checkout() {
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: paymentType === 'card' ? '2px solid var(--dark)' : '1px solid #e2e8f0',
-                      background: paymentType === 'card' ? '#fcfcfc' : '#ffffff',
-                      cursor: 'pointer'
+                      border: '1px solid #cbd5e1',
+                      background: '#f8fafc',
+                      opacity: 0.65,
+                      cursor: 'not-allowed',
+                      userSelect: 'none'
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPaymentType('pod');
+                      toast.info('Online card payment is currently disabled. Only Cash on Delivery (COD) is accepted.');
                     }}
                   >
                     <input 
                       type="radio" 
                       name="paymentType" 
                       value="card" 
-                      checked={paymentType === 'card'}
-                      onChange={() => setPaymentType('card')}
+                      checked={false}
+                      disabled={true}
+                      onChange={() => {}}
+                      style={{ cursor: 'not-allowed' }}
                     />
                     <div style={{ flex: 1 }}>
-                      <strong style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', color: 'var(--dark)' }}>
-                        <span>CREDIT / DEBIT CARD</span>
-                        <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-                          <span style={{ fontSize: '10px', background: '#2563eb', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>VISA</span>
-                          <span style={{ fontSize: '10px', background: '#dc2626', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>MC</span>
-                          <span style={{ fontSize: '10px', background: '#059669', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>RUPAY</span>
+                      <strong style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', color: '#64748b' }}>
+                        <span>CREDIT / DEBIT CARD <span style={{ fontSize: '10px', background: '#e2e8f0', color: '#475569', padding: '2px 8px', borderRadius: '4px', marginLeft: '6px', textTransform: 'uppercase', fontWeight: 800 }}>DISABLED</span></span>
+                        <div style={{ display: 'flex', gap: '4px', alignItems: 'center', opacity: 0.5 }}>
+                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>VISA</span>
+                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>MC</span>
+                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>RUPAY</span>
                         </div>
                       </strong>
-                      <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
-                        Pay instantly using any Visa, Mastercard, RuPay, or Credit Card
+                      <span style={{ fontSize: '12px', color: '#64748b' }}>
+                        Online card payment is currently disabled. Only Cash on Delivery (COD) is accepted.
                       </span>
                     </div>
                   </label>
-
-                  {paymentType === 'card' && (
-                    <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '20px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                      <div className="form-group" style={{ margin: 0 }}>
-                        <label className="form-label" style={{ fontSize: '10px' }}>CARD NUMBER *</label>
-                        <input 
-                          type="text" 
-                          name="cardNumber"
-                          value={cardData.cardNumber}
-                          onChange={handleCardInputChange}
-                          placeholder="4532 •••• •••• 8921"
-                          maxLength={19}
-                          className="form-input"
-                          required={paymentType === 'card'}
-                        />
-                      </div>
-
-                      <div className="form-group" style={{ margin: 0 }}>
-                        <label className="form-label" style={{ fontSize: '10px' }}>CARDHOLDER NAME *</label>
-                        <input 
-                          type="text" 
-                          name="cardName"
-                          value={cardData.cardName}
-                          onChange={handleCardInputChange}
-                          placeholder="Name as printed on card"
-                          className="form-input"
-                          required={paymentType === 'card'}
-                        />
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                        <div className="form-group" style={{ margin: 0 }}>
-                          <label className="form-label" style={{ fontSize: '10px' }}>EXPIRY (MM/YY) *</label>
-                          <input 
-                            type="text" 
-                            name="expiry"
-                            value={cardData.expiry}
-                            onChange={handleCardInputChange}
-                            placeholder="MM/YY"
-                            maxLength={5}
-                            className="form-input"
-                            required={paymentType === 'card'}
-                          />
-                        </div>
-                        <div className="form-group" style={{ margin: 0 }}>
-                          <label className="form-label" style={{ fontSize: '10px' }}>CVV / CVC *</label>
-                          <input 
-                            type="password" 
-                            name="cvv"
-                            value={cardData.cvv}
-                            onChange={handleCardInputChange}
-                            placeholder="•••"
-                            maxLength={4}
-                            className="form-input"
-                            required={paymentType === 'card'}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
 
@@ -664,9 +793,7 @@ export default function Checkout() {
               >
                 {isProcessing 
                   ? 'PROCESSING ORDER...' 
-                  : paymentType === 'card' 
-                    ? `PAY ${fmt(grandTotal)} VIA CREDIT CARD` 
-                    : `PLACE COD ORDER (${fmt(grandTotal)})`
+                  : `PLACE COD ORDER (${fmt(grandTotal)})`
                 }
               </button>
             </form>
