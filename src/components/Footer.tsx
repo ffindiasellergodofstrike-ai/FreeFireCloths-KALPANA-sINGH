@@ -39,7 +39,6 @@ export default function Footer() {
               <div className="fc-contact"><i className="fa fa-envelope"></i><span>contactkalpnaji@gmail.com</span></div>
               <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9319969384</span></div>
               <div className="fc-contact"><i className="fa fa-building"></i><span><strong>Registered:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
-              <div className="fc-contact"><i className="fa fa-id-card"></i><span><strong>Udyam Reg:</strong> UDYAM-UP-03-0123799</span></div>
             </div>
           </div>
         </div>

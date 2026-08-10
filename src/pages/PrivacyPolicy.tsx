@@ -29,7 +29,6 @@ export default function PrivacyPolicy() {
             <p><strong>Trade Name:</strong> FREE FIRE STORE</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
@@ -333,7 +332,6 @@ export default function PrivacyPolicy() {
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
           <p>All grievances will be acknowledged within 48 hours and resolved within 30 days of receipt.</p>
@@ -346,7 +344,6 @@ export default function PrivacyPolicy() {
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
