@@ -45,7 +45,7 @@ export default function Register() {
       // Log user session
       login(emailLower, fullName.trim(), mobile.trim());
       toast.dismiss(toastId);
-      toast.success('Account created successfully! Welcome to FREE FIRE STORE.');
+      toast.success('Account created successfully! Welcome to Garena Official Free Fire Store.');
       
       // Redirect to original product page if redirect_product_id is saved
       const redirectId = localStorage.getItem('redirect_product_id');
@@ -69,7 +69,7 @@ export default function Register() {
             CREATE ACCOUNT
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--gray)', textAlign: 'center', marginBottom: '24px' }}>
-            Join FREE FIRE STORE for premium fashion and exclusive drops
+            Join Garena Official Free Fire Store for premium fashion and exclusive drops
           </p>
 
           <form onSubmit={handleSubmit}>

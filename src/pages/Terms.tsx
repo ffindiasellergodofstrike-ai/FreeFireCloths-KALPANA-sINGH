@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Terms() {
   useEffect(() => {
-    document.title = 'Terms & Conditions – FREE FIRE STORE';
+    document.title = 'Terms & Conditions – Garena Official Free Fire Store';
   }, []);
   return (
     <div id="terms-page-root">
@@ -21,7 +21,7 @@ export default function Terms() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>TERMS OF SERVICE</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> FREE FIRE STORE</span>
+            <span><strong>Trade Name:</strong> Garena Official Free Fire Store</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,16 +29,16 @@ export default function Terms() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Trade Name:</strong> FREE FIRE STORE</p>
+            <p><strong>Trade Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
 
-          <p>Welcome to FREE FIRE STORE!</p>
-          <p>The terms "we", "us", and "our" refer to FREE FIRE STORE, owned and operated by Kalpana Singh, registered at PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171.</p>
-          <p>FREE FIRE STORE operates this website, including all related information, content, features, tools, products, and services in order to provide you, the customer, with a curated fashion and clothing shopping experience (the "Services").</p>
+          <p>Welcome to Garena Official Free Fire Store!</p>
+          <p>The terms "we", "us", and "our" refer to Garena Official Free Fire Store, owned and operated by Kalpana Singh, registered at PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171.</p>
+          <p>Garena Official Free Fire Store operates this website, including all related information, content, features, tools, products, and services in order to provide you, the customer, with a curated fashion and clothing shopping experience (the "Services").</p>
           <p>The below terms and conditions, together with any policies referenced herein (these "Terms of Service" or "Terms"), describe your rights and responsibilities when you use the Services.</p>
           <p>Please read these Terms of Service carefully before accessing or using our website. By visiting, interacting with, or using our Services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these Terms of Service or our Privacy Policy, you should not use or access our Services.</p>
           <p>Any new features or tools added to the current store shall also be subject to these Terms of Service. We reserve the right to update, change, or replace any part of these Terms of Service by posting updates on our website. It is your responsibility to check this page periodically for changes. Your continued use of or access to the website following the posting of any changes constitutes acceptance of those changes.</p>
@@ -55,7 +55,7 @@ export default function Terms() {
           <p>We reserve the right to refuse service to anyone for any reason at any time.</p>
 
           <h2>SECTION 2 - OUR PRODUCTS</h2>
-          <p>FREE FIRE STORE is an online retail store specialising in fashion, clothing, and lifestyle apparel, including but not limited to sarees, kurtis, dresses, trousers, t-shirts, track pants, shapewear, innerwear, winterwear, rainwear, and fashion accessories for men and women.</p>
+          <p>Garena Official Free Fire Store is an online retail store specialising in fashion, clothing, and lifestyle apparel, including but not limited to sarees, kurtis, dresses, trousers, t-shirts, track pants, shapewear, innerwear, winterwear, rainwear, and fashion accessories for men and women.</p>
           <p>We operate as a dropshipping business. Products are sourced from verified third-party suppliers and shipped directly to customers. This means:</p>
           <ul>
             <li>Product images displayed on our website are representative. Actual colour, texture, or shade may slightly vary due to lighting during photography, your device screen settings, or batch differences in fabric.</li>
@@ -67,11 +67,11 @@ export default function Terms() {
           </ul>
 
           <h2>SECTION 3 - ORDERS AND ORDER ACCEPTANCE</h2>
-          <p>When you place an order on our website, you are making an offer to purchase. FREE FIRE STORE reserves the right to accept or decline your order for any reason at its sole discretion.</p>
+          <p>When you place an order on our website, you are making an offer to purchase. Garena Official Free Fire Store reserves the right to accept or decline your order for any reason at its sole discretion.</p>
           <p>Your order is considered accepted only when:</p>
           <ol>
             <li>Order details and shipping information are validated, and</li>
-            <li>You receive an Order Confirmation email or SMS from FREE FIRE STORE.</li>
+            <li>You receive an Order Confirmation email or SMS from Garena Official Free Fire Store.</li>
           </ol>
           <p>We reserve the right to cancel or refuse any order, including in cases of:</p>
           <ul>
@@ -100,7 +100,7 @@ export default function Terms() {
             <li>COD orders may be subject to order value limits at our discretion</li>
           </ul>
           <p><strong>Online Payment Gateway Status:</strong></p>
-          <p>Online payment modes (Credit Cards, Debit Cards, Net Banking, UPI, Wallets) are temporarily disabled. FREE FIRE STORE does NOT store your card numbers, CVV, UPI PIN, net banking credentials, or any sensitive payment information on our servers.</p>
+          <p>Online payment modes (Credit Cards, Debit Cards, Net Banking, UPI, Wallets) are temporarily disabled. Garena Official Free Fire Store does NOT store your card numbers, CVV, UPI PIN, net banking credentials, or any sensitive payment information on our servers.</p>
           <p>By completing a payment, you confirm and warrant that:</p>
           <ul>
             <li>The payment information you provide is true, correct, and complete</li>
@@ -132,7 +132,7 @@ export default function Terms() {
           <p><strong>By Customer After Dispatch:</strong></p>
           <p>Cancellation is not possible after an order has been dispatched.</p>
           <p>If you refuse delivery, the package will be returned to us. A refund will be issued after deducting the original shipping cost and return shipping cost from the order value.</p>
-          <p><strong>By FREE FIRE STORE:</strong></p>
+          <p><strong>By Garena Official Free Fire Store:</strong></p>
           <p>We reserve the right to cancel any order at our discretion due to stock unavailability, payment failure, pricing errors, suspected fraud, or violation of these Terms.</p>
           <p>In such cases, a full refund will be processed within 5 to 7 business days, and you will be notified via email or SMS.</p>
 
@@ -142,7 +142,7 @@ export default function Terms() {
           <p>We ship only within India. International shipping is not available at this time.</p>
           <p>Once your order is dispatched, tracking information will be shared with you via email and SMS. We use trusted courier partners including but not limited to Delhivery, Shiprocket, BlueDart, DTDC, Xpressbees, Ecom Express, and India Post.</p>
           <p>We are not liable for shipping and delivery delays caused by courier partners, natural disasters, extreme weather, government restrictions, strikes, or any other events outside our reasonable control. Once we transfer products to the carrier, the risk of loss passes to you.</p>
-          <p>Please ensure your delivery address is complete and accurate. FREE FIRE STORE is not responsible for non-delivery caused by an incorrect or incomplete address provided by you.</p>
+          <p>Please ensure your delivery address is complete and accurate. Garena Official Free Fire Store is not responsible for non-delivery caused by an incorrect or incomplete address provided by you.</p>
           <p>For full details, please refer to our Shipping Policy at <Link to="/policies/shipping">Shipping Policy</Link>.</p>
 
           <h2>SECTION 9 - RETURNS, EXCHANGES, AND REFUNDS</h2>
@@ -152,25 +152,25 @@ export default function Terms() {
           <p>For complete details on return conditions, non-returnable items, exchange process, self-shipping, and refund timelines, please refer to our Refund Policy at <Link to="/policies/refund">Refund Policy</Link>.</p>
 
           <h2>SECTION 10 - INTELLECTUAL PROPERTY</h2>
-          <p>All content on this website, including but not limited to the FREE FIRE STORE name, logo, product photographs, text, graphics, descriptions, page design, layout, and arrangement, is owned by or licensed to FREE FIRE STORE and is protected under Indian and international copyright, trademark, and intellectual property laws.</p>
+          <p>All content on this website, including but not limited to the Garena Official Free Fire Store name, logo, product photographs, text, graphics, descriptions, page design, layout, and arrangement, is owned by or licensed to Garena Official Free Fire Store and is protected under Indian and international copyright, trademark, and intellectual property laws.</p>
           <p>These Terms permit you to use the Services for your personal, non-commercial use only. You must not:</p>
           <ul>
             <li>Reproduce, copy, duplicate, sell, or resell any portion of the website or its content</li>
             <li>Modify, create derivative works, or commercially exploit any content from this website</li>
             <li>Download, store, or transmit any content without our prior written consent</li>
           </ul>
-          <p>Any unauthorised use of the Services may be a violation of applicable intellectual property laws. All rights not expressly granted herein are reserved by FREE FIRE STORE.</p>
+          <p>Any unauthorised use of the Services may be a violation of applicable intellectual property laws. All rights not expressly granted herein are reserved by Garena Official Free Fire Store.</p>
 
           <h2>SECTION 11 - PRIVACY POLICY</h2>
           <p>All personal information we collect through the Services is subject to our Privacy Policy, available at <Link to="/policies/privacy">Privacy Policy</Link>. By using the Services, you acknowledge that you have read and understood our Privacy Policy and consent to the collection, use, and disclosure of your information as described therein.</p>
           <p>Because the Services are hosted on Shopify, Shopify also collects and processes certain personal information. Your information may also be processed by our payment gateway partners as necessary to complete transactions. These third parties operate under their own privacy policies.</p>
 
           <h2>SECTION 12 - RELATIONSHIP WITH SHOPIFY</h2>
-          <p>FREE FIRE STORE is powered by Shopify Inc., which provides us with the e-commerce platform that enables us to operate our online store. Any sales and purchases made on our website are made directly with FREE FIRE STORE, and not with Shopify.</p>
-          <p>By using the Services, you acknowledge and agree that Shopify is not responsible for any aspect of any sales, transactions, or disputes between you and FREE FIRE STORE. You hereby expressly release Shopify and its affiliates from all claims, damages, and liabilities arising from or related to your purchases and transactions with FREE FIRE STORE.</p>
+          <p>Garena Official Free Fire Store is powered by Shopify Inc., which provides us with the e-commerce platform that enables us to operate our online store. Any sales and purchases made on our website are made directly with Garena Official Free Fire Store, and not with Shopify.</p>
+          <p>By using the Services, you acknowledge and agree that Shopify is not responsible for any aspect of any sales, transactions, or disputes between you and Garena Official Free Fire Store. You hereby expressly release Shopify and its affiliates from all claims, damages, and liabilities arising from or related to your purchases and transactions with Garena Official Free Fire Store.</p>
 
           <h2>SECTION 13 - FEEDBACK AND USER SUBMISSIONS</h2>
-          <p>If you submit reviews, ratings, ideas, suggestions, feedback, or other content (collectively "Feedback"), you grant FREE FIRE STORE a perpetual, worldwide, royalty-free license to use, reproduce, modify, publish, and display such Feedback for any purpose, including commercial use, without compensation to you.</p>
+          <p>If you submit reviews, ratings, ideas, suggestions, feedback, or other content (collectively "Feedback"), you grant Garena Official Free Fire Store a perpetual, worldwide, royalty-free license to use, reproduce, modify, publish, and display such Feedback for any purpose, including commercial use, without compensation to you.</p>
           <p>You represent and warrant that:</p>
           <ul>
             <li>You own or have all necessary rights to the Feedback you submit</li>
@@ -187,7 +187,7 @@ export default function Terms() {
           <ul>
             <li>For any unlawful, fraudulent, or malicious purpose</li>
             <li>To violate any applicable Indian laws, regulations, or ordinances</li>
-            <li>To infringe upon the intellectual property rights of FREE FIRE STORE or any third party</li>
+            <li>To infringe upon the intellectual property rights of Garena Official Free Fire Store or any third party</li>
             <li>To harass, abuse, defame, intimidate, or harm any person</li>
             <li>To submit false, misleading, or fraudulent payment or personal information</li>
             <li>To place orders using stolen, unauthorised, or cloned payment methods</li>
@@ -211,11 +211,11 @@ export default function Terms() {
 
           <h2>SECTION 18 - DISCLAIMER OF WARRANTIES</h2>
           <p>The information presented on or through our Services is made available for general information purposes only. We do not warrant the accuracy, completeness, or usefulness of any information on our website.</p>
-          <p>EXCEPT AS EXPRESSLY STATED BY FREE FIRE STORE, THE SERVICES AND ALL PRODUCTS OFFERED THROUGH THE SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY REPRESENTATIONS, WARRANTIES, OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, DURABILITY, TITLE, AND NON-INFRINGEMENT.</p>
+          <p>EXCEPT AS EXPRESSLY STATED BY Garena Official Free Fire Store, THE SERVICES AND ALL PRODUCTS OFFERED THROUGH THE SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY REPRESENTATIONS, WARRANTIES, OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, DURABILITY, TITLE, AND NON-INFRINGEMENT.</p>
           <p>WE DO NOT GUARANTEE THAT OUR WEBSITE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. WE DO NOT GUARANTEE THAT PRODUCT QUALITY OR APPEARANCE WILL MEET YOUR SPECIFIC EXPECTATIONS IN EVERY CASE.</p>
 
           <h2>SECTION 19 - LIMITATION OF LIABILITY</h2>
-          <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE INDIAN LAW, IN NO EVENT SHALL FREE FIRE STORE, ITS PROPRIETOR, PARTNERS, EMPLOYEES, AFFILIATES, AGENTS, CONTRACTORS, SUPPLIERS, OR SERVICE PROVIDERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF ANY KIND, INCLUDING BUT NOT LIMITED TO LOST PROFITS, LOST REVENUE, LOST SAVINGS, LOSS OF DATA, OR REPLACEMENT COSTS, ARISING FROM:</p>
+          <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE INDIAN LAW, IN NO EVENT SHALL Garena Official Free Fire Store, ITS PROPRIETOR, PARTNERS, EMPLOYEES, AFFILIATES, AGENTS, CONTRACTORS, SUPPLIERS, OR SERVICE PROVIDERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF ANY KIND, INCLUDING BUT NOT LIMITED TO LOST PROFITS, LOST REVENUE, LOST SAVINGS, LOSS OF DATA, OR REPLACEMENT COSTS, ARISING FROM:</p>
           <ul>
             <li>YOUR USE OF OR INABILITY TO USE OUR SERVICES OR PRODUCTS</li>
             <li>ERRORS OR OMISSIONS IN ANY CONTENT ON OUR WEBSITE</li>
@@ -226,7 +226,7 @@ export default function Terms() {
           <p>OUR TOTAL LIABILITY TO YOU IN ANY EVENT SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE SPECIFIC ORDER GIVING RISE TO THE CLAIM.</p>
 
           <h2>SECTION 20 - INDEMNIFICATION</h2>
-          <p>You agree to indemnify, defend, and hold harmless FREE FIRE STORE, Shopify, and our respective affiliates, partners, officers, directors, employees, agents, contractors, licensors, and service providers from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from:</p>
+          <p>You agree to indemnify, defend, and hold harmless Garena Official Free Fire Store, Shopify, and our respective affiliates, partners, officers, directors, employees, agents, contractors, licensors, and service providers from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from:</p>
           <ol>
             <li>Your breach of these Terms of Service or any policy referenced herein</li>
             <li>Your violation of any applicable law or the rights of any third party</li>
@@ -238,12 +238,12 @@ export default function Terms() {
           <p>If any provision of these Terms of Service is determined to be unlawful, void, or unenforceable, that provision shall be severed from these Terms. Such determination shall not affect the validity or enforceability of the remaining provisions, which shall continue in full force and effect.</p>
 
           <h2>SECTION 22 - WAIVER AND ENTIRE AGREEMENT</h2>
-          <p>The failure of FREE FIRE STORE to exercise or enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision.</p>
-          <p>These Terms of Service, together with our Privacy Policy, Refund and Return Policy, and Shipping Policy, constitute the entire agreement between you and FREE FIRE STORE regarding your use of the Services, and supersede all prior agreements, communications, and proposals, whether oral or written.</p>
+          <p>The failure of Garena Official Free Fire Store to exercise or enforce any right or provision of these Terms of Service shall not constitute a waiver of such right or provision.</p>
+          <p>These Terms of Service, together with our Privacy Policy, Refund and Return Policy, and Shipping Policy, constitute the entire agreement between you and Garena Official Free Fire Store regarding your use of the Services, and supersede all prior agreements, communications, and proposals, whether oral or written.</p>
 
           <h2>SECTION 23 - ASSIGNMENT</h2>
           <p>You may not delegate, transfer, or assign this Agreement or any of your rights or obligations under these Terms without our prior written consent. Any such attempt without consent shall be null and void.</p>
-          <p>FREE FIRE STORE may transfer, assign, or delegate these Terms and its rights and obligations without consent or prior notice to you.</p>
+          <p>Garena Official Free Fire Store may transfer, assign, or delegate these Terms and its rights and obligations without consent or prior notice to you.</p>
 
           <h2>SECTION 24 - GOVERNING LAW AND JURISDICTION</h2>
           <p>These Terms of Service, and any disputes arising out of or in connection with them, shall be governed by and construed in accordance with the laws of India, including but not limited to:</p>
@@ -269,7 +269,7 @@ export default function Terms() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
-            <p><strong>Business Name:</strong> FREE FIRE STORE</p>
+            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -280,7 +280,7 @@ export default function Terms() {
           <h2>SECTION 28 - CONTACT INFORMATION</h2>
           <p>For any questions, concerns, or queries regarding these Terms of Service, please contact us:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> FREE FIRE STORE</p>
+            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>

@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 
 export default function Contact() {
   useEffect(() => {
-    document.title = 'Contact Us – FREE FIRE STORE';
+    document.title = 'Contact Us – Garena Official Free Fire Store';
   }, []);
 
   const [name, setName] = useState('');

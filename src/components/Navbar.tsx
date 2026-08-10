@@ -132,8 +132,8 @@ export default function Navbar() {
           <i className="fa fa-times"></i>
         </button>
         <div className="drawer-logo" style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '20px' }}>
-          <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--dark)' }}>GARENA OFFICIAL</span>
-          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#64748b' }}>FREE FIRE STORE</span>
+          <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--dark)' }}>Garena Official Free Fire Store</span>
+          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#64748b' }}>Garena Official Free Fire Store</span>
         </div>
 
         {user && (

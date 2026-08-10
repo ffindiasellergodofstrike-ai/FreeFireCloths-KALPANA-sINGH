@@ -12,7 +12,7 @@ async function runServer() {
 
   // Health check API
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", store: "FREE FIRE STORE" });
+    res.json({ status: "ok", store: "Garena Official Free Fire Store" });
   });
 
   // Serve static assets and frontend index

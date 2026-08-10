@@ -19,7 +19,7 @@ export default function Collection() {
 
   useEffect(() => {
     const catName = category.toUpperCase();
-    document.title = `${catName} Collection – FREE FIRE STORE`;
+    document.title = `${catName} Collection – Garena Official Free Fire Store`;
 
     setSelectedCats({
       men: category === 'men' || category === 'all',

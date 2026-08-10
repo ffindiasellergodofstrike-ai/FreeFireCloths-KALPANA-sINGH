@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
       <div className="footer-bot">
         <div className="container">
-          <p>© 2026 FREE FIRE STORE All rights reserved</p>
+          <p>© 2026 Garena Official Free Fire Store. All rights reserved</p>
         </div>
       </div>
     </footer>

@@ -434,7 +434,7 @@ export default function GarenaCheckout() {
             </div>
 
             <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc' }}>
-              🔒 Payment secured by FREE FIRE STORE · Do not close this window
+              🔒 Payment secured by Garena Official Free Fire Store · Do not close this window
             </div>
           </div>
         </div>
@@ -1054,7 +1054,7 @@ export default function GarenaCheckout() {
                   </button>
 
                   <div style={{ textAlign: 'center', fontSize: 11, color: '#aaa', fontWeight: 500 }}>
-                    🔒 100% Secure · SSL Encrypted · Powered by FREE FIRE STORE
+                    🔒 100% Secure · SSL Encrypted · Powered by Garena Official Free Fire Store
                   </div>
                 </div>
               </div>

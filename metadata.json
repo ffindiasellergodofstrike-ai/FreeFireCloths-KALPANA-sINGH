@@ -1,6 +1,6 @@
 {
-  "name": "FREE FIRE STORE",
-  "description": "FREE FIRE STORE - Kalpana Singh. Premium fashion & lifestyle products.",
+  "name": "Garena Official Free Fire Store",
+  "description": "Garena Official Free Fire Store - Kalpana Singh. Premium fashion & lifestyle products.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

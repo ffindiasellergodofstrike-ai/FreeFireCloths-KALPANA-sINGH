@@ -63,7 +63,7 @@ export default function Login() {
             WELCOME BACK
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--gray)', textAlign: 'center', marginBottom: '24px' }}>
-            Sign in to your FREE FIRE STORE account
+            Sign in to your Garena Official Free Fire Store account
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -123,7 +123,7 @@ export default function Login() {
           </form>
 
           <p style={{ fontSize: '12px', color: 'var(--gray)', textAlign: 'center', marginTop: '24px' }}>
-            New to FREE FIRE STORE? <Link to="/register" style={{ color: 'var(--dark)', fontWeight: 700, textDecoration: 'underline' }}>Create account</Link>
+            New to Garena Official Free Fire Store? <Link to="/register" style={{ color: 'var(--dark)', fontWeight: 700, textDecoration: 'underline' }}>Create account</Link>
           </p>
         </div>
       </div>
