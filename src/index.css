@@ -98,6 +98,56 @@ input, textarea, select { font-family: var(--font-b); }
 }
 .logo:hover { color: #333; }
 
+.logo-brand-block {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1.15;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.logo-main {
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--dark);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.logo-sub {
+  font-family: var(--font-h);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+
+@media(max-width: 600px) {
+  .logo-main {
+    font-size: 14px;
+    letter-spacing: 0.8px;
+  }
+  .logo-sub {
+    font-size: 8.5px;
+    letter-spacing: 0.8px;
+  }
+}
+@media(max-width: 360px) {
+  .logo-main {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .logo-sub {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+}
+
 /* Desktop Nav — center */
 .main-nav {
   display: flex; align-items: center; justify-content: center; gap: 0;

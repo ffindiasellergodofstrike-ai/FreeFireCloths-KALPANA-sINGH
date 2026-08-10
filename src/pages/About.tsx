@@ -44,7 +44,7 @@ export default function About() {
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '20px', borderRadius: '8px', marginBottom: '24px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', borderBottom: '1px solid #cbd5e1', paddingBottom: '8px' }}>BUSINESS & REGISTRATION DETAILS</h3>
               <p style={{ fontSize: '13px', color: '#334155', margin: 0, lineHeight: '1.6' }}>
-                <strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171
+                <strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171
               </p>
             </div>
 

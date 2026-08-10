@@ -31,13 +31,13 @@ export default function Terms() {
           <div className="policy-info-box">
             <p><strong>Trade Name:</strong> FREE FIRE STORE</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
-            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
 
           <p>Welcome to FREE FIRE STORE!</p>
-          <p>The terms "we", "us", and "our" refer to FREE FIRE STORE, owned and operated by Kalpana Singh, registered at PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171.</p>
+          <p>The terms "we", "us", and "our" refer to FREE FIRE STORE, owned and operated by Kalpana Singh, registered at PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171.</p>
           <p>FREE FIRE STORE operates this website, including all related information, content, features, tools, products, and services in order to provide you, the customer, with a curated fashion and clothing shopping experience (the "Services").</p>
           <p>The below terms and conditions, together with any policies referenced herein (these "Terms of Service" or "Terms"), describe your rights and responsibilities when you use the Services.</p>
           <p>Please read these Terms of Service carefully before accessing or using our website. By visiting, interacting with, or using our Services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these Terms of Service or our Privacy Policy, you should not use or access our Services.</p>
@@ -272,7 +272,7 @@ export default function Terms() {
             <p><strong>Business Name:</strong> FREE FIRE STORE</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
-            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
           <p>All complaints and grievances will be acknowledged within 48 hours of receipt and resolved within 30 days as required by law.</p>
@@ -284,7 +284,7 @@ export default function Terms() {
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>
-            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>

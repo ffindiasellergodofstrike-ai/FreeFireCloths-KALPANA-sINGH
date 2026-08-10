@@ -12,7 +12,10 @@ export default function Footer() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <span className="logo" onClick={() => navigate('/')}>FREE FIRE STORE</span>
+              <div className="logo-brand-block" onClick={() => navigate('/')} style={{ cursor: 'pointer', marginBottom: '14px' }}>
+                <span className="logo-main" style={{ color: '#ffffff' }}>GARENA OFFICIAL</span>
+                <span className="logo-sub" style={{ color: '#94a3b8' }}>FREE FIRE STORE</span>
+              </div>
               <p>Your trusted destination for premium fashion & lifestyle products. Delivered across India with love.</p>
 
             </div>
@@ -38,7 +41,7 @@ export default function Footer() {
               <h4>CONTACT & ADDRESS</h4>
               <div className="fc-contact"><i className="fa fa-envelope"></i><span>contactkalpnaji@gmail.com</span></div>
               <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9319969384</span></div>
-              <div className="fc-contact"><i className="fa fa-building"></i><span><strong>Registered:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
+              <div className="fc-contact"><i className="fa fa-building"></i><span><strong>Registered:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
             </div>
           </div>
         </div>

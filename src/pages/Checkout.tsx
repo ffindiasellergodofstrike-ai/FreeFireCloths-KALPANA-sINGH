@@ -712,7 +712,7 @@ export default function Checkout() {
                 <h3 style={{ fontSize: '14px', letterSpacing: '1px', fontFamily: 'var(--font-h)', fontWeight: 700, borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '20px' }}>
                   2. PAYMENT METHOD
                 </h3>
-                
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <label 
                     style={{
@@ -720,17 +720,17 @@ export default function Checkout() {
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: paymentType === 'pod' ? '2px solid var(--dark)' : '1px solid #e2e8f0',
-                      background: paymentType === 'pod' ? '#fcfcfc' : '#ffffff',
-                      cursor: 'pointer'
+                      border: '2px solid var(--dark)',
+                      background: '#fcfcfc',
+                      cursor: 'default'
                     }}
                   >
                     <input 
                       type="radio" 
                       name="paymentType" 
                       value="pod" 
-                      checked={paymentType === 'pod'}
-                      onChange={() => setPaymentType('pod')}
+                      checked={true}
+                      readOnly
                     />
                     <div>
                       <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
@@ -738,48 +738,6 @@ export default function Checkout() {
                       </strong>
                       <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
                         Pay via Cash, UPI, or Card upon delivery to your doorstep
-                      </span>
-                    </div>
-                  </label>
-
-                  <label 
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      padding: '16px',
-                      border: '1px solid #cbd5e1',
-                      background: '#f8fafc',
-                      opacity: 0.65,
-                      cursor: 'not-allowed',
-                      userSelect: 'none'
-                    }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setPaymentType('pod');
-                      toast.info('Online card payment is currently disabled. Only Cash on Delivery (COD) is accepted.');
-                    }}
-                  >
-                    <input 
-                      type="radio" 
-                      name="paymentType" 
-                      value="card" 
-                      checked={false}
-                      disabled={true}
-                      onChange={() => {}}
-                      style={{ cursor: 'not-allowed' }}
-                    />
-                    <div style={{ flex: 1 }}>
-                      <strong style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '14px', color: '#64748b' }}>
-                        <span>CREDIT / DEBIT CARD <span style={{ fontSize: '10px', background: '#e2e8f0', color: '#475569', padding: '2px 8px', borderRadius: '4px', marginLeft: '6px', textTransform: 'uppercase', fontWeight: 800 }}>DISABLED</span></span>
-                        <div style={{ display: 'flex', gap: '4px', alignItems: 'center', opacity: 0.5 }}>
-                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>VISA</span>
-                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>MC</span>
-                          <span style={{ fontSize: '10px', background: '#94a3b8', color: '#ffffff', padding: '2px 6px', borderRadius: '3px', fontWeight: 700 }}>RUPAY</span>
-                        </div>
-                      </strong>
-                      <span style={{ fontSize: '12px', color: '#64748b' }}>
-                        Online card payment is currently disabled. Only Cash on Delivery (COD) is accepted.
                       </span>
                     </div>
                   </label>

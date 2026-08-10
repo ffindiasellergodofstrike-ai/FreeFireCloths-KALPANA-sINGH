@@ -31,7 +31,7 @@ export default function RefundPolicy() {
           <div className="policy-info-box">
             <p><strong>Business Name:</strong> FREE FIRE STORE</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
@@ -100,8 +100,7 @@ export default function RefundPolicy() {
             <p><strong>Return Address:</strong></p>
             <p>FREE FIRE STORE</p>
             <p>C/O Kalpana Singh</p>
-            <p>PRANNATHPUR BACHHARIYA, KADIPUR,</p>
-            <p>AKHANDNAGAR, SULTANPUR,</p>
+            <p>PRANNATHPUR BACHHARIYA, SULTANPUR,</p>
             <p>UTTAR PRADESH, INDIA, 228171</p>
             <p>Phone: +91 9319969384</p>
           </div>
@@ -226,7 +225,7 @@ export default function RefundPolicy() {
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
-            <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
           <p>All grievances will be acknowledged within 48 hours and resolved within 30 days of receipt.</p>
@@ -238,7 +237,7 @@ export default function RefundPolicy() {
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>
-            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
+            <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>

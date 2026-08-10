@@ -117,7 +117,7 @@ export default function Contact() {
               <div className="ci-item-icon"><i className="fa fa-building"></i></div>
               <div>
                 <h4>REGISTERED ADDRESS & REGISTRATION</h4>
-                <p>PRANNATHPUR BACHHARIYA, KADIPUR,<br />AKHANDNAGAR, SULTANPUR,<br />UTTAR PRADESH, INDIA, 228171</p>
+                <p>PRANNATHPUR BACHHARIYA, SULTANPUR,<br />UTTAR PRADESH, INDIA - 228171</p>
               </div>
             </div>
             <div className="ci-item">

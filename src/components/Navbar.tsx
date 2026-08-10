@@ -56,8 +56,9 @@ export default function Navbar() {
         <div className="container">
           <div className="header-inner">
             {/* Logo */}
-            <Link to="/" className="logo" id="header-logo-text">
-              FREE FIRE STORE
+            <Link to="/" className="logo-brand-block" id="header-logo-text">
+              <span className="logo-main">GARENA OFFICIAL</span>
+              <span className="logo-sub">FREE FIRE STORE</span>
             </Link>
 
             {/* Nav (center) */}
@@ -130,7 +131,10 @@ export default function Navbar() {
         <button className="drawer-close" onClick={() => setMobileDrawerOpen(false)} id="drawer-close-btn">
           <i className="fa fa-times"></i>
         </button>
-        <div className="drawer-logo">FREE FIRE STORE</div>
+        <div className="drawer-logo" style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '20px' }}>
+          <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--dark)' }}>GARENA OFFICIAL</span>
+          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: '#64748b' }}>FREE FIRE STORE</span>
+        </div>
 
         {user && (
           <div style={{ background: '#f8fafc', padding: '12px 16px', border: '1px solid #e2e8f0', margin: '12px 0 16px' }}>
