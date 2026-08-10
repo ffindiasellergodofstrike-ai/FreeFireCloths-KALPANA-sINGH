@@ -10,7 +10,7 @@ export interface ProductVariant {
 
 export interface Product {
   id: number;
-  cat: 'men' | 'women' | 'kids' | 'electronics' | 'accessories';
+  cat: 'men' | 'women' | 'kids';
   name: string;
   price: number;
   orig: number; // 0 if none
@@ -922,96 +922,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // --- NEWLY IMPORTED CSV PRODUCTS (Electronics, Accessories, Clothing) ---
-  {
-    id: 401,
-    handle: "portable-handheld-ring-led-light-new-rabbit-cage-lighting-photography-lamp-for-mobile-live-broadcast-selfie-light-decoration",
-    cat: "electronics",
-    name: "Portable Handheld Ring LED Light Photography Lamp",
-    price: 550,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.9,
-    reviews: 42,
-    badge: "",
-    featured: false,
-    desc: "Portable Handheld Ring LED Light New Rabbit Cage Lighting Photography Lamp for Mobile Live Broadcast Selfie Light Decoration.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_d20d0fd0-cd09-414a-817e-9ec7baa116c5.jpg?v=1785493813",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_01872dc3-b86f-4f9a-989a-e4acde9458ab.jpg?v=1785493813",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_c15cafca-d9fa-41b0-8e1c-5b912c7fba6b.jpg?v=1785493813",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_7322a4be-1c1d-481f-82c9-d3b53ae21efb.jpg?v=1785493813",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_d30b71e2-70c1-4085-aa69-ac0088c83b91.jpg?v=1785493813",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_a1187573-ef9b-4aa1-8fc4-46dfc57f40f3.jpg?v=1785493813"
-    ]
-  },
-  {
-    id: 402,
-    handle: "10-26cm-dimmable-led-ring-light-kit-with-tripod-120-beads-usb-selfie-live-streaming-lamp-for-photography-video-makeup",
-    cat: "electronics",
-    name: "10\" 26cm Dimmable LED Ring Light Kit with Tripod",
-    price: 750,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.8,
-    reviews: 65,
-    badge: "",
-    featured: false,
-    desc: "10\" 26cm Dimmable LED Ring Light Kit with Tripod – 120 Beads USB Selfie & Live Streaming Lamp for Photography, Video & Makeup.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_41ed6410-9878-48f6-847b-80f21da00c50.jpg?v=1785493811",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_546fa0f5-67cb-4dc4-84e7-c195e524834e.jpg?v=1785493811",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_42bb96b9-f226-4e01-85c1-013f5872d090.jpg?v=1785493811",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_c0be6465-9538-4ac7-9415-0cab699dadd8.jpg?v=1785493811",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_2b133aaa-b80d-4988-ad9e-31f98893c2b2.jpg?v=1785493811",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_c09dc2ce-e7ec-467c-8643-ab28f32ca7e0.jpg?v=1785493811"
-    ]
-  },
-
-  {
-    id: 404,
-    handle: "cute-bear-phone-charms-pendant-kawaii-anime-keychain-accessories-for-keys-schoolbag-iphone17-pro-max-airpods-ins",
-    cat: "accessories",
-    name: "Cute Bear Phone Charms & Keychain Pendant",
-    price: 1400,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.8,
-    reviews: 78,
-    badge: "",
-    featured: false,
-    desc: "Cute Bear Phone Charms Pendant Kawaii Anime Keychain Accessories for Keys Schoolbag iPhone AirPods.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_621f13f5-c960-4c8f-ba81-8235973043ba.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_dcf13ff5-2b01-48aa-bc20-b77642c97c88.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_7779ad4f-6ed1-4295-9ed1-ee347845c152.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_762797af-e515-4c63-b855-e1fa804dcd18.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_30557bdc-a943-4bbc-9a39-4133fc62f223.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_35677017-9ca5-44c3-a093-36a0251fcd1a.jpg?v=1785493810"
-    ]
-  },
-  {
-    id: 405,
-    handle: "led-selfie-ring-lighting-photographic-selfie-ring-lamp-usb-remote-fill-light-for-youtube-tiktok-video-live-phone-holder-tripod",
-    cat: "electronics",
-    name: "LED Selfie Ring Lamp with Phone Holder & Tripod",
-    price: 5500,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.7,
-    reviews: 94,
-    badge: "",
-    featured: false,
-    desc: "LED Selfie Ring Lighting Photographic Ring Lamp USB Remote Fill Light for YouTube TikTok Video Live Stream with Phone Holder & Tripod.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_d4a0c051-eb81-43eb-9534-8b6f49110d0a.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_50d02ad8-a74b-498b-b0cb-7f090bb9b28f.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_9aa227b4-56e3-49e0-8a44-295a26b0ae8a.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_2d9677a1-c71a-41ce-8fea-3ef3b929d289.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image_bcb6e9f5-9350-43f1-b4fe-d65656799a2d.jpg?v=1785493810",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/image.jpg?v=1785493810"
-    ]
-  },
+  // --- NEWLY IMPORTED CSV PRODUCTS (Clothing & Everyday Wear) ---
   {
     id: 406,
     handle: "solid-plazzos-for-women-and-girls-dailywear-bk-xxl",
@@ -1030,63 +941,6 @@ export const PRODUCTS: Product[] = [
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/34-plazzo-bhagyashray-original-imahywqyf9mqgbth.jpg?v=1785491617",
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/34-plazzo-bhagyashray-original-imahywqyugkwsqjr.jpg?v=1785491617",
       "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/34-plazzo-bhagyashray-original-imahywqyyakytdxa.jpg?v=1785491616"
-    ]
-  },
-  {
-    id: 407,
-    handle: "motion-sensor-light-for-home-with-usb-charging-wireless-self-adhesive-led-night-light",
-    cat: "electronics",
-    name: "Motion Sensor Wireless USB Charging LED Night Light",
-    price: 395.5,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.8,
-    reviews: 132,
-    badge: "",
-    featured: false,
-    desc: "Motion Sensor Light For Home With USB Charging Wireless Self Adhesive LED Night Light.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/4977964556.jpg?v=1785491442",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/6791234760.jpg?v=1785491442",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/8461840206.jpg?v=1785491443",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/6097004242.jpg?v=1785491443",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/4584550103.jpg?v=1785491443"
-    ]
-  },
-  {
-    id: 408,
-    handle: "star-lamp-usb-car-star-ceiling-light",
-    cat: "accessories",
-    name: "Star Lamp USB Car Star Ceiling Light",
-    price: 490,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.7,
-    reviews: 89,
-    badge: "",
-    featured: false,
-    desc: "Star Lamp USB Car Star Ceiling Light for interior atmosphere and starry night illumination.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/7612355446.jpg?v=1785491421"
-    ]
-  },
-
-  {
-    id: 410,
-    handle: "matte-black-dial-with-arabic-numerals",
-    cat: "accessories",
-    name: "Matte Black Dial Minimalist Analog Watch",
-    price: 1000,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.6,
-    reviews: 64,
-    badge: "",
-    featured: false,
-    desc: "Matte Black Dial With Arabic Numerals Minimalist Analog Watch.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/Matte_20Black_20Minimalist_20Dial_20Watch_20_2__23563.jpg?v=1785491272",
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/Matte_20Black_20Minimalist_20Dial_20Watch_20_1__23562.jpg?v=1785491272"
     ]
   },
   {
@@ -1303,23 +1157,6 @@ export const PRODUCTS: Product[] = [
     ]
   },
   {
-    id: 423,
-    handle: "winter-cap-for-man-women-beanie-cap-muffler-windproof-winter-woolen-cap-with-ear-protection-head-neck-warmer-woolen-topaa-soft-comfortable-pcs-1-d9a9iadf5nec73akjjkg",
-    cat: "accessories",
-    name: "Winter Beanie Cap & Muffler Set for Men & Women",
-    price: 1100,
-    orig: 0,
-    sizes: ["ONE SIZE"],
-    rating: 4.8,
-    reviews: 79,
-    badge: "",
-    featured: false,
-    desc: "Winter Cap for Man & Women, Beanie Cap & Muffler, Windproof Winter Woolen Cap with Ear Protection, Head & Neck Warmer, Soft & Comfortable.",
-    images: [
-      "https://cdn.shopify.com/s/files/1/0816/4612/5286/files/cmimgopt-7e3eb2be-a644-418d-9276-2159a1ff8567.webp?v=1785240693"
-    ]
-  },
-  {
     id: 424,
     handle: "men-s-ice-silk-briefs-boxers-pack-of-2-d9bs6o4d9mtc739dvngg",
     cat: "men",
@@ -1398,14 +1235,11 @@ export const PRODUCTS: Product[] = [
     ]
   },
   // Existing Staples
-  { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] },
-  { id: 21, cat: 'electronics', name: 'Wireless Earbuds Pro', price: 550, orig: 2499, sizes: ['ONE SIZE'], rating: 4.6, reviews: 567, desc: 'True wireless earbuds with 30-hour battery, active noise cancellation, IPX5 water resistance.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop'] },
-  { id: 22, cat: 'electronics', name: 'Smart Watch Series 5', price: 750, orig: 4999, sizes: ['ONE SIZE'], rating: 4.5, reviews: 389, desc: 'Fitness smartwatch with heart rate monitor, SpO2, GPS, 7-day battery life.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=800&auto=format&fit=crop'] },
-  { id: 27, cat: 'electronics', name: 'Mechanical Keyboard', price: 1100, orig: 4499, sizes: ['ONE SIZE'], rating: 4.8, reviews: 234, desc: 'Compact 75% mechanical keyboard with RGB backlight, tactile switches.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=800&auto=format&fit=crop'] }
+  { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] }
 ];
 
 export const BLOG_POSTS: BlogPost[] = [
   { id: 1, cat: 'STYLE GUIDE', title: '10 Essential Wardrobe Staples for Summer 2026', excerpt: 'Build a versatile, timeless wardrobe with these must-have pieces that transition effortlessly.', date: 'JUNE 15, 2026', emoji: '☀️' },
   { id: 2, cat: 'DENIM', title: 'The Ultimate Denim Fit Guide: Wide Leg vs Skinny', excerpt: 'Everything you need to know about finding the perfect pair of jeans for your body type.', date: 'JUNE 10, 2026', emoji: '👖' },
-  { id: 3, cat: 'TECH', title: 'Top Wearable Tech Trends You Need to Know', excerpt: 'How smartwatches and wireless audio are reshaping daily convenience and fitness tracking.', date: 'MAY 28, 2026', emoji: '⌚' }
+  { id: 3, cat: 'FASHION', title: 'Top Fashion & Comfort Trends You Need to Know', excerpt: 'How breathable fabrics and modern silhouettes are reshaping daily fashion and everyday wear.', date: 'MAY 28, 2026', emoji: '✨' }
 ];

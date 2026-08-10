@@ -64,8 +64,8 @@ export default function Home() {
               loading="lazy"
             />
           ) : (
-            <div className={`ph ph-${p.cat === 'electronics' ? 'elec' : p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : p.cat === 'women' ? '👗' : '💻'}
+            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
+              {p.cat === 'men' ? '👔' : '👗'}
               <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
             </div>
           )}
@@ -120,18 +120,6 @@ export default function Home() {
                 />
               </div>
               <span className="bubble-title">WOMEN</span>
-            </div>
-
-            <div className="bubble-item" onClick={() => handleCategoryClick('electronics')} id="category-electronics">
-              <div className="bubble-img-wrapper">
-                <img 
-                  src="https://i.ibb.co/XkLx5j6v/ELECTRONICS-ACCESSORIES.png" 
-                  alt="Electronics & Accessories" 
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
-              </div>
-              <span className="bubble-title">ELECTRONICS & ACCESSORIES</span>
             </div>
           </div>
         </div>

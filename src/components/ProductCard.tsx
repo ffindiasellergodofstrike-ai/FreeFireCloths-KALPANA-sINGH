@@ -35,7 +35,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             loading="lazy"
           />
         ) : (
-          <div className={`ph ph-${product.cat === 'electronics' ? 'elec' : product.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
+          <div className={`ph ph-${product.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
             {emoji}
             <span>{product.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
           </div>

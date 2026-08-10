@@ -57,7 +57,7 @@ export default function Cart() {
                         referrerPolicy="no-referrer"
                       />
                     ) : (
-                      <div className={`ph ph-${item.cat === 'electronics' ? 'elec' : item.cat} cart-pg-img`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px' }}>
+                      <div className={`ph ph-${item.cat} cart-pg-img`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '36px' }}>
                         {emoji(item.cat)}
                       </div>
                     )}

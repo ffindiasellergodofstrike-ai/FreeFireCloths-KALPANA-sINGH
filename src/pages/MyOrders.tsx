@@ -92,7 +92,7 @@ export default function MyOrders() {
   };
 
   const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
-  const emoji = (cat?: string) => cat === 'men' ? '👕' : cat === 'women' ? '👗' : '💻';
+  const emoji = (cat?: string) => cat === 'men' ? '👕' : '👗';
 
   const getFormattedDate = (createdAt: any) => {
     if (!createdAt) return 'Pending';

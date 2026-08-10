@@ -73,7 +73,6 @@ export default function Navbar() {
                   <Link to="/collections/men">MEN</Link>
                   <Link to="/collections/women">WOMEN</Link>
                   <Link to="/collections/kids">KIDS</Link>
-                  <Link to="/collections/electronics">ELECTRONICS & ACCESSORIES</Link>
                 </div>
               </div>
               <div className="nav-item">
@@ -157,7 +156,6 @@ export default function Navbar() {
           <Link to="/collections/all" onClick={() => setMobileDrawerOpen(false)}>SHOP ALL</Link>
           <Link to="/collections/men" onClick={() => setMobileDrawerOpen(false)}>MEN</Link>
           <Link to="/collections/women" onClick={() => setMobileDrawerOpen(false)}>WOMEN</Link>
-          <Link to="/collections/electronics" onClick={() => setMobileDrawerOpen(false)}>ELECTRONICS & ACCESSORIES</Link>
           <Link to={user ? "/my-orders" : "/login"} onClick={() => setMobileDrawerOpen(false)}>
             {user ? 'MY PROFILE & ORDERS' : 'LOGIN / REGISTER'}
           </Link>

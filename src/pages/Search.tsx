@@ -52,8 +52,8 @@ export default function Search() {
               referrerPolicy="no-referrer"
             />
           ) : (
-            <div className={`ph ph-${p.cat === 'electronics' ? 'elec' : p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : p.cat === 'women' ? '👗' : '💻'}
+            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
+              {p.cat === 'men' ? '👔' : '👗'}
               <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
             </div>
           )}
@@ -101,7 +101,7 @@ export default function Search() {
           <div style={{ textAlign: 'center', padding: '60px 20px' }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
             <h2 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>SEARCH GARENA</h2>
-            <p style={{ color: 'var(--gray)' }}>Type your keyword above to discover premium fashion and electronics.</p>
+            <p style={{ color: 'var(--gray)' }}>Type your keyword above to discover premium fashion and apparel.</p>
           </div>
         ) : filteredProducts.length > 0 ? (
           <div>

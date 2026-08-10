@@ -274,7 +274,7 @@ export default function ProductDetail() {
                   )}
                 </>
               ) : (
-                <div className={`ph ph-${product.cat === 'electronics' ? 'elec' : product.cat}`} style={{ width: '100%', height: '100%', fontSize: '100px' }}>
+                <div className={`ph ph-${product.cat}`} style={{ width: '100%', height: '100%', fontSize: '100px' }}>
                   {emoji}
                   <span>{product.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
                 </div>

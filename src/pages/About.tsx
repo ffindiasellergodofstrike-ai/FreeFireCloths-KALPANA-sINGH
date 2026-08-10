@@ -30,7 +30,7 @@ export default function About() {
               FREE FIRE STORE started with a clear vision — to bring premium, affordable fashion and lifestyle products to every doorstep in India. Founded by Kalpana Singh, we believe that great style shouldn't cost a fortune.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '16px' }}>
-              From carefully curated menswear and women's fashion to the latest electronics, every product in our store is handpicked for quality, value, and style. We partner with trusted manufacturers and logistics networks to ensure your order reaches you safely and on time.
+              From carefully curated menswear and women's fashion to trending everyday apparel, every product in our store is handpicked for quality, value, and style. We partner with trusted manufacturers and logistics networks to ensure your order reaches you safely and on time.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '24px' }}>
               With free express shipping, a transparent return policy, and a dedicated support team, we're committed to giving you the best online shopping experience in India.

@@ -22,7 +22,6 @@ export default function Footer() {
               <Link to="/collections/all">Shop All</Link>
               <Link to="/collections/men">Men</Link>
               <Link to="/collections/women">Women</Link>
-              <Link to="/collections/electronics">Electronics and Accessories</Link>
               <Link to="/blog">Style Journal</Link>
               <Link to="/about">About Us</Link>
             </div>

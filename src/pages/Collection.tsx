@@ -8,27 +8,20 @@ export default function Collection() {
   const navigate = useNavigate();
   const { products } = useProducts();
 
-  const isElecAcc = (c?: string) => c === 'electronics' || c === 'accessories' || c === 'electronics-accessories';
-
   const [selectedCats, setSelectedCats] = useState<Record<string, boolean>>({
     men: category === 'men' || category === 'all',
     women: category === 'women' || category === 'all',
     kids: category === 'kids' || category === 'all',
-    electronics: isElecAcc(category) || category === 'all',
-    accessories: isElecAcc(category) || category === 'all',
   });
 
   const [priceRange, setPriceRange] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('FEATURED');
 
   useEffect(() => {
-    const elecAcc = isElecAcc(category);
     setSelectedCats({
       men: category === 'men' || category === 'all',
       women: category === 'women' || category === 'all',
       kids: category === 'kids' || category === 'all',
-      electronics: elecAcc || category === 'all',
-      accessories: elecAcc || category === 'all',
     });
   }, [category]);
 
@@ -45,7 +38,7 @@ export default function Collection() {
   // Get current products with filters and sorting
   const filteredProducts = products.filter(p => {
     // Category filter: check if product's category is selected
-    const isCatSelected = selectedCats[p.cat] || (p.cat === 'accessories' && selectedCats.electronics) || (p.cat === 'electronics' && selectedCats.accessories);
+    const isCatSelected = selectedCats[p.cat];
     if (!isCatSelected) return false;
 
     // Price filter
@@ -73,7 +66,7 @@ export default function Collection() {
         ? "Women's Collection" 
         : category === 'kids'
           ? "Kids' Collection"
-          : 'Electronics & Accessories';
+          : 'Apparel Collection';
 
   const productCountText = `${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'} available`;
 
@@ -95,8 +88,8 @@ export default function Collection() {
               referrerPolicy="no-referrer"
             />
           ) : (
-            <div className={`ph ph-${p.cat === 'electronics' ? 'elec' : p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : p.cat === 'women' ? '👗' : '💻'}
+            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
+              {p.cat === 'men' ? '👔' : '👗'}
               <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
             </div>
           )}
@@ -177,22 +170,6 @@ export default function Collection() {
                   onChange={() => handleCatCheckboxChange('kids')}
                 />
                 <label htmlFor="f-kids">Kids ({products.filter(p => p.cat === 'kids').length})</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="checkbox" 
-                  id="f-elec" 
-                  checked={selectedCats.electronics || selectedCats.accessories} 
-                  onChange={() => {
-                    const nextVal = !(selectedCats.electronics && selectedCats.accessories);
-                    setSelectedCats(prev => ({
-                      ...prev,
-                      electronics: nextVal,
-                      accessories: nextVal,
-                    }));
-                  }}
-                />
-                <label htmlFor="f-elec">Electronics & Accessories ({products.filter(p => p.cat === 'electronics' || p.cat === 'accessories').length})</label>
               </div>
             </div>
 

@@ -48,7 +48,7 @@ export default function BlogPost() {
               Fashion is not just about what you wear — it's about how you wear it, the story you tell, and the confidence you carry. At FREE FIRE STORE, we believe every piece in your wardrobe should add value and versatility to your lifestyle.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '28px' }}>
-              Whether you're building a capsule wardrobe or looking for the latest trends, our curated collection has something for everyone. Explore our range of men's fashion, women's wear, and cutting-edge electronics — all at prices that make quality accessible.
+              Whether you're building a capsule wardrobe or looking for the latest trends, our curated collection has something for everyone. Explore our range of men's fashion, women's wear, and trending style staples — all at prices that make quality accessible.
             </p>
             <Link to="/collections/all" className="btn btn-black">SHOP THE COLLECTION</Link>
           </div>
