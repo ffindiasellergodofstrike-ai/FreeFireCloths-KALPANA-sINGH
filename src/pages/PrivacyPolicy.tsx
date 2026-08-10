@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    document.title = 'Privacy Policy – FREE FIRE STORE';
+  }, []);
   return (
     <div id="privacy-policy-page-root">
       <div className="breadcrumb">

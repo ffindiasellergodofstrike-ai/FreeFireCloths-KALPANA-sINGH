@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function RefundPolicy() {
+  useEffect(() => {
+    document.title = 'Refund & Cancellation Policy – FREE FIRE STORE';
+  }, []);
   return (
     <div id="refund-policy-page-root">
       <div className="breadcrumb">

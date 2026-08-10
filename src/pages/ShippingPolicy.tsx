@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function ShippingPolicy() {
+  useEffect(() => {
+    document.title = 'Shipping Policy – FREE FIRE STORE';
+  }, []);
   return (
     <div id="shipping-policy-page-root">
       <div className="breadcrumb">

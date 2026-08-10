@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 export default function About() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    document.title = 'About Us – FREE FIRE STORE';
+  }, []);
 
   const handleSubscribe = () => {
     if (email.trim()) {

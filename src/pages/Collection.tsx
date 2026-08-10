@@ -18,6 +18,9 @@ export default function Collection() {
   const [sortBy, setSortBy] = useState<string>('FEATURED');
 
   useEffect(() => {
+    const catName = category.toUpperCase();
+    document.title = `${catName} Collection – FREE FIRE STORE`;
+
     setSelectedCats({
       men: category === 'men' || category === 'all',
       women: category === 'women' || category === 'all',

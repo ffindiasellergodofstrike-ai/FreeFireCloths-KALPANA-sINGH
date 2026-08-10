@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Product } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -9,6 +9,10 @@ export default function Home() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { products } = useProducts();
+
+  useEffect(() => {
+    document.title = 'FREE FIRE STORE – Premium Fashion & Apparel';
+  }, []);
 
   const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
   const stars = (r: number) => '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));

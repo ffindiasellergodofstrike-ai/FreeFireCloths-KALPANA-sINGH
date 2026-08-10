@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
 export default function Contact() {
+  useEffect(() => {
+    document.title = 'Contact Us – FREE FIRE STORE';
+  }, []);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
