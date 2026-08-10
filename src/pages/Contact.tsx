@@ -110,13 +110,6 @@ export default function Contact() {
               </div>
             </div>
             <div className="ci-item">
-              <div className="ci-item-icon"><i className="fa fa-map-marker-alt"></i></div>
-              <div>
-                <h4>OPERATING ADDRESS</h4>
-                <p>Flat/Door/Block No. 12, Hanuman House,<br />Labour chauraha, Shantipuram, Shantipuram,<br />Prayagraj, UTTAR PRADESH,<br />District: PRAYAGRAJ, Pin: 211013</p>
-              </div>
-            </div>
-            <div className="ci-item">
               <div className="ci-item-icon"><i className="fa fa-building"></i></div>
               <div>
                 <h4>REGISTERED ADDRESS & REGISTRATION</h4>

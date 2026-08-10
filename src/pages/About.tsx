@@ -25,7 +25,7 @@ export default function About() {
       <div className="container">
         <div className="about-grid">
           <div>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '16px' }}>Born in Sultanpur & Prayagraj,<br />Made for India</h2>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '16px' }}>Born in Sultanpur,<br />Made for India</h2>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '16px' }}>
               FREE FIRE STORE started with a clear vision — to bring premium, affordable fashion and lifestyle products to every doorstep in India. Founded by Kalpana Singh, we believe that great style shouldn't cost a fortune.
             </p>
@@ -39,9 +39,6 @@ export default function About() {
             {/* Business & Registration Information Box */}
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '20px', borderRadius: '8px', marginBottom: '24px' }}>
               <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', borderBottom: '1px solid #cbd5e1', paddingBottom: '8px' }}>BUSINESS & REGISTRATION DETAILS</h3>
-              <p style={{ fontSize: '13px', color: '#334155', marginBottom: '8px', lineHeight: '1.6' }}>
-                <strong>Operating Address:</strong> Flat/Door/Block No. 12, Hanuman House, Labour chauraha, Shantipuram, Shantipuram, Prayagraj, UTTAR PRADESH, District: PRAYAGRAJ, Pin: 211013
-              </p>
               <p style={{ fontSize: '13px', color: '#334155', marginBottom: '8px', lineHeight: '1.6' }}>
                 <strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171
               </p>

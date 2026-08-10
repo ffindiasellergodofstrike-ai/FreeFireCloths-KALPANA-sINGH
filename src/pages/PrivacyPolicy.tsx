@@ -28,7 +28,6 @@ export default function PrivacyPolicy() {
           <div className="policy-info-box">
             <p><strong>Trade Name:</strong> FREE FIRE STORE</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
-            <p><strong>Operating Address:</strong> Flat/Door/Block No. 12, Hanuman House, Labour chauraha, Shantipuram, Shantipuram, Prayagraj, UTTAR PRADESH, District: PRAYAGRAJ, Pin: 211013</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
@@ -333,7 +332,6 @@ export default function PrivacyPolicy() {
             <p><strong>Business:</strong> FREE FIRE STORE</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
-            <p><strong>Operating Address:</strong> Flat/Door/Block No. 12, Hanuman House, Labour chauraha, Shantipuram, Shantipuram, Prayagraj, UTTAR PRADESH, District: PRAYAGRAJ, Pin: 211013</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
@@ -347,7 +345,6 @@ export default function PrivacyPolicy() {
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
-            <p><strong>Operating Address:</strong> Flat/Door/Block No. 12, Hanuman House, Labour chauraha, Shantipuram, Shantipuram, Prayagraj, UTTAR PRADESH, District: PRAYAGRAJ, Pin: 211013</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, KADIPUR, AKHANDNAGAR, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Udyam Registration Number:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
