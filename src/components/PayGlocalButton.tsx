@@ -54,16 +54,27 @@ export function PayGlocalButton({
         }),
       });
 
-      const result = await response.json();
+      const resText = await response.text();
+      let result: any = {};
+      try {
+        result = resText ? JSON.parse(resText) : {};
+      } catch {
+        result = {
+          success: false,
+          error: 'Server configuration error: Please add PayGlocal API keys to Vercel Environment Variables.',
+        };
+      }
 
-      if (result.success && result.redirectUrl) {
+      if (response.ok && result.success && result.redirectUrl) {
         if (onSuccess) {
           onSuccess(result.redirectUrl, result.gid);
         }
         // Redirect customer using GET method to PayGlocal hosted UPI page
         window.location.href = result.redirectUrl;
       } else {
-        const errorMsg = result.error || 'Failed to initialize payment gateway.';
+        const errorMsg =
+          result.error ||
+          'Failed to initialize PayGlocal payment. Please check your PayGlocal API keys in Vercel Environment Variables.';
         if (onError) onError(errorMsg);
         setLoading(false);
       }
