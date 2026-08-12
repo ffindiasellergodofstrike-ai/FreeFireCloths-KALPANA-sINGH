@@ -224,7 +224,7 @@ export const PRODUCTS: Product[] = [
     handle: "beige-race-print-t-shirt-shorts-set-for-boys-1241802",
     cat: "kids",
     name: "Race Print T-Shirt & Shorts Set For Boys",
-    price: 490,
+    price: 450,
     orig: 499,
     sizes: ["1-2Y", "2-3Y", "3-4Y", "5-6Y", "7-8Y"],
     colors: ["Beige", "Off White", "Red"],

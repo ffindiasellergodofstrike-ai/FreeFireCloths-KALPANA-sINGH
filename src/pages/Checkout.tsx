@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp, doc, getDoc, setDoc } from 'firebase/firestore';
 import { ShieldCheck, ShoppingBag, ArrowRight, UserCheck, Lock, Mail, Phone, User, X } from 'lucide-react';
+import PayGlocalButton from '../components/PayGlocalButton';
 
 export default function Checkout() {
   const location = useLocation();
@@ -138,7 +139,7 @@ export default function Checkout() {
     }
   }, [user, directProduct]);
 
-  const [paymentType, setPaymentType] = useState<'pod' | 'card'>('pod');
+  const [paymentType, setPaymentType] = useState<'payglocal' | 'pod'>('payglocal');
   const [cardData, setCardData] = useState({
     cardNumber: '',
     cardName: '',
@@ -192,15 +193,8 @@ export default function Checkout() {
       return;
     }
 
-    if (paymentType === 'card') {
-      if (!cardData.cardNumber.trim() || !cardData.cardName.trim() || !cardData.expiry.trim() || !cardData.cvv.trim()) {
-        toast.error('⚠ Please enter complete Credit / Debit Card details.');
-        return;
-      }
-    }
-
     setIsProcessing(true);
-    const loadingToast = toast.loading(paymentType === 'card' ? 'Processing Credit Card payment...' : 'Securing order details...');
+    const loadingToast = toast.loading('Securing order details...');
     
     try {
       const orderNumber = Math.floor(Math.random() * 900000) + 100000;
@@ -212,8 +206,8 @@ export default function Checkout() {
             userEmail: formData.email,
             items: checkoutItems,
             total: grandTotal,
-            status: paymentType === 'card' ? 'Order Placed (Prepaid - Credit Card)' : 'Order Placed (COD)',
-            paymentMethod: paymentType === 'card' ? 'Credit Card / Online Payment' : 'Cash on Delivery (COD)',
+            status: paymentType === 'payglocal' ? 'Order Placed (PayGlocal UPI)' : 'Order Placed (COD)',
+            paymentMethod: paymentType === 'payglocal' ? 'PayGlocal UPI' : 'Cash on Delivery (COD)',
             shippingAddress: formData,
             orderNumber,
             createdAt: new Date().toISOString()
@@ -715,45 +709,87 @@ export default function Checkout() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <label 
+                    onClick={() => setPaymentType('payglocal')}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: '2px solid var(--dark)',
-                      background: '#fcfcfc',
-                      cursor: 'default'
+                      border: paymentType === 'payglocal' ? '2px solid var(--dark)' : '1px solid var(--border)',
+                      background: paymentType === 'payglocal' ? '#fcfcfc' : '#fff',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <input 
+                      type="radio" 
+                      name="paymentType" 
+                      value="payglocal" 
+                      checked={paymentType === 'payglocal'}
+                      onChange={() => setPaymentType('payglocal')}
+                    />
+                    <div>
+                      <strong style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: 'var(--dark)' }}>
+                        <span>UPI / ONLINE PAYMENT (PayGlocal)</span>
+                        <span style={{ fontSize: '10px', background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: '4px', fontWeight: 700 }}>RECOMMENDED</span>
+                      </strong>
+                      <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
+                        Instant & Secure UPI Payment via PayGlocal Hosted Gateway
+                      </span>
+                    </div>
+                  </label>
+
+                  <label 
+                    onClick={() => setPaymentType('pod')}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      padding: '16px',
+                      border: paymentType === 'pod' ? '2px solid var(--dark)' : '1px solid var(--border)',
+                      background: paymentType === 'pod' ? '#fcfcfc' : '#fff',
+                      cursor: 'pointer'
                     }}
                   >
                     <input 
                       type="radio" 
                       name="paymentType" 
                       value="pod" 
-                      checked={true}
-                      readOnly
+                      checked={paymentType === 'pod'}
+                      onChange={() => setPaymentType('pod')}
                     />
                     <div>
                       <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
                         CASH / PAY ON DELIVERY (COD)
                       </strong>
                       <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
-                        Pay via Cash, UPI, or Card upon delivery to your doorstep
+                        Pay via Cash or UPI upon delivery to your doorstep
                       </span>
                     </div>
                   </label>
                 </div>
               </div>
 
-              <button 
-                type="submit" 
-                disabled={isProcessing}
-                className="btn btn-black btn-full btn-lg"
-              >
-                {isProcessing 
-                  ? 'PROCESSING ORDER...' 
-                  : `PLACE COD ORDER (${fmt(grandTotal)})`
-                }
-              </button>
+              {paymentType === 'payglocal' ? (
+                <PayGlocalButton
+                  amount={grandTotal}
+                  email={formData.email}
+                  orderId={`ORD-${Date.now()}`}
+                  customerId={user?.uid || `CUST-${Date.now()}`}
+                  productName={checkoutItems[0]?.name}
+                  onError={(err) => toast.error(err)}
+                />
+              ) : (
+                <button 
+                  type="submit" 
+                  disabled={isProcessing}
+                  className="btn btn-black btn-full btn-lg"
+                >
+                  {isProcessing 
+                    ? 'PROCESSING ORDER...' 
+                    : `PLACE COD ORDER (${fmt(grandTotal)})`
+                  }
+                </button>
+              )}
             </form>
           </div>
 
