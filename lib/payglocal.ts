@@ -99,15 +99,30 @@ export interface PayGlocalStatusResponse {
 function cleanPem(pem: string): string {
   if (!pem) return '';
   let cleaned = pem.trim();
-  // Handle single line env variable with escaped \n
+
+  // Strip outer double or single quotes if wrapped
+  if (
+    (cleaned.startsWith('"') && cleaned.endsWith('"')) ||
+    (cleaned.startsWith("'") && cleaned.endsWith("'"))
+  ) {
+    cleaned = cleaned.slice(1, -1).trim();
+  }
+
+  // Handle literal escaped '\n'
   if (cleaned.includes('\\n')) {
     cleaned = cleaned.replace(/\\n/g, '\n');
   }
-  // Strip outer quotes if present
-  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
-    cleaned = cleaned.slice(1, -1);
+
+  // Ensure header and footer have proper newlines if stuck on single line with spaces
+  if (!cleaned.includes('\n')) {
+    cleaned = cleaned
+      .replace(/-----BEGIN PRIVATE KEY-----/g, '-----BEGIN PRIVATE KEY-----\n')
+      .replace(/-----END PRIVATE KEY-----/g, '\n-----END PRIVATE KEY-----')
+      .replace(/-----BEGIN CERTIFICATE-----/g, '-----BEGIN CERTIFICATE-----\n')
+      .replace(/-----END CERTIFICATE-----/g, '\n-----END CERTIFICATE-----');
   }
-  return cleaned;
+
+  return cleaned.trim();
 }
 
 /**
