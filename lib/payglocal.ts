@@ -115,8 +115,8 @@ function cleanPem(pem: string): string {
  */
 export async function loadPrivateKey(): Promise<unknown> {
   const pvtKeyPem = cleanPem(process.env.PAYGLOCAL_PRIVATE_KEY || '');
-  if (!pvtKeyPem) {
-    throw new Error('PAYGLOCAL_PRIVATE_KEY is missing in environment variables');
+  if (!pvtKeyPem || pvtKeyPem.includes('your_private_key_kid') || pvtKeyPem.includes('...')) {
+    throw new Error('Missing or placeholder PAYGLOCAL_PRIVATE_KEY in environment variables. Please add your real PayGlocal Private Key in Vercel Environment Variables.');
   }
 
   try {
@@ -124,7 +124,8 @@ export async function loadPrivateKey(): Promise<unknown> {
     return await jose.importPKCS8(pvtKeyPem, 'RS256');
   } catch (err: unknown) {
     const error = err as Error;
-    throw new Error(`Failed to load PayGlocal Private Key: ${error.message}`);
+    console.error('Jose PKCS8 Import Error:', error);
+    throw new Error('Invalid PayGlocal Private Key format in environment variables. Please ensure the full PKCS8 PEM key is pasted into Vercel Environment Variables.');
   }
 }
 
@@ -135,8 +136,8 @@ export async function loadPublicCert(
   alg: 'RSA-OAEP-256' | 'RS256' = 'RSA-OAEP-256'
 ): Promise<unknown> {
   const certPem = cleanPem(process.env.PAYGLOCAL_PUBLIC_CERT || '');
-  if (!certPem) {
-    throw new Error('PAYGLOCAL_PUBLIC_CERT is missing in environment variables');
+  if (!certPem || certPem.includes('your_mid_here') || certPem.includes('...')) {
+    throw new Error('Missing or placeholder PAYGLOCAL_PUBLIC_CERT in environment variables. Please add your real PayGlocal Public Certificate in Vercel Environment Variables.');
   }
 
   try {
@@ -149,7 +150,8 @@ export async function loadPublicCert(
     }
   } catch (err: unknown) {
     const error = err as Error;
-    throw new Error(`Failed to load PayGlocal Public Certificate: ${error.message}`);
+    console.error('Jose Public Cert Import Error:', error);
+    throw new Error('Invalid PayGlocal Public Certificate format in environment variables. Please ensure the full Certificate is pasted into Vercel Environment Variables.');
   }
 }
 

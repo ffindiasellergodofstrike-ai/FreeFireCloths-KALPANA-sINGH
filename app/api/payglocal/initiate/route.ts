@@ -23,9 +23,9 @@ export async function POST(req: NextRequest) {
     const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
     const callbackUrl = 'https://www.garenaofficialfreefire.shop/api/payglocal/callback';
 
-    if (!merchantId || !kid) {
+    if (!merchantId || !kid || merchantId.includes('your_mid') || kid.includes('your_private_key')) {
       return NextResponse.json(
-        { success: false, error: 'Server misconfiguration: PayGlocal Merchant ID or Private Key KID is missing.' },
+        { success: false, error: 'Missing or placeholder PAYGLOCAL_MERCHANT_ID or PAYGLOCAL_PVT_KEY_KID. Please set your real keys in Vercel Environment Variables.' },
         { status: 500 }
       );
     }
