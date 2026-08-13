@@ -3,14 +3,33 @@ import {
   createJWS,
   createJWE,
   getPayGlocalEndpoints,
+  getPayGlocalEnv,
+  validatePayGlocalConfig,
   PayCollectPayload,
   PayCollectResponse,
 } from '@/lib/payglocal';
 
 export async function POST(req: NextRequest) {
   try {
+    const configStatus = validatePayGlocalConfig();
+    if (!configStatus.isValid) {
+      const issues = [
+        ...configStatus.missingVars.map((v) => `Missing ${v}`),
+        ...configStatus.invalidVars.map((v) => `Invalid ${v}`),
+      ];
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Server configuration error: ${issues.join(
+            ', '
+          )}. Please configure these environment variables in Vercel Environment Variables.`,
+        },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
-    const { amount, email, customerId, orderId, productName } = body;
+    const { amount, email, customerId, orderId } = body;
 
     if (!amount || !email) {
       return NextResponse.json(
@@ -19,16 +38,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
-    const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
+    const merchantId = getPayGlocalEnv('PAYGLOCAL_MERCHANT_ID');
+    const kid = getPayGlocalEnv('PAYGLOCAL_PVT_KEY_KID');
     const callbackUrl = 'https://www.garenaofficialfreefire.shop/api/payglocal/callback';
-
-    if (!merchantId || !kid || merchantId.includes('your_mid') || kid.includes('your_private_key')) {
-      return NextResponse.json(
-        { success: false, error: 'Missing or placeholder PAYGLOCAL_MERCHANT_ID or PAYGLOCAL_PVT_KEY_KID. Please set your real keys in Vercel Environment Variables.' },
-        { status: 500 }
-      );
-    }
 
     // Ensure merchantTxnId is unique and does NOT start with "gl-"
     const cleanOrderId = orderId ? String(orderId).replace(/^gl-/i, '') : `ORD-${Date.now()}`;
@@ -121,3 +133,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

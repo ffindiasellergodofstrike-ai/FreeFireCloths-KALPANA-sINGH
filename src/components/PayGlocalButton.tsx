@@ -61,7 +61,7 @@ export function PayGlocalButton({
       } catch {
         result = {
           success: false,
-          error: 'Server configuration error: Please add PayGlocal API keys to Vercel Environment Variables.',
+          error: `Server error (${response.status}): Unexpected response format from server.`,
         };
       }
 

@@ -3,6 +3,8 @@ import {
   createJWS,
   createJWE,
   getPayGlocalEndpoints,
+  getPayGlocalEnv,
+  validatePayGlocalConfig,
   PayCollectPayload,
   PayCollectResponse,
 } from '../../lib/payglocal';
@@ -26,6 +28,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    const configStatus = validatePayGlocalConfig();
+    if (!configStatus.isValid) {
+      const issues = [
+        ...configStatus.missingVars.map((v) => `Missing ${v}`),
+        ...configStatus.invalidVars.map((v) => `Invalid ${v}`),
+      ];
+      return res.status(500).json({
+        success: false,
+        error: `Server configuration error: ${issues.join(
+          ', '
+        )}. Please configure these environment variables in Vercel Environment Variables.`,
+      });
+    }
+
     const { amount, email, customerId, orderId } = req.body || {};
 
     if (!amount || !email) {
@@ -35,17 +51,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
-    const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
+    const merchantId = getPayGlocalEnv('PAYGLOCAL_MERCHANT_ID');
+    const kid = getPayGlocalEnv('PAYGLOCAL_PVT_KEY_KID');
     const callbackUrl = 'https://www.garenaofficialfreefire.shop/api/payglocal/callback';
-
-    if (!merchantId || !kid || merchantId.includes('your_mid') || kid.includes('your_private_key')) {
-      return res.status(500).json({
-        success: false,
-        error:
-          'Missing or placeholder PAYGLOCAL_MERCHANT_ID or PAYGLOCAL_PVT_KEY_KID. Please set your real keys in Vercel Environment Variables.',
-      });
-    }
 
     const cleanOrderId = orderId
       ? String(orderId).replace(/^gl-/i, '')
@@ -128,3 +136,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   }
 }
+

@@ -6,6 +6,8 @@ import {
   createJWE,
   verifyCallbackToken,
   getPayGlocalEndpoints,
+  getPayGlocalEnv,
+  validatePayGlocalConfig,
   PayCollectPayload,
   PayCollectResponse,
   PayGlocalStatusResponse,
@@ -24,6 +26,15 @@ async function runServer() {
     res.json({ status: "ok", store: "Garena Official Free Fire Store" });
   });
 
+  // Diagnostic config check API
+  app.get("/api/payglocal/config-check", (req, res) => {
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      configStatus: validatePayGlocalConfig(),
+    });
+  });
+
   // ============================================
   // PAYGLOCAL PAYMENT GATEWAY API ENDPOINTS
   // ============================================
@@ -33,7 +44,21 @@ async function runServer() {
    */
   app.post("/api/payglocal/initiate", async (req, res) => {
     try {
-      const { amount, email, customerId, orderId, productName } = req.body;
+      const configStatus = validatePayGlocalConfig();
+      if (!configStatus.isValid) {
+        const issues = [
+          ...configStatus.missingVars.map((v) => `Missing ${v}`),
+          ...configStatus.invalidVars.map((v) => `Invalid ${v}`),
+        ];
+        return res.status(500).json({
+          success: false,
+          error: `Server configuration error: ${issues.join(
+            ", "
+          )}. Please configure these environment variables in Vercel Environment Variables.`,
+        });
+      }
+
+      const { amount, email, customerId, orderId } = req.body;
 
       if (!amount || !email) {
         return res.status(400).json({
@@ -42,17 +67,9 @@ async function runServer() {
         });
       }
 
-      const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
-      const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
+      const merchantId = getPayGlocalEnv("PAYGLOCAL_MERCHANT_ID");
+      const kid = getPayGlocalEnv("PAYGLOCAL_PVT_KEY_KID");
       const callbackUrl = "https://www.garenaofficialfreefire.shop/api/payglocal/callback";
-
-      if (!merchantId || !kid || merchantId.includes("your_mid") || kid.includes("your_private_key")) {
-        return res.status(500).json({
-          success: false,
-          error:
-            "Missing or placeholder PAYGLOCAL_MERCHANT_ID or PAYGLOCAL_PVT_KEY_KID. Please set your real keys in Vercel Environment Variables.",
-        });
-      }
 
       const cleanOrderId = orderId
         ? String(orderId).replace(/^gl-/i, "")
@@ -164,8 +181,8 @@ async function runServer() {
       // Fallback check
       if (!isValidToken && gid) {
         try {
-          const merchantId = process.env.PAYGLOCAL_MERCHANT_ID || "";
-          const kid = process.env.PAYGLOCAL_PVT_KEY_KID || "";
+          const merchantId = getPayGlocalEnv("PAYGLOCAL_MERCHANT_ID");
+          const kid = getPayGlocalEnv("PAYGLOCAL_PVT_KEY_KID");
           const jwsToken = await createJWS(merchantId, kid);
           const endpoints = getPayGlocalEndpoints();
 
@@ -219,8 +236,8 @@ async function runServer() {
           .json({ success: false, error: "GID parameter is required" });
       }
 
-      const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
-      const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
+      const merchantId = getPayGlocalEnv("PAYGLOCAL_MERCHANT_ID");
+      const kid = getPayGlocalEnv("PAYGLOCAL_PVT_KEY_KID");
 
       if (!merchantId || !kid) {
         return res.status(500).json({
