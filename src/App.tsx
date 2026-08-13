@@ -15,8 +15,6 @@ import Collection from './pages/Collection';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import Success from './pages/Success';
-import Failure from './pages/Failure';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Terms from './pages/Terms';
@@ -44,8 +42,6 @@ function StoreLayout() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/checkout/success" element={<Success />} />
-          <Route path="/checkout/failed" element={<Failure />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policies/terms" element={<Terms />} />
