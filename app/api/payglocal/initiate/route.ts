@@ -66,11 +66,11 @@ export async function POST(req: NextRequest) {
       },
     };
 
-    // Step 1: Create JWS (Signed token using Private Key)
-    const jwsToken = await createJWS(merchantId, kid);
-
-    // Step 2: Create JWE (Encrypted payload using PayGlocal Public Cert)
+    // Step 1: Create JWE (Encrypted payload using PayGlocal Public Cert)
     const jweBody = await createJWE(payload as unknown as Record<string, unknown>);
+
+    // Step 2: Create JWS (Signed token over JWE body using Private Key)
+    const jwsToken = await createJWS(merchantId, kid, jweBody);
 
     // Step 3: Call PayGlocal PayCollect API Endpoint
     const endpoints = getPayGlocalEndpoints();

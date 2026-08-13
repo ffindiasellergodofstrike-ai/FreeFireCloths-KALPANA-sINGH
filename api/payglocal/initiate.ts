@@ -81,9 +81,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     };
 
-    // Create JWS & JWE
-    const jwsToken = await createJWS(merchantId, kid);
+    // Create JWE first, then sign JWE to generate JWS token
     const jweBody = await createJWE(payload as unknown as Record<string, unknown>);
+    const jwsToken = await createJWS(merchantId, kid, jweBody);
 
     const endpoints = getPayGlocalEndpoints();
 

@@ -1,5 +1,5 @@
 import * as jose from 'jose';
-import { createPrivateKey, createPublicKey } from 'node:crypto';
+import { createPrivateKey, createPublicKey, createHash } from 'node:crypto';
 
 export const PAYGLOCAL_ENDPOINTS = {
   prod: {
@@ -259,21 +259,30 @@ export async function loadPublicCert(
   }
 }
 
-export async function createJWS(merchantId: string, kid: string): Promise<string> {
-  const privateKey = (await loadPrivateKey()) as Parameters<jose.SignJWT['sign']>[0];
+export async function createJWS(
+  merchantId: string,
+  kid: string,
+  bodyPayload: string = '',
+  useDigest: boolean = false
+): Promise<string> {
+  const privateKey = (await loadPrivateKey()) as Parameters<jose.CompactSign['sign']>[0];
+  const encoder = new TextEncoder();
 
-  return await new jose.SignJWT({
-    merchantId,
-    issuedBy: 'MERCHANT',
-  })
+  let payloadToSign = bodyPayload;
+  let isDigestedStr = 'false';
+
+  if (useDigest && bodyPayload) {
+    payloadToSign = createHash('sha256').update(bodyPayload, 'utf8').digest('hex');
+    isDigestedStr = 'true';
+  }
+
+  return await new jose.CompactSign(encoder.encode(payloadToSign))
     .setProtectedHeader({
       alg: 'RS256',
       kid,
       'issued-by': 'MERCHANT',
-      'is-digested': 'false',
+      'is-digested': isDigestedStr,
     })
-    .setIssuedAt()
-    .setExpirationTime('10m')
     .sign(privateKey);
 }
 
