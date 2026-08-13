@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { validatePayGlocalConfig } from '../../lib/payglocal';
+import { validatePayGlocalConfig } from '../../lib/payglocal.js';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', '*');

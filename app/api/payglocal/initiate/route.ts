@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
     const payglocalResponse = await fetch(endpoints.paycollect, {
       method: 'POST',
       headers: {
-        'Content-Type': 'text/plain',
+        'Content-Type': 'application/jose',
+        'X-GL-TOKEN-EXTERNAL': jwsToken,
         'x-gl-token-external': jwsToken,
       },
       body: jweBody,
