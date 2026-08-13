@@ -3,8 +3,9 @@ import {
   verifyCallbackToken,
   createJWS,
   getPayGlocalEndpoints,
-  PayGlocalStatusResponse,
-} from '../../lib/payglocal';
+  getPayGlocalEnv,
+} from '../../lib/payglocal.js';
+import type { PayGlocalStatusResponse } from '../../lib/payglocal.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const siteUrl = 'https://www.garenaofficialfreefire.shop';
@@ -29,15 +30,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Fallback check
     if (!isValidToken && gid) {
       try {
-        const merchantId = process.env.PAYGLOCAL_MERCHANT_ID || '';
-        const kid = process.env.PAYGLOCAL_PVT_KEY_KID || '';
+        const merchantId = getPayGlocalEnv('PAYGLOCAL_MERCHANT_ID');
+        const kid = getPayGlocalEnv('PAYGLOCAL_PVT_KEY_KID');
         const jwsToken = await createJWS(merchantId, kid);
         const endpoints = getPayGlocalEndpoints();
 
         const statusRes = await fetch(endpoints.status(gid), {
           method: 'GET',
           headers: {
-            'X-GL-TOKEN-EXTERNAL': jwsToken,
+            'x-gl-token-external': jwsToken,
           },
         });
 

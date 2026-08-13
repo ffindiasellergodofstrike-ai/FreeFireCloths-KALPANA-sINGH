@@ -88,8 +88,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const payglocalResponse = await fetch(endpoints.paycollect, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/jose',
-        'X-GL-TOKEN-EXTERNAL': jwsToken,
+        'Content-Type': 'text/plain',
+        'x-gl-token-external': jwsToken,
       },
       body: jweBody,
     });

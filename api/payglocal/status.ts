@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { createJWS, getPayGlocalEndpoints } from '../../lib/payglocal';
+import { createJWS, getPayGlocalEndpoints, getPayGlocalEnv } from '../../lib/payglocal.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
@@ -11,8 +11,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         .json({ success: false, error: 'GID parameter is required' });
     }
 
-    const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
-    const kid = process.env.PAYGLOCAL_PVT_KEY_KID;
+    const merchantId = getPayGlocalEnv('PAYGLOCAL_MERCHANT_ID');
+    const kid = getPayGlocalEnv('PAYGLOCAL_PVT_KEY_KID');
 
     if (!merchantId || !kid) {
       return res.status(500).json({
@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const response = await fetch(endpoints.status(gid), {
       method: 'GET',
       headers: {
-        'X-GL-TOKEN-EXTERNAL': jwsToken,
+        'x-gl-token-external': jwsToken,
       },
     });
 
