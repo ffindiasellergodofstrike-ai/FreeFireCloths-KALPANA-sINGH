@@ -8,10 +8,12 @@ import {
   getPayGlocalEndpoints,
   getPayGlocalEnv,
   validatePayGlocalConfig,
+} from "./api/payglocal/_payglocal.js";
+import type {
   PayCollectPayload,
   PayCollectResponse,
   PayGlocalStatusResponse,
-} from "./lib/payglocal";
+} from "./api/payglocal/_payglocal.js";
 
 async function runServer() {
   const app = express();

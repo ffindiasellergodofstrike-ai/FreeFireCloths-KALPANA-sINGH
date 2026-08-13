@@ -4,8 +4,8 @@ import {
   createJWS,
   getPayGlocalEndpoints,
   getPayGlocalEnv,
-} from '../../lib/payglocal.js';
-import type { PayGlocalStatusResponse } from '../../lib/payglocal.js';
+} from './_payglocal.js';
+import type { PayGlocalStatusResponse } from './_payglocal.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const siteUrl = 'https://www.garenaofficialfreefire.shop';

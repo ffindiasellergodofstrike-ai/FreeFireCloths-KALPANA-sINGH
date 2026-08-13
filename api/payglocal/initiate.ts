@@ -5,11 +5,11 @@ import {
   getPayGlocalEndpoints,
   getPayGlocalEnv,
   validatePayGlocalConfig,
-} from '../../lib/payglocal.js';
+} from './_payglocal.js';
 import type {
   PayCollectPayload,
   PayCollectResponse,
-} from '../../lib/payglocal.js';
+} from './_payglocal.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
