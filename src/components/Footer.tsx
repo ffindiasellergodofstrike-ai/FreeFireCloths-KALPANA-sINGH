@@ -38,10 +38,13 @@ export default function Footer() {
               {user && <Link to="/my-orders">Track Order</Link>}
             </div>
             <div className="footer-col">
-              <h4>CONTACT & ADDRESS</h4>
-              <div className="fc-contact"><i className="fa fa-envelope"></i><span>contactkalpnaji@gmail.com</span></div>
+              <h4>CONTACT & BUSINESS INFO</h4>
+              <div className="fc-contact"><i className="fa fa-envelope"></i><span>connectwithgarena@gmail.com</span></div>
               <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-9319969384</span></div>
               <div className="fc-contact"><i className="fa fa-building"></i><span><strong>Registered:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
+              <div className="fc-contact" style={{ marginTop: '8px', fontSize: '13px' }}><i className="fa fa-info-circle"></i><span><strong>Business Name:</strong> Garena Official Free Fire Store</span></div>
+              <div className="fc-contact" style={{ fontSize: '13px' }}><i className="fa fa-file-alt"></i><span><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</span></div>
+              <div className="fc-contact" style={{ marginTop: '4px', fontSize: '13px', lineHeight: '1.4' }}><i className="fa fa-shopping-bag"></i><span>We sell premium clothing & apparel at www.garenaofficialshop.shop. Registered in India.</span></div>
             </div>
           </div>
         </div>

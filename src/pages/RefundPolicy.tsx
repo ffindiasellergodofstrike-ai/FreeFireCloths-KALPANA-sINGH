@@ -31,9 +31,12 @@ export default function RefundPolicy() {
           <div className="policy-info-box">
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
+            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
+            <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
-            <p><strong>Support Email:</strong> contactkalpnaji@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
+            <p><strong>Website:</strong> www.garenaofficialshop.shop</p>
+            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
           </div>
 
           <p>At Garena Official Free Fire Store, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
@@ -69,7 +72,7 @@ export default function RefundPolicy() {
           </ul>
 
           <h2>4. DAMAGED, DEFECTIVE, OR INCORRECT ITEMS</h2>
-          <p>If you receive an item that is damaged, defective, or incorrect (wrong product, wrong size, or wrong colour), please contact us within <strong>48 hours</strong> of delivery at contactkalpnaji@gmail.com or +91 9319969384.</p>
+          <p>If you receive an item that is damaged, defective, or incorrect (wrong product, wrong size, or wrong colour), please contact us within <strong>48 hours</strong> of delivery at connectwithgarena@gmail.com or +91 9319969384.</p>
           <p>You must provide:</p>
           <ul>
             <li>Your Order ID and registered mobile number</li>
@@ -81,7 +84,7 @@ export default function RefundPolicy() {
 
           <h2>5. HOW TO INITIATE A RETURN</h2>
           <p><strong>Step 1:</strong> Contact us within 7 days of delivery:<br />
-          Email: <strong>contactkalpnaji@gmail.com</strong><br />
+          Email: <strong>connectwithgarena@gmail.com</strong><br />
           Phone / WhatsApp: <strong>+91 9319969384</strong></p>
           <p><strong>Step 2:</strong> Share your Order ID, registered mobile number, reason for return, and clear photographs of the item and its original packaging.</p>
           <p><strong>Step 3:</strong> Our support team will review your request and respond with an approval or rejection within 1 to 2 business days.</p>
@@ -109,7 +112,7 @@ export default function RefundPolicy() {
             <li>Pack the item securely in its original packaging to prevent damage during transit.</li>
             <li>Clearly write your Order ID and registered mobile number on the outside of the package.</li>
             <li>Use a trackable courier service. We recommend India Post Speed Post for the widest coverage across India.</li>
-            <li>Share the tracking number with us at contactkalpnaji@gmail.com after shipping.</li>
+            <li>Share the tracking number with us at connectwithgarena@gmail.com after shipping.</li>
             <li>Garena Store is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
             <li>Self-shipping costs are borne by the customer, except in cases of damaged, defective, or incorrect items.</li>
           </ul>
@@ -182,7 +185,7 @@ export default function RefundPolicy() {
           <ul>
             <li>Refund timelines after initiation depend on your bank or payment provider and are outside our control.</li>
             <li>COD orders will <strong>NOT</strong> receive a cash refund or bank transfer. Refunds for COD orders are issued exclusively as store credit to your registered email ID.</li>
-            <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on www.garenaofficialcostume.shop.</li>
+            <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on www.garenaofficialshop.shop.</li>
             <li>Store credit cannot be extended beyond its validity period, transferred to another account, or converted to cash.</li>
             <li>The original COD handling fee (if any) is non-refundable and will be deducted from the refund amount.</li>
             <li>Original shipping charges are non-refundable, except in cases where Garena Store dispatched a wrong or defective item.</li>
@@ -192,12 +195,12 @@ export default function RefundPolicy() {
           <p>If you have not received your refund within the stated timeframe after we have initiated it, please follow these steps:</p>
           <p><strong>Step 1:</strong> Check your bank account, card statement, or UPI app again.</p>
           <p><strong>Step 2:</strong> Contact your bank or card issuer, as refund posting times vary between financial institutions.</p>
-          <p><strong>Step 3:</strong> If the refund still has not appeared after 7 business days from our initiation date, contact us at contactkalpnaji@gmail.com with your Order ID and we will investigate with our payment gateway partner.</p>
+          <p><strong>Step 3:</strong> If the refund still has not appeared after 7 business days from our initiation date, contact us at connectwithgarena@gmail.com with your Order ID and we will investigate with our payment gateway partner.</p>
 
           <h2>11. ORDER CANCELLATION AND REFUND</h2>
           <p><strong>Cancellation by Customer (Before Dispatch):</strong></p>
           <ul>
-            <li>You may cancel your order within 24 hours of placing it by contacting us at contactkalpnaji@gmail.com or +91 9319969384.</li>
+            <li>You may cancel your order within 24 hours of placing it by contacting us at connectwithgarena@gmail.com or +91 9319969384.</li>
             <li>A full refund will be processed to your original payment method within 5 to 7 business days.</li>
             <li>COD orders cancelled before dispatch will not attract any cancellation charge.</li>
           </ul>
@@ -215,7 +218,7 @@ export default function RefundPolicy() {
 
           <h2>12. PAYMENT GATEWAY AND CHARGEBACK POLICY</h2>
           <p>All online refunds are processed through our authorised payment gateway partners including PayU Payments Private Limited, Razorpay, CCAvenue, Cashfree, and Shopify Payments. These gateways are PCI-DSS compliant and authorised by the Reserve Bank of India (RBI).</p>
-          <p>If you believe an incorrect or unauthorised charge has occurred, please contact us at contactkalpnaji@gmail.com BEFORE initiating a chargeback with your bank. We will investigate and resolve the issue promptly.</p>
+          <p>If you believe an incorrect or unauthorised charge has occurred, please contact us at connectwithgarena@gmail.com BEFORE initiating a chargeback with your bank. We will investigate and resolve the issue promptly.</p>
           <p>Initiating a chargeback for a legitimate and fulfilled order without first contacting us may be considered fraudulent. In such cases, we reserve the right to submit transaction evidence to the payment gateway and your bank, and to take appropriate legal action.</p>
 
           <h2>13. GRIEVANCE OFFICER</h2>
@@ -223,7 +226,7 @@ export default function RefundPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
-            <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
+            <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone:</strong> +91 9319969384</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
@@ -235,10 +238,13 @@ export default function RefundPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Email:</strong> contactkalpnaji@gmail.com</p>
+            <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>
+            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
+            <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> www.garenaofficialshop.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
         </div>
