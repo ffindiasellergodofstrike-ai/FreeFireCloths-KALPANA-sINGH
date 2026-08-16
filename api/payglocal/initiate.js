@@ -53,10 +53,22 @@ export default async function handler(req, res) {
       merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}`
     };
 
+    function normalizePem(k) {
+      if (!k) throw new Error('PayGlocal key env var is empty');
+      let pem = k.includes('-----BEGIN') && k.includes('\n')
+        ? k
+        : k.replace(/\\n/g, '\n');
+      if (!pem.includes('-----BEGIN')) throw new Error('PayGlocal key malformed');
+      return pem.trim();
+    }
+
+    const privateKey = normalizePem(process.env.PAYGLOCAL_PRIVATE_KEY);
+    const publicKey  = normalizePem(process.env.PAYGLOCAL_PUBLIC_KEY);
+
     const { jweToken, jwsToken } = await generateJWEAndJWS({
       payload,
-      publicKey: process.env.PAYGLOCAL_PUBLIC_KEY,
-      privateKey: process.env.PAYGLOCAL_PRIVATE_KEY,
+      publicKey,
+      privateKey,
       merchantId: process.env.PAYGLOCAL_MERCHANT_ID,
       privateKeyId: process.env.PAYGLOCAL_PRIVATE_KEY_ID,
       publicKeyId: process.env.PAYGLOCAL_PUBLIC_KEY_ID
