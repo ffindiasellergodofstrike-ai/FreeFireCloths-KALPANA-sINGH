@@ -175,8 +175,12 @@ export default async function handler(req, res) {
     }
 
     const data = await initRes.json();
+    console.log("=== FULL PAYGLOCAL INITIATE RESPONSE ===", JSON.stringify(data, null, 2));
+
     const gid = data.gid;
     const redirectUrl = data.data?.redirectUrl;
+
+    console.log("=== PAYGLOCAL EXACT REDIRECT URL ===", redirectUrl);
 
     if (!gid || !redirectUrl) {
       return res.status(500).json({ error: 'Invalid response from PayGlocal', data });
