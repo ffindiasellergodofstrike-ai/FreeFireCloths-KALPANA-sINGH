@@ -217,7 +217,22 @@ export default function Checkout() {
         
         if (data.redirectUrl) {
           toast.dismiss(loadingToast);
-          if (!directProduct) clearCart();
+          
+          const pendingOrderInfo = {
+            userId: user?.uid || user?.email || 'guest',
+            userEmail: formData.email,
+            items: checkoutItems,
+            total: grandTotal,
+            status: 'Paid',
+            paymentMethod: 'Pay Online',
+            shippingAddress: formData,
+            orderNumber: Math.floor(Math.random() * 900000) + 100000,
+            merchantTxnId: data.merchantTxnId,
+            gid: data.gid,
+            createdAt: new Date().toISOString()
+          };
+          localStorage.setItem('pendingPayGlocalOrder', JSON.stringify(pendingOrderInfo));
+
           window.location.href = data.redirectUrl;
           return;
         } else {

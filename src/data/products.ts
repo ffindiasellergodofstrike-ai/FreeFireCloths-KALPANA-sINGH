@@ -804,7 +804,7 @@ export const PRODUCTS: Product[] = [
     handle: "white-solid-lace-design-pant-for-women-1240560",
     cat: "women",
     name: "Solid Lace Design Pant For Women",
-    price: 395.5,
+    price: 14,
     orig: 0,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: ["White", "Beige", "Black"],
