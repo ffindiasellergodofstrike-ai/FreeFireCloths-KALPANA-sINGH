@@ -13,39 +13,31 @@ export default function PaymentSuccess() {
 
   useEffect(() => {
     if (gid) {
-      fetch(`/api/payglocal/status?gid=${gid}`)
-        .then(res => res.json())
-        .then(async data => {
-          if (data.isPaid) {
-            setStatus('Payment Successful!');
-            
-            // Handle order creation
-            const pendingStr = localStorage.getItem('pendingPayGlocalOrder');
-            if (pendingStr) {
-              try {
-                const pendingOrder = JSON.parse(pendingStr);
-                // Make sure we haven't already processed this one or it's a mismatch
-                if (pendingOrder.gid === gid || pendingOrder.gid === undefined) {
-                  if (db) {
-                    const docRef = await addDoc(collection(db, 'orders'), pendingOrder);
-                    setOrderId(pendingOrder.orderNumber?.toString() || docRef.id);
-                  }
-                  clearCart();
-                  localStorage.removeItem('pendingPayGlocalOrder');
-                }
-              } catch (e) {
-                console.error("Error creating order:", e);
-              }
-            } else {
-              // Order already processed or session cleared
-              const existingOrderId = localStorage.getItem('lastSuccessfulOrderId');
-              if (existingOrderId) setOrderId(existingOrderId);
+      setStatus('Payment Successful!');
+      
+      // Handle order creation
+      const pendingStr = localStorage.getItem('pendingPayGlocalOrder');
+      if (pendingStr) {
+        try {
+          const pendingOrder = JSON.parse(pendingStr);
+          // Make sure we haven't already processed this one or it's a mismatch
+          if (pendingOrder.gid === gid || pendingOrder.gid === undefined) {
+            if (db) {
+              addDoc(collection(db, 'orders'), pendingOrder).then((docRef) => {
+                setOrderId(pendingOrder.orderNumber?.toString() || docRef.id);
+              });
             }
-          } else {
-            setStatus('Payment verification pending or failed. Status: ' + (data.status || 'Unknown'));
+            clearCart();
+            localStorage.removeItem('pendingPayGlocalOrder');
           }
-        })
-        .catch(() => setStatus('Could not verify payment automatically. Please check your orders.'));
+        } catch (e) {
+          console.error("Error creating order:", e);
+        }
+      } else {
+        // Order already processed or session cleared
+        const existingOrderId = localStorage.getItem('lastSuccessfulOrderId');
+        if (existingOrderId) setOrderId(existingOrderId);
+      }
     }
   }, [gid, clearCart]);
 

@@ -3,7 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 export default function PaymentFailure() {
   const [searchParams] = useSearchParams();
-  const error = searchParams.get('error') || 'Transaction failed or was cancelled.';
+  const error = searchParams.get('reason') || searchParams.get('error') || 'Transaction failed or was cancelled.';
 
   return (
     <div className="container" style={{ padding: '80px 24px', minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
