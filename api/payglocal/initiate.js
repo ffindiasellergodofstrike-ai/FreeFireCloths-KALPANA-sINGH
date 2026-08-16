@@ -102,24 +102,35 @@ export default async function handler(req, res) {
     }
     const cleanPhone = rawPhone.slice(-10).padStart(10, '9');
 
-    const billingInfo = {
+    // For Garena Checkout: Send only country 'IN' (no street/city/state/pincode)
+    // For Website Checkout: Send full customer shipping address
+    const billingInfo = isGarena ? {
+      firstName: customerData.firstName || "Customer",
+      lastName: customerData.lastName || "",
+      emailId: customerData.email || "customer@gmail.com",
+      callingCode: "+91",
+      phoneNumber: cleanPhone,
+      addressCountry: "IN"
+    } : {
       firstName: customerData.firstName || "Customer",
       lastName: customerData.lastName || "",
       emailId: customerData.email || "customer@gmail.com",
       callingCode: "+91",
       phoneNumber: cleanPhone,
       addressCountry: "IN",
-      addressStreet1: customerData.address || "Sector 18, Commercial Belt",
-      addressCity: customerData.city || "New Delhi",
+      addressStreet1: customerData.address || "Main Street",
+      addressCity: customerData.city || "Delhi",
       addressState: customerData.state || "Delhi",
       addressPostalCode: customerData.pincode || "110001"
     };
 
     const payload = {
       merchantTxnId,
+      comments: resolvedProductName,
       paymentData: {
         totalAmount: formattedAmount,
         txnCurrency: "INR",
+        comments: resolvedProductName,
         billingData: billingInfo
       },
       billingData: billingInfo,
