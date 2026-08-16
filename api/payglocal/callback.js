@@ -1,25 +1,6 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-import { initializeApp } from 'firebase/app';
-import { initializeFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-
-const firebaseConfig = {
-  projectId: "decent-mender-ps58c",
-  appId: "1:134667879526:web:6344d03d471759695a99a7",
-  apiKey: "AIzaSyAwGxwrPlILW_e8rRbQT9mUknO60eykHcU",
-  authDomain: "decent-mender-ps58c.firebaseapp.com"
-};
-
-let db;
-try {
-  const app = initializeApp(firebaseConfig);
-  db = initializeFirestore(app, {}, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-} catch (e) {
-  const firebaseApp = require('firebase/app');
-  const firestore = require('firebase/firestore');
-  const app = firebaseApp.getApp();
-  db = firestore.getFirestore(app, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-}
+import { db } from './firebaseAdmin.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -31,8 +12,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const orderRef = doc(db, 'payglocal_orders', txnId);
-    const orderSnap = await getDoc(orderRef);
+    const orderRef = db.collection('payglocal_orders').doc(txnId);
+    const orderSnap = await orderRef.get();
 
     if (!orderSnap.exists()) {
       return res.redirect('/payment/failure?error=order_not_found');
@@ -58,12 +39,12 @@ export default async function handler(req, res) {
 
     if (status === 'SENT_FOR_CAPTURE' || status === 'CAPTURED' || status === 'PAID') {
       if (orderData.status !== 'paid') {
-        await updateDoc(orderRef, { status: 'paid', paidAt: new Date().toISOString() });
+        await orderRef.update({ status: 'paid', paidAt: new Date().toISOString() });
       }
       return res.redirect(`/payment/success?gid=${gid}`);
     } else {
       if (orderData.status !== 'failed') {
-        await updateDoc(orderRef, { status: 'failed', failedAt: new Date().toISOString() });
+        await orderRef.update({ status: 'failed', failedAt: new Date().toISOString() });
       }
       return res.redirect(`/payment/failure?gid=${gid}`);
     }

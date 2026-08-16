@@ -1,27 +1,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const { generateJWEAndJWS } = require('payglocal-js-client');
-import { initializeApp } from 'firebase/app';
-import { initializeFirestore, doc, setDoc } from 'firebase/firestore';
-
-// Initialize Firebase
-const firebaseConfig = {
-  projectId: "decent-mender-ps58c",
-  appId: "1:134667879526:web:6344d03d471759695a99a7",
-  apiKey: "AIzaSyAwGxwrPlILW_e8rRbQT9mUknO60eykHcU",
-  authDomain: "decent-mender-ps58c.firebaseapp.com"
-};
-
-let db;
-try {
-  const app = initializeApp(firebaseConfig);
-  db = initializeFirestore(app, {}, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-} catch (e) {
-  const firebaseApp = require('firebase/app');
-  const firestore = require('firebase/firestore');
-  const app = firebaseApp.getApp();
-  db = firestore.getFirestore(app, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-}
+import { db } from './firebaseAdmin.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -114,8 +94,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Invalid response from PayGlocal', data });
     }
 
-    const orderDoc = doc(db, 'payglocal_orders', merchantTxnId);
-    await setDoc(orderDoc, {
+    await db.collection('payglocal_orders').doc(merchantTxnId).set({
       merchantTxnId,
       gid,
       amount,

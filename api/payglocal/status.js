@@ -1,25 +1,6 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-import { initializeApp } from 'firebase/app';
-import { initializeFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-
-const firebaseConfig = {
-  projectId: "decent-mender-ps58c",
-  appId: "1:134667879526:web:6344d03d471759695a99a7",
-  apiKey: "AIzaSyAwGxwrPlILW_e8rRbQT9mUknO60eykHcU",
-  authDomain: "decent-mender-ps58c.firebaseapp.com"
-};
-
-let db;
-try {
-  const app = initializeApp(firebaseConfig);
-  db = initializeFirestore(app, {}, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-} catch (e) {
-  const firebaseApp = require('firebase/app');
-  const firestore = require('firebase/firestore');
-  const app = firebaseApp.getApp();
-  db = firestore.getFirestore(app, "ai-studio-freefirestorekal-702a13f3-140c-4606-a79e-635f306fba9f");
-}
+import { db } from './firebaseAdmin.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -36,9 +17,9 @@ export default async function handler(req, res) {
     let orderData;
 
     if (txnId) {
-      orderRef = doc(db, 'payglocal_orders', txnId);
-      const orderSnap = await getDoc(orderRef);
-      if (orderSnap.exists()) {
+      orderRef = db.collection('payglocal_orders').doc(txnId);
+      const orderSnap = await orderRef.get();
+      if (orderSnap.exists) {
         orderData = orderSnap.data();
         finalGid = orderData.gid;
       }
@@ -68,7 +49,7 @@ export default async function handler(req, res) {
     if (orderData && orderRef) {
       const targetStatus = isPaid ? 'paid' : (status === 'FAILED' ? 'failed' : orderData.status);
       if (orderData.status !== targetStatus && (targetStatus === 'paid' || targetStatus === 'failed')) {
-        await updateDoc(orderRef, { status: targetStatus });
+        await orderRef.update({ status: targetStatus });
       }
     }
 
