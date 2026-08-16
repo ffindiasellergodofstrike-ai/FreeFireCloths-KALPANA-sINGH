@@ -1,7 +1,6 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const { generateJWEAndJWS } = require('payglocal-js-client');
-import { db } from './firebaseAdmin.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -93,16 +92,6 @@ export default async function handler(req, res) {
     if (!gid || !redirectUrl) {
       return res.status(500).json({ error: 'Invalid response from PayGlocal', data });
     }
-
-    await db.collection('payglocal_orders').doc(merchantTxnId).set({
-      merchantTxnId,
-      gid,
-      amount,
-      customerData,
-      items: items || [],
-      status: 'pending',
-      createdAt: new Date().toISOString()
-    });
 
     return res.json({ redirectUrl, gid, merchantTxnId });
 

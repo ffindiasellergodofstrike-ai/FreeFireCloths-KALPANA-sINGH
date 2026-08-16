@@ -1,28 +1,25 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-import { db } from './firebaseAdmin.js';
-
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
-
-  const { txnId } = req.query;
+  // Try to find gid from query or body
+  const gid = req.query.gid || req.body?.gid || req.body?.data?.gid || req.query.txnId; // If txnId is passed but it's actually gid?
   
-  if (!txnId) {
-    return res.redirect('/payment/failure?error=missing_txn_id');
+  // Actually, PayGlocal might pass gid in the response. We will grab it:
+  const extractedGid = req.query.gid || req.body?.gid || req.body?.data?.gid;
+
+  if (!extractedGid) {
+    // If we only have txnId and no gid, we might have to fail unless PayGlocal API accepts txnId in the URL
+    const fallbackId = req.query.txnId || 'unknown';
+    // Let's try calling status API with whatever ID we have (txnId or gid)
+    // The Status API usually expects gid. Let's try with fallbackId.
+  }
+
+  const finalGid = extractedGid || req.query.txnId;
+
+  if (!finalGid) {
+    return res.redirect('/payment/failure?error=missing_gid');
   }
 
   try {
-    const orderRef = db.collection('payglocal_orders').doc(txnId);
-    const orderSnap = await orderRef.get();
-
-    if (!orderSnap.exists()) {
-      return res.redirect('/payment/failure?error=order_not_found');
-    }
-
-    const orderData = orderSnap.data();
-    const gid = orderData.gid;
-
-    const statusRes = await fetch(`https://api.payglocal.in/gl/v1/payments/${gid}/status/`, {
+    const statusRes = await fetch(`https://api.payglocal.in/gl/v1/payments/${finalGid}/status/`, {
       method: "GET",
       headers: {
         "x-gl-merchantid": process.env.PAYGLOCAL_MERCHANT_ID,
@@ -31,22 +28,16 @@ export default async function handler(req, res) {
     });
 
     if (!statusRes.ok) {
-      return res.redirect(`/payment/failure?gid=${gid}&error=status_api_failed`);
+      return res.redirect(`/payment/failure?gid=${finalGid}&error=status_api_failed`);
     }
 
     const data = await statusRes.json();
     const status = data.data?.status;
 
     if (status === 'SENT_FOR_CAPTURE' || status === 'CAPTURED' || status === 'PAID') {
-      if (orderData.status !== 'paid') {
-        await orderRef.update({ status: 'paid', paidAt: new Date().toISOString() });
-      }
-      return res.redirect(`/payment/success?gid=${gid}`);
+      return res.redirect(`/payment/success?gid=${data.data?.gid || finalGid}`);
     } else {
-      if (orderData.status !== 'failed') {
-        await orderRef.update({ status: 'failed', failedAt: new Date().toISOString() });
-      }
-      return res.redirect(`/payment/failure?gid=${gid}`);
+      return res.redirect(`/payment/failure?gid=${data.data?.gid || finalGid}`);
     }
 
   } catch (error) {
