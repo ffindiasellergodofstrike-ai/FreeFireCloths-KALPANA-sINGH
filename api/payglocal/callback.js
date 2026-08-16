@@ -143,11 +143,22 @@ export default async function handler(req, res) {
 
     const gid = payloadObj.gid || payloadObj.data?.gid || query.gid || parsedBody.gid || 'unknown';
     const status = payloadObj.status || payloadObj.data?.status || 'UNKNOWN';
+    const isGarenaCheckout = query.src === 'garena';
 
-    console.log(`PayGlocal Payment Decision - GID: ${gid}, Status: ${status}`);
+    console.log(`PayGlocal Payment Decision - GID: ${gid}, Status: ${status}, isGarena: ${isGarenaCheckout}`);
 
     const isSuccess = ['SENT_FOR_CAPTURE', 'CAPTURED', 'SUCCESS', 'APPROVED', 'PAID'].includes(String(status).toUpperCase());
 
+    if (isGarenaCheckout) {
+      // Isolate Garena checkout redirects: Always return to GarenaCheckout screen
+      if (isSuccess) {
+        return res.redirect(302, `/garena-checkout?status=success&gid=${encodeURIComponent(gid)}`);
+      } else {
+        return res.redirect(302, `/garena-checkout?status=failed&gid=${encodeURIComponent(gid)}&reason=${encodeURIComponent(status)}`);
+      }
+    }
+
+    // Default E-Commerce website redirects
     if (isSuccess) {
       return res.redirect(302, `/payment/success?gid=${encodeURIComponent(gid)}`);
     } else {

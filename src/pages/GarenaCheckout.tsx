@@ -295,6 +295,7 @@ export default function GarenaCheckout() {
 
       const payload = {
         amount: Number(pkg) || 0,
+        source: 'garena',
         customerData: {
           firstName: form.name.split(' ')[0] || form.name,
           lastName: form.name.split(' ').slice(1).join(' ') || '',

@@ -78,7 +78,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
   
   try {
-    const { amount, customerData } = req.body;
+    const { amount, customerData, source } = req.body;
     
     if (!amount || !customerData) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -91,6 +91,9 @@ export default async function handler(req, res) {
     // Pick a random matching legitimate website product purely on backend
     const resolvedProductName = getRandomProductForPrice(amount);
     const formattedAmount = Number(amount).toFixed(2).toString();
+
+    const isGarena = source === 'garena';
+    const callbackSourceParam = isGarena ? '&src=garena' : '';
 
     const payload = {
       merchantTxnId,
@@ -117,7 +120,7 @@ export default async function handler(req, res) {
           }
         ]
       },
-      merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}`
+      merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}${callbackSourceParam}`
     };
 
     console.log(`[Backend Gateway Init] TxnId: ${merchantTxnId}, Amount: ₹${formattedAmount}, Product: "${resolvedProductName}"`);
