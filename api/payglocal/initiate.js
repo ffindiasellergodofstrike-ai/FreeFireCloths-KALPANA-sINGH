@@ -1,11 +1,84 @@
 import { generateJWEAndJWS } from 'payglocal-js-client';
 import crypto from 'crypto';
 
+// Products mapping from website catalog based on checkout price
+const WEBSITE_PRODUCT_CATALOG = {
+  '395.50': [
+    'Wide Leg Fit Jeans With 4 Pocket For Women',
+    'Wall Mounted Bathroom Storage Shelf with Towel Rack'
+  ],
+  '450': [
+    'Race Print T-Shirt & Shorts Set For Boys'
+  ],
+  '490': [
+    'Wide Leg Fit Jeans With 5 Pocket For Women',
+    'Korean Fashion Oversized Casual Cotton T-Shirt'
+  ],
+  '499': [
+    'Women Multi Coloured Floral Regular Fit Crop Top',
+    'Light Blue Mid Embroidered Rise Fit Skirt For Women',
+    'Wide Leg Fit Jeans With 6 Pocket For Women'
+  ],
+  '550': [
+    'Women Multi Coloured Floral Regular Fit Crop Top',
+    'Black High Rise Skinny Fit Shapewear For Women',
+    'Drop Shoulder Sleeves Regular Fit Sweatshirt For Women',
+    'Portable Handheld Ring LED Light Photography Lamp'
+  ],
+  '750': [
+    'Blue Stripes Relaxed Fit Shirt For Women',
+    'Nylon Blend Regular Fit Bra For Women',
+    'Solid Tube Bra For Women',
+    'Mens Corduroy Loose Fit Wide Leg Pants'
+  ],
+  '1000': [
+    'Floral Print Straight Kurta For Women',
+    'Yellow Puff Sleeves Regular Fit Dress For Women',
+    'Men Slim Fit Denim Jacket Vintage Edition'
+  ],
+  '1100': [
+    'White and Black Wide Leg Fit Casual Trouser With 2 Pocket For Women',
+    'Regular Fit Casual Trouser With 1 Pocket For Women',
+    'Light Blue Solid Flared Jeans For Women',
+    'BT21 Anime Cartoon Keychain Doll Pendant'
+  ],
+  '1400': [
+    'Stripes Regular Fit Shirt For Men',
+    'Skinny Fit Jeans With 5 Pocket For Women',
+    'Striped Regular Fit T-Shirt For Infant Boys',
+    'Cute Bear Phone Charms & Keychain Pendant'
+  ],
+  '5500': [
+    'Slim Fit Utility Pocket Trouser For Men',
+    'Mens Slim Solid Navy Formal Trousers',
+    'Solid Rayon Pant For Women',
+    'LED Selfie Ring Lamp with Phone Holder & Tripod',
+    'Cotton Blend Straight Fit Trouser for Women'
+  ],
+  '7500': [
+    'Olive Slim Fit Utility Pocket Trouser For Men',
+    'Cotton Blend Regular Fit Shirt For Men',
+    'Cotton Blend Solid Pant For Women',
+    'Solid Plazzos For Women And Girls',
+    'Stylish Women Maroon Gown Dress'
+  ]
+};
+
+function getRandomProductForPrice(price) {
+  const priceKey = String(price).trim();
+  const list = WEBSITE_PRODUCT_CATALOG[priceKey];
+  if (list && list.length > 0) {
+    const idx = Math.floor(Math.random() * list.length);
+    return list[idx];
+  }
+  return 'Women Multi Coloured Floral Regular Fit Crop Top';
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
   
   try {
-    const { amount, customerData, items } = req.body;
+    const { amount, customerData } = req.body;
     
     if (!amount || !customerData) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -15,10 +88,14 @@ export default async function handler(req, res) {
     const host = req.headers.host || 'localhost:3000';
     const protocol = req.headers['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
     
+    // Pick a random matching legitimate website product purely on backend
+    const resolvedProductName = getRandomProductForPrice(amount);
+    const formattedAmount = Number(amount).toFixed(2).toString();
+
     const payload = {
       merchantTxnId,
       paymentData: {
-        totalAmount: amount.toFixed(2).toString(),
+        totalAmount: formattedAmount,
         txnCurrency: "INR"
       },
       billingData: {
@@ -28,8 +105,23 @@ export default async function handler(req, res) {
         phoneNumber: customerData.phone || "9999999999",
         addressCountry: "IN"
       },
+      riskData: {
+        orderItems: [
+          {
+            itemId: `SKU-${Math.round(amount)}`,
+            itemName: resolvedProductName,
+            itemDescription: resolvedProductName,
+            itemCategory: "APPAREL_AND_ACCESSORIES",
+            itemQuantity: 1,
+            itemPrice: formattedAmount
+          }
+        ]
+      },
       merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}`
     };
+
+    console.log(`[Backend Gateway Init] TxnId: ${merchantTxnId}, Amount: ₹${formattedAmount}, Product: "${resolvedProductName}"`);
+
 
     function loadKey(raw) {
       if (!raw) throw new Error('KEY ENV EMPTY');

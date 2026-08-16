@@ -263,7 +263,13 @@ export default function Checkout() {
             startedAt: Date.now()
           }));
 
-          window.location.href = data.redirectUrl;
+          // Strict No-Referrer navigation to PayGlocal gateway
+          const redirectForm = document.createElement('form');
+          redirectForm.setAttribute('referrerpolicy', 'no-referrer');
+          redirectForm.method = 'GET';
+          redirectForm.action = data.redirectUrl;
+          document.body.appendChild(redirectForm);
+          redirectForm.submit();
           return;
         } else {
           throw new Error('Could not get payment redirect URL');
