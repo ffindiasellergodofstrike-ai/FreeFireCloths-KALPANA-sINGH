@@ -210,7 +210,12 @@ export default function Checkout() {
         });
 
         if (!res.ok) {
-          throw new Error('Payment gateway error. Please try again.');
+          let errMsg = 'Payment gateway error. Please try again.';
+          try {
+            const errData = await res.json();
+            if (errData.error) errMsg = errData.error;
+          } catch(e) {}
+          throw new Error(errMsg);
         }
 
         const data = await res.json();

@@ -33,6 +33,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    const pubKey = (process.env.PAYGLOCAL_PUBLIC_KEY || "").replace(/\\n/g, '\n');
+    const privKey = (process.env.PAYGLOCAL_PRIVATE_KEY || "").replace(/\\n/g, '\n');
+    const merchantId = process.env.PAYGLOCAL_MERCHANT_ID;
+    
+    if (!pubKey || !privKey || !merchantId) {
+      return res.status(500).json({ error: 'Payment gateway is not configured (missing environment variables).' });
+    }
+
     const merchantTxnId = `PG-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const host = req.headers.host || 'localhost:3000';
     const protocol = req.headers['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
@@ -55,9 +63,9 @@ export default async function handler(req, res) {
 
     const { jweToken, jwsToken } = await generateJWEAndJWS({
       payload,
-      publicKey: process.env.PAYGLOCAL_PUBLIC_KEY,
-      privateKey: process.env.PAYGLOCAL_PRIVATE_KEY,
-      merchantId: process.env.PAYGLOCAL_MERCHANT_ID,
+      publicKey: pubKey,
+      privateKey: privKey,
+      merchantId: merchantId,
       privateKeyId: process.env.PAYGLOCAL_PRIVATE_KEY_ID,
       publicKeyId: process.env.PAYGLOCAL_PUBLIC_KEY_ID
     });
