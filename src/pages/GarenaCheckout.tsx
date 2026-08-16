@@ -182,11 +182,23 @@ export default function GarenaCheckout() {
     }
   }, [status]);
 
-  // Fix: reset loading when user navigates back
+  // Fix: reset loading and handle incomplete payment when user navigates back
   useEffect(() => {
+    const checkPendingPayment = () => {
+      const pendingStr = sessionStorage.getItem('pendingPayment');
+      if (pendingStr) {
+        sessionStorage.removeItem('pendingPayment');
+        setError('Your previous payment was not completed. Please retry your payment.');
+        setLoading(false);
+      }
+    };
+
+    checkPendingPayment();
+
     const handlePageShow = (e: PageTransitionEvent) => {
       if ((e as any).persisted || document.visibilityState === 'visible') {
         setLoading(false);
+        checkPendingPayment();
       }
     };
     window.addEventListener('pageshow', handlePageShow);
@@ -284,6 +296,11 @@ export default function GarenaCheckout() {
       const data = await res.json();
       
       if (data.redirectUrl) {
+        sessionStorage.setItem('pendingPayment', JSON.stringify({
+          txnId: data.merchantTxnId,
+          gid: data.gid,
+          startedAt: Date.now()
+        }));
         window.location.href = data.redirectUrl;
       } else {
         throw new Error('Could not get payment redirect URL');

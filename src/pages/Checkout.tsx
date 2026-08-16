@@ -147,6 +147,30 @@ export default function Checkout() {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [previousPaymentIncomplete, setPreviousPaymentIncomplete] = useState(false);
+
+  useEffect(() => {
+    const checkPendingPayment = () => {
+      const pendingStr = sessionStorage.getItem('pendingPayment');
+      if (pendingStr) {
+        sessionStorage.removeItem('pendingPayment');
+        setPreviousPaymentIncomplete(true);
+        setIsProcessing(false);
+        toast.error('Your previous payment was not completed.');
+      }
+    };
+
+    checkPendingPayment();
+
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if ((e as any).persisted || document.visibilityState === 'visible') {
+        setIsProcessing(false);
+        checkPendingPayment();
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
 
   const handleCardInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -232,6 +256,12 @@ export default function Checkout() {
             createdAt: new Date().toISOString()
           };
           localStorage.setItem('pendingPayGlocalOrder', JSON.stringify(pendingOrderInfo));
+
+          sessionStorage.setItem('pendingPayment', JSON.stringify({
+            txnId: data.merchantTxnId,
+            gid: data.gid,
+            startedAt: Date.now()
+          }));
 
           window.location.href = data.redirectUrl;
           return;
@@ -616,6 +646,47 @@ export default function Checkout() {
       </div>
 
       <div className="container" style={{ padding: '40px 20px 60px' }}>
+        {previousPaymentIncomplete && (
+          <div 
+            id="incomplete-payment-alert"
+            style={{
+              background: '#fef2f2',
+              border: '1px solid #fecaca',
+              borderRadius: '12px',
+              padding: '16px 20px',
+              marginBottom: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontWeight: 'bold', fontSize: '18px' }}>
+                !
+              </div>
+              <div>
+                <h4 style={{ margin: 0, fontSize: '15px', fontWeight: 800, color: '#991b1b' }}>
+                  Your previous payment was not completed
+                </h4>
+                <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#b91c1c' }}>
+                  You returned before completing the transaction. No charges were deducted.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="retry-payment-banner-btn"
+              onClick={() => setPreviousPaymentIncomplete(false)}
+              className="btn btn-black btn-sm"
+              style={{ padding: '10px 18px', fontWeight: 700, fontSize: '13px' }}
+            >
+              Retry Payment
+            </button>
+          </div>
+        )}
+
         <div className="cart-pg-layout" id="checkoutLayout">
           {/* Form */}
           <div>

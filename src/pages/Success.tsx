@@ -7,7 +7,8 @@ export default function Success() {
   const { clearCart } = useCart();
 
   useEffect(() => {
-    // Clear cart on landing on success page
+    // Clear cart and pending payment on landing on success page
+    sessionStorage.removeItem('pendingPayment');
     clearCart();
   }, [clearCart]);
 

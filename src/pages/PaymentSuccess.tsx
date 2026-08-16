@@ -12,6 +12,9 @@ export default function PaymentSuccess() {
   const { clearCart } = useCart();
 
   useEffect(() => {
+    // Clear any pending payment state on successful payment page
+    sessionStorage.removeItem('pendingPayment');
+
     if (gid) {
       setStatus('Payment Successful!');
       
