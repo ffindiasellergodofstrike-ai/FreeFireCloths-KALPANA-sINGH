@@ -141,8 +141,17 @@ export default function GarenaCheckout() {
   const isTablet  = vw >= 640 && vw < 1024;
   const isDesktop = vw >= 1024;
 
-  // Inject global CSS resets once
+  // Inject global CSS resets once & guarantee standard mobile viewport
   useEffect(() => {
+    try {
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta) {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
+      }
+    } catch (e) {
+      // ignore
+    }
+
     const style = document.createElement('style');
     style.innerHTML = `
       *, *::before, *::after { box-sizing: border-box; }
@@ -285,21 +294,14 @@ export default function GarenaCheckout() {
       return;
     }
 
-    // Force Desktop mode on QR option click across all devices
-    if (mode === 'QR') {
-      try {
-        const viewportMeta = document.querySelector('meta[name="viewport"]');
-        if (viewportMeta) {
-          viewportMeta.setAttribute('content', 'width=1280, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes');
-        } else {
-          const meta = document.createElement('meta');
-          meta.name = 'viewport';
-          meta.content = 'width=1280, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
-          document.head.appendChild(meta);
-        }
-      } catch (e) {
-        console.warn('Could not force desktop viewport', e);
+    // Ensure standard responsive mobile viewport
+    try {
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta) {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
       }
+    } catch (e) {
+      // ignore
     }
     
     setShowPayModal(false);
