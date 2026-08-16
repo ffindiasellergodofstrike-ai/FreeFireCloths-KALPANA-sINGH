@@ -284,6 +284,23 @@ export default function GarenaCheckout() {
       setError('Please enter a valid email address.');
       return;
     }
+
+    // Force Desktop mode on QR option click across all devices
+    if (mode === 'QR') {
+      try {
+        const viewportMeta = document.querySelector('meta[name="viewport"]');
+        if (viewportMeta) {
+          viewportMeta.setAttribute('content', 'width=1280, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes');
+        } else {
+          const meta = document.createElement('meta');
+          meta.name = 'viewport';
+          meta.content = 'width=1280, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes';
+          document.head.appendChild(meta);
+        }
+      } catch (e) {
+        console.warn('Could not force desktop viewport', e);
+      }
+    }
     
     setLoading(true);
     setLoadingMessage('Initiating Secure Payment Gateway...');
