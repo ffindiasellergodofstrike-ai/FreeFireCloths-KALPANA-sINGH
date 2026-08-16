@@ -472,7 +472,7 @@ export default function GarenaCheckout() {
             </div>
 
             <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc' }}>
-              🔒 Payment secured by Garena Official Free Fire Store · Do not close this window
+              🔒 Payment secured by Garena Store · Do not close this window
             </div>
           </div>
         </div>
