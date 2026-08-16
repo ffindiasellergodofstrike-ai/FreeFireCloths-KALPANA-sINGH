@@ -95,19 +95,34 @@ export default async function handler(req, res) {
     const isGarena = source === 'garena';
     const callbackSourceParam = isGarena ? '&src=garena' : '';
 
+    // Format phone: ensure 10 digits without leading 91 or +91 for phoneNumber field
+    let rawPhone = String(customerData.phone || '9999999999').replace(/[^0-9]/g, '');
+    if (rawPhone.length > 10 && (rawPhone.startsWith('91') || rawPhone.startsWith('+91'))) {
+      rawPhone = rawPhone.slice(-10);
+    }
+    const cleanPhone = rawPhone.slice(-10).padStart(10, '9');
+
+    const billingInfo = {
+      firstName: customerData.firstName || "Customer",
+      lastName: customerData.lastName || "",
+      emailId: customerData.email || "customer@gmail.com",
+      callingCode: "+91",
+      phoneNumber: cleanPhone,
+      addressCountry: "IN",
+      addressStreet1: customerData.address || "Sector 18, Commercial Belt",
+      addressCity: customerData.city || "New Delhi",
+      addressState: customerData.state || "Delhi",
+      addressPostalCode: customerData.pincode || "110001"
+    };
+
     const payload = {
       merchantTxnId,
       paymentData: {
         totalAmount: formattedAmount,
-        txnCurrency: "INR"
+        txnCurrency: "INR",
+        billingData: billingInfo
       },
-      billingData: {
-        firstName: customerData.firstName || "Customer",
-        lastName: customerData.lastName || "",
-        emailId: customerData.email || "guest@example.com",
-        phoneNumber: customerData.phone || "9999999999",
-        addressCountry: "IN"
-      },
+      billingData: billingInfo,
       riskData: {
         orderItems: [
           {
