@@ -53,17 +53,32 @@ export default async function handler(req, res) {
       merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}`
     };
 
-    function normalizePem(k) {
-      if (!k) throw new Error('PayGlocal key env var is empty');
-      let pem = k.includes('-----BEGIN') && k.includes('\n')
-        ? k
-        : k.replace(/\\n/g, '\n');
-      if (!pem.includes('-----BEGIN')) throw new Error('PayGlocal key malformed');
-      return pem.trim();
+    const crypto = require('crypto');
+
+    function loadKey(raw) {
+      if (!raw) throw new Error('KEY ENV EMPTY');
+      let k = raw.trim();
+      if (!k.includes('-----BEGIN')) {              // stored as base64
+        k = Buffer.from(k, 'base64').toString('utf8').trim();
+      }
+      k = k.replace(/\\n/g, '\n');                   // fix escaped newlines
+      return k;
     }
 
-    const privateKey = normalizePem(process.env.PAYGLOCAL_PRIVATE_KEY);
-    const publicKey  = normalizePem(process.env.PAYGLOCAL_PUBLIC_KEY);
+    let privateKey = loadKey(process.env.PAYGLOCAL_PRIVATE_KEY);
+    const publicKey = loadKey(process.env.PAYGLOCAL_PUBLIC_KEY);
+
+    console.log('PRIV_DEBUG len=', privateKey.length,
+                '| firstLine=', JSON.stringify(privateKey.split('\n')[0]),
+                '| lines=', privateKey.split('\n').length,
+                '| pkcs8=', privateKey.includes('BEGIN PRIVATE KEY'),
+                '| pkcs1=', privateKey.includes('BEGIN RSA PRIVATE KEY'));
+
+    // If key is PKCS#1, convert to PKCS#8 (jose needs PKCS#8)
+    if (privateKey.includes('BEGIN RSA PRIVATE KEY')) {
+      privateKey = crypto.createPrivateKey(privateKey)
+                         .export({ type: 'pkcs8', format: 'pem' });
+    }
 
     const { jweToken, jwsToken } = await generateJWEAndJWS({
       payload,
