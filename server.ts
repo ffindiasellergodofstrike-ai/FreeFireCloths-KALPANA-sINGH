@@ -2,6 +2,10 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 
+import initiateHandler from "./api/payglocal/initiate.js";
+import callbackHandler from "./api/payglocal/callback.js";
+import statusHandler from "./api/payglocal/status.js";
+
 async function runServer() {
   const app = express();
   const PORT = 3000;
@@ -16,18 +20,9 @@ async function runServer() {
   });
 
   // PayGlocal integration routes
-  app.post("/api/payglocal/initiate", async (req, res) => {
-    const handler = (await import("./api/payglocal/initiate.js")).default;
-    return handler(req, res);
-  });
-  app.post("/api/payglocal/callback", async (req, res) => {
-    const handler = (await import("./api/payglocal/callback.js")).default;
-    return handler(req, res);
-  });
-  app.get("/api/payglocal/status", async (req, res) => {
-    const handler = (await import("./api/payglocal/status.js")).default;
-    return handler(req, res);
-  });
+  app.post("/api/payglocal/initiate", initiateHandler);
+  app.all("/api/payglocal/callback", callbackHandler);
+  app.get("/api/payglocal/status", statusHandler);
 
   // Serve static assets and frontend index
   if (process.env.NODE_ENV !== "production") {

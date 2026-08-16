@@ -1,6 +1,5 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { generateJWEAndJWS } = require('payglocal-js-client');
+import { generateJWEAndJWS } from 'payglocal-js-client';
+import crypto from 'crypto';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
@@ -31,8 +30,6 @@ export default async function handler(req, res) {
       },
       merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}`
     };
-
-    const crypto = require('crypto');
 
     function loadKey(raw) {
       if (!raw) throw new Error('KEY ENV EMPTY');
