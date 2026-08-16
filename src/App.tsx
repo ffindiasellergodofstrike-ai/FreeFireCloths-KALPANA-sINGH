@@ -30,6 +30,9 @@ import MyOrders from './pages/MyOrders';
 import GarenaCheckout from './pages/GarenaCheckout';
 import NotFound from './pages/NotFound';
 
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentFailure from './pages/PaymentFailure';
+
 function StoreLayout() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
@@ -54,6 +57,8 @@ function StoreLayout() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/failure" element={<PaymentFailure />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

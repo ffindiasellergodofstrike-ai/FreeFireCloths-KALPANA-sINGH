@@ -15,6 +15,20 @@ async function runServer() {
     res.json({ status: "ok", store: "Garena Official Free Fire Store" });
   });
 
+  // PayGlocal integration routes
+  app.post("/api/payglocal/initiate", async (req, res) => {
+    const handler = (await import("./api/payglocal/initiate.js")).default;
+    return handler(req, res);
+  });
+  app.post("/api/payglocal/callback", async (req, res) => {
+    const handler = (await import("./api/payglocal/callback.js")).default;
+    return handler(req, res);
+  });
+  app.get("/api/payglocal/status", async (req, res) => {
+    const handler = (await import("./api/payglocal/status.js")).default;
+    return handler(req, res);
+  });
+
   // Serve static assets and frontend index
   if (process.env.NODE_ENV !== "production") {
     console.log("Starting server in DEVELOPMENT mode with Vite integration...");

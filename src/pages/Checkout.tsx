@@ -192,17 +192,39 @@ export default function Checkout() {
       return;
     }
 
-    if (paymentType === 'card') {
-      if (!cardData.cardNumber.trim() || !cardData.cardName.trim() || !cardData.expiry.trim() || !cardData.cvv.trim()) {
-        toast.error('⚠ Please enter complete Credit / Debit Card details.');
-        return;
-      }
-    }
-
     setIsProcessing(true);
-    const loadingToast = toast.loading(paymentType === 'card' ? 'Processing Credit Card payment...' : 'Securing order details...');
+    const loadingToast = toast.loading(paymentType === 'card' ? 'Initiating Secure Payment...' : 'Securing order details...');
     
     try {
+      if (paymentType === 'card') {
+        const payload = {
+          amount: grandTotal,
+          customerData: formData,
+          items: checkoutItems
+        };
+
+        const res = await fetch('/api/payglocal/initiate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          throw new Error('Payment gateway error. Please try again.');
+        }
+
+        const data = await res.json();
+        
+        if (data.redirectUrl) {
+          toast.dismiss(loadingToast);
+          if (!directProduct) clearCart();
+          window.location.href = data.redirectUrl;
+          return;
+        } else {
+          throw new Error('Could not get payment redirect URL');
+        }
+      }
+
       const orderNumber = Math.floor(Math.random() * 900000) + 100000;
       
       if (db) {
@@ -212,8 +234,8 @@ export default function Checkout() {
             userEmail: formData.email,
             items: checkoutItems,
             total: grandTotal,
-            status: paymentType === 'card' ? 'Order Placed (Prepaid - Credit Card)' : 'Order Placed (COD)',
-            paymentMethod: paymentType === 'card' ? 'Credit Card / Online Payment' : 'Cash on Delivery (COD)',
+            status: 'Order Placed (COD)',
+            paymentMethod: 'Cash on Delivery (COD)',
             shippingAddress: formData,
             orderNumber,
             createdAt: new Date().toISOString()
@@ -720,17 +742,45 @@ export default function Checkout() {
                       alignItems: 'center',
                       gap: '12px',
                       padding: '16px',
-                      border: '2px solid var(--dark)',
-                      background: '#fcfcfc',
-                      cursor: 'default'
+                      border: paymentType === 'card' ? '2px solid var(--dark)' : '1px solid var(--border)',
+                      background: paymentType === 'card' ? '#fcfcfc' : '#fff',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <input 
+                      type="radio" 
+                      name="paymentType" 
+                      value="card" 
+                      checked={paymentType === 'card'}
+                      onChange={() => setPaymentType('card')}
+                    />
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
+                        PAY ONLINE (Secured by PayGlocal)
+                      </strong>
+                      <span style={{ fontSize: '12px', color: 'var(--gray)' }}>
+                        Credit/Debit Card, UPI, Wallets, and NetBanking
+                      </span>
+                    </div>
+                  </label>
+
+                  <label 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      padding: '16px',
+                      border: paymentType === 'pod' ? '2px solid var(--dark)' : '1px solid var(--border)',
+                      background: paymentType === 'pod' ? '#fcfcfc' : '#fff',
+                      cursor: 'pointer'
                     }}
                   >
                     <input 
                       type="radio" 
                       name="paymentType" 
                       value="pod" 
-                      checked={true}
-                      readOnly
+                      checked={paymentType === 'pod'}
+                      onChange={() => setPaymentType('pod')}
                     />
                     <div>
                       <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
@@ -751,7 +801,7 @@ export default function Checkout() {
               >
                 {isProcessing 
                   ? 'PROCESSING ORDER...' 
-                  : `PLACE COD ORDER (${fmt(grandTotal)})`
+                  : (paymentType === 'card' ? `PAY ONLINE (${fmt(grandTotal)})` : `PLACE COD ORDER (${fmt(grandTotal)})`)
                 }
               </button>
             </form>

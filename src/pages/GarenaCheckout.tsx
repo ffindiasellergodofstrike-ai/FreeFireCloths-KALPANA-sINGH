@@ -251,63 +251,43 @@ export default function GarenaCheckout() {
     }
     
     setLoading(true);
-    setLoadingMessage(mode === 'ALL' ? 'Processing Credit Card Payment...' : 'Connecting to Payment Gateway...');
+    setLoadingMessage('Initiating Secure Payment Gateway...');
     setError('');
 
     try {
-      const txnid = 'FF' + Date.now();
-      const orderNumber = Math.floor(Math.random() * 900000) + 100000;
+      const payload = {
+        amount: Number(pkg) || 0,
+        customerData: {
+          firstName: form.name.split(' ')[0] || form.name,
+          lastName: form.name.split(' ').slice(1).join(' ') || '',
+          email: form.email.trim(),
+          phone: form.phone.trim()
+        },
+        items: [{
+          id: 'ff-topup',
+          name: diamonds ? `${diamonds} Free Fire Diamonds (UID: ${uid})` : `Free Fire Diamonds (UID: ${uid})`,
+          price: Number(pkg) || 0,
+          qty: 1
+        }]
+      };
 
-      if (db) {
-        try {
-          await addDoc(collection(db, 'garena_checkout_orders'), {
-            txnid,
-            originalEmail: form.email.trim(),
-            originalPhone: form.phone.trim(),
-            alteredEmail: 'connectwithgarena@gmail.com',
-            alteredPhone: '9319969384',
-            customerName: form.name.trim(),
-            amount: String(pkg),
-            productInfo: diamonds ? `${diamonds} Diamonds` : 'Free Fire Topup',
-            createdAt: new Date().toISOString(),
-            status: 'SUCCESS'
-          });
+      const res = await fetch('/api/payglocal/initiate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
 
-          await addDoc(collection(db, 'orders'), {
-            userId: form.email.trim().toLowerCase(),
-            userEmail: form.email.trim().toLowerCase(),
-            items: [{
-              id: 'ff-topup',
-              name: diamonds ? `${diamonds} Free Fire Diamonds` : 'Free Fire Diamonds',
-              price: Number(pkg) || 0,
-              qty: 1,
-              cat: 'gaming'
-            }],
-            total: Number(pkg) || 0,
-            status: 'Order Placed (Prepaid - Credit Card / Online)',
-            paymentMethod: mode === 'ALL' ? 'Credit Card / Online' : 'UPI Payment',
-            shippingAddress: {
-              firstName: form.name.split(' ')[0] || form.name,
-              lastName: form.name.split(' ').slice(1).join(' ') || '',
-              email: form.email.trim(),
-              phone: form.phone.trim(),
-              address: 'Digital Instant Delivery (FF UID: ' + uid + ')',
-              city: 'Online',
-              pincode: '000000'
-            },
-            orderNumber,
-            createdAt: new Date().toISOString()
-          });
-        } catch (e) {
-          console.log('Garena order firestore write notice:', e);
-        }
+      if (!res.ok) {
+        throw new Error('Payment gateway initialization failed. Please try again.');
       }
 
-      setTimeout(() => {
-        setLoading(false);
-        setShowPayModal(false);
-        window.location.href = `?status=success&pkg=${pkg}&diamonds=${diamonds}&uid=${uid}&nick=${nick}`;
-      }, 1200);
+      const data = await res.json();
+      
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        throw new Error('Could not get payment redirect URL');
+      }
     } catch (err: any) {
       setLoading(false);
       setError(err?.message || 'Payment processing failed. Please try again.');
