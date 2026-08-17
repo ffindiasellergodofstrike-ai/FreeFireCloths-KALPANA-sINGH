@@ -36,7 +36,7 @@ export default function Terms() {
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialshop.shop</p>
-            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9319969384</p>
+            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
           </div>
 
           <p>Welcome to Garena Official Free Fire Store!</p>
@@ -114,7 +114,7 @@ export default function Terms() {
           <p>In case of a failed transaction, please check with your bank or payment provider before retrying. Garena Store is not responsible for any bank charges, transaction fees, or interest arising from failed or declined transactions.</p>
 
           <h2>SECTION 6 - PAYMENT DISPUTES, CHARGEBACKS, AND FRAUD PREVENTION</h2>
-          <p>We take payment fraud and unauthorised transactions seriously. If you believe an unauthorised charge has occurred on your account, please contact us immediately at connectwithgarena@gmail.com or +91 9319969384 before initiating a chargeback with your bank.</p>
+          <p>We take payment fraud and unauthorised transactions seriously. If you believe an unauthorised charge has occurred on your account, please contact us immediately at connectwithgarena@gmail.com or +91 9793970031 before initiating a chargeback with your bank.</p>
           <p><strong>Chargeback Policy:</strong></p>
           <p>A chargeback (also known as a payment dispute) is a reversal of a payment initiated by your bank or card issuer. Initiating a chargeback without first contacting us and allowing us a reasonable opportunity to resolve the issue may be considered fraud.</p>
           <p>If a chargeback is raised against a valid and fulfilled order, we reserve the right to:</p>
@@ -129,7 +129,7 @@ export default function Terms() {
 
           <h2>SECTION 7 - ORDER CANCELLATION POLICY</h2>
           <p><strong>By Customer Before Dispatch:</strong></p>
-          <p>You may request cancellation of your order within 24 hours of placing it by contacting us at connectwithgarena@gmail.com or +91 9319969384.</p>
+          <p>You may request cancellation of your order within 24 hours of placing it by contacting us at connectwithgarena@gmail.com or +91 9793970031.</p>
           <p>A full refund will be processed to your original payment method within 5 to 7 business days.</p>
           <p>Once an order has been dispatched, it cannot be cancelled. You may initiate a return after delivery as per our Refund and Return Policy.</p>
           <p><strong>By Customer After Dispatch:</strong></p>
@@ -274,7 +274,7 @@ export default function Terms() {
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9319969384</p>
+            <p><strong>Phone:</strong> +91 9793970031</p>
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
@@ -289,7 +289,7 @@ export default function Terms() {
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
-            <p><strong>Phone / WhatsApp:</strong> +91 9319969384</p>
+            <p><strong>Phone / WhatsApp:</strong> +91 9793970031</p>
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
