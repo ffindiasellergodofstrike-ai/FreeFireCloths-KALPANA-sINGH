@@ -240,6 +240,11 @@ export default function ProductDetail() {
                     alt={`${product.name} ${selectedColor}`} 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.onerror = null;
+                      target.src = 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop';
+                    }}
                   />
                   {displayedImages.length > 1 && (
                     <>
@@ -289,7 +294,17 @@ export default function ProductDetail() {
                     className={`pd-thumb ${activeThumb === i + 1 ? 'active' : ''}`} 
                     onClick={() => setActiveThumb(i + 1)}
                   >
-                    <img src={optimizeUnsplash(imgUrl, 120, 80)} alt={`${product.name} Thumb ${i + 1}`} referrerPolicy="no-referrer" loading="lazy" />
+                    <img 
+                      src={optimizeUnsplash(imgUrl, 120, 80)} 
+                      alt={`${product.name} Thumb ${i + 1}`} 
+                      referrerPolicy="no-referrer" 
+                      loading="lazy" 
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop';
+                      }}
+                    />
                   </div>
                 ))
               ) : (

