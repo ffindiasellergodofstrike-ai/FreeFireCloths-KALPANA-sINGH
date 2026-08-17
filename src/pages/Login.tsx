@@ -113,7 +113,7 @@ export default function Login() {
                 fontSize: '12px', 
                 lineHeight: '1.5' 
               }}>
-                <strong>Reset Password:</strong> Please contact the website owner at <a href="tel:+919793970031" style={{ fontWeight: 'bold', textDecoration: 'underline', color: 'inherit' }}>+91-9793970031</a> to reset your credentials.
+                <strong>Reset Password:</strong> Please contact the website owner at <a href="tel:+917393845435" style={{ fontWeight: 'bold', textDecoration: 'underline', color: 'inherit' }}>+91-7393845435</a> to reset your credentials.
               </div>
             )}
 

@@ -109,7 +109,7 @@ export default function Contact() {
               <div className="ci-item-icon"><i className="fa fa-phone"></i></div>
               <div>
                 <h4>CALL US</h4>
-                <p>+91-9793970031</p>
+                <p>+91-7393845435</p>
                 <p style={{ fontSize: '12px', color: '#aaa', marginTop: '4px' }}>Mon–Sat, 10AM–6PM IST</p>
               </div>
             </div>

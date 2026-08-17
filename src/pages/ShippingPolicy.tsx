@@ -35,8 +35,8 @@ export default function ShippingPolicy() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialshop.shop</p>
-            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
           <h2>OVERVIEW</h2>
@@ -108,7 +108,7 @@ export default function ShippingPolicy() {
           </div>
           <p><strong>IMPORTANT:</strong> These are estimated timelines and are NOT guaranteed. Actual delivery may vary based on your pin code, courier workload, weather, or other external factors.</p>
           <p>If your order has not arrived within 15 days of your Shipping Confirmation email, contact us immediately at:</p>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
 
           <h2>SECTION 4 — CASH ON DELIVERY (COD)</h2>
           <p>COD is available for most pin codes across India.</p>
@@ -207,7 +207,7 @@ export default function ShippingPolicy() {
             <li>Mobile number</li>
           </ul>
           <p>If you notice an address error AFTER placing your order, contact us <strong>IMMEDIATELY</strong>:</p>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           <p>We will try to update the address before dispatch. Once dispatched, address changes are NOT possible.</p>
 
           <h2>SECTION 10 — DAMAGED OR TAMPERED PACKAGES</h2>
@@ -221,7 +221,7 @@ export default function ShippingPolicy() {
             <li>Take clear photographs of the item <strong>AND</strong> the packaging immediately, before opening fully.</li>
             <li>Contact us within 24 hours of delivery:</li>
           </ul>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 9793970031</p>
+          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           <p>We will arrange a free replacement or full refund as per our Refund and Return Policy.</p>
           <p>Damage claims raised after 24 hours of delivery will not be accepted.</p>
 
@@ -256,12 +256,12 @@ export default function ShippingPolicy() {
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
-            <p><strong>Phone / WhatsApp:</strong> +91 9793970031</p>
+            <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
             <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialshop.shop</p>
+            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
         </div>
