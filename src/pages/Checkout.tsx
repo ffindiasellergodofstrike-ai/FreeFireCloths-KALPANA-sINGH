@@ -296,7 +296,7 @@ export default function Checkout() {
         setIsSuccess(true);
         if (!directProduct) clearCart();
         toast.dismiss(loadingToast);
-        toast.success('Garena Official Free Fire Store Order Confirmed!');
+        toast.success('Free Fire Store Order Confirmed!');
       }, 1000);
     } catch (error: any) {
       setIsProcessing(false);
@@ -316,7 +316,7 @@ export default function Checkout() {
         </div>
         <h1 style={{ fontSize: '28px', marginBottom: '12px', fontFamily: 'var(--font-h)' }}>ORDER SECURED!</h1>
         <p style={{ color: 'var(--gray)', maxWidth: '480px', margin: '0 auto 32px', fontSize: '15px' }}>
-          Thank you for shopping with Garena Official Free Fire Store. Your order has been placed successfully and will be delivered to your address soon.
+          Thank you for shopping with Free Fire Store. Your order has been placed successfully and will be delivered to your address soon.
         </p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
           <Link to="/" className="btn btn-black btn-lg">RETURN TO HOME</Link>
@@ -376,7 +376,7 @@ export default function Checkout() {
                   letterSpacing: '1.5px',
                   textTransform: 'uppercase'
                 }}>
-                  Garena Official Free Fire Store
+                  Free Fire Store
                 </span>
               </div>
               <Link 

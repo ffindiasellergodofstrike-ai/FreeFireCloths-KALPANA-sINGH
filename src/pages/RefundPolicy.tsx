@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function RefundPolicy() {
   useEffect(() => {
-    document.title = 'Refund & Cancellation Policy – Garena Official Free Fire Store';
+    document.title = 'Refund & Cancellation Policy – Free Fire Store';
   }, []);
   return (
     <div id="refund-policy-page-root">
@@ -21,7 +21,7 @@ export default function RefundPolicy() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>RETURN AND REFUND POLICY</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> Garena Official Free Fire Store</span>
+            <span><strong>Trade Name:</strong> Free Fire Store</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,9 +29,9 @@ export default function RefundPolicy() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -39,7 +39,7 @@ export default function RefundPolicy() {
             <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
-          <p>At Garena Official Free Fire Store, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
+          <p>At Free Fire Store, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
 
           <h2>1. RETURN ELIGIBILITY</h2>
           <p>We offer a 7-day return policy from the date of delivery.</p>
@@ -101,7 +101,7 @@ export default function RefundPolicy() {
           <p>If reverse pickup is not available at your pin code, please ship the item to the following address at your own cost:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Return Address:</strong></p>
-            <p>Garena Official Free Fire Store</p>
+            <p>Free Fire Store</p>
             <p>C/O Kalpana Singh</p>
             <p>PRANNATHPUR BACHHARIYA, SULTANPUR,</p>
             <p>UTTAR PRADESH, INDIA, 228171</p>
@@ -236,11 +236,11 @@ export default function RefundPolicy() {
           <h2>14. CONTACT US</h2>
           <p>For any return, refund, exchange, or cancellation queries, please contact us:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

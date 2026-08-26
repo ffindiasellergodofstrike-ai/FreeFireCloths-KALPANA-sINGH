@@ -7,7 +7,7 @@ export default function About() {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    document.title = 'About Us – Garena Official Free Fire Store';
+    document.title = 'About Us – Free Fire Store';
   }, []);
 
   const handleSubscribe = () => {
@@ -31,7 +31,7 @@ export default function About() {
           <div>
             <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '16px' }}>Born in Sultanpur,<br />Made for India</h2>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '16px' }}>
-              Garena Official Free Fire Store started with a clear vision — to bring premium, affordable fashion and lifestyle products to every doorstep in India. Founded by Kalpana Singh, we believe that great style shouldn't cost a fortune.
+              Free Fire Store started with a clear vision — to bring premium, affordable fashion and lifestyle products to every doorstep in India. Founded by Kalpana Singh, we believe that great style shouldn't cost a fortune.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '16px' }}>
               From carefully curated menswear and women's fashion to trending everyday apparel, every product in our store is handpicked for quality, value, and style. We partner with trusted manufacturers and logistics networks to ensure your order reaches you safely and on time.

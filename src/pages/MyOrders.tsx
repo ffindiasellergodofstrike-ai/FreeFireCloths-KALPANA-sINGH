@@ -156,7 +156,7 @@ export default function MyOrders() {
     );
   }
 
-  const displayName = profileData?.name || user.name || 'Garena Official Free Fire Store Customer';
+  const displayName = profileData?.name || user.name || 'Free Fire Store Customer';
   const displayEmail = profileData?.email || user.email;
   const displayMobile = profileData?.mobile || user.mobile || 'Not provided';
 

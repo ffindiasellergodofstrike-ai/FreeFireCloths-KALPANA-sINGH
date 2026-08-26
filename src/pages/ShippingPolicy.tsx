@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ShippingPolicy() {
   useEffect(() => {
-    document.title = 'Shipping Policy – Garena Official Free Fire Store';
+    document.title = 'Shipping Policy – Free Fire Store';
   }, []);
   return (
     <div id="shipping-policy-page-root">
@@ -21,7 +21,7 @@ export default function ShippingPolicy() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>SHIPPING POLICY</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> Garena Official Free Fire Store</span>
+            <span><strong>Trade Name:</strong> Free Fire Store</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,9 +29,9 @@ export default function ShippingPolicy() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -40,7 +40,7 @@ export default function ShippingPolicy() {
           </div>
 
           <h2>OVERVIEW</h2>
-          <p>Thank you for shopping with Garena Official Free Fire Store! We are committed to delivering your fashion and lifestyle products accurately, in perfect condition, and as swiftly as possible anywhere in India. Please read this Shipping Policy carefully to understand how and when your orders will arrive.</p>
+          <p>Thank you for shopping with Free Fire Store! We are committed to delivering your fashion and lifestyle products accurately, in perfect condition, and as swiftly as possible anywhere in India. Please read this Shipping Policy carefully to understand how and when your orders will arrive.</p>
 
           <h2>SECTION 1 — ORDER PROCESSING TIME</h2>
           <p>All orders are processed within 1 to 3 business days after you receive your Order Confirmation email.</p>
@@ -253,11 +253,11 @@ export default function ShippingPolicy() {
           <h2>SECTION 14 — CONTACT US</h2>
           <p>For any shipping or delivery related queries, please contact us:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

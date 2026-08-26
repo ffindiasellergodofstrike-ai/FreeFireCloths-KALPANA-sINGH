@@ -11,7 +11,7 @@ export default function Home() {
   const { products } = useProducts();
 
   useEffect(() => {
-    document.title = 'Garena Official Free Fire Store – Premium Fashion & Apparel';
+    document.title = 'Free Fire Store – Premium Fashion & Apparel';
   }, []);
 
   const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
@@ -33,7 +33,7 @@ export default function Home() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const handleNewsletterSubmit = () => {
     if (newsletterEmail.trim()) {
-      toast.success('✓ SUBSCRIBED! WELCOME TO Garena Official Free Fire Store');
+      toast.success('✓ SUBSCRIBED! WELCOME TO Free Fire Store');
       setNewsletterEmail('');
     } else {
       toast.error('Please enter a valid email address.');
@@ -175,7 +175,7 @@ export default function Home() {
       {/* Newsletter */}
       <div className="newsletter" id="newsletter-section">
         <div className="container">
-          <h2>JOIN THE Garena Official Free Fire Store FAMILY</h2>
+          <h2>JOIN THE Free Fire Store FAMILY</h2>
           <p>Subscribe for exclusive deals, new launches, and style inspiration — straight to your inbox.</p>
           <div className="nl-form">
             <input 

@@ -33,7 +33,7 @@ export default function ProductDetail() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (product) {
-      document.title = `${product.name} – Garena Official Free Fire Store`;
+      document.title = `${product.name} – Free Fire Store`;
 
       const updateMetaTag = (selector: string, attrName: string, attrVal: string, content: string) => {
         let element = document.querySelector(selector);
@@ -46,24 +46,24 @@ export default function ProductDetail() {
       };
 
       const productImg = displayedImages[0] || product.images?.[0] || 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80';
-      const descText = product.desc || `${product.name} available at Garena Official Free Fire Store. Express delivery & Cash on Delivery available across India.`;
+      const descText = product.desc || `${product.name} available at Free Fire Store. Express delivery & Cash on Delivery available across India.`;
       const currentUrl = window.location.href;
 
-      updateMetaTag('meta[property="og:title"]', 'property', 'og:title', `${product.name} – Garena Official Free Fire Store`);
+      updateMetaTag('meta[property="og:title"]', 'property', 'og:title', `${product.name} – Free Fire Store`);
       updateMetaTag('meta[property="og:description"]', 'property', 'og:description', descText);
       updateMetaTag('meta[property="og:image"]', 'property', 'og:image', productImg);
       updateMetaTag('meta[property="og:url"]', 'property', 'og:url', currentUrl);
-      updateMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'Garena Official Free Fire Store');
+      updateMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'Free Fire Store');
       updateMetaTag('meta[property="og:type"]', 'property', 'og:type', 'product');
 
       updateMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
-      updateMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', `${product.name} – Garena Official Free Fire Store`);
+      updateMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', `${product.name} – Free Fire Store`);
       updateMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', descText);
       updateMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', productImg);
     }
 
     return () => {
-      document.title = 'Garena Official Free Fire Store – Premium Clothing & Fashion';
+      document.title = 'Free Fire Store – Premium Clothing & Fashion';
     };
   }, [id, product]);
 
@@ -122,12 +122,12 @@ export default function ProductDetail() {
   const handleShareProduct = async () => {
     if (!product) return;
     const shareUrl = window.location.href;
-    const shareText = `Check out ${product.name} at Garena Official Free Fire Store – ₹${product.price}`;
+    const shareText = `Check out ${product.name} at Free Fire Store – ₹${product.price}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${product.name} – Garena Official Free Fire Store`,
+          title: `${product.name} – Free Fire Store`,
           text: shareText,
           url: shareUrl
         });

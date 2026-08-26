@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function PrivacyPolicy() {
   useEffect(() => {
-    document.title = 'Privacy Policy – Garena Official Free Fire Store';
+    document.title = 'Privacy Policy – Free Fire Store';
   }, []);
   return (
     <div id="privacy-policy-page-root">
@@ -21,7 +21,7 @@ export default function PrivacyPolicy() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>PRIVACY POLICY</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> Garena Official Free Fire Store</span>
+            <span><strong>Trade Name:</strong> Free Fire Store</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,9 +29,9 @@ export default function PrivacyPolicy() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Trade Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Trade Name:</strong> Free Fire Store</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -39,7 +39,7 @@ export default function PrivacyPolicy() {
             <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
-          <p>Garena Official Free Fire Store ("we", "us", "our") is owned and operated by Kalpana Singh. This Privacy Policy describes how we collect, use, store, and disclose your personal information when you visit or make a purchase from our Site.</p>
+          <p>Free Fire Store ("we", "us", "our") is owned and operated by Kalpana Singh. This Privacy Policy describes how we collect, use, store, and disclose your personal information when you visit or make a purchase from our Site.</p>
           <p>This website is hosted on Shopify Inc., which enables us to provide our Services to you.</p>
           <p>By using our Site, you agree to this Privacy Policy. If you do not agree, please do not use our Site.</p>
           <p>For any conflict between our Terms of Service and this Privacy Policy, this Privacy Policy shall govern with respect to the collection, processing, and disclosure of your personal information.</p>
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
           <ul>
             <li>Authorised RBI-regulated PCI-DSS compliant payment gateways</li>
           </ul>
-          <p><strong>IMPORTANT:</strong> Garena Official Free Fire Store does NOT store your card numbers, CVV, UPI PIN, net banking login, or any sensitive payment credentials on our servers.</p>
+          <p><strong>IMPORTANT:</strong> Free Fire Store does NOT store your card numbers, CVV, UPI PIN, net banking login, or any sensitive payment credentials on our servers.</p>
           <p>All transactions on our website are protected by SSL (Secure Socket Layer) 256-bit encryption.</p>
 
           <h2>SECTION 5 — HOW WE SHARE YOUR INFORMATION</h2>
@@ -334,10 +334,10 @@ export default function PrivacyPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor & Grievance Officer</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -348,11 +348,11 @@ export default function PrivacyPolicy() {
           <h2>SECTION 14 — CONTACT US</h2>
           <p>For any questions, concerns, or requests regarding this Privacy Policy or your personal data:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
             <p><strong>Phone:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> Garena Official Free Fire Store</p>
+            <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

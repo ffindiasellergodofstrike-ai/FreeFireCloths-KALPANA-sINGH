@@ -13,8 +13,7 @@ export default function Footer() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="logo-brand-block" onClick={() => navigate('/')} style={{ cursor: 'pointer', marginBottom: '14px' }}>
-                <span className="logo-main" style={{ color: '#ffffff' }}>GARENA OFFICIAL</span>
-                <span className="logo-sub" style={{ color: '#94a3b8' }}>FREE FIRE STORE</span>
+                <span className="logo-main" style={{ color: '#ffffff' }}>FREE FIRE STORE</span>
               </div>
               <p>Your trusted destination for premium fashion & lifestyle products. Delivered across India with love.</p>
 
@@ -42,7 +41,7 @@ export default function Footer() {
               <div className="fc-contact"><i className="fa fa-envelope"></i><span>connectwithgarena@gmail.com</span></div>
               <div className="fc-contact"><i className="fa fa-phone"></i><span>+91-7393845435</span></div>
               <div className="fc-contact"><i className="fa fa-building"></i><span><strong>Registered:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</span></div>
-              <div className="fc-contact" style={{ marginTop: '8px', fontSize: '13px' }}><i className="fa fa-info-circle"></i><span><strong>Business Name:</strong> Garena Official Free Fire Store</span></div>
+              <div className="fc-contact" style={{ marginTop: '8px', fontSize: '13px' }}><i className="fa fa-info-circle"></i><span><strong>Business Name:</strong> Free Fire Store</span></div>
               <div className="fc-contact" style={{ fontSize: '13px' }}><i className="fa fa-file-alt"></i><span><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</span></div>
               <div className="fc-contact" style={{ marginTop: '4px', fontSize: '13px', lineHeight: '1.4' }}><i className="fa fa-shopping-bag"></i><span>We sell premium clothing & apparel at www.garenaofficialfreefire.shop. Registered in India.</span></div>
             </div>
@@ -61,7 +60,7 @@ export default function Footer() {
       </div>
       <div className="footer-bot">
         <div className="container">
-          <p>© 2026 Garena Official Free Fire Store. All rights reserved</p>
+          <p>© 2026 Free Fire Store. All rights reserved</p>
         </div>
       </div>
     </footer>

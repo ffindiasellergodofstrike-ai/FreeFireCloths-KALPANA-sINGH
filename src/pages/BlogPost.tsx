@@ -45,7 +45,7 @@ export default function BlogPost() {
             <h1 style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', marginBottom: '20px' }}>{post.title}</h1>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '20px' }}>{post.excerpt}</p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '20px' }}>
-              Fashion is not just about what you wear — it's about how you wear it, the story you tell, and the confidence you carry. At Garena Official Free Fire Store, we believe every piece in your wardrobe should add value and versatility to your lifestyle.
+              Fashion is not just about what you wear — it's about how you wear it, the story you tell, and the confidence you carry. At Free Fire Store, we believe every piece in your wardrobe should add value and versatility to your lifestyle.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '28px' }}>
               Whether you're building a capsule wardrobe or looking for the latest trends, our curated collection has something for everyone. Explore our range of men's fashion, women's wear, and trending style staples — all at prices that make quality accessible.
