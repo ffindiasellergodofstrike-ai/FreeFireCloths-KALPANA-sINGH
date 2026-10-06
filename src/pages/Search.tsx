@@ -55,7 +55,7 @@ export default function Search() {
         {query.trim() === '' ? (
           <div style={{ textAlign: 'center', padding: '60px 20px' }}>
             <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
-            <h2 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>SEARCH GARENA</h2>
+            <h2 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>SEARCH FREE FIRE STORE</h2>
             <p style={{ color: 'var(--gray)' }}>Type your keyword above to discover premium fashion and apparel.</p>
           </div>
         ) : filteredProducts.length > 0 ? (

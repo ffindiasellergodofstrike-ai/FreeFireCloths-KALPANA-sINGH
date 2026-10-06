@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../data/products';
+import { catalogImages } from '../data/catalog-media';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const images = catalogImages(product.images || []);
   const savings = product.orig 
     ? Math.round(((product.orig - product.price) / product.orig) * 100) 
     : 0;
@@ -27,9 +29,9 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Link to={`/product/${product.id}`} className="product-card" id={`product-card-${product.id}`}>
       <div className="pc-img">
         <span className="pc-image-fallback" aria-hidden="true">{product.name}</span>
-        {product.images && product.images.length > 0 ? (
+        {images.length > 0 ? (
           <img 
-            src={optimizeUnsplash(product.images[0], 400, 80)} 
+            src={optimizeUnsplash(images[0], 400, 80)}
             alt={product.name} 
             style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
             referrerPolicy="no-referrer"

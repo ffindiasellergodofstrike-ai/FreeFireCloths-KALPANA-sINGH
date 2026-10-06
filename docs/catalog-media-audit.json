@@ -1,0 +1,512 @@
+{
+  "date": "2026-10-06",
+  "scope": {
+    "uniqueMedia": 4005,
+    "productAndVariantImages": 2318,
+    "reviewPhotos": 1687,
+    "decodeFailures": 0,
+    "visualMethod": "All 49 product contact sheets and 36 review contact sheets visually inspected; selected candidates enlarged. Not a guarantee that every small mark is detected. Supplemental OCR incomplete and not used as a clean certificate."
+  },
+  "displayExclusions": [
+    {
+      "url": "https://img201.savana.com/goods-pic/08daab52cc76442a90c6393df9b3edc4_w1440_q90",
+      "kind": "product",
+      "reason": "SHEIN watermark; remaining gallery views show the same black dress.",
+      "products": [
+        516
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280291/freefire_store_migration/reviews_photos_7c7e87855fa136d132c03d58.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -1738122
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280313/freefire_store_migration/reviews_photos_a2dfc7687f8867b0715eca39.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -1738122
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280299/freefire_store_migration/reviews_photos_8c65a9e5e01015ea289d9454.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -1848582
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280262/freefire_store_migration/reviews_photos_4aab1a941c914635c9ea4fb2.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -2076172
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280271/freefire_store_migration/reviews_photos_5899a206afe3433456faa686.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -2112972
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280228/freefire_store_migration/reviews_photos_11f5d9439222423af1521055.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -2154872
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280357/freefire_store_migration/reviews_photos_f958f8550122946f339453a1.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -2154872
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280274/freefire_store_migration/reviews_photos_5d4d240abfaddef69a8bde65.webp",
+      "kind": "review",
+      "reason": "Camera watermark",
+      "products": [
+        -2168772
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280230/freefire_store_migration/reviews_photos_14b3f9a50cb236252c91961e.webp",
+      "kind": "review",
+      "reason": "Visible retailer tag",
+      "products": [
+        -1943012
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280220/freefire_store_migration/reviews_photos_02a04e5ef7877bc185f1c314.webp",
+      "kind": "review",
+      "reason": "Visible retailer tag",
+      "products": [
+        -2014472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280338/freefire_store_migration/reviews_photos_d109ac107ca4eafbc27e7634.webp",
+      "kind": "review",
+      "reason": "Visible retailer tag",
+      "products": [
+        -2014472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280302/freefire_store_migration/reviews_photos_9107fd8e293ebcdb01c5466d.webp",
+      "kind": "review",
+      "reason": "Visible retailer tag",
+      "products": [
+        -2154872
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280353/freefire_store_migration/reviews_photos_f364f8835257c49c61533d37.webp",
+      "kind": "review",
+      "reason": "Visible retailer tag",
+      "products": [
+        -2154872
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280261/freefire_store_migration/reviews_photos_4880ac50e5f72e3b3b81cc35.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -1848582
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280224/freefire_store_migration/reviews_photos_0a1317cccf3571e3f6a7120f.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2043472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280273/freefire_store_migration/reviews_photos_5cade4b14ddecab3bcd6189f.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2043472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280277/freefire_store_migration/reviews_photos_622f148d38f2f902d9df9bd4.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2168612
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280334/freefire_store_migration/reviews_photos_c8df4cc25c72054062251dd0.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2223602
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280271/freefire_store_migration/reviews_photos_58d03f3f049e3021d8868eb8.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2223602
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280295/freefire_store_migration/reviews_photos_86b3f0f752c214306e432901.webp",
+      "kind": "review",
+      "reason": "Visible shopping bag or accessory mark",
+      "products": [
+        -2223602
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280297/freefire_store_migration/reviews_photos_8a6194297665e9dd9c5863b9.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2040182
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280224/freefire_store_migration/reviews_photos_0a00b08a060dece7f10aaa39.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2040182
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280282/freefire_store_migration/reviews_photos_6bf593ec8a7d258943233454.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2043472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280256/freefire_store_migration/reviews_photos_3efb19f12606f2a715a6be30.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2115202
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280223/freefire_store_migration/reviews_photos_09517f90a48dcca7090492f5.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2118952
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280263/freefire_store_migration/reviews_photos_4b23d31558e6bb9d4bd921a7.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2197432
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280320/freefire_store_migration/reviews_photos_b37bbe34677717fa1fb7b057.webp",
+      "kind": "review",
+      "reason": "Visible business sign or advertising",
+      "products": [
+        -2342712
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280277/freefire_store_migration/reviews_photos_62a414e0ed9e9e08f1373123.webp",
+      "kind": "review",
+      "reason": "Other branded clothing or media in review scene",
+      "products": [
+        -2014472
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280323/freefire_store_migration/reviews_photos_b85c178c3763d5a2753e0e2a.webp",
+      "kind": "review",
+      "reason": "Other branded clothing or media in review scene",
+      "products": [
+        -2098322
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280308/freefire_store_migration/reviews_photos_9b638befd8e6734c77e59a49.webp",
+      "kind": "review",
+      "reason": "Other branded clothing or media in review scene",
+      "products": [
+        -2168612
+      ]
+    },
+    {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280245/freefire_store_migration/reviews_photos_2daf1fb77b796c38b53bf719.webp",
+      "kind": "review",
+      "reason": "Other branded clothing or media in review scene",
+      "products": [
+        -2362682
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "note": "OWND neck labels on infant shirts; need actual replacement merchandise/photos or a decision on listing.",
+      "images": [
+        {
+          "index": 101,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178722_1.jpg?width=1440",
+          "sha256": "009e06af901c7a3d51048e307da16017821e9a65bd1267bdce4095f3f4d6eff8"
+        },
+        {
+          "index": 102,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178883_1.jpg?width=1440",
+          "sha256": "21c67bcc3a69e87cb08173318b860437c3a1c6a9689ca180e3c0e5c33e472167"
+        },
+        {
+          "index": 103,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178807_1.jpg?width=1440",
+          "sha256": "89344d9dd82061c40f8b4b905f1adde185ff7f81d7f726c1bbad6df08ee70779"
+        },
+        {
+          "index": 104,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178722_2.jpg?width=1440",
+          "sha256": "a6e0a759376e1cdecc304c45e375603441748e0e070cf2bbb07eb9e58a757e14"
+        },
+        {
+          "index": 105,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178883_2.jpg?width=1440",
+          "sha256": "c4b423d5def2f4f7fb084ba93a260b1759547a55d552359a35740bb3f713c2a0"
+        },
+        {
+          "index": 106,
+          "products": [
+            324
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429178807_2.jpg?width=1440",
+          "sha256": "429a9e0e68afcfff8ef1e51adcb1ef0b39d7f6766226f5dc9764391a8948b18f"
+        }
+      ]
+    },
+    {
+      "note": "Savana by Urbanic garment label; replacement photos alone cannot establish that inventory is unbranded.",
+      "images": [
+        {
+          "index": 182,
+          "products": [
+            501
+          ],
+          "url": "https://img201.savana.com/goods-pic/2c7da26841bc4315a56e8080d5af49e1_w1440_q90",
+          "sha256": "1f13c473607206ba9d81475dba96a4e05c154007f4cd6977c10c58cced08cac3"
+        }
+      ]
+    },
+    {
+      "note": "Horse-and-rider chest emblem; brand identity unverified. Confirm actual stock and supply own photos.",
+      "images": [
+        {
+          "index": 1594,
+          "products": [
+            -2328642
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280099/freefire_store_migration/products_586655ff914e44dee00b27c8.webp",
+          "sha256": "555b538a4b03e738de6ce575c062bd5fa0b8e8c6ad2ffdb49818b9fcf99f885c"
+        },
+        {
+          "index": 1595,
+          "products": [
+            -2328642
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280199/freefire_store_migration/products_e84d3ee1cdf6313874c40356.webp",
+          "sha256": "45d9365f1298f38566711236d2fb80d5fc228e3f5c8cb2747a9823dc0ae13c01"
+        },
+        {
+          "index": 1596,
+          "products": [
+            -2328642
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280185/freefire_store_migration/products_d8ef5f8e8898c15e0cc171c2.webp",
+          "sha256": "d973676b8a0d361adacffa1973d46326c360d23c7066b6b6512600f4a92fe65e"
+        },
+        {
+          "index": 1597,
+          "products": [
+            -2328642
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280216/freefire_store_migration/products_fd6a7f6d318b9a049d808dba.webp",
+          "sha256": "52acdf0664951e18f7142c4c057025361aa577f541d121aa1a4be654852e464b"
+        }
+      ]
+    },
+    {
+      "note": "Branded-looking footwear styling accessories; exact brand unverified.",
+      "images": [
+        {
+          "index": 99,
+          "products": [
+            323
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429234091_1.jpg?width=1440",
+          "sha256": "c062295d3dca68a16abe258f2884b4a2ecb13265d9a6e6bd0817dfc59037bc04"
+        },
+        {
+          "index": 100,
+          "products": [
+            323
+          ],
+          "url": "https://www.ownd.in/cdn/shop/files/8909429234091_2.jpg?width=1440",
+          "sha256": "d7a10d7eefd362dc1326d9ae52c406294d1cd60fb2f6a38df5d9c41fc65284d5"
+        }
+      ]
+    },
+    {
+      "note": "Interlocking-ring accessories in styled product photo; brand identity unverified.",
+      "images": [
+        {
+          "index": 621,
+          "products": [
+            -2255702
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280084/freefire_store_migration/products_41df161db5ff26eb7aff85b6.webp",
+          "sha256": "811ecd20a89e48587086bdcebd6b0af07a581e868606506a3de49ed6b3fc6da5"
+        },
+        {
+          "index": 622,
+          "products": [
+            -2255702
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280145/freefire_store_migration/products_a04f17d85a4dd09c55de7290.webp",
+          "sha256": "d1cf9eae70c0ce127440ab8bced63c2a47509f61fbe47d21f5b5ec9be35b8889"
+        }
+      ]
+    },
+    {
+      "note": "Printed wordmark on styling T-shirt; exact brand unverified (not confirmed as Champion).",
+      "images": [
+        {
+          "index": 1603,
+          "products": [
+            -2383852
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280130/freefire_store_migration/products_89cfba697dad12104e6e621f.webp",
+          "sha256": "7bbcea84ed8e5f78f36074a61064b0e9b76beefd0b76f0457cba09bbfce0561a"
+        },
+        {
+          "index": 1604,
+          "products": [
+            -2383852
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280213/freefire_store_migration/products_f9545cfde9fc98a46b63f3bf.webp",
+          "sha256": "ea3bee30ab1617569e64220e70ef37f3c38e3b2777bf7e186fe72a129b609046"
+        },
+        {
+          "index": 1606,
+          "products": [
+            -2383852
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280140/freefire_store_migration/products_9770ee95631f640de3c4920d.webp",
+          "sha256": "fa9634dbc1997b70a724c8aa726507b2898d7ad37c551e82612bbcf330102921"
+        }
+      ]
+    },
+    {
+      "note": "Styled footwear with recognizable brand-like design; needs owner review.",
+      "images": [
+        {
+          "index": 1886,
+          "products": [
+            -2365012
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280170/freefire_store_migration/products_c3f055a2ac9886837ca87fe3.webp",
+          "sha256": "f112e75514086a86f5f7b9788350e10114c6bf7bb9b4feab5f9b2986bc349009"
+        },
+        {
+          "index": 1889,
+          "products": [
+            -2365012
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280049/freefire_store_migration/products_138c31889d263d17ef86f8a3.webp",
+          "sha256": "143e514f9a3f5d037d349570b452546a78c65fb2ae6f019ae5ebe940a7469386"
+        },
+        {
+          "index": 1981,
+          "products": [
+            -2380402
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280097/freefire_store_migration/products_54fe028288c277ca078a49a5.webp",
+          "sha256": "3600bdb6eb33a53744925fa35ad542ea83324be269e0899fdb3c94e93bdd1eee"
+        },
+        {
+          "index": 1982,
+          "products": [
+            -2380402
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280098/freefire_store_migration/products_56fcc316d88e1bdf26694cc1.webp",
+          "sha256": "436cc7d3cbb4aeb69644931a09b8475dbc94ee09a7455c5a15e74549266d224d"
+        }
+      ]
+    },
+    {
+      "note": "Visible label on styling jeans; exact brand unverified. Need own alternative photo if all labels must be absent.",
+      "images": [
+        {
+          "index": 2310,
+          "products": [
+            -300000008
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-1.webp",
+          "sha256": "47d74e175722c51c5117a8aa8123df37ce565f9a865a25ba2915782b72745608"
+        },
+        {
+          "index": 2315,
+          "products": [
+            -300000009
+          ],
+          "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-1.webp",
+          "sha256": "634d806eb15d7de9cb2e9cf5ad57a43e892d16834dd4891e29681bbf875205a1"
+        }
+      ]
+    }
+  ],
+  "protectedCopy": {
+    "files": [
+      "src/pages/Terms.tsx",
+      "src/pages/RefundPolicy.tsx",
+      "src/pages/ShippingPolicy.tsx",
+      "src/pages/GarenaCheckout.tsx"
+    ],
+    "issue": "Existing Garena naming remains. User previously required policies and checkout unchanged; display-name-only permission question is pending."
+  },
+  "otherCatalogIssue": "Product 516 has existing Khaki shirt-dress metadata with black evening-dress photos. Original metadata preserved; owner must confirm correct stock/photos."
+}

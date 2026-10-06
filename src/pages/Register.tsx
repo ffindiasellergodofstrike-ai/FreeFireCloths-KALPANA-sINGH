@@ -1,3 +1,4 @@
+import AccountIntro from '../components/AccountIntro';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -62,9 +63,9 @@ export default function Register() {
   };
 
   return (
-    <div id="register-page-root">
-      <div className="container" style={{ padding: '60px 20px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ background: '#fff', border: '1px solid var(--border)', padding: '32px 40px', maxWidth: '480px', width: '100%' }}>
+    <div id="register-page-root" className="account-page">
+      <div className="container account-layout"><AccountIntro register />
+        <div className="account-form-panel">
           <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', textAlign: 'center', marginBottom: '8px' }}>
             CREATE ACCOUNT
           </h2>
@@ -74,9 +75,9 @@ export default function Register() {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label">FULL NAME *</label>
+              <label className="form-label" htmlFor="register-full-name">FULL NAME *</label>
               <input 
-                type="text" 
+                type="text" id="register-full-name" autoComplete="name"
                 className="form-input" 
                 placeholder="Your Full Name"
                 value={fullName}
@@ -86,9 +87,9 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">EMAIL ADDRESS *</label>
+              <label className="form-label" htmlFor="register-email">EMAIL ADDRESS *</label>
               <input 
-                type="email" 
+                type="email" id="register-email" autoComplete="email"
                 className="form-input" 
                 placeholder="your@email.com" 
                 value={email}
@@ -98,9 +99,9 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">MOBILE NUMBER *</label>
+              <label className="form-label" htmlFor="register-mobile">MOBILE NUMBER *</label>
               <input 
-                type="tel" 
+                type="tel" id="register-mobile" autoComplete="tel"
                 className="form-input" 
                 placeholder="+91 XXXXX XXXXX" 
                 value={mobile}
@@ -110,9 +111,9 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">PASSWORD *</label>
+              <label className="form-label" htmlFor="register-password">PASSWORD *</label>
               <input 
-                type="password" 
+                type="password" id="register-password" autoComplete="new-password"
                 className="form-input" 
                 placeholder="Min. 8 characters" 
                 value={password}

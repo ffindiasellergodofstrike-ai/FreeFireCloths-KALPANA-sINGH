@@ -1,3 +1,6 @@
+import CodConfirmation from '../components/CodConfirmation';
+import OrderDetails, { OrderDetailsData } from '../components/OrderDetails';
+import { isRetiredProduct } from '../data/retired-products';
 import React, { useState, useEffect } from 'react';
 import { db } from '../lib/firebase';
 import { collection, query, where, onSnapshot, orderBy, limit, doc, getDoc } from 'firebase/firestore';
@@ -14,10 +17,11 @@ interface OrderItem {
   quantity?: number;
   size?: string;
   cat?: string;
+  color?: string;
   image?: string;
 }
 
-interface Order {
+interface Order extends OrderDetailsData {
   id: string;
   orderNumber: number;
   total: number;
@@ -109,30 +113,7 @@ export default function MyOrders() {
     return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
   };
 
-  const getOrderStatus = (order: Order) => {
-    if (order.status) return order.status;
-    if (!order.createdAt) return 'Order Placed';
-    let datePlaced: Date;
-    if (typeof order.createdAt === 'string') {
-      datePlaced = new Date(order.createdAt);
-    } else if (order.createdAt.toDate) {
-      datePlaced = order.createdAt.toDate();
-    } else if (order.createdAt.seconds) {
-      datePlaced = new Date(order.createdAt.seconds * 1000);
-    } else {
-      return 'Order Placed';
-    }
-
-    const diffTime = Math.abs(new Date().getTime() - datePlaced.getTime());
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-    if (diffDays >= 10) {
-      return 'Delivered';
-    } else if (diffDays >= 3) {
-      return 'In Transit';
-    }
-    return 'Order Placed';
-  };
+  const getOrderStatus = (order: Order) => order.status || 'Order placed';
 
   if (!user) {
     return (
@@ -147,7 +128,7 @@ export default function MyOrders() {
           <div style={{ fontSize: '64px', marginBottom: '16px' }}>🔒</div>
           <h2 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', marginBottom: '8px' }}>ACCESS RESTRICTED</h2>
           <p style={{ color: 'var(--gray)', marginBottom: '28px' }}>Please log in to your account to view your profile details and purchase history.</p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
             <Link to="/login" className="btn btn-black">LOG IN NOW</Link>
             <Link to="/" className="btn btn-outline">RETURN HOME</Link>
           </div>
@@ -186,7 +167,7 @@ export default function MyOrders() {
               <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', margin: 0, color: 'var(--dark)' }}>
                 ACCOUNT PROFILE
               </h2>
-              <p style={{ fontSize: '13px', color: 'var(--gray)', margin: '4px 0 0' }}>Your verified user credentials and contact information</p>
+              <p style={{ fontSize: '13px', color: 'var(--gray)', margin: '4px 0 0' }}>Your account and contact information</p>
             </div>
             <button 
               onClick={handleLogout} 
@@ -213,7 +194,7 @@ export default function MyOrders() {
             </button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '20px' }}>
             <div style={{ background: '#f8fafc', padding: '16px 20px', border: '1px solid #e2e8f0' }}>
               <span style={{ fontSize: '10px', color: 'var(--gray)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1.5px', display: 'block', marginBottom: '6px' }}>
                 FULL NAME
@@ -248,13 +229,13 @@ export default function MyOrders() {
           <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', margin: 0, color: 'var(--dark)' }}>
             PURCHASE HISTORY & ORDERS
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--gray)', margin: '4px 0 0' }}>Real-time order status tracking directly from Firebase</p>
+          <p style={{ fontSize: '13px', color: 'var(--gray)', margin: '4px 0 0' }}>Your pieces, payment details and delivery updates, together.</p>
         </div>
 
         {loading ? (
           <div style={{ textAlign: 'center', padding: '40px 20px' }}>
             <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid var(--dark)', borderRadius: '50%', width: '40px', height: '40px', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }}></div>
-            <p style={{ color: 'var(--gray)', fontFamily: 'var(--font-h)', fontSize: '12px', fontWeight: 700, letterSpacing: '1px' }}>RETRIEVING ORDERS FROM FIREBASE...</p>
+            <p style={{ color: 'var(--gray)', fontFamily: 'var(--font-h)', fontSize: '12px', fontWeight: 700, letterSpacing: '1px' }}>LOADING YOUR ORDERS…</p>
           </div>
         ) : orders.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '60px 20px', background: '#fff', border: '1px solid var(--border)' }}>
@@ -321,7 +302,7 @@ export default function MyOrders() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     {order.items.map((item, idx) => (
                       <div key={idx} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                        {item.image ? (
+                        {item.image && !isRetiredProduct(item.id) ? (
                           <img 
                             src={item.image} 
                             alt={item.name || item.title} 
@@ -336,13 +317,15 @@ export default function MyOrders() {
                         <div style={{ flex: 1 }}>
                           <h4 style={{ fontSize: '14px', fontWeight: 700, color: 'var(--dark)' }}>{item.name || item.title}</h4>
                           <p style={{ fontSize: '11px', color: 'var(--gray)', marginTop: '2px' }}>
-                            Size: {item.size || 'ONE SIZE'} &nbsp;|&nbsp; Qty: {item.qty || item.quantity || 1}
+                            Size: {item.size || 'ONE SIZE'} {item.color ? `· ${item.color}` : ''} &nbsp;|&nbsp; Qty: {item.qty || item.quantity || 1}
                           </p>
                         </div>
                         <div style={{ fontWeight: 700, color: 'var(--dark)' }}>{fmt(item.price * (item.qty || item.quantity || 1))}</div>
                       </div>
                     ))}
                   </div>
+                  {order.paymentMethod === 'Cash on Delivery (COD)' && typeof order.createdAt === 'string' && Date.now() - Date.parse(order.createdAt) < 23 * 3600000 && <CodConfirmation orderId={order.id} />}
+                  <OrderDetails order={order} />
                 </div>
               );
             })}

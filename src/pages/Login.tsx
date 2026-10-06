@@ -1,3 +1,4 @@
+import AccountIntro from '../components/AccountIntro';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -56,9 +57,9 @@ export default function Login() {
   };
 
   return (
-    <div id="login-page-root">
-      <div className="container" style={{ padding: '60px 20px', display: 'flex', justifyContent: 'center' }}>
-        <div style={{ background: '#fff', border: '1px solid var(--border)', padding: '32px 40px', maxWidth: '440px', width: '100%' }}>
+    <div id="login-page-root" className="account-page">
+      <div className="container account-layout"><AccountIntro />
+        <div className="account-form-panel">
           <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', textAlign: 'center', marginBottom: '8px' }}>
             WELCOME BACK
           </h2>
@@ -68,9 +69,9 @@ export default function Login() {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label className="form-label">EMAIL ADDRESS *</label>
+              <label className="form-label" htmlFor="login-email">EMAIL ADDRESS *</label>
               <input 
-                type="email" 
+                type="email" id="login-email" autoComplete="email"
                 className="form-input" 
                 placeholder="your@email.com" 
                 value={email}
@@ -80,9 +81,9 @@ export default function Login() {
             </div>
 
             <div className="form-group">
-              <label className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <label className="form-label" htmlFor="login-password" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 PASSWORD *
-                <span 
+                <button type="button" className="account-forgot"
                   style={{ fontSize: '11px', color: 'var(--accent)', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 'bold' }} 
                   onClick={() => {
                     setShowResetNotice(true);
@@ -90,10 +91,10 @@ export default function Login() {
                   }}
                 >
                   Forgot?
-                </span>
+                </button>
               </label>
               <input 
-                type="password" 
+                type="password" id="login-password" autoComplete="current-password"
                 className="form-input" 
                 placeholder="••••••••" 
                 value={password}

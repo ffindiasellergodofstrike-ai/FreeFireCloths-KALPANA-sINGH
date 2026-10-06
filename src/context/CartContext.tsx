@@ -1,3 +1,4 @@
+import { isRetiredProduct } from '../data/retired-products';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'sonner';
 
@@ -31,7 +32,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
       const saved = localStorage.getItem('gs_cart_v2');
-      return saved ? JSON.parse(saved) : [];
+      return saved ? JSON.parse(saved).filter((item: CartItem) => !isRetiredProduct(item.id)) : [];
     } catch (e) {
       return [];
     }
@@ -46,6 +47,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [cart]);
 
   const addToCart = (product: any, size?: string, qty: number = 1, color?: string, customImage?: string) => {
+    if (isRetiredProduct(product.id)) return;
     const selectedSize = size || (product.sizes && product.sizes[0]) || 'ONE SIZE';
     const selectedColor = color || '';
     const itemKey = `${product.id}-${selectedSize}-${selectedColor}`;

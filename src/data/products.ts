@@ -1,3 +1,4 @@
+import { isRetiredProduct } from './retired-products';
 import { REFERENCE_PRODUCTS } from './reference-products';
 import { KURTI_PRODUCTS } from './kurti-products';
 import { IMPORTED_DRESSES } from './imported_dresses';
@@ -44,7 +45,7 @@ export interface BlogPost {
   emoji: string;
 }
 
-export const PRODUCTS: Product[] = [
+export const SOURCE_PRODUCTS: Product[] = [
   // --- FEATURED & CSV IMPORTED PRODUCTS ---
   {
     id: 301,
@@ -1249,6 +1250,9 @@ export const PRODUCTS: Product[] = [
   ...REFERENCE_PRODUCTS,
   ...KURTI_PRODUCTS
 ];
+
+// Historical records stay available for order references; retired items are not for sale.
+export const PRODUCTS = SOURCE_PRODUCTS.filter(p => !isRetiredProduct(p.id));
 
 export const BLOG_POSTS: BlogPost[] = [
   { id: 1, cat: 'STYLE GUIDE', title: '10 Essential Wardrobe Staples for Summer 2026', excerpt: 'Build a versatile, timeless wardrobe with these must-have pieces that transition effortlessly.', date: 'JUNE 15, 2026', emoji: '☀️' },

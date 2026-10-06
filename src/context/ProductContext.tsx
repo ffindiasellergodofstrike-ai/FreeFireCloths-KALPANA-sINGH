@@ -1,3 +1,4 @@
+import { isRetiredProduct } from '../data/retired-products';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { PRODUCTS, Product } from '../data/products';
 
@@ -22,7 +23,7 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
         console.error('Error parsing custom products', e);
       }
     }
-    setProducts([...PRODUCTS, ...customProducts]);
+    setProducts([...PRODUCTS, ...customProducts.filter(p => !isRetiredProduct(p.id) && !PRODUCTS.some(base => base.id === p.id))]);
   }, []);
 
   const addProduct = (newProductData: Omit<Product, 'id' | 'rating' | 'reviews'> & { rating?: number; reviews?: number }) => {
@@ -38,7 +39,7 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
       badge: 'NEW', // Newly added product automatically appears in New Arrivals
     };
 
-    const updated = [...products, newProduct];
+    const updated = [...products, newProduct].filter(p => !isRetiredProduct(p.id));
     setProducts(updated);
 
     // Save custom products (only those >= 200) to localStorage

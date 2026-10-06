@@ -1,3 +1,4 @@
+import { sendOrderConfirmation } from '../lib/order-email';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { db } from '../lib/firebase';
@@ -8,6 +9,7 @@ export default function PaymentSuccess() {
   const [searchParams] = useSearchParams();
   const gid = searchParams.get('gid');
   const [status, setStatus] = useState<string>('Verifying payment...');
+  const [emailStatus, setEmailStatus] = useState('');
   const [orderId, setOrderId] = useState<string | null>(null);
   const { clearCart } = useCart();
 
@@ -28,6 +30,7 @@ export default function PaymentSuccess() {
             if (db) {
               addDoc(collection(db, 'orders'), pendingOrder).then((docRef) => {
                 setOrderId(pendingOrder.orderNumber?.toString() || docRef.id);
+                void sendOrderConfirmation(gid).then(setEmailStatus);
               });
             }
             clearCart();
@@ -39,7 +42,10 @@ export default function PaymentSuccess() {
       } else {
         // Order already processed or session cleared
         const existingOrderId = localStorage.getItem('lastSuccessfulOrderId');
-        if (existingOrderId) setOrderId(existingOrderId);
+        if (existingOrderId) {
+          setOrderId(existingOrderId);
+          void sendOrderConfirmation(gid).then(setEmailStatus);
+        }
       }
     }
   }, [gid, clearCart]);
@@ -52,8 +58,8 @@ export default function PaymentSuccess() {
   }, [orderId]);
 
   return (
-    <div className="container" style={{ padding: '80px 24px', minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ background: '#fff', padding: '48px', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', maxWidth: '500px', width: '100%', textAlign: 'center' }}>
+    <div className="container store-result" style={{ padding: '80px 24px', minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="store-result-card" style={{ background: '#fff', padding: '48px', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', maxWidth: '500px', width: '100%', textAlign: 'center' }}>
         <div style={{ width: '80px', height: '80px', background: '#ecfdf5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
           <i className="fa fa-check" style={{ fontSize: '36px', color: '#10b981' }}></i>
         </div>
@@ -72,6 +78,7 @@ export default function PaymentSuccess() {
 
         <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '32px' }}>{status}</p>
 
+        {emailStatus && <p role="status" className="email-status">{emailStatus}</p>}
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/" className="btn btn-outline btn-lg" style={{ flex: 1, minWidth: '180px' }}>RETURN TO HOME</Link>
           <Link to="/my-orders" className="btn btn-black btn-lg" style={{ flex: 1, minWidth: '180px' }}>VIEW MY ORDERS</Link>

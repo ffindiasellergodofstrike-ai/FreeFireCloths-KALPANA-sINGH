@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { catalogImages } from '../data/catalog-media';
 interface Review {
   id: string;
   author: string;
@@ -62,7 +63,7 @@ export default function ImportedReviews({ sourceId }: { sourceId: number }) {
                   {review.variant} · {review.date}
                 </small>
                 <div>
-                  {review.images.map((url) => (
+                  {catalogImages(review.images).map((url) => (
                     <a key={url} href={url} target="_blank" rel="noreferrer">
                       <img
                         src={url}

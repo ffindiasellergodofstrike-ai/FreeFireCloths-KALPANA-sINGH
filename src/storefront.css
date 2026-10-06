@@ -909,3 +909,29 @@
     transition: none !important;
   }
 }
+
+/* Department browsing keeps every existing product discoverable. */
+.department-navigation { gap: 10px; border-bottom: 1px solid #e2d8d1; padding-bottom: 20px; }
+.department-navigation a { padding: 12px 18px; min-height: 44px; }
+.catalog-types { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0; }
+.catalog-types button { border: 1px solid #d9ccc3; background: #fffdf9; color: #574137; padding: 11px 15px; min-height: 44px; cursor: pointer; font: inherit; font-size: 12px; }
+.catalog-types button[aria-pressed="true"] { background: #543c31; color: white; border-color: #543c31; }
+.catalog-types button span { margin-left: 8px; font-size: 10px; opacity: .8; }
+.catalog-toolbar { gap: 16px; }
+.catalog-toolbar label { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.catalog-toolbar select { min-height: 44px; max-width: 100%; font-size: 12px; }
+.catalog-count { margin-left: auto; font-size: 12px; }
+.catalog-clear { padding: 12px; background: transparent; border: 0; text-decoration: underline; cursor: pointer; font-size: 12px; }
+.catalog-pagination p { margin-bottom: 18px; font-size: 13px; color: #6d5e54; }
+.catalog-pagination > div { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.catalog-types button:focus-visible,.catalog-clear:focus-visible { outline: 2px solid #67492f; outline-offset: 3px; }
+@media (max-width: 700px) {
+  .catalog-toolbar { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+  .catalog-toolbar label { flex: 1 1 135px; min-width: 0; }
+  .catalog-toolbar select { width: 100%; min-width: 0; }
+  .catalog-types { gap: 7px; }
+  .catalog-types button { padding: 9px 10px; font-size: 11px; }
+  .catalog-toolbar > .catalog-count { flex: 1 1 auto; margin-left: 0; }
+  .department-navigation a { padding: 10px 12px; }
+  .catalog-pagination > div { flex-direction: column; }
+}

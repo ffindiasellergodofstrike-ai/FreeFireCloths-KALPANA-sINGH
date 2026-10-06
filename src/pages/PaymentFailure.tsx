@@ -10,15 +10,15 @@ export default function PaymentFailure() {
   }, []);
 
   return (
-    <div className="container" style={{ padding: '80px 24px', minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ background: '#fff', padding: '48px', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', maxWidth: '500px', width: '100%', textAlign: 'center' }}>
+    <div className="container store-result" style={{ padding: '80px 24px', minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="store-result-card" style={{ background: '#fff', padding: '48px', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', maxWidth: '500px', width: '100%', textAlign: 'center' }}>
         <div style={{ width: '80px', height: '80px', background: '#fef2f2', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
           <i className="fa fa-times" style={{ fontSize: '36px', color: '#ef4444' }}></i>
         </div>
         
         <h1 style={{ fontSize: '32px', marginBottom: '8px', fontFamily: 'var(--font-h)', fontWeight: '800', color: '#111827' }}>Payment Failed</h1>
         <p style={{ color: '#4b5563', margin: '0 auto 16px', fontSize: '16px', lineHeight: '1.6' }}>
-          Unfortunately, your payment could not be processed. No charges were made to your account.
+          Your payment was not completed. Check your payment status before retrying. If your bank shows a debit, contact us with the transaction reference.
         </p>
 
         <div style={{ background: '#f9fafb', border: '1px dashed #d1d5db', borderRadius: '8px', padding: '16px', marginBottom: '32px' }}>

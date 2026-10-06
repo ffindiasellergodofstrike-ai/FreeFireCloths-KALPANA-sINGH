@@ -1,0 +1,36 @@
+// Local integration smoke: synthetic PayGlocal response + actual Resend emulator.
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import { writeFile, mkdir } from 'node:fs/promises';
+import path from 'node:path';
+import handler from '../api/order-confirmation';
+import { createReceiptToken, readReceiptToken } from '../server/order-receipt';
+import { confirmCodEmail } from '../server/cod-email';
+import { orderMessage } from '../server/order-message';
+const base = process.env.RESEND_BASE_URL || 'http://localhost:4000';
+assert.ok(/^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(base), 'Local emulator only');
+Object.assign(process.env,{RESEND_BASE_URL:base,RESEND_API_KEY:`re_${crypto.randomBytes(24).toString('hex')}`,RESEND_FROM_EMAIL:'orders@example.invalid',ORDER_EMAIL_SECRET:crypto.randomBytes(32).toString('hex')});
+const suffix=crypto.randomBytes(10).toString('hex');
+const gid=`gl_demo_${suffix}`, merchantTxnId=`PG-demo-${suffix}`;
+const customerEmail=`customer-${suffix}@example.invalid`, codEmail=`cod-${suffix}@example.invalid`;
+const originalFetch=globalThis.fetch;
+globalThis.fetch=async(input,init)=>String(input).startsWith('https://api.payglocal.in/') ? new Response(JSON.stringify({data:{status:'CAPTURED',gid,merchantTxnId}})) : originalFetch(input,init);
+const token=createReceiptToken({amount:1200,orderNumber:123456,customerData:{firstName:'Demo',lastName:'Customer',email:customerEmail,address:'12 Sample Street',city:'Lucknow',state:'Uttar Pradesh',pincode:'226001',phone:'0000000000'},items:[{id:301,size:'S',qty:1},{id:-300000001,size:'M',color:'Beige & brown',qty:1}]},gid,merchantTxnId)!;
+const response={code:200,body:null as any,setHeader(){},status(code:number){this.code=code;return this;},json(body:any){this.body=body;return this;}};
+await handler({method:'POST',body:{receipt:token}},response);
+assert.equal(response.code,200);assert.deepEqual(response.body,{sent:true});
+const receipt=readReceiptToken(token);
+const cod={...receipt,payment:'cod' as const,email:codEmail};
+let completed=false;
+await confirmCodEmail({reserve:async()=>({order:cod,sent:completed,expires:Date.now()+3600000,leaseUntil:0}),complete:async()=>{completed=true;},release:async()=>{}},suffix);
+assert.ok(completed);
+const inbox=await originalFetch(`${base}/emails`,{headers:{Authorization:`Bearer ${process.env.RESEND_API_KEY}`}}).then(r=>r.json());
+assert.ok(inbox.data.some((m:any)=>m.to.includes(codEmail) && m.html.includes('Amount due on delivery')),'COD captured email');
+assert.ok(inbox.data.some((m:any)=>m.to.includes(customerEmail) && m.html.includes('Online payment confirmed')),'Online captured email');
+const selected=inbox.data.find((m:any)=>m.to.includes(codEmail));
+const email=await originalFetch(`${base}/emails/${selected.id}`,{headers:{Authorization:`Bearer ${process.env.RESEND_API_KEY}`}}).then(r=>r.json());
+assert.ok(JSON.stringify(email).includes('Order #123456 confirmed'));
+assert.doesNotMatch(email.html + email.text,/invoice|Kalpana|SULTANPUR|PRANNATHPUR|connectwithgarena/i);
+const output=process.env.ORDER_PREVIEW_OUTPUT;
+if(output){await mkdir(output,{recursive:true});await writeFile(path.join(output,'freefire-online-confirmation.html'),orderMessage({...receipt,payment:'online'}).html);await writeFile(path.join(output,'freefire-cod-confirmation.html'),orderMessage({...receipt,payment:'cod'}).html);}
+console.log('PASS: synthetic verified online and saved COD order -> Resend emulator emails; no attachment; no real email sent.');

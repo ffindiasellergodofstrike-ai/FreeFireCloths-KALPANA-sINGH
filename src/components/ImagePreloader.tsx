@@ -1,3 +1,4 @@
+import { isRetiredProduct } from '../data/retired-products';
 import { useEffect } from 'react';
 import { PRODUCTS } from '../data/products';
 
@@ -22,7 +23,7 @@ export default function ImagePreloader() {
         if (saved) {
           const customProducts = JSON.parse(saved);
           if (Array.isArray(customProducts)) {
-            customProducts.slice(0, 4).forEach(product => {
+            customProducts.filter(product => !isRetiredProduct(product.id)).slice(0, 4).forEach(product => {
               if (product.images && product.images.length > 0) {
                 product.images.slice(0, 1).forEach((img: string) => {
                   if (img) imageUrls.add(img);

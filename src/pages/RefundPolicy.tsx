@@ -79,7 +79,7 @@ export default function RefundPolicy() {
             <li>Clear photographs of the item from multiple angles showing the damage or defect</li>
             <li>A photograph of the original packaging and shipping label</li>
           </ul>
-          <p>Once verified, we will arrange a free pickup from your address and offer you a full refund or replacement, as per your preference. All shipping costs for damaged or incorrect item returns are borne by Garena Store.</p>
+          <p>Once verified, we will arrange a free pickup from your address and offer you a full refund or replacement, as per your preference. All shipping costs for damaged or incorrect item returns are borne by Free Fire Store.</p>
           <p><strong>Please note:</strong> Damage claims raised after 48 hours of delivery will not be accepted.</p>
 
           <h2>5. HOW TO INITIATE A RETURN</h2>
@@ -113,7 +113,7 @@ export default function RefundPolicy() {
             <li>Clearly write your Order ID and registered mobile number on the outside of the package.</li>
             <li>Use a trackable courier service. We recommend India Post Speed Post for the widest coverage across India.</li>
             <li>Share the tracking number with us at connectwithgarena@gmail.com after shipping.</li>
-            <li>Garena Store is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
+            <li>Free Fire Store is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
             <li>Self-shipping costs are borne by the customer, except in cases of damaged, defective, or incorrect items.</li>
           </ul>
 
@@ -188,7 +188,7 @@ export default function RefundPolicy() {
             <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on www.garenaofficialfreefire.shop.</li>
             <li>Store credit cannot be extended beyond its validity period, transferred to another account, or converted to cash.</li>
             <li>The original COD handling fee (if any) is non-refundable and will be deducted from the refund amount.</li>
-            <li>Original shipping charges are non-refundable, except in cases where Garena Store dispatched a wrong or defective item.</li>
+            <li>Original shipping charges are non-refundable, except in cases where Free Fire Store dispatched a wrong or defective item.</li>
           </ul>
 
           <h2>10. LATE OR MISSING REFUNDS</h2>
@@ -210,7 +210,7 @@ export default function RefundPolicy() {
             <li>If you refuse delivery, the item will be returned to us. A refund will be issued after deducting the original and return shipping charges from the order value.</li>
             <li>COD orders where delivery is refused will not receive any refund, as no payment was made by the customer.</li>
           </ul>
-          <p><strong>Cancellation by Garena Store:</strong></p>
+          <p><strong>Cancellation by Free Fire Store:</strong></p>
           <ul>
             <li>We may cancel orders due to stock unavailability, payment failure, pricing errors, incomplete address, or suspected fraud.</li>
             <li>A full refund will be issued within 5 to 7 business days of cancellation and you will be notified by email or SMS.</li>

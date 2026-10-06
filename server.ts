@@ -6,6 +6,9 @@ import initiateHandler from "./api/payglocal/initiate.js";
 import callbackHandler from "./api/payglocal/callback.js";
 import statusHandler from "./api/payglocal/status.js";
 
+import codConfirmationHandler from './api/cod-confirmation';
+import orderConfirmationHandler from './api/order-confirmation';
+
 async function runServer() {
   const app = express();
   const PORT = 3000;
@@ -16,13 +19,17 @@ async function runServer() {
 
   // Health check API
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", store: "Garena Official Free Fire Store" });
+    res.json({ status: "ok", store: "Free Fire Store" });
   });
 
   // PayGlocal integration routes
   app.post("/api/payglocal/initiate", initiateHandler);
   app.all("/api/payglocal/callback", callbackHandler);
   app.get("/api/payglocal/status", statusHandler);
+
+  app.post("/api/order-confirmation", orderConfirmationHandler);
+
+  app.post("/api/cod-confirmation", codConfirmationHandler);
 
   // Serve static assets and frontend index
   if (process.env.NODE_ENV !== "production") {

@@ -168,3 +168,19 @@
 @media (prefers-reduced-motion: reduce) {
   .studio-home *, .studio-home *::before, .studio-home *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Primary departments and a balanced, twelve-piece storefront. */
+.studio-departments { grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 1040px; margin-inline: auto; }
+.studio-departments .studio-edit-photo { aspect-ratio: 4/5; }
+.studio-department-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.studio-department-title > span { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.studio-browse-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+#shop-departments { scroll-margin-top: 95px; }
+@media (min-width: 1100px) { .studio-product-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
+@media (max-width: 600px) {
+  .studio-departments { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  .studio-department-title { display: block; }
+  .studio-department-title h3 { font-size: 26px; }
+  .studio-department-title > span { font-size: 10px; margin-top: 7px; }
+  .studio-departments .studio-edit-card p { font-size: 11px; }
+}

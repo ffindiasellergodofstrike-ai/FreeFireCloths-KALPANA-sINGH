@@ -111,7 +111,7 @@ export default function Terms() {
             <li>Charges incurred by you will be honoured by your bank, card issuer, or payment provider</li>
             <li>You will pay all charges including the product price, applicable shipping fees, COD fees, and taxes</li>
           </ul>
-          <p>In case of a failed transaction, please check with your bank or payment provider before retrying. Garena Store is not responsible for any bank charges, transaction fees, or interest arising from failed or declined transactions.</p>
+          <p>In case of a failed transaction, please check with your bank or payment provider before retrying. Free Fire Store is not responsible for any bank charges, transaction fees, or interest arising from failed or declined transactions.</p>
 
           <h2>SECTION 6 - PAYMENT DISPUTES, CHARGEBACKS, AND FRAUD PREVENTION</h2>
           <p>We take payment fraud and unauthorised transactions seriously. If you believe an unauthorised charge has occurred on your account, please contact us immediately at connectwithgarena@gmail.com or +91 7393845435 before initiating a chargeback with your bank.</p>

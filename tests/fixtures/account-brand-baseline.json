@@ -1,0 +1,7 @@
+{
+  "src/pages/Login.tsx": "445d588b0813d74e6c5714d756d9e1c33cfa7d15ec26fd5eae7e78e8af98d391",
+  "src/pages/Register.tsx": "45af821c1ff0a33824b0a33bf7eb63343d72aa51f71d7e5e98703bfe52ec2b42",
+  "src/pages/Terms.tsx": "6c5a51512ea692e984d503ddc5ef8cfa281a7cba53d4f80be5c552e1f95dda4a",
+  "src/pages/RefundPolicy.tsx": "f27c12f4b6425dbb0d58e06d480e949fa4bef0bd90270d82742b33a3285b7e0f",
+  "src/pages/ShippingPolicy.tsx": "777425238c4e35bef3f61fb3054bbe71eb02fe1f81a2d3430fff57018236708e"
+}

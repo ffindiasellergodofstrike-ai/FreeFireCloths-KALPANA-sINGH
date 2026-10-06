@@ -1,4 +1,5 @@
 import { isImportedOptionAvailable } from '../data/reference-products';
+import { catalogImages } from '../data/catalog-media';
 import ImportedReviews from '../components/ImportedReviews';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
@@ -82,7 +83,7 @@ export default function ProductDetail() {
     return product.images || [];
   };
 
-  const displayedImages = getDisplayedImages();
+  const displayedImages = catalogImages(getDisplayedImages());
 
   const optimizeUnsplash = (url: string, width: number, quality: number = 80) => {
     if (!url) return url;

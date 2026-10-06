@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { PRODUCTS } from "../src/data/products";
+import { SOURCE_PRODUCTS as PRODUCTS } from "../src/data/products";
 import {
   REFERENCE_PRODUCTS,
   isImportedOptionAvailable,
@@ -26,6 +26,25 @@ test("all Website A product records remain exactly identical", () => {
 });
 test("protected A files, dependencies, routes, branding and legal information are byte identical", () => {
   const presentationChanges = new Set([
+    // Explicitly authorized in brand-removal/account/email follow-up; narrow invariants tested separately.
+    "api/payglocal/initiate.js",
+    "server.ts",
+    ".env.example",
+    "package.json",
+    "package-lock.json",
+    "vercel.json",
+    "src/context/ProductContext.tsx",
+    "src/context/CartContext.tsx",
+    "src/pages/Login.tsx",
+    "src/pages/Register.tsx",
+    "src/pages/Checkout.tsx",
+    "src/pages/PaymentSuccess.tsx",
+    "src/pages/PaymentFailure.tsx",
+    "src/pages/MyOrders.tsx",
+    "src/pages/GarenaCheckout.tsx",
+    "src/pages/Terms.tsx",
+    "src/pages/RefundPolicy.tsx",
+    "src/pages/ShippingPolicy.tsx",
     "src/components/ImagePreloader.tsx",
     "src/components/Navbar.tsx",
     "src/components/ProductCard.tsx",

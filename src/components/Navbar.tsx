@@ -1,4 +1,4 @@
-import { COLLECTIONS } from '../data/reference-products';
+import { SHOP_CATEGORIES as COLLECTIONS } from '../data/catalog-navigation';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -66,6 +66,8 @@ export default function Navbar() {
               <div className="nav-item">
                 <Link to="/" className={`nav-link ${activeClass('/')}`}>HOME</Link>
               </div>
+              <div className="nav-item"><Link to="/collections/men" className={`nav-link ${activeClass('/collections/men')}`}>MEN</Link></div>
+              <div className="nav-item"><Link to="/collections/women" className={`nav-link ${activeClass('/collections/women')}`}>WOMEN</Link></div>
               <div className="nav-item">
                 <Link to="/collections/all" className={`nav-link ${activeClass('/collections/all')}`}>
                   SHOP ALL <i className="fa fa-chevron-down" style={{ fontSize: '9px', marginLeft: '4px' }}></i>
@@ -81,12 +83,6 @@ export default function Navbar() {
                 <Link to={user ? "/my-orders" : "/login"} className={`nav-link ${activeClass('/my-orders')}`}>
                   {user ? 'MY PROFILE & ORDERS' : 'ACCOUNT'}
                 </Link>
-              </div>
-              <div className="nav-item">
-                <Link to="/policies/shipping" className={`nav-link ${activeClass('/policies/shipping')}`}>SHIPPING</Link>
-              </div>
-              <div className="nav-item">
-                <Link to="/contact" className={`nav-link ${activeClass('/contact')}`}>CONTACT</Link>
               </div>
             </nav>
 

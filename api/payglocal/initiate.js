@@ -1,3 +1,5 @@
+import { createReceiptToken } from '../../server/order-receipt';
+import { isRetiredProduct } from '../../src/data/retired-products';
 import { generateJWEAndJWS } from 'payglocal-js-client';
 import crypto from 'crypto';
 
@@ -79,6 +81,7 @@ export default async function handler(req, res) {
   
   try {
     const { amount, customerData, source } = req.body;
+    if (Array.isArray(req.body.items) && req.body.items.some(item => isRetiredProduct(item.id))) return res.status(400).json({ error: 'A product in your bag is no longer available' });
     
     if (!amount || !customerData) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -215,7 +218,10 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Invalid response from PayGlocal', data });
     }
 
-    return res.json({ redirectUrl, gid, merchantTxnId });
+    let orderReceipt = null;
+    try { orderReceipt = createReceiptToken(req.body, gid, merchantTxnId); }
+    catch { console.warn('Order email receipt unavailable; payment initiation continues.'); }
+    return res.json({ redirectUrl, gid, merchantTxnId, ...(orderReceipt ? { orderReceipt } : {}) });
 
   } catch (error) {
     console.error("Initiate error:", error);

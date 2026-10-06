@@ -7,6 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary.tsx';
 import {installHostedImageFallback} from './lib/hosted-images.ts';
 import './index.css';
 import './storefront.css';
+import './account.css';
 
 installHostedImageFallback();
 

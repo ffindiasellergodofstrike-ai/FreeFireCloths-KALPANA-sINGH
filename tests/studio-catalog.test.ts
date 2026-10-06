@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { PRODUCTS } from '../src/data/products';
+import { SOURCE_PRODUCTS as PRODUCTS } from '../src/data/products';
 import { KURTI_PRODUCTS } from '../src/data/kurti-products';
 import { isImportedOptionAvailable } from '../src/data/reference-products';
 import audit from '../docs/studio-catalog-audit.json';

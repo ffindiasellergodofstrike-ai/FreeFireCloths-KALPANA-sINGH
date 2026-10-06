@@ -1,3 +1,6 @@
+import CodConfirmation from '../components/CodConfirmation';
+import { saveOrderReceipt } from '../lib/order-email';
+import { isRetiredProduct } from '../data/retired-products';
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useLocation, useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -17,7 +20,7 @@ export default function Checkout() {
   const statusParam = searchParams.get('status');
   const messageParam = searchParams.get('message');
   
-  const { product: directProduct, size: directSize, qty: directQty } = location.state || {};
+  const { product: directProduct, size: directSize, qty: directQty, color: directColor, customImage: directImage } = location.state || {};
   
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [modalTab, setModalTab] = useState<'login' | 'register'>('login');
@@ -105,7 +108,9 @@ export default function Checkout() {
         price: directProduct.price, 
         cat: directProduct.cat,
         size: directSize || 'M', 
-        qty: directQty || 1
+        qty: directQty || 1,
+        image: directImage || directProduct.variantImages?.[directColor]?.[0] || directProduct.images?.[0],
+        color: directColor || directProduct.colors?.[0] || ''
       }] 
     : cart;
 
@@ -147,6 +152,7 @@ export default function Checkout() {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [codOrderId, setCodOrderId] = useState<string | null>(null);
   const [previousPaymentIncomplete, setPreviousPaymentIncomplete] = useState(false);
 
   useEffect(() => {
@@ -187,12 +193,12 @@ export default function Checkout() {
     }
   }, [statusParam, messageParam, directProduct]);
 
-  if (checkoutItems.length === 0 && !isSuccess) {
+  if ((checkoutItems.length === 0 || checkoutItems.some(item => isRetiredProduct(item.id))) && !isSuccess) {
     return (
       <div className="container" style={{ padding: '80px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: '64px', marginBottom: '16px' }}>🛍️</div>
-        <h2 style={{ fontSize: '22px', marginBottom: '8px' }}>YOUR CART IS EMPTY</h2>
-        <p style={{ color: 'var(--gray)', marginBottom: '28px' }}>Looks like you haven't added anything to your cart yet.</p>
+        <h2 style={{ fontSize: '22px', marginBottom: '8px' }}>Your bag needs an update</h2>
+        <p style={{ color: 'var(--gray)', marginBottom: '28px' }}>Your bag is empty or contains a piece that is no longer available. Browse the latest collection to continue.</p>
         <Link to="/" className="btn btn-black btn-lg">
           Start Shopping
         </Link>
@@ -200,7 +206,7 @@ export default function Checkout() {
     );
   }
 
-  const subtotal = directProduct ? directProduct.price : getTotalPrice();
+  const subtotal = checkoutItems.reduce((total, item) => total + item.price * item.qty, 0);
   const grandTotal = subtotal; // Free delivery is standard
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -219,12 +225,14 @@ export default function Checkout() {
     setIsProcessing(true);
     const loadingToast = toast.loading(paymentType === 'card' ? 'Initiating Secure Payment...' : 'Securing order details...');
     
+    const orderNumber = Math.floor(Math.random() * 900000) + 100000;
     try {
       if (paymentType === 'card') {
         const payload = {
           amount: grandTotal,
           customerData: formData,
-          items: checkoutItems
+          items: checkoutItems,
+          orderNumber
         };
 
         const res = await fetch('/api/payglocal/initiate', {
@@ -250,11 +258,12 @@ export default function Checkout() {
             status: 'Paid',
             paymentMethod: 'Pay Online',
             shippingAddress: formData,
-            orderNumber: Math.floor(Math.random() * 900000) + 100000,
+            orderNumber,
             merchantTxnId: data.merchantTxnId,
             gid: data.gid,
             createdAt: new Date().toISOString()
           };
+          saveOrderReceipt(data.gid, data.orderReceipt);
           localStorage.setItem('pendingPayGlocalOrder', JSON.stringify(pendingOrderInfo));
 
           sessionStorage.setItem('pendingPayment', JSON.stringify({
@@ -271,33 +280,24 @@ export default function Checkout() {
         }
       }
 
-      const orderNumber = Math.floor(Math.random() * 900000) + 100000;
-      
-      if (db) {
-        try {
-          await addDoc(collection(db, 'orders'), {
-            userId: user?.uid || user?.email || 'guest',
-            userEmail: formData.email,
-            items: checkoutItems,
-            total: grandTotal,
-            status: 'Order Placed (COD)',
-            paymentMethod: 'Cash on Delivery (COD)',
-            shippingAddress: formData,
-            orderNumber,
-            createdAt: new Date().toISOString()
-          });
-        } catch (e) {
-          console.log('Firestore write notice:', e);
-        }
-      }
-
-      setTimeout(() => {
-        setIsProcessing(false);
-        setIsSuccess(true);
-        if (!directProduct) clearCart();
-        toast.dismiss(loadingToast);
-        toast.success('Free Fire Store Order Confirmed!');
-      }, 1000);
+      if (!db) throw new Error('Orders are temporarily unavailable. Please try again.');
+      const savedOrder = await addDoc(collection(db, 'orders'), {
+        userId: user?.uid || user?.email || 'guest',
+        userEmail: formData.email,
+        items: checkoutItems,
+        total: grandTotal,
+        status: 'Order Placed (COD)',
+        paymentMethod: 'Cash on Delivery (COD)',
+        shippingAddress: formData,
+        orderNumber,
+        createdAt: new Date().toISOString()
+      });
+      setCodOrderId(savedOrder.id);
+      setIsProcessing(false);
+      setIsSuccess(true);
+      if (!directProduct) clearCart();
+      toast.dismiss(loadingToast);
+      toast.success('Free Fire Store Order Confirmed!');
     } catch (error: any) {
       setIsProcessing(false);
       toast.dismiss(loadingToast);
@@ -310,7 +310,7 @@ export default function Checkout() {
 
   if (isSuccess) {
     return (
-      <div className="container" style={{ padding: '80px 24px', textAlign: 'center', minHeight: '60vh' }}>
+      <div className="container checkout-success" style={{ padding: '80px 24px', textAlign: 'center', minHeight: '60vh' }}>
         <div style={{ width: '80px', height: '80px', background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
           <i className="fa fa-check" style={{ fontSize: '36px', color: '#166534' }}></i>
         </div>
@@ -318,7 +318,8 @@ export default function Checkout() {
         <p style={{ color: 'var(--gray)', maxWidth: '480px', margin: '0 auto 32px', fontSize: '15px' }}>
           Thank you for shopping with Free Fire Store. Your order has been placed successfully and will be delivered to your address soon.
         </p>
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+        {codOrderId && <CodConfirmation key={codOrderId} orderId={codOrderId} autoSend />}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
           <Link to="/" className="btn btn-black btn-lg">RETURN TO HOME</Link>
           <Link to="/my-orders" className="btn btn-outline btn-lg">VIEW MY ORDERS</Link>
         </div>
@@ -642,7 +643,7 @@ export default function Checkout() {
       <div className="page-hero">
         <div className="container">
           <h1>Secure Checkout</h1>
-          <p>Complete your purchase securely</p>
+          <p>A few details, and your next favourites are on their way.</p>
         </div>
       </div>
 
@@ -672,7 +673,7 @@ export default function Checkout() {
                   Your previous payment was not completed
                 </h4>
                 <p style={{ margin: '2px 0 0', fontSize: '13px', color: '#b91c1c' }}>
-                  You returned before completing the transaction. No charges were deducted.
+                  You returned before completing the transaction. Check your payment status before retrying.
                 </p>
               </div>
             </div>
@@ -693,19 +694,19 @@ export default function Checkout() {
           <div>
             <form onSubmit={handleCheckout} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               
-              {/* Shipping Address Card */}
-              <div style={{ background: '#fff', border: '1px solid var(--border)', padding: '24px' }}>
+              {/* Shipping details */}
+              <div className="checkout-section">
                 <h3 style={{ fontSize: '14px', letterSpacing: '1px', fontFamily: 'var(--font-h)', fontWeight: 700, borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '20px' }}>
                   1. SHIPPING DETAILS
                 </h3>
                 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div className="form-group">
-                    <label className="form-label">EMAIL ADDRESS *</label>
+                    <label className="form-label" htmlFor="shipping-email">EMAIL ADDRESS *</label>
                     <input 
                       required 
                       type="email" 
-                      name="email" 
+                      name="email" id="shipping-email" autoComplete="email"
                       placeholder="your@email.com" 
                       value={formData.email} 
                       onChange={handleInputChange}
@@ -715,11 +716,11 @@ export default function Checkout() {
 
                   <div className="form-row-2col">
                     <div className="form-group">
-                      <label className="form-label">FIRST NAME *</label>
+                      <label className="form-label" htmlFor="shipping-firstName">FIRST NAME *</label>
                       <input 
                         required 
                         type="text" 
-                        name="firstName" 
+                        name="firstName" id="shipping-firstName" autoComplete="given-name"
                         placeholder="First Name" 
                         value={formData.firstName} 
                         onChange={handleInputChange}
@@ -727,11 +728,11 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="form-group">
-                      <label className="form-label">LAST NAME *</label>
+                      <label className="form-label" htmlFor="shipping-lastName">LAST NAME *</label>
                       <input 
                         required 
                         type="text" 
-                        name="lastName" 
+                        name="lastName" id="shipping-lastName" autoComplete="family-name"
                         placeholder="Last Name" 
                         value={formData.lastName} 
                         onChange={handleInputChange}
@@ -741,11 +742,11 @@ export default function Checkout() {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">ADDRESS (STREET / LANDMARK) *</label>
+                    <label className="form-label" htmlFor="shipping-address">ADDRESS (STREET / LANDMARK) *</label>
                     <input 
                       required 
                       type="text" 
-                      name="address" 
+                      name="address" id="shipping-address" autoComplete="street-address"
                       placeholder="House No, Street Name, Landmark" 
                       value={formData.address} 
                       onChange={handleInputChange}
@@ -755,11 +756,11 @@ export default function Checkout() {
 
                   <div className="form-row-2col">
                     <div className="form-group">
-                      <label className="form-label">CITY *</label>
+                      <label className="form-label" htmlFor="shipping-city">CITY *</label>
                       <input 
                         required 
                         type="text" 
-                        name="city" 
+                        name="city" id="shipping-city" autoComplete="address-level2"
                         placeholder="City" 
                         value={formData.city} 
                         onChange={handleInputChange}
@@ -767,11 +768,11 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="form-group">
-                      <label className="form-label">PINCODE *</label>
+                      <label className="form-label" htmlFor="shipping-pincode">PINCODE *</label>
                       <input 
                         required 
                         type="text" 
-                        name="pincode" 
+                        name="pincode" id="shipping-pincode" autoComplete="postal-code" inputMode="numeric" pattern="[0-9]{6}" maxLength={6}
                         placeholder="6-digit ZIP code" 
                         value={formData.pincode} 
                         onChange={handleInputChange}
@@ -781,32 +782,60 @@ export default function Checkout() {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">STATE *</label>
+                    <label className="form-label" htmlFor="shipping-state">STATE *</label>
                     <select 
-                      name="state" 
+                      name="state" id="shipping-state" autoComplete="address-level1"
                       value={formData.state} 
                       onChange={handleInputChange} 
                       className="form-input"
                       required
                     >
                       <option value="">Select your state</option>
-                      <option value="UTTAR PRADESH">Uttar Pradesh</option>
+                      <option value="ANDAMAN AND NICOBAR ISLANDS">Andaman and Nicobar Islands</option>
+                      <option value="ANDHRA PRADESH">Andhra Pradesh</option>
+                      <option value="ARUNACHAL PRADESH">Arunachal Pradesh</option>
+                      <option value="ASSAM">Assam</option>
+                      <option value="BIHAR">Bihar</option>
+                      <option value="CHANDIGARH">Chandigarh</option>
+                      <option value="CHHATTISGARH">Chhattisgarh</option>
+                      <option value="DADRA AND NAGAR HAVELI AND DAMAN AND DIU">Dadra and Nagar Haveli and Daman and Diu</option>
                       <option value="DELHI">Delhi</option>
-                      <option value="MAHARASHTRA">Maharashtra</option>
-                      <option value="KARNATAKA">Karnataka</option>
-                      <option value="TAMIL NADU">Tamil Nadu</option>
-                      <option value="WEST BENGAL">West Bengal</option>
+                      <option value="GOA">Goa</option>
                       <option value="GUJARAT">Gujarat</option>
-                      <option value="OTHER">Other State</option>
+                      <option value="HARYANA">Haryana</option>
+                      <option value="HIMACHAL PRADESH">Himachal Pradesh</option>
+                      <option value="JAMMU AND KASHMIR">Jammu and Kashmir</option>
+                      <option value="JHARKHAND">Jharkhand</option>
+                      <option value="KARNATAKA">Karnataka</option>
+                      <option value="KERALA">Kerala</option>
+                      <option value="LADAKH">Ladakh</option>
+                      <option value="LAKSHADWEEP">Lakshadweep</option>
+                      <option value="MADHYA PRADESH">Madhya Pradesh</option>
+                      <option value="MAHARASHTRA">Maharashtra</option>
+                      <option value="MANIPUR">Manipur</option>
+                      <option value="MEGHALAYA">Meghalaya</option>
+                      <option value="MIZORAM">Mizoram</option>
+                      <option value="NAGALAND">Nagaland</option>
+                      <option value="ODISHA">Odisha</option>
+                      <option value="PUDUCHERRY">Puducherry</option>
+                      <option value="PUNJAB">Punjab</option>
+                      <option value="RAJASTHAN">Rajasthan</option>
+                      <option value="SIKKIM">Sikkim</option>
+                      <option value="TAMIL NADU">Tamil Nadu</option>
+                      <option value="TELANGANA">Telangana</option>
+                      <option value="TRIPURA">Tripura</option>
+                      <option value="UTTAR PRADESH">Uttar Pradesh</option>
+                      <option value="UTTARAKHAND">Uttarakhand</option>
+                      <option value="WEST BENGAL">West Bengal</option>
                     </select>
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">PHONE NUMBER (FOR DELIVERY UPDATES) *</label>
+                    <label className="form-label" htmlFor="shipping-phone">PHONE NUMBER (FOR DELIVERY UPDATES) *</label>
                     <input 
                       required 
                       type="tel" 
-                      name="phone" 
+                      name="phone" id="shipping-phone" autoComplete="tel"
                       placeholder="+91 XXXXX XXXXX" 
                       value={formData.phone} 
                       onChange={handleInputChange}
@@ -816,8 +845,8 @@ export default function Checkout() {
                 </div>
               </div>
 
-              {/* Payment Option Card */}
-              <div style={{ background: '#fff', border: '1px solid var(--border)', padding: '24px' }}>
+              {/* Payment options */}
+              <div className="checkout-section">
                 <h3 style={{ fontSize: '14px', letterSpacing: '1px', fontFamily: 'var(--font-h)', fontWeight: 700, borderBottom: '1px solid var(--border)', paddingBottom: '12px', marginBottom: '20px' }}>
                   2. PAYMENT METHOD
                 </h3>
@@ -895,29 +924,29 @@ export default function Checkout() {
           </div>
 
           {/* Sidebar Summary */}
-          <div className="order-summary" style={{ height: 'fit-content' }}>
+          <aside className="order-summary checkout-summary" style={{ height: 'fit-content' }}>
             <div className="os-title">ORDER SUMMARY</div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px', maxHeight: '350px', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px',  }}>
               {checkoutItems.map((item, idx) => (
                 <div key={item.key || idx} style={{ display: 'flex', gap: '12px', alignItems: 'center', borderBottom: '1px solid var(--border)', paddingBottom: '12px' }}>
                   {item.image ? (
                     <img 
                       src={item.image} 
                       alt={item.name} 
-                      style={{ width: '48px', height: '48px', objectFit: 'cover', flexShrink: 0 }}
+                      style={{ width: '88px', height: '112px', objectFit: 'cover', flexShrink: 0 }}
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <div className={`ph ph-${item.cat === 'electronics' ? 'elec' : item.cat}`} style={{ width: '48px', height: '48px', fontSize: '24px', flexShrink: 0 }}>
+                    <div className={`ph ph-${item.cat === 'electronics' ? 'elec' : item.cat}`} style={{ width: '88px', height: '112px', fontSize: '24px', flexShrink: 0 }}>
                       {emoji(item.cat || 'men')}
                     </div>
                   )}
-                  <div style={{ flex: 1, fontSize: '13px' }}>
+                  <div style={{ flex: 1, minWidth: 0, fontSize: '14px' }}>
                     <div style={{ fontWeight: 700, color: 'var(--dark)' }}>{item.name}</div>
                     <div style={{ color: 'var(--gray)', fontSize: '11px', marginTop: '2px' }}>Size: {item.size} &nbsp;|&nbsp; Qty: {item.qty}</div>
+                    <div style={{ fontWeight: 700, fontSize: '15px', marginTop: '10px', color: 'var(--dark)' }}>{fmt(item.price * item.qty)}</div>
                   </div>
-                  <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--dark)' }}>{fmt(item.price * item.qty)}</div>
                 </div>
               ))}
             </div>
@@ -938,7 +967,7 @@ export default function Checkout() {
               <span>GRAND TOTAL</span>
               <span>{fmt(grandTotal)}</span>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>
