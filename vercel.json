@@ -6,12 +6,8 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/product/:id(-?[0-9]+)",
+      "destination": "/product-fallback"
     }
   ],
   "headers": [
@@ -49,6 +45,17 @@
           "value": "1; mode=block"
         }
       ]
+    },
+    {
+      "source": "/(cart|checkout|login|register|my-orders|search|payment/success|payment/failure)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "outputDirectory": "dist"
 }

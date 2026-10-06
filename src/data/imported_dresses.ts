@@ -23,12 +23,12 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Yellow\nAvailable Sizes: S, M, L, XL\nElegant Embroidered A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/333e638ec41a42419b266e9b451d665a_w1440_q90",
-      "https://img201.savana.com/goods-pic/3c85f2dfcf8448df8197d1905d987bea_w1440_q90",
-      "https://img201.savana.com/goods-pic/f317633de5cb45598839c560f16a3571_w1440_q90",
-      "https://img201.savana.com/goods-pic/81827de435f74013a7c64bd840593de2_w1440_q90",
-      "https://img201.savana.com/goods-pic/7344b6b4e25849f4a2f254c7ecd7ad16_w1440_q90",
-      "https://img201.savana.com/goods-pic/2c7da26841bc4315a56e8080d5af49e1_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/27a7371d805bcfcd634c9cf3823bee927ba2828ff4618dccdaf669c0efa9bf01.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/84102d591fc7a5100970083a6bc320183cd997922635b673cd1de916bfb6c331.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/62203f93762b6b9d43d2581e27c6c403eafaeb765bcb1695ad4524cab4b1c201.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/34516047f5c7d6a7048a06a4b1f4a3fef20a38cc1990f4f0a8e7c90b5712f886.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/e04467e66a19fb348c855bab2c3674eb207f1f5d53f02a6b714fc786f99640d0.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/1f13c473607206ba9d81475dba96a4e05c154007f4cd6977c10c58cced08cac3.jpg"
     ],
     "variants": [
       {
@@ -119,13 +119,13 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Red\nAvailable Sizes: S, M, L, XL\nElegant Gathered A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/154f1c30310344748fcbdcd85e1250f5_w1440_q90",
-      "https://img201.savana.com/goods-pic/5ef6a1292d444fb895bb11a75b52255c_w1440_q90",
-      "https://img201.savana.com/goods-pic/0a5a91bc088b4ec8b1bbb8676665fd8a_w1440_q90",
-      "https://img201.savana.com/goods-pic/717a495781ee4625952dfc45e9373116_w1440_q90",
-      "https://img201.savana.com/goods-pic/e23bf4a40a6749bfac8b87cfd2ece558_w1440_q90",
-      "https://img201.savana.com/goods-pic/c4c025cb11204214a5d300e91470b9a7_w1440_q90",
-      "https://img201.savana.com/goods-pic/3cf6e2a53f3c4158be4a94991a36e963_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298903/freefire_store_catalog/73e7e2e6a3dbbee7e7c7d25b426aa274481a69836f173aaee4680e9befaf5002.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/2a6899bbcd13d82310e014d94918b00b2123c949667446d93400ecb896106b69.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/d9802d55e90765dcd694a16674deabfee5de25204533664ee2b37d6b09cceea7.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/aa71b8ddc12acefc8c142e8443a5e09cf25bf086af025543ac533da01e6bb8d3.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/2bfdf15a256fdcd53837034b8c914edb97bd55a68b3a913607b3c42cde308fb1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/188fe7c8a6ed9812345b328520f6aee87045a2336b08a82b395bee8944c365ec.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/1a25d9eb85895dd8b9ee3ffd9f7637f695f1581455782c0a080b1abec12231fa.jpg"
     ],
     "variants": [
       {
@@ -216,11 +216,11 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: S, M, L, XL\nElegant Sheer A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/f1551d734686483b91a12783a67da403_w1440_q90",
-      "https://img201.savana.com/goods-pic/ee2af97e26a24607b08a85a8c20a4770_w1440_q90",
-      "https://img201.savana.com/goods-pic/d4b7ea3a7c62400b968b5e5dc4dac539_w1440_q90",
-      "https://img201.savana.com/goods-pic/848b1539cc0d47debf76fbb53041b26e_w1440_q90",
-      "https://img201.savana.com/goods-pic/ba08cc7649fe4aabbf3f1996dc04f0e1_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/cb98673d7c1a28b05a8e3525461482f7e939bd78222b232da584b2fdff610cc9.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298904/freefire_store_catalog/fd48d4fa36cd34c08f851c52d449991f43d3ce5149ef18300669ede1556ac5c6.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/a3cb5743a3266381695ced89442d7a76e6e6616d84257d71d6d439342ae40508.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/4eb9a448b269d0bba183f39548447ad6860308d14ceafa879a07d36504eeb0b3.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/9cdcf28a57f166405edcf8cefe29cbef7eeeeb5542d8ad4d9625babf1ba50d9c.jpg"
     ],
     "variants": [
       {
@@ -311,14 +311,14 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Light Blue\nAvailable Sizes: S, M, L, XL\nElegant A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/c771414cbfcf4db1a98240f2b13f6a13_w1440_q90",
-      "https://img201.savana.com/goods-pic/623f65edc34e4c62a8656e690b0b5cd0_w1440_q90",
-      "https://img201.savana.com/goods-pic/f7a8e2541f314468a8e704163467c967_w1440_q90",
-      "https://img201.savana.com/goods-pic/06da2c59dbf244e8af0cc633cb7f1e08_w1440_q90",
-      "https://img201.savana.com/goods-pic/6b366954ff3c47be8781f8974ff9a7ed_w1440_q90",
-      "https://img201.savana.com/goods-pic/bdedf48ab5ec4ef2b7a40559d6ee18c8_w1440_q90",
-      "https://img201.savana.com/goods-pic/3d7da604c5794672acafc218e46df5b6_w1440_q90",
-      "https://img201.savana.com/goods-pic/f7e40ef6076f4a31aec14e480c5ce6a0_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/89c3627114a525f228f73cbff523e5553af1c3b5ac1ca3944a970eb0603b354b.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/735fa2b591c19e82f44318881c905d0d4152f6837b91a1e8f92163e961412ff1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298905/freefire_store_catalog/8e71c81439ace3ce59039276fee8e5f1977fa99f3c04e246adab52607b351a32.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/3344397d67ca00308074dc0e083c019e3ed02300fe8de4e77c40e3f0236a954f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/30647676faa806fffdbef15290a1384b956f6d726d1aa02bb4b834a8a4999ba5.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/1d397e935271dca5b553a011c354517e69ea5d6f5a08a73b42c30e09ee675de1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/5317fa64bc07881250f47376087a70ba2e13927e1c8e5d21a89c2cc575b5f93d.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/3272e154db585868fdf386b04bb1d8edf71b2c42de8f698830f37cf8c8e604e3.jpg"
     ],
     "variants": [
       {
@@ -409,14 +409,14 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Pink\nAvailable Sizes: S, M, L, XL\nElegant Ruffle A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/3d64ddb3fcc74c60b574d7bcff560029_w1440_q90",
-      "https://img201.savana.com/goods-pic/5d0f5fcd491e4fc0bc87d812b1647415_w1440_q90",
-      "https://img201.savana.com/goods-pic/c23f2fec5e3d47529db238b32cd1c09b_w1440_q90",
-      "https://img201.savana.com/goods-pic/b1d18c956a1346a2a68d4ae91ccfdb09_w1440_q90",
-      "https://img201.savana.com/goods-pic/84a88160d7f4485980c6943a8c6b10f8_w1440_q90",
-      "https://img201.savana.com/goods-pic/e5dc518854894ebf8cca710eac183c92_w1440_q90",
-      "https://img201.savana.com/goods-pic/7e4df85835ec415288b66e5d203c6837_w1440_q90",
-      "https://img201.savana.com/goods-pic/2a43f56b171540c9b07f6dabc3686c4b_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/c1d32b89bb3e867bd5f5bca1c66973a959449e38110fb4f1e8487b9fe7fd1a1b.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/48bfb7e332f914003e4ea5c8db45c5fb37ffa287fabe5ca76126aa65e404eb4f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/0270b6635de3f7fee7b5d7f3882040b5913de3948dbc8fb86d28d966e1f75c57.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/b7ac84ca3c6d28ae3d89e01494aec8ff9989a01b379b5e4ea619a257ca535970.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298906/freefire_store_catalog/89f214476d45ea2a486d1a3b8850256ee20e4f025598d7ef4092663d352e9bf9.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/d1d8306d48f160514c62805df2cb79e5ac01e0ec52eba05a3834cc7538c4ecd8.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/52db5f67c794c234fc16b3703c1e62f5e57d9de5497cb2474950b4e8bcf90b1f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/7111f18138c17bb784d49d1ed33560718d2bb255c8d389ff45b0c244e57b3f19.jpg"
     ],
     "variants": [
       {
@@ -507,12 +507,12 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Green\nAvailable Sizes: S, M, L, XL\nElegant Ruffle Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/58de90c0b0a94635a58115652490ca9f_w1440_q90",
-      "https://img201.savana.com/goods-pic/9ec51974538c42fc9f07dca30fd119c1_w1440_q90",
-      "https://img201.savana.com/goods-pic/3a96c649695a492e8219c94a699dcdf7_w1440_q90",
-      "https://img201.savana.com/goods-pic/4b4b394f17df48ef91d2a1f50d379f11_w1440_q90",
-      "https://img201.savana.com/goods-pic/489486ec8aa94c9984e063c9f3e01f7e_w1440_q90",
-      "https://img201.savana.com/goods-pic/6b9d063d74c4404483a16e70126aa03a_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/1cc89a49df26bcb8744d95b538b5de03af62b4f836b040dfdec6c5365edbe8ad.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/2bf999d54b8253ece2c8902d96bb881c30d7119175a7fbc21481a0d89383bebb.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298907/freefire_store_catalog/d1dac43ddee148a2b1a8f563b2183fcea5cb4891c29aad58631673b40db665ee.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/0111725604760cdad16f14a1e14ff623e7e714d286d35f3065da432a47aced36.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/87ef5d9cbb2d1c3e542eaa4a09b3a915753700230ce0d8305db61448a54f797f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/875764176c8264d38b527abcd75e5dd3fb73aa6a5ec504912fe7440b35836221.jpg"
     ],
     "variants": [
       {
@@ -809,9 +809,9 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Blue\nAvailable Sizes: S, M, L\nElegant 3D Embroidery A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/74286b12e677465b98e3317c5f32230d_w1440_q90",
-      "https://img201.savana.com/goods-pic/680a45173e044cf9a149cf3328b3d654_w1440_q90",
-      "https://img201.savana.com/goods-pic/724441e033574b9c9387f56f7b98eddd_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/3a2af4cb9dceb3824c2bb9195894481e81d3b6127c0922feb4360607949d0652.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/3415d06a95324f3e2a813f108bfb802a8e57611a7f55b84f0876f15e741f90d1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/aadf1bc8fee06ef80f7df1c0758b19c1b1e06a6697e501564c7ca33d4cea5d37.jpg"
     ],
     "variants": [
       {
@@ -931,11 +931,11 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Orange\nAvailable Sizes: S, M, L, XL\nElegant Gathered A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/13aa8143276a4678891ab7b2fd2419b0_w1440_q90",
-      "https://img201.savana.com/goods-pic/962c7d41131d470cb0db413ee0dd721c_w1440_q90",
-      "https://img201.savana.com/goods-pic/27543e9a1373460ab3c347f888e0b608_w1440_q90",
-      "https://img201.savana.com/goods-pic/cf3a02a5daea412ebd219c61ab0e5297_w1440_q90",
-      "https://img201.savana.com/goods-pic/63bbaf7187cd40c59b485eb46308ceef_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/0330fd81604c941c23a3c4004c183756e89a6360d51f3f3e4a97ee830c09f488.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/68f075ade566d0c77b49737fa0305513078b5ef96611a68ebab5355a6d31bdb3.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/d894678e50cae01eb7a547cfcdd547104e22669c5367119f55e93a868bfce41b.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/5b0d93bf4c1bc4844380695670f58b22fcb5f7b294b5e6380d863afdd44095c3.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/eefa03876a8a74d006966c0c7865016c346aaaa9b13d354c6e0fd475f1fff57a.jpg"
     ],
     "variants": [
       {
@@ -995,10 +995,10 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Light Blue\nAvailable Sizes: XS, S, M, L, XL\nElegant Backless A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/7ef15558fea544cdb04871a57f467dea_w1440_q90",
-      "https://img201.savana.com/goods-pic/9a337da36aeb4ace910048dc268aece4_w1440_q90",
-      "https://img201.savana.com/goods-pic/e0c5cd3a511446f7a9d2fcad9b28f084_w1440_q90",
-      "https://img201.savana.com/goods-pic/0104959498a94d378eeaa0184f8aef66_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/ab65e4c982c2bff2178f1dcec9e3e23874e42c3ad461ff2b6563bc8f0ce6444d.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/57538cbb40fd572c649494dc8f589ced7708fb1eb6c495df1fb2968220ee15e1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/6686cfe8976fbf6dc2d4c3f2fd9e15ed4532266c5d38a06acb0a9754cda77793.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298909/freefire_store_catalog/7f3c7b6d3c7519094bbc3926a95d6d1d92cddfabbe2f4694b7f32cf1e76dedb4.jpg"
     ],
     "variants": [
       {
@@ -1066,11 +1066,11 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Sheer Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/4b1d6d094ec74f29a90c1dfb733a220c_w1440_q90",
-      "https://img201.savana.com/goods-pic/ddbd4fce6059465289bb197521721ab1_w1440_q90",
-      "https://img201.savana.com/goods-pic/edbcc89259d64ccd9b9ac27e0b7ae9a3_w1440_q90",
-      "https://img201.savana.com/goods-pic/a6b1216d6014462e83d32404aa7c59d2_w1440_q90",
-      "https://img201.savana.com/goods-pic/f86d879fcbbc40ffb9770f48d2246974_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/f28bbbbfca40b3d675230fb5d473c026199aaf17289f57aa1dfb13433b1b811b.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/67287ef42f33364d165ce233d516c81a5d3fa530eca0b2fd8b95484b375368b7.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/b17079350b5a115029d83a0f4ea8b4f436fef3ce03a888c9169763f00eab1010.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/734be27e0f61f53012c3a16d3f12d69ffc899c03455194912692181c46e94b80.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/3545802cf285efa755d89ddcb3a2cb2be8872cda5f1e382e5d920b8552972da9.jpg"
     ],
     "variants": [
       {
@@ -1138,10 +1138,10 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: White\nAvailable Sizes: XS, S, M, L, XL\nElegant Button Shirt Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/a1403dd63763495780d64931fd0fdea1_w1440_q90",
-      "https://img201.savana.com/goods-pic/39cdbbbc327c43e2a4f1fdf587870fc5_w1440_q90",
-      "https://img201.savana.com/goods-pic/9fdd273cd8f5420a9dffe5e50cd64b7a_w1440_q90",
-      "https://img201.savana.com/goods-pic/72c1bb5cae154d5fb87a28d1249898f9_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298910/freefire_store_catalog/232271c41241f75770435b09617e90b89b73cd6aa74d4ee6e54911092bf24a96.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/2f51de1061c6ac8c7fcbceb8e2e3132ffc81d652437664a8f683a158c46ae6dc.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/b04e64244fa2db956524b90213a7212169d68723a3eac9e6225ceabdf7fa0989.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/5de3829004babc7fa43d6c3efacd8a172968679e6ac6426c142a365d9f6bfd90.jpg"
     ],
     "variants": [
       {
@@ -1209,10 +1209,10 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Khaki\nAvailable Sizes: XS, S, M, L, XL\nElegant Gathered Shirt Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/08daab52cc76442a90c6393df9b3edc4_w1440_q90",
-      "https://img201.savana.com/goods-pic/7e834486833f40979184cd1e87bbd27e_w1440_q90",
-      "https://img201.savana.com/goods-pic/daa2f62fde264880a51e8d0106eedc3c_w1440_q90",
-      "https://img201.savana.com/goods-pic/2188ed3f24644b0baac16c8f98dea5d8_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/ae6d79d6848aa3545001e2ade622a1aea3383398c170b46507529663a39a5f4d.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/c07f2a8b9c71e2a4ee5f022a8e33c340fc6c0e35ce89a6e5ac18b7b178a88a90.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/81dd8e9c681d06bd3908c1c677b8c8a609f11f1a7899993e9b5fc77d01dd5d9f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/16a89e47de0c8e8f5f1f1a564fa83163a7c4d5fe260474ac7f11683c070a4b96.jpg"
     ],
     "variants": [
       {
@@ -1280,10 +1280,10 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Draped Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/70802a4f8a324f9bb1462eb59ca8ac3b_w1440_q90",
-      "https://img201.savana.com/goods-pic/0cdfd30da17a4e859f5869ac595bc0a2_w1440_q90",
-      "https://img201.savana.com/goods-pic/a48fd8fd50164133bb8d6c6132eef6a4_w1440_q90",
-      "https://img201.savana.com/goods-pic/76279ac9fb00491a97c02f5a078a416d_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/df92cfe27f16548f971be83100e49c1dd39ea2adce49e69cbdc79b0f81d4af99.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298911/freefire_store_catalog/5b1e5e6ce37e7ae8c84fcbeb10f379a8b307a98a07635e918cb8c345c51c8696.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/5e90d31d40625013c50613faf67744408c87730995bf5da7f722a86227174abf.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/1564283ab8c9bb1604a02947edeb491e53f4764e24a2113326d406bab332a8fe.jpg"
     ],
     "variants": [
       {
@@ -1351,10 +1351,10 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Embroidered Slip Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/db7e2865538d4adc9c7dae5db2631597_w1440_q90",
-      "https://img201.savana.com/goods-pic/c2451cad076b46e781f02fc5c27c78ae_w1440_q90",
-      "https://img201.savana.com/goods-pic/9606418ac56e468eb867b33958ea1af4_w1440_q90",
-      "https://img201.savana.com/goods-pic/d5f2b54bb9d74ee1a65a127892abc0ad_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/4aa868677e95ebccc014a9c37e7173c0abcc24ce1b397434fd1e28c458bfed6d.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/cf761572feb8008ed17ba10e9e251db07bc7547713649af4131f69f6f97f0101.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/988b55476544593b0ff87acb6867d25dd1c2d439e913b83f078ef557f25e4a86.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/99e6d1252e2e6167f6840e60a7d4d1c9b6f2370c15981d58b64b422d8c43957d.jpg"
     ],
     "variants": [
       {
@@ -1422,8 +1422,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Bow A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/1aa9595913564c92b784c9adc00b83c0_w1440_q90",
-      "https://img201.savana.com/goods-pic/0c7fc4dc578a40f89835e71fbc540b26_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/641682e2667d1bc4e1e828b16c35238eedf5736c8e493c991a2129d80946e541.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298912/freefire_store_catalog/d970cbecd1d7573ce52c2fc55fec4720f20f7c80d356920be8531ed76330ca3c.jpg"
     ],
     "variants": [
       {
@@ -1491,8 +1491,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Pink\nAvailable Sizes: XS, S, M, L, XL\nElegant Embroidered A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/0ec89b5315c845d2b32392745a9708e1_w1440_q90",
-      "https://img201.savana.com/goods-pic/cefc6baa1ce245dc9c735092c2b19a8d_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/fe58eb8f4aa932340c0960c548c0a7c5541e8998a79404c64e4ac41c72773887.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/7263b4b822485c3a0ddc104c9313993b591caa82bf9d897e50485a84f2791165.jpg"
     ],
     "variants": [
       {
@@ -1560,8 +1560,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Scarf Tube Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/8ab5df11ef7440608b0bc6c5e197328d_w1440_q90",
-      "https://img201.savana.com/goods-pic/74286b12e677465b98e3317c5f32230d_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/3b7a8bd2769ac47533da34477f2d47ef6e23599232124157d05502a695e37d88.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298908/freefire_store_catalog/3a2af4cb9dceb3824c2bb9195894481e81d3b6127c0922feb4360607949d0652.jpg"
     ],
     "variants": [
       {
@@ -1629,11 +1629,11 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Sheer Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/82857fa8cedc472a80960a769d49f4c2_w1440_q90",
-      "https://img201.savana.com/goods-pic/7e7de808fef74548821081449c0ff014_w1440_q90",
-      "https://img201.savana.com/goods-pic/6abbb24194134050bc8cda8f83d138ad_w1440_q90",
-      "https://img201.savana.com/goods-pic/27d4f355541d43c0a2bd7552e94ad7c4_w1440_q90",
-      "https://img201.savana.com/goods-pic/7e3bc97749aa4b559794e793ed9d5171_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/c841bf996c621170a226ad7db8bd9ed3242bc8badfab14a293c8c159e4a02f8f.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/027bde461336269da5d526c947459d5a41883c48848bdbb0999145e7bd92c164.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/8a3a3cfbc1c8bd4b8e4af8d309135a393d2ec8fdbb66330e00f3b0303ccff957.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/a20c9bb90f61ae5f60b5245f17feffbccfbbcc6d05ef2960c5d9e0ca7a4ebe29.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298913/freefire_store_catalog/453d322ccc1468d6b74768c9266b7a7344727808c77c747c95b02ed448bbece7.jpg"
     ],
     "variants": [
       {
@@ -1701,14 +1701,14 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Khaki\nAvailable Sizes: XS, S, M, L, XL\nElegant Gathered A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/8b7a619e16d74f98b74902bd5e3dd047_w1440_q90",
-      "https://img201.savana.com/goods-pic/84c36aab626240e9813af2bc0f20a9b8_w1440_q90",
-      "https://img201.savana.com/goods-pic/23e70e5441fe43cf84f76e74a855ea28_w1440_q90",
-      "https://img201.savana.com/goods-pic/409b918027a74383a2877180899c6a9a_w1440_q90",
-      "https://img201.savana.com/goods-pic/20bb713946b34f3fbb90adab9aaeee49_w1440_q90",
-      "https://img201.savana.com/goods-pic/670c1fe44f554eb88eb770ad4c4a6746_w1440_q90",
-      "https://img201.savana.com/goods-pic/fb03e2ada03f4f6e97ad979f2973e28b_w1440_q90",
-      "https://img201.savana.com/goods-pic/a5bc0217aedd448db966c6119fa0d06a_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/4d5edaeeb52c2c5724c7d4007c430d3a55e6253b6d2bcd7a5c2fe94c2a0a4521.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/a484ba9782ab166e4968b187812c7e24219a7dc26ade00b55c2c4c7d9a05b996.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/647015f8ddacbb7bbfcc1288b181e8cbc992e92acd96e5a5932b17f501370cae.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/d03475b59ef35b62c8d93c396e06679e081b7f32bb0c08356f7d90ab8fca401b.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/47b946caeba5aa277a9d436eb14a8a76d96b22b2053a140716829a458f682ece.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/029ac8395a4cbb2b2da189f4cc02d355a843a03848f32abbf7a15f58de46b904.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/b5208454cc68390f790564442eb38a3bb9b3af7c3f5f5f2e23581ae3631de5e0.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298914/freefire_store_catalog/b5b5535afa64d2b315be71f74239afbaab667c7ad1aa94419fa8047b0d767822.jpg"
     ],
     "variants": [
       {
@@ -1776,8 +1776,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Asymmetric A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/c5cadcb60c6d4199babe95d90c907bc2_w1440_q90",
-      "https://img201.savana.com/goods-pic/ba0cfb33e1ca44d69639d60e68328378_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298915/freefire_store_catalog/c6b09a4cd8676798d5aa4b4de41f4ea3b9d436e3638da10ec5290ce2efb587bb.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298915/freefire_store_catalog/eb29b390e47d8ee43152392d64bb77a0aa52fefb7f42c1a4ff6cf3da77c3a626.jpg"
     ],
     "variants": [
       {
@@ -1845,8 +1845,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Ruffle Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/80389c0309b648ab99e77d57aaeacb78_w1440_q90",
-      "https://img201.savana.com/goods-pic/936ec21cd7c64def90bc788d12e77991_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298915/freefire_store_catalog/3a3b0daf6d2fa21f2b1d2f38518156662c427163ed607cf143a4f17bd38efeed.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298915/freefire_store_catalog/dde42ceb12019c46a4b4115ddcd1d6421069b9fb2ddeecfeb3fa8bc0b8cf05d5.jpg"
     ],
     "variants": [
       {
@@ -1914,8 +1914,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Backless A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/fbdc774ad0524b7480c97446672b62ac_w1440_q90",
-      "https://img201.savana.com/goods-pic/76990a6ee3c8430db1fc13761bed81bf_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298915/freefire_store_catalog/e25eb3ab47fca0ca0b5efdaeca3b00b639c4f83381142877766cf4298f767416.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/5e6275c45cd9a718aa282fdfe2cd4ab644ee9757620ddfbedf90b81ca0a6a066.jpg"
     ],
     "variants": [
       {
@@ -1983,8 +1983,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Crossed Fishtail Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/b665c02de4e24d85a9a02e70c880f0f8_w1440_q90",
-      "https://img201.savana.com/goods-pic/fd54e4e219ad477999ca4c4d622ada81_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/f6346bd5dc4c61ace108bd481e89bc0f68373311879de7af43a933c40d6a52c2.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/0084c2f750ca05b8de9e3a9a0dcb8564841462ea34ce71381e5293a38cc91a26.jpg"
     ],
     "variants": [
       {
@@ -2052,8 +2052,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Crossed A-Line Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/e3715da38c1a4097806b03d40dfbbe51_w1440_q90",
-      "https://img201.savana.com/goods-pic/01ddeddf491b4cce940c3c058322f529_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/3200f2c9ada92bb502578cfe95daad1ad931444084caeb9ea7e8d4556cb041de.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/9a387fe94b0237fbc97671c194153729066bf2cde9f82e2911d06cd202800554.jpg"
     ],
     "variants": [
       {
@@ -2121,8 +2121,8 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Black\nAvailable Sizes: XS, S, M, L, XL\nElegant Scarf Cocktail Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/551734e24f9f41b3b62a749c7c00b8ab_w1440_q90",
-      "https://img201.savana.com/goods-pic/b68452a5c6b744f8ba57e2aa0dbf8cb0_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/debbe63e2a695540fbb3025e5deab404a980217b3ce77bf3be25de4d2dbb0ca1.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/afdccac748b61231da97cbae59d882959220d80b4f0c6a3276341051e3970c1e.jpg"
     ],
     "variants": [
       {
@@ -2190,13 +2190,13 @@ export const IMPORTED_DRESSES: Product[] = [
     "featured": false,
     "desc": "Color: Apricot\nAvailable Sizes: XS, S, M, L, XL\nElegant Ruffle Bodycon Dress \u2014 perfect for parties, evenings out, dates and special occasions.\n\u2713 7 days easy return & exchange\n\u2713 Free shipping available\n\u2713 Delivery in 3-10 days\n\u2713 Cash on delivery available",
     "images": [
-      "https://img201.savana.com/goods-pic/af05fadb9f1d4df8b0cb82b7d21313d1_w1440_q90",
-      "https://img201.savana.com/goods-pic/8eba9f29eaa94c86ab5e2ccab19eb578_w1440_q90",
-      "https://img201.savana.com/goods-pic/d26ca739ba114d819a08b228afeb85d8_w1440_q90",
-      "https://img201.savana.com/goods-pic/4c8a741df94c4cfdb36c9305f1ddd007_w1440_q90",
-      "https://img201.savana.com/goods-pic/1a14708567a741088100753eecd9ab8f_w1440_q90",
-      "https://img201.savana.com/goods-pic/1c1f2efc966f4729be7a80e5c80fe723_w1440_q90",
-      "https://img201.savana.com/goods-pic/73fa723d822c4a56a30a0df5dbd0f93a_w1440_q90"
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/326118d6a4e6766526a33c4d763481f8719b60afe5f3ddcd982544c7703c7019.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/8aefae1524bcbcbf8e6f4fa4eb14cbe35000f15e25aedf72df2086bc23a45482.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/fc415623ae517a81f714edaf6a8e6fcbfb43d795b878eefa6f9f9cba421cf693.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298916/freefire_store_catalog/5e45ea35416f0f6c5b6681b04b2b375a8a253a6f2fadfcba3b3ac40414b6c8e3.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298917/freefire_store_catalog/f82b2e66bceeeca154aebfbbe43124eab9e6b573fa1f09b26b23cc7e284f27d6.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298917/freefire_store_catalog/4920d76b51f5b8e0f9770f2475f6822bc23b08620b6f371a45baa644ec653f8c.jpg",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791298917/freefire_store_catalog/b01e487a7a139af4dd411ec8cb67a92b08f9907499dc17200fd8e237632b0e9d.jpg"
     ],
     "variants": [
       {

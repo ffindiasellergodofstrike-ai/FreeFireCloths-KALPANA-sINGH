@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
-    "start": "node dist/server.cjs",
+    "build": "vite build && tsx scripts/build-crawler-pages.mts && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=build/server.cjs",
+    "start": "node build/server.cjs",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist build",
     "lint": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "catalog:find": "tsx scripts/catalog.mts",
-    "check:homepage": "tsx scripts/catalog.mts --check-homepage"
+    "check:homepage": "tsx scripts/catalog.mts --check-homepage",
+    "check:public-build": "tsx scripts/check-public-build.mts"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

@@ -2,7 +2,7 @@
 
 ## Current delivery
 
-For the current source, use `freefire-store-ai-studio-ready.zip` and see `AI_STUDIO_GUIDE.md`. The email-only implementation described here replaces the earlier PDF-email version.
+For the current source, use `freefire-store-public-cleanup.zip` and see `AI_STUDIO_GUIDE.md`. The email-only implementation described here replaces the earlier PDF-email version.
 
 - COD and verified online PayGlocal orders request a Resend confirmation.
 - No invoice, PDF attachment, merchant owner name, merchant address or merchant contact details are included in either email.
@@ -43,7 +43,7 @@ There is no autonomous mail worker: automatic sending is triggered by the succes
 
 ## Online flow
 
-The existing PayGlocal initiation returns a signed receipt. On the existing success/order-save path, `/api/order-confirmation` verifies that receipt and independently fetches the gateway status before sending. Callback, signature/status endpoints and gateway configuration remain unchanged. Online emails have no attachment. If old/custom items cannot map to the canonical catalog, the confirmation shows the total and directs the customer to My Orders for saved product details. The separate legacy checkout is unchanged and does not send these clothing-order emails.
+The existing PayGlocal initiation returns a signed receipt. On the existing success/order-save path, `/api/order-confirmation` verifies that receipt and independently fetches the gateway status before sending. Callback, signature/status endpoints and gateway configuration remain unchanged. Online emails have no attachment. If old/custom items cannot map to the canonical catalog, the confirmation shows the total and directs the customer to My Orders for saved product details. The separate legacy checkout source remains unchanged and does not send these clothing-order emails; its public routes are now disabled as described in PUBLIC-BUILD.md.
 
 ## Branding and legal information
 

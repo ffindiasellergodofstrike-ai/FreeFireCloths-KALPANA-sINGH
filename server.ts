@@ -1,5 +1,7 @@
 import express from "express";
 import path from "path";
+import { PRODUCTS } from "./src/data/products";
+import { sitemapXml, pageMetadata, privatePages } from "./src/lib/page-metadata";
 import { createServer as createViteServer } from "vite";
 
 import initiateHandler from "./api/payglocal/initiate.js";
@@ -31,6 +33,9 @@ async function runServer() {
 
   app.post("/api/cod-confirmation", codConfirmationHandler);
 
+  // Crawlers receive the same catalog URLs as visitors; no user-agent branching.
+  app.get("/sitemap.xml", (_req, res) => res.type("application/xml").send(sitemapXml(PRODUCTS)));
+
   // Serve static assets and frontend index
   if (process.env.NODE_ENV !== "production") {
     console.log("Starting server in DEVELOPMENT mode with Vite integration...");
@@ -42,9 +47,15 @@ async function runServer() {
   } else {
     console.log("Starting server in PRODUCTION mode...");
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, { extensions: ['html'], dotfiles: 'deny' }));
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const page = pageMetadata(req.path, PRODUCTS);
+      // Custom products remain supported by the original browser catalog.
+      if (page.found || /^\/product\/-?\d+\/?$/.test(req.path)) {
+        if (privatePages[req.path] || !page.found) res.set('X-Robots-Tag', 'noindex, follow');
+        return res.sendFile(path.join(distPath, page.found ? "index.html" : "product-fallback.html"));
+      }
+      res.status(404).set('X-Robots-Tag', 'noindex, follow').sendFile(path.join(distPath, '404.html'));
     });
   }
 

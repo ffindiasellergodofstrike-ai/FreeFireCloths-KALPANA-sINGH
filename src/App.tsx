@@ -27,7 +27,7 @@ import Search from './pages/Search';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import MyOrders from './pages/MyOrders';
-import GarenaCheckout from './pages/GarenaCheckout';
+import PageMetadata from './components/PageMetadata';
 import NotFound from './pages/NotFound';
 
 import PaymentSuccess from './pages/PaymentSuccess';
@@ -75,13 +75,9 @@ export default function App() {
           <Router>
             <Toaster position="top-center" richColors />
             <ScrollToTop />
+            <PageMetadata />
             <ImagePreloader />
             <Routes>
-              <Route path="/garena-checkout" element={<GarenaCheckout />} />
-              <Route path="/garenacheckout" element={<GarenaCheckout />} />
-              <Route path="/GarenaCheckout" element={<GarenaCheckout />} />
-              <Route path="/Garenacheckout" element={<GarenaCheckout />} />
-              <Route path="/garenaCheckout" element={<GarenaCheckout />} />
               <Route path="/*" element={<StoreLayout />} />
             </Routes>
           </Router>

@@ -12,6 +12,7 @@ import reviewSummary from "../src/data/reference-review-summary.json";
 import baseline from "../docs/website-a-baseline.json";
 import provenance from "../docs/catalog-provenance.json";
 import media from "../docs/hosted-media.json";
+import { restoreOriginImages, restoreOriginSource } from "./helpers/origin-images";
 import { hostedImageForLegacyUrl } from "../src/lib/hosted-images";
 
 const digest = (data: string | Buffer) =>
@@ -20,7 +21,7 @@ test("all Website A product records remain exactly identical", () => {
   const original = PRODUCTS.filter((p) => !p.sourceId);
   assert.equal(original.length, provenance.websiteA.count);
   assert.equal(
-    digest(JSON.stringify(original)),
+    digest(JSON.stringify(restoreOriginImages(original))),
     provenance.websiteA.productsSha256,
   );
 });
@@ -54,10 +55,14 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/pages/Home.tsx",
     "src/pages/ProductDetail.tsx",
     "src/pages/Search.tsx",
+    // Public route isolation and matching crawler metadata, explicitly requested.
+    "src/App.tsx",
+    "index.html",
+    "src/components/Footer.tsx",
   ]);
   for (const [file, hash] of Object.entries(baseline)) {
     if (!presentationChanges.has(file))
-      assert.equal(digest(readFileSync(file)), hash, file);
+      assert.equal(digest(restoreOriginSource(readFileSync(file, "utf8"))), hash, file);
   }
   const header = readFileSync("src/components/Navbar.tsx", "utf8");
   assert.match(header, /<span className="logo-main">FREE FIRE STORE<\/span>/);

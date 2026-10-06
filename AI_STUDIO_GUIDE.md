@@ -4,7 +4,7 @@
 
 यह existing React + TypeScript + Vite frontend और Node/Express backend है। इसे नया app बनाकर replace करने की जरूरत नहीं है। आपकी अगली design/content command के लिए नीचे दी file-map और settings इस्तेमाल करें। किसी बाहरी AI Studio project में import या sync इस ZIP से अपने आप नहीं होता।
 
-Latest source ZIP: **freefire-store-ai-studio-ready.zip**. Photos/videos hosted URLs हैं; source में भारी media files नहीं हैं। Private environment values अलग configure करें।
+Latest source ZIP: **freefire-store-public-cleanup.zip**. Photos/videos hosted URLs हैं; source में भारी media files नहीं हैं। Private environment values अलग configure करें।
 
 ## AI Studio में इस्तेमाल
 
@@ -24,6 +24,8 @@ Import करने के बाद AI Studio को सबसे पहले 
 
 | बदलाव | File |
 | --- | --- |
+| Canonical domain / default SEO metadata | `src/config/site.json` (also update `public/robots.txt` on a domain change) |
+| Crawler HTML / sitemap generation | `scripts/build-crawler-pages.mts`, `src/lib/page-metadata.ts` |
 | Homepage products और उनका क्रम | `src/config/homepage.json` → `featured.productIds` |
 | Hero heading, subheading | उसी file का `hero` |
 | Men/Women cover photo | उसी file का `departments[].productId` / `imageIndex` |
@@ -109,3 +111,7 @@ Payment gateway remains PayGlocal. Preserve `api/payglocal/`, checkout processin
 Resend/COD email activation still requires private server settings described in `docs/ORDER-EMAIL-SETUP.md`. An editor preview does not prove live provider readiness. Never move Resend, PayGlocal, Firebase Admin or signing secrets into frontend variables. The email template contains Free Fire Store + customer/product/order details, with no invoice attachment or merchant owner/address.
 
 Google AI Studio may use this guide when explicitly asked to read it; automatic discovery of `GEMINI.md` is not assumed. Review the changed files and validation results before publishing.
+
+## Public deployment boundary
+
+Read `docs/PUBLIC-BUILD.md` before editing routing or deployment. Keep archived legacy checkout source out of the public import graph. Public output is `dist/`, server output is `build/`. Preserve `docs/catalog-origin-media.json` as source-only provenance. Do not restore old origin URLs from audit files. After building, run `npm run check:public-build`. Never publish this source ZIP itself as a static website.

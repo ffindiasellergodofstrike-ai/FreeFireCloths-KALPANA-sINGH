@@ -5,7 +5,7 @@
 - Cloudinary cloud: `smi5oqr3`.
 - 1,980 product images and 1,687 review images are hosted externally (3,667 total).
 - Every hosted original was downloaded and compared with its source SHA-256 before removing the source binaries: 305,264,008 bytes moved out of the current tree.
-- Product IDs, descriptions, prices, stock flags, reviews and other metadata are unchanged. Original A products and their existing image URLs are unchanged.
+- Product IDs, descriptions, prices, stock flags, reviews and other metadata are unchanged. Original A image URLs were unchanged in that initial migration; see the later origin-host migration below.
 - `src/data/reference-catalog.json` contains product and variant HTTPS image URLs. `public/reviews/*.json` contains review text and hosted photo URLs.
 - `docs/hosted-media.json` records the original paths, hosted URLs, byte sizes and SHA-256 hashes, plus original JSON hashes for the migration audit. It is not imported into the browser bundle.
 - Public IDs start with `freefire_store_migration/`. Keep these assets and public IDs intact so catalog pages and previously saved carts/orders can still display their photos.
@@ -37,3 +37,7 @@ The migration upload preset can be disabled in Cloudinary after this migration i
 ## Latest studio collection
 
 The nine-product addition hosts another43 product photographs,2 film posters and2 films with MP4/WebM alternatives (49 active files). Total imported product/review photos:3,710, excluding posters. New media public IDs start with `freefire_store_studio/`; keep these assets available. New product image URLs are in `src/data/kurti-catalog.json`; homepage film URLs are in `src/data/studio-media.json`. See [studio update](STUDIO_UPDATE.md).
+
+## Origin-host migration
+
+291 additional distinct URLs from the original catalog and footer now use byte-identical Cloudinary copies under `freefire_store_catalog/`. Every public delivery was downloaded and SHA-256 verified. Original URLs and verification records are retained in `docs/catalog-origin-media.json`, outside the public bundle. This update changes image hosting only; historical orders retain their stored URLs. See [deployment and crawler guidance](PUBLIC-BUILD.md).

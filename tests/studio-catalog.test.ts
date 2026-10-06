@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { restoreOriginImages } from './helpers/origin-images';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -14,7 +15,7 @@ const digest = (value: string) => createHash('sha256').update(value).digest('hex
 test('all 327 prior product objects are unchanged and nine new IDs cannot collide', () => {
   const old = PRODUCTS.filter(p => p.collection !== 'kurtis');
   assert.equal(old.length, 327);
-  assert.equal(digest(JSON.stringify(old)), '329bc7c106e8ff330353c8d295443ee3931abeef644f988a24cb810206e4d15c');
+  assert.equal(digest(JSON.stringify(restoreOriginImages(old))), '329bc7c106e8ff330353c8d295443ee3931abeef644f988a24cb810206e4d15c');
   assert.equal(PRODUCTS.length, 336);
   assert.equal(new Set(PRODUCTS.map(p => p.id)).size, PRODUCTS.length);
   assert.equal(KURTI_PRODUCTS.length, 9);

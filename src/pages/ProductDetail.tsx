@@ -35,39 +35,6 @@ export default function ProductDetail() {
     setActiveThumb(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (product) {
-      document.title = `${product.name} – Free Fire Store`;
-
-      const updateMetaTag = (selector: string, attrName: string, attrVal: string, content: string) => {
-        let element = document.querySelector(selector);
-        if (!element) {
-          element = document.createElement('meta');
-          element.setAttribute(attrName, attrVal);
-          document.head.appendChild(element);
-        }
-        element.setAttribute('content', content);
-      };
-
-      const productImg = displayedImages[0] || product.images?.[0] || 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80';
-      const descText = product.desc || `${product.name} available at Free Fire Store. Express delivery & Cash on Delivery available across India.`;
-      const currentUrl = window.location.href;
-
-      updateMetaTag('meta[property="og:title"]', 'property', 'og:title', `${product.name} – Free Fire Store`);
-      updateMetaTag('meta[property="og:description"]', 'property', 'og:description', descText);
-      updateMetaTag('meta[property="og:image"]', 'property', 'og:image', productImg);
-      updateMetaTag('meta[property="og:url"]', 'property', 'og:url', currentUrl);
-      updateMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'Free Fire Store');
-      updateMetaTag('meta[property="og:type"]', 'property', 'og:type', 'product');
-
-      updateMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
-      updateMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', `${product.name} – Free Fire Store`);
-      updateMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', descText);
-      updateMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', productImg);
-    }
-
-    return () => {
-      document.title = 'Free Fire Store – Premium Clothing & Fashion';
-    };
   }, [id, product]);
 
   // Determine images to display: ONLY images for the selected color variant

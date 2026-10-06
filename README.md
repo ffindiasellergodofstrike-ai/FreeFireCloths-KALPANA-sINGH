@@ -38,6 +38,10 @@ The homepage features six selected women’s pieces (Textured Cardigen, Asymmetr
 
 ## Current account, branding and email update
 
-Login, signup, checkout and order details share the storefront design. Display branding is Free Fire Store; original legal business/contact records remain. Saved COD orders and verified online PayGlocal purchases can send a Resend confirmation once the server credentials and verified sender are configured. Emails include customer/product details, with no invoice attachment or merchant owner/address. The separate legacy checkout is unchanged.
+Login, signup, checkout and order details share the storefront design. Display branding is Free Fire Store; original legal business/contact records remain. Saved COD orders and verified online PayGlocal purchases can send a Resend confirmation once the server credentials and verified sender are configured. Emails include customer/product details, with no invoice attachment or merchant owner/address. The legacy checkout source is preserved but its public routes are disabled.
 
-See [setup, current catalog, verification and limits](docs/ORDER-EMAIL-SETUP.md). Use **freefire-store-ai-studio-ready.zip** for this update.
+See [setup, current catalog, verification and limits](docs/ORDER-EMAIL-SETUP.md). Use **freefire-store-public-cleanup.zip** for this update.
+
+## Public build and crawler update
+
+See [public deployment, retained source and crawler guidance](docs/PUBLIC-BUILD.md). `npm run build` generates page metadata and the active-catalog sitemap. Run `npm run check:public-build` before deployment. The Node server now starts from `build/server.cjs`, outside the public `dist/` folder.
