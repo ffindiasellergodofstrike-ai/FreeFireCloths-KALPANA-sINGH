@@ -1,0 +1,65 @@
+{
+  "productId": 2233902,
+  "reviews": [
+    {
+      "id": "14493058",
+      "productId": 2233902,
+      "author": "N***y",
+      "rating": 5,
+      "date": "16 Sep 2026",
+      "timestamp": 1789541634,
+      "text": "Quality is really good and perfect fir.....really loved it",
+      "variant": "Olive Drab/M",
+      "images": [
+        "/reviews/photos/a4c1cd1043dcd524697221e9.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "13973276",
+      "productId": 2233902,
+      "author": "D***a",
+      "rating": 5,
+      "date": "28 Jun 2026",
+      "timestamp": 1782631495,
+      "text": "Nicee and breathable, stretchable too , over all good❤️",
+      "variant": "Olive Drab/L",
+      "images": [
+        "/reviews/photos/a0fbe60970e05d3e529e772b.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14533368",
+      "productId": 2233902,
+      "author": "A***a",
+      "rating": 5,
+      "date": "21 Sep 2026",
+      "timestamp": 1789994939,
+      "text": "Loved the top!!",
+      "variant": "Olive Drab/M",
+      "images": [
+        "/reviews/photos/b94d5add12842983da3e3ae7.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14368283",
+      "productId": 2233902,
+      "author": "8***4",
+      "rating": 5,
+      "date": "29 Aug 2026",
+      "timestamp": 1788020764,
+      "text": "Yummy top",
+      "variant": "Olive Drab/M",
+      "images": [
+        "/reviews/photos/3bea7bc05bd1bbe02484c963.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "productId": 2304752,
+  "reviews": [
+    {
+      "id": "14605052",
+      "productId": 2304752,
+      "author": "S***a",
+      "rating": 5,
+      "date": "01 Oct 2026",
+      "timestamp": 1790835353,
+      "text": "The top is just wowwww.",
+      "variant": "Yellow/XS",
+      "images": [
+        "/reviews/photos/84259f4602c798cd2a7d720c.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14502203",
+      "productId": 2304752,
+      "author": "M***a",
+      "rating": 4,
+      "date": "17 Sep 2026",
+      "timestamp": 1789644376,
+      "text": "Nice",
+      "variant": "Yellow/M",
+      "images": [
+        "/reviews/photos/7ff2f058e462c4e4e5412974.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

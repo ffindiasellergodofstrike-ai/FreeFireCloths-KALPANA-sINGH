@@ -1,0 +1,35 @@
+{
+  "productId": 2380282,
+  "reviews": [
+    {
+      "id": "14605123",
+      "productId": 2380282,
+      "author": "A*** ",
+      "rating": 5,
+      "date": "01 Oct 2026",
+      "timestamp": 1790836089,
+      "text": "Great quality product",
+      "variant": "Brown/XS",
+      "images": [
+        "/reviews/photos/95ab0ff685817ba81ab7ee83.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14586076",
+      "productId": 2380282,
+      "author": "R***a",
+      "rating": 5,
+      "date": "28 Sep 2026",
+      "timestamp": 1790609996,
+      "text": "perfect top to wear on a dress. Worth the money.",
+      "variant": "Apricot/M",
+      "images": [
+        "/reviews/photos/105d19e4627296efea6f5bb4.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

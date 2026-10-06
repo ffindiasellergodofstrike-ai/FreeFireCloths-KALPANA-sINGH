@@ -1,0 +1,20 @@
+{
+  "productId": 2352242,
+  "reviews": [
+    {
+      "id": "14535552",
+      "productId": 2352242,
+      "author": "3***6",
+      "rating": 5,
+      "date": "21 Sep 2026",
+      "timestamp": 1790008906,
+      "text": "I wasn't accepting this much good product",
+      "variant": "Brown/S",
+      "images": [
+        "/reviews/photos/a65cbcda6f8c5e2b207dfd06.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

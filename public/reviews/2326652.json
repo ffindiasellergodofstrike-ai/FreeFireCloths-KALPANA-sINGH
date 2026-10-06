@@ -1,0 +1,52 @@
+{
+  "productId": 2326652,
+  "reviews": [
+    {
+      "id": "14539939",
+      "productId": 2326652,
+      "author": "8***8",
+      "rating": 5,
+      "date": "22 Sep 2026",
+      "timestamp": 1790065824,
+      "text": "I have ordered wrong size but loved the flare and embroidery around the pockets 🎀",
+      "variant": "Washed Black/XL",
+      "images": [
+        "/reviews/photos/3419f1df42b002d61e53cc6a.webp",
+        "/reviews/photos/975fd6050a92b3532a2dc25e.webp",
+        "/reviews/photos/18b18102e1fd154986b83130.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14595519",
+      "productId": 2326652,
+      "author": "Y***a",
+      "rating": 5,
+      "date": "29 Sep 2026",
+      "timestamp": 1790716210,
+      "text": "Fit it perfect and came as same as the picture given",
+      "variant": "Washed Black/M",
+      "images": [
+        "/reviews/photos/2adb55604843661d07eb8e59.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14592639",
+      "productId": 2326652,
+      "author": "P***l",
+      "rating": 5,
+      "date": "29 Sep 2026",
+      "timestamp": 1790690397,
+      "text": "its realy good. im 5'7 and the length is just right. so u can go for it 💗",
+      "variant": "Washed Black/L",
+      "images": [
+        "/reviews/photos/3eee5b80fcca338f12ec0524.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}
