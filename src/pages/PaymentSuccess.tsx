@@ -10,8 +10,20 @@ export default function PaymentSuccess() {
   const gid = searchParams.get('gid');
   const [status, setStatus] = useState<string>('Verifying payment...');
   const [emailStatus, setEmailStatus] = useState('');
+  const [isEmailSending, setIsEmailSending] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
   const { clearCart } = useCart();
+
+  const requestOrderEmail = async () => {
+    if (!gid || isEmailSending) return;
+    setIsEmailSending(true);
+    setEmailStatus('Sending confirmation email...');
+    try {
+      setEmailStatus(await sendOrderConfirmation(gid));
+    } finally {
+      setIsEmailSending(false);
+    }
+  };
 
   useEffect(() => {
     // Clear any pending payment state on successful payment page
@@ -30,8 +42,13 @@ export default function PaymentSuccess() {
             if (db) {
               addDoc(collection(db, 'orders'), pendingOrder).then((docRef) => {
                 setOrderId(pendingOrder.orderNumber?.toString() || docRef.id);
-                void sendOrderConfirmation(gid).then(setEmailStatus);
+                void requestOrderEmail();
+              }).catch((error) => {
+                console.error("Error saving paid order:", error);
+                setStatus('Payment is confirmed, but the order could not be saved. Please contact support; do not pay again.');
               });
+            } else {
+              setStatus('Payment is confirmed, but orders are temporarily unavailable. Please contact support; do not pay again.');
             }
             clearCart();
             localStorage.removeItem('pendingPayGlocalOrder');
@@ -44,7 +61,7 @@ export default function PaymentSuccess() {
         const existingOrderId = localStorage.getItem('lastSuccessfulOrderId');
         if (existingOrderId) {
           setOrderId(existingOrderId);
-          void sendOrderConfirmation(gid).then(setEmailStatus);
+          void requestOrderEmail();
         }
       }
     }
@@ -79,6 +96,11 @@ export default function PaymentSuccess() {
         <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '32px' }}>{status}</p>
 
         {emailStatus && <p role="status" className="email-status">{emailStatus}</p>}
+        {emailStatus.includes('could not be sent') || emailStatus.includes('temporarily unavailable') ? (
+          <button type="button" className="btn btn-outline" disabled={isEmailSending} onClick={() => void requestOrderEmail()}>
+            {isEmailSending ? 'SENDING…' : 'RETRY CONFIRMATION EMAIL'}
+          </button>
+        ) : null}
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/" className="btn btn-outline btn-lg" style={{ flex: 1, minWidth: '180px' }}>RETURN TO HOME</Link>
           <Link to="/my-orders" className="btn btn-black btn-lg" style={{ flex: 1, minWidth: '180px' }}>VIEW MY ORDERS</Link>

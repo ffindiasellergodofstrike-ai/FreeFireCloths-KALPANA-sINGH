@@ -1,4 +1,4 @@
-import catalog from "./kurti-catalog.json";
+import catalog from "./kurti-catalog.json" with { type: "json" };
 import type { Product } from "./products.js";
 
 // A reserved negative namespace keeps saved carts and existing product IDs intact.

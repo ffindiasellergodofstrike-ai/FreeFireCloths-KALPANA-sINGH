@@ -1,6 +1,6 @@
 import { applicationDefault, cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import config from '../firebase-applet-config.json';
+import config from '../firebase-applet-config.json' with { type: 'json' };
 import { CodEmailError, codOrderMessage, recipientKey, type CodEmailStore, type EmailJob } from './cod-email.js';
 
 function database() {
