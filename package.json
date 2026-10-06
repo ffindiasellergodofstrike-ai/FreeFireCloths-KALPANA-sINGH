@@ -9,7 +9,10 @@
     "start": "node dist/server.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "catalog:find": "tsx scripts/catalog.mts",
+    "check:homepage": "tsx scripts/catalog.mts --check-homepage"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

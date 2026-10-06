@@ -1,3 +1,4 @@
+import homepage from '../config/homepage.json';
 import type { Product } from './products';
 
 // Presentation taxonomy only: IDs, prices, variants and persisted records stay intact.
@@ -38,13 +39,10 @@ export function collectionProducts(products: Product[], category: string): Produ
   if (DEPARTMENTS.some(d => d.id === category)) return products.filter(p => p.cat === category);
   return products.filter(p => categoryOf(p) === category);
 }
-// Twelve deliberately mixed pieces: five menswear, five older womenswear, two new kurtis.
+// Explicit IDs keep homepage choices independent of catalog order and product names.
+// Missing/retired picks are omitted; unrelated products are never silently substituted.
 export function homepageProducts(products: Product[]): Product[] {
-  const ids = [304, 301, 305, 302, -300000001, 316, 502, 306, 320, -300000002, 315, 328];
-  const picks = ids.map(id => products.find(p => p.id === id)).filter((p): p is Product => Boolean(p));
-  for (const product of products) {
-    if (picks.length >= 12) break;
-    if (!picks.some(p => p.id === product.id)) picks.push(product);
-  }
-  return picks;
+  return [...new Set(homepage.featured.productIds)]
+    .map(id => products.find(product => product.id === id))
+    .filter((product): product is Product => Boolean(product));
 }

@@ -1,0 +1,30 @@
+{
+  "pageTitle": "Free Fire Store – A Fresh Take on Everyday Style",
+  "hero": {
+    "kicker": "THE NEW FREE FIRE STORE EDIT",
+    "title": "Tradition,",
+    "emphasis": "with a twist.",
+    "description": ["Familiar textures. Unexpected details.", "Find a little more of yourself in what you wear."]
+  },
+  "departments": [
+    { "id": "men", "title": "Men", "productId": 304, "imageIndex": 0, "note": "Everyday shirts, considered layers and easy essentials." },
+    { "id": "women", "title": "Women", "productId": -1881672, "imageIndex": 0, "note": "Textured layers, statement tops and effortless matching sets." }
+  ],
+  "featured": {
+    "kicker": "THE EVERYDAY SELECTION",
+    "title": "Your everyday.",
+    "emphasis": "A fresh perspective.",
+    "description": "Six fresh women's picks, alongside everyday menswear.",
+    "productIds": [304, -1881672, 305, -1642542, 316, -1976522, 306, -2375102, 315, -2353972, 426, -2306982]
+  },
+  "lookbook": {
+    "productId": -2353972,
+    "imageIndex": 0,
+    "detailImageIndex": 1,
+    "kicker": "THE LOOKBOOK · IN DETAIL",
+    "title": "Better together.",
+    "emphasis": "Easy to make your own.",
+    "description": "Clean contrasts and a coordinated silhouette. Take a closer look at the Contrast Co-ord Set.",
+    "buttonLabel": "Discover the Contrast Co-ord Set"
+  }
+}

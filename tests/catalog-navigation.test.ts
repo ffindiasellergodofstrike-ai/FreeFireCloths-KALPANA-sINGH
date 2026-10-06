@@ -25,14 +25,20 @@ test('every product has one clothing category, including original dresses and sh
   assert.equal(grouped.length, PRODUCTS.length);
   assert.equal(new Set(grouped.map(p => p.id)).size, PRODUCTS.length);
 });
-test('homepage has twelve unique pieces, ten existing and only two new kurtis', () => {
+test('homepage has the six requested women products and six existing men products', () => {
   const before = JSON.stringify(PRODUCTS);
   const home = homepageProducts(PRODUCTS);
   assert.equal(home.length, 12);
   assert.equal(new Set(home.map(p => p.id)).size, 12);
-  assert.equal(home.filter(p => !p.sourceId).length, 10);
-  assert.equal(home.filter(p => p.collection === 'kurtis').length, 2);
+  assert.deepEqual(home.filter(p => p.cat === 'women').map(p => p.name), [
+    'Textured Cardigen', 'Asymmetric Top', 'Twist Top', 'Bandeau Bra', 'Contrast Co-ord Set', 'Pocket Co-ord Set',
+  ]);
+  assert.equal(home.filter(p => p.cat === 'men').length, 6);
+  assert.equal(home.filter(p => p.collection === 'kurtis').length, 0);
   assert.ok(home.some(p => p.cat === 'men'));
   assert.ok(home.some(p => p.cat === 'women'));
   assert.equal(JSON.stringify(PRODUCTS), before);
+  const missingPick = homepageProducts(PRODUCTS.filter(p => p.id !== -1881672));
+  assert.equal(missingPick.length, 11);
+  assert.ok(!missingPick.some(p => p.id === 301), 'Do not silently restore a previous women pick');
 });

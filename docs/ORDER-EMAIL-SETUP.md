@@ -2,7 +2,7 @@
 
 ## Current delivery
 
-Use `freefire-store-final-cod-source.zip`. This update replaces the earlier PDF-email version.
+For the current source, use `freefire-store-ai-studio-ready.zip` and see `AI_STUDIO_GUIDE.md`. The email-only implementation described here replaces the earlier PDF-email version.
 
 - COD and verified online PayGlocal orders request a Resend confirmation.
 - No invoice, PDF attachment, merchant owner name, merchant address or merchant contact details are included in either email.

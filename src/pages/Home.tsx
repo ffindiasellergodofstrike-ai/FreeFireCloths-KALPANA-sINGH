@@ -5,6 +5,7 @@ import { useProducts } from "../context/ProductContext";
 import { SHOP_CATEGORIES, homepageProducts, categoryOf } from "../data/catalog-navigation";
 import media from "../data/studio-media.json";
 import reviews from "../data/studio-reviews.json";
+import homepage from "../config/homepage.json";
 import ProductCard from "../components/ProductCard";
 import StoreFilm from "../components/StoreFilm";
 import { toast } from "sonner";
@@ -14,17 +15,17 @@ export default function Home() {
   const { products } = useProducts();
   const [newsletterEmail, setNewsletterEmail] = useState("");
   useEffect(() => {
-    document.title = "Free Fire Store – A Fresh Take on Everyday Style";
+    document.title = homepage.pageTitle;
     document.body.classList.add("studio-home-active");
     return () => document.body.classList.remove("studio-home-active");
   }, []);
-  const kurtis = products.filter(p => p.collection === "kurtis");
   const shown = homepageProducts(products);
-  const piece = (id: number) => kurtis.find(p => p.id === -(300000000 + id));
-  const departments = [
-    { id: 'men', title: 'Men', image: products.find(p => p.id === 304)?.images?.[0], note: 'Everyday shirts, considered layers and easy essentials.' },
-    { id: 'women', title: 'Women', image: products.find(p => p.id === 302)?.images?.[0], note: 'Discover dresses, tops, kurtis and everything in between.' },
-  ];
+  const lookbook = products.find(product => product.id === homepage.lookbook.productId);
+  const featuredReviews = reviews.filter(review => shown.some(product => product.id === review.storeProductId));
+  const departments = homepage.departments.map(department => ({
+    ...department,
+    image: products.find(product => product.id === department.productId)?.images?.[department.imageIndex],
+  }));
   const handleNewsletterSubmit = () => {
     if (newsletterEmail.trim()) {
       toast.success("✓ SUBSCRIBED! WELCOME TO Free Fire Store");
@@ -37,9 +38,9 @@ export default function Home() {
         <StoreFilm {...media.hero} label="the new collection film" priority />
         <div className="studio-hero-shade" />
         <div className="studio-hero-copy">
-          <span className="studio-kicker">THE NEW FREE FIRE STORE EDIT</span>
-          <h1 id="studio-hero-title">Tradition,<br /><em>with a twist.</em></h1>
-          <p>Familiar textures. Unexpected details.<br />Find a little more of yourself in what you wear.</p>
+          <span className="studio-kicker">{homepage.hero.kicker}</span>
+          <h1 id="studio-hero-title">{homepage.hero.title}<br /><em>{homepage.hero.emphasis}</em></h1>
+          <p>{homepage.hero.description.map((line, index) => <React.Fragment key={index}>{index > 0 && <br />}{line}</React.Fragment>)}</p>
           <div className="studio-actions">
             <a className="studio-button studio-button-light" href="#shop-departments">Shop Men & Women <ArrowUpRight size={18} /></a>
             <a className="studio-text-link" href="#in-motion">Explore the lookbook <ArrowRight size={16} /></a>
@@ -67,37 +68,37 @@ export default function Home() {
 
       <section className="studio-section studio-arrivals" id="new-edit" aria-labelledby="new-edit-title">
         <div className="studio-section-heading">
-          <div><span className="studio-kicker">THE EVERYDAY SELECTION</span><h2 id="new-edit-title">Old favourites.<br /><em>New possibilities.</em></h2></div>
-          <div><p>A little new. A little familiar. Made for your wardrobe.</p><Link className="studio-text-link" to="/collections/all">Shop all {products.length} products <ArrowUpRight size={17} /></Link></div>
+          <div><span className="studio-kicker">{homepage.featured.kicker}</span><h2 id="new-edit-title">{homepage.featured.title}<br /><em>{homepage.featured.emphasis}</em></h2></div>
+          <div><p>{homepage.featured.description}</p><Link className="studio-text-link" to="/collections/all">Shop all {products.length} products <ArrowUpRight size={17} /></Link></div>
         </div>
         <div className="studio-product-grid">{shown.map(product => <ProductCard key={product.id} product={product} />)}</div>
         <div className="studio-browse-actions"><Link className="studio-button" to="/collections/men">Shop all Men <ArrowUpRight size={17} /></Link><Link className="studio-button" to="/collections/women">Shop all Women <ArrowUpRight size={17} /></Link></div>
       </section>
 
-      <section className="studio-lookbook" id="in-motion" aria-labelledby="lookbook-title">
-        <div className="studio-lookbook-film"><img src={piece(2)?.images?.[0]} alt="A closer look at the floral kurti collection" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+      {lookbook && <section className="studio-lookbook" id="in-motion" aria-labelledby="lookbook-title">
+        <div className="studio-lookbook-film"><img src={lookbook.images?.[homepage.lookbook.imageIndex]} alt={lookbook.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
         <div className="studio-lookbook-copy">
-          <span className="studio-kicker">THE LOOKBOOK · IN DETAIL</span>
-          <h2>Out of the ordinary.<br /><em>Into your everyday.</em></h2>
-          <p>Fresh florals, thoughtful details and easy silhouettes. Find your next favourite in the kurti collection.</p>
-          <Link className="studio-button" to="/collections/kurtis">Explore the kurti collection <ArrowUpRight size={18} /></Link>
-          {piece(2) && <Link className="studio-lookbook-detail" to="/collections/kurtis">
-            <img src={piece(2)?.images?.[1]} alt="A closer look at the kurti collection" loading="lazy" />
+          <span className="studio-kicker">{homepage.lookbook.kicker}</span>
+          <h2 id="lookbook-title">{homepage.lookbook.title}<br /><em>{homepage.lookbook.emphasis}</em></h2>
+          <p>{homepage.lookbook.description}</p>
+          <Link className="studio-button" to={`/product/${lookbook.id}`}>{homepage.lookbook.buttonLabel} <ArrowUpRight size={18} /></Link>
+          <Link className="studio-lookbook-detail" to={`/product/${lookbook.id}`}>
+            <img src={lookbook.images?.[homepage.lookbook.detailImageIndex] || lookbook.images?.[0]} alt={`${lookbook.name} detail`} loading="lazy" />
             <span>It's all in the details.<small>Explore the fit, print & finish <ArrowUpRight size={14} /></small></span>
-          </Link>}
+          </Link>
         </div>
-      </section>
+      </section>}
 
-      <section className="studio-section studio-reviews" aria-labelledby="studio-reviews-title">
+      {featuredReviews.length > 0 && <section className="studio-section studio-reviews" aria-labelledby="studio-reviews-title">
         <span className="studio-kicker">NOTES ON THE COLLECTION</span><h2 id="studio-reviews-title">A few words, <em>on the details.</em></h2>
         <p className="studio-review-disclosure">Imported product reviews. These are not verified Free Fire Store purchases.</p>
-        <div className="studio-review-grid">{reviews.filter(review => products.some(product => product.id === review.storeProductId)).map(review => <figure key={review.id}>
+        <div className="studio-review-grid">{featuredReviews.map(review => <figure key={review.id}>
           <div className="studio-review-stars" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, i) => <Star key={i} size={13} fill="currentColor" />)}</div>
           <blockquote>“{review.text}”</blockquote>
           <figcaption>{review.author}<span>{review.date}</span></figcaption>
           <Link to={`/product/${review.storeProductId}`}>{review.productName} <ArrowUpRight size={14} /></Link>
         </figure>)}</div>
-      </section>
+      </section>}
 
       <section className="studio-wardrobe studio-section">
         <span className="studio-kicker">THERE'S MORE TO YOUR WARDROBE</span><h2>Find your next <em>favourite.</em></h2>
