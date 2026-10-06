@@ -1,266 +1,185 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Product } from '../data/products';
-import { useProducts } from '../context/ProductContext';
+import React, { useEffect, useState } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { useProducts } from "../context/ProductContext";
+import { COLLECTIONS, PRICE_EDITS } from "../data/reference-products";
+import ProductCard from "../components/ProductCard";
 
 export default function Collection() {
-  const { category = 'all' } = useParams<{ category?: string }>();
-  const navigate = useNavigate();
+  const { category = "all" } = useParams();
+  const [params, setParams] = useSearchParams();
   const { products } = useProducts();
-
-  const [selectedCats, setSelectedCats] = useState<Record<string, boolean>>({
-    men: category === 'men' || category === 'all',
-    women: category === 'women' || category === 'all',
-    kids: category === 'kids' || category === 'all',
-  });
-
-  const [priceRange, setPriceRange] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<string>('FEATURED');
-
+  const [sort, setSort] = useState("featured");
+  const [range, setRange] = useState("all");
+  const [limit, setLimit] = useState(24);
+  const departments = ["men", "women", "kids"];
+  const [selectedCats, setSelectedCats] = useState(departments);
+  const price = PRICE_EDITS.find(
+    (value) => value === Number(params.get("price")),
+  );
+  const label =
+    COLLECTIONS.find((c) => c.id === category)?.label ||
+    {
+      all: "The complete edit",
+      new: "Fresh perspectives",
+      men: "Men’s collection",
+      women: "Women’s collection",
+      kids: "Kids’ collection",
+    }[category] ||
+    "The collection";
   useEffect(() => {
-    const catName = category.toUpperCase();
-    document.title = `${catName} Collection – Free Fire Store`;
-
-    setSelectedCats({
-      men: category === 'men' || category === 'all',
-      women: category === 'women' || category === 'all',
-      kids: category === 'kids' || category === 'all',
-    });
+    document.title = `${label} – Free Fire Store`;
+    setSelectedCats(departments.includes(category) ? [category] : departments);
+    setRange("all");
   }, [category]);
-
-  const handleCatCheckboxChange = (cat: string) => {
-    setSelectedCats(prev => ({
-      ...prev,
-      [cat]: !prev[cat],
-    }));
-  };
-
-  const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
-  const stars = (r: number) => '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));
-
-  // Get current products with filters and sorting
-  const filteredProducts = products.filter(p => {
-    // Category filter: check if product's category is selected
-    const isCatSelected = selectedCats[p.cat];
-    if (!isCatSelected) return false;
-
-    // Price filter
-    if (priceRange === '1' && p.price >= 500) return false;
-    if (priceRange === '2' && (p.price < 500 || p.price > 1000)) return false;
-    if (priceRange === '3' && (p.price < 1000 || p.price > 2000)) return false;
-    if (priceRange === '4' && p.price <= 2000) return false;
-
-    return true;
-  }).sort((a, b) => {
-    if (sortBy === 'PRICE: LOW TO HIGH') return a.price - b.price;
-    if (sortBy === 'PRICE: HIGH TO LOW') return b.price - a.price;
-    if (sortBy === 'NEW ARRIVALS') {
-      if (a.badge === 'NEW' && b.badge !== 'NEW') return -1;
-      if (a.badge !== 'NEW' && b.badge === 'NEW') return 1;
-    }
-    return 0; // Default Featured (by ID order or unchanged)
-  });
-
-  const pageTitle = category === 'all' 
-    ? 'All Products' 
-    : category === 'men' 
-      ? "Men's Collection" 
-      : category === 'women' 
-        ? "Women's Collection" 
-        : category === 'kids'
-          ? "Kids' Collection"
-          : 'Apparel Collection';
-
-  const productCountText = `${filteredProducts.length} ${filteredProducts.length === 1 ? 'product' : 'products'} available`;
-
-  const renderProductCard = (p: Product) => {
-    const disc = p.orig ? Math.round(((p.orig - p.price) / p.orig) * 100) : 0;
-    return (
-      <div 
-        className="product-card" 
-        key={p.id} 
-        onClick={() => navigate(`/product/${p.id}`)}
-        id={`product-card-${p.id}`}
-      >
-        <div className="pc-img">
-          {p.images && p.images.length > 0 ? (
-            <img 
-              src={p.images[0]} 
-              alt={p.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-              referrerPolicy="no-referrer"
-            />
-          ) : (
-            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : '👗'}
-              <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
-            </div>
-          )}
-          <div className="pc-badges">
-            {p.badge && <span className={`badge ${p.badge === 'SALE' ? 'badge-sale' : 'badge-new'}`}>{p.badge}</span>}
-            {disc > 0 && <span className="badge badge-sale">-{disc}%</span>}
-          </div>
-          <div className="pc-overlay">ADD TO BAG</div>
-        </div>
-        <div className="pc-body">
-          <div className="pc-cat">{p.cat.toUpperCase()}</div>
-          <div className="pc-name">{p.name}</div>
-          <div className="pc-price">
-            <span className="price-now">{fmt(p.price)}</span>
-            {p.orig > 0 && <span className="price-was">{fmt(p.orig)}</span>}
-            {disc > 0 && <span className="price-save">{disc}% OFF</span>}
-          </div>
-          <div className="pc-stars">
-            {stars(p.rating)}
-            <span>({p.reviews})</span>
-          </div>
-        </div>
-      </div>
+  useEffect(() => {
+    setLimit(24);
+  }, [category, price, range, sort, selectedCats]);
+  const items = products
+    .filter((p) => {
+      const categoryMatches =
+        ["all", ...departments].includes(category) ||
+        (category === "new" ? p.badge === "NEW" : p.collection === category);
+      return (
+        categoryMatches &&
+        selectedCats.includes(p.cat) &&
+        (!price || p.price === price) &&
+        (range !== "under500" || p.price < 500) &&
+        (range !== "500to1000" || (p.price >= 500 && p.price <= 1000)) &&
+        (range !== "1000to2000" || (p.price >= 1000 && p.price <= 2000)) &&
+        (range !== "over2000" || p.price > 2000)
+      );
+    })
+    .sort((a, b) =>
+      sort === "low"
+        ? a.price - b.price
+        : sort === "high"
+          ? b.price - a.price
+          : sort === "new"
+            ? Number(b.badge === "NEW") - Number(a.badge === "NEW")
+            : 0,
     );
-  };
-
   return (
-    <div id="collection-page-root">
-      {/* Breadcrumb */}
-      <nav className="breadcrumb">
-        <div className="container">
-          <div className="breadcrumb-inner">
-            <Link to="/">Home</Link>
-            <span className="sep">/</span>
-            <span className="curr">{pageTitle}</span>
-          </div>
-        </div>
+    <section className="edit-section edit-collection" id="collection-page-root">
+      <div className="edit-collection-title">
+        <span className="edit-eyebrow">THE FREE FIRE STORE WARDROBE</span>
+        <h1>{price ? `The ₹${price.toLocaleString("en-IN")} edit` : label}</h1>
+        <p>Considered pieces. Endless possibilities.</p>
+      </div>
+      <div className="edit-filter" aria-label="Filter by price">
+        <span>Shop by price</span>
+        {[undefined, ...PRICE_EDITS].map((value) => (
+          <button
+            key={value || "all"}
+            aria-pressed={price === value}
+            onClick={() => {
+              const next = new URLSearchParams(params);
+              value ? next.set("price", String(value)) : next.delete("price");
+              setParams(next);
+              setRange("all");
+            }}
+          >
+            {value ? `₹${value.toLocaleString("en-IN")}` : "All prices"}
+          </button>
+        ))}
+      </div>
+      <nav className="edit-collection-links" aria-label="Collections">
+        {[
+          { id: "all", label: "All pieces" },
+          { id: "new", label: "New arrivals" },
+          ...COLLECTIONS,
+        ].map((c) => (
+          <Link
+            aria-current={category === c.id ? "page" : undefined}
+            key={c.id}
+            to={`/collections/${c.id}`}
+          >
+            {c.label}
+          </Link>
+        ))}
       </nav>
-
-      {/* Page Header */}
-      <div className="page-hero">
-        <div className="container">
-          <h1>{pageTitle}</h1>
-          <p>{productCountText}</p>
-        </div>
+      <div className="edit-toolbar">
+        <fieldset>
+          <legend className="sr-only">Departments</legend>
+          {departments.map((cat) => (
+            <label key={cat}>
+              <input
+                type="checkbox"
+                checked={selectedCats.includes(cat)}
+                onChange={() =>
+                  setSelectedCats((current) =>
+                    current.includes(cat)
+                      ? current.filter((c) => c !== cat)
+                      : [...current, cat],
+                  )
+                }
+              />
+              {cat}
+            </label>
+          ))}
+        </fieldset>
+        <label>
+          <span className="sr-only">Price range</span>
+          <select
+            aria-label="Price range"
+            value={range}
+            onChange={(e) => {
+              setRange(e.target.value);
+              const next = new URLSearchParams(params);
+              next.delete("price");
+              setParams(next);
+            }}
+          >
+            <option value="all">All price ranges</option>
+            <option value="under500">Under ₹500</option>
+            <option value="500to1000">₹500 – ₹1,000</option>
+            <option value="1000to2000">₹1,000 – ₹2,000</option>
+            <option value="over2000">Above ₹2,000</option>
+          </select>
+        </label>
+        <span role="status">{items.length} pieces</span>
+        <select
+          aria-label="Sort products"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="new">New arrivals</option>
+        </select>
       </div>
-
-      <div className="container">
-        <div className="shop-layout">
-          {/* Filters Panel */}
-          <aside className="filters-panel">
-            <h3>FILTERS</h3>
-            <div className="filter-group">
-              <h4>CATEGORY</h4>
-              <div className="filter-option">
-                <input 
-                  type="checkbox" 
-                  id="f-men" 
-                  checked={selectedCats.men} 
-                  onChange={() => handleCatCheckboxChange('men')}
-                />
-                <label htmlFor="f-men">Men ({products.filter(p => p.cat === 'men').length})</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="checkbox" 
-                  id="f-women" 
-                  checked={selectedCats.women} 
-                  onChange={() => handleCatCheckboxChange('women')}
-                />
-                <label htmlFor="f-women">Women ({products.filter(p => p.cat === 'women').length})</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="checkbox" 
-                  id="f-kids" 
-                  checked={selectedCats.kids} 
-                  onChange={() => handleCatCheckboxChange('kids')}
-                />
-                <label htmlFor="f-kids">Kids ({products.filter(p => p.cat === 'kids').length})</label>
-              </div>
-            </div>
-
-            <div className="filter-group">
-              <h4>PRICE RANGE</h4>
-              <div className="filter-option">
-                <input 
-                  type="radio" 
-                  name="price" 
-                  id="pr-all" 
-                  checked={priceRange === 'all'} 
-                  onChange={() => setPriceRange('all')}
-                />
-                <label htmlFor="pr-all">All Prices</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="radio" 
-                  name="price" 
-                  id="pr-1" 
-                  checked={priceRange === '1'} 
-                  onChange={() => setPriceRange('1')}
-                />
-                <label htmlFor="pr-1">Under ₹500</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="radio" 
-                  name="price" 
-                  id="pr-2" 
-                  checked={priceRange === '2'} 
-                  onChange={() => setPriceRange('2')}
-                />
-                <label htmlFor="pr-2">₹500 – ₹1,000</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="radio" 
-                  name="price" 
-                  id="pr-3" 
-                  checked={priceRange === '3'} 
-                  onChange={() => setPriceRange('3')}
-                />
-                <label htmlFor="pr-3">₹1,000 – ₹2,000</label>
-              </div>
-              <div className="filter-option">
-                <input 
-                  type="radio" 
-                  name="price" 
-                  id="pr-4" 
-                  checked={priceRange === '4'} 
-                  onChange={() => setPriceRange('4')}
-                />
-                <label htmlFor="pr-4">Above ₹2,000</label>
-              </div>
-            </div>
-          </aside>
-
-          {/* Product Grid and Toolbar */}
-          <div>
-            <div className="shop-toolbar">
-              <span className="shop-count">{productCountText}</span>
-              <select 
-                className="sort-select" 
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="FEATURED">FEATURED</option>
-                <option value="PRICE: LOW TO HIGH">PRICE: LOW TO HIGH</option>
-                <option value="PRICE: HIGH TO LOW">PRICE: HIGH TO LOW</option>
-                <option value="NEW ARRIVALS">NEW ARRIVALS</option>
-              </select>
-            </div>
-
-            {filteredProducts.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-                <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔍</div>
-                <h2 style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>NO PRODUCTS FOUND</h2>
-                <p style={{ color: 'var(--gray)' }}>Try adjusting your filters or browse another category.</p>
-              </div>
-            ) : (
-              <div className="grid-4" id="shopAllGrid">
-                {filteredProducts.map(renderProductCard)}
-              </div>
-            )}
-          </div>
+      {items.length ? (
+        <div className="grid-4" id="shopAllGrid">
+          {items.slice(0, limit).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="edit-empty">
+          <h2>No pieces found.</h2>
+          <p>Try another price or department.</p>
+          <button
+            className="edit-button"
+            onClick={() => {
+              setRange("all");
+              setSelectedCats(departments);
+              setParams({});
+            }}
+          >
+            Clear filters
+          </button>
+        </div>
+      )}
+      {limit < items.length && (
+        <div className="edit-load">
+          <button
+            className="edit-button edit-outline"
+            onClick={() => setLimit((value) => value + 24)}
+          >
+            Discover more ({items.length - limit})
+          </button>
+        </div>
+      )}
+    </section>
   );
 }

@@ -1,3 +1,4 @@
+import { REFERENCE_PRODUCTS } from './reference-products';
 import { IMPORTED_DRESSES } from './imported_dresses';
 
 export interface ProductVariant {
@@ -12,6 +13,8 @@ export interface ProductVariant {
 
 export interface Product {
   id: number;
+  sourceId?: number;
+  collection?: string;
   cat: 'men' | 'women' | 'kids';
   name: string;
   price: number;
@@ -1239,7 +1242,8 @@ export const PRODUCTS: Product[] = [
   // Existing Staples
   { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] },
   // CSV Imported Dresses
-  ...IMPORTED_DRESSES
+  ...IMPORTED_DRESSES,
+  ...REFERENCE_PRODUCTS
 ];
 
 export const BLOG_POSTS: BlogPost[] = [

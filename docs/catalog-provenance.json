@@ -1,0 +1,14 @@
+{
+  "websiteA": {
+    "repository": "https://github.com/ffindiasellergodofstrike-ai/FreeFireCloths-KALPANA-sINGH",
+    "commit": "169db5d0efd491efdc99feb3930fb424a90aef0e",
+    "count": 76,
+    "productsSha256": "539ec89367e4dcf849e55c08fba46d7311b17cd140e7ed5af1c52df6bd4b90d7"
+  },
+  "websiteB": {
+    "repository": "https://github.com/ffindiasellergodofstrike-ai/Booyah-Wear",
+    "commit": "52fe20af977a2a77f23d7210efba9ea8a84affd5",
+    "count": 251
+  },
+  "idMapping": "Website A ID = negative Website B ID; original Website A IDs unchanged"
+}

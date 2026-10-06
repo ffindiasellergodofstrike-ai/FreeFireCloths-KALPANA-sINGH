@@ -1,193 +1,254 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Product } from '../data/products';
-import { useCart } from '../context/CartContext';
-import { useProducts } from '../context/ProductContext';
-import { toast } from 'sonner';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Truck,
+  RotateCcw,
+  Headphones,
+} from "lucide-react";
+import { useProducts } from "../context/ProductContext";
+import { COLLECTIONS, PRICE_EDITS } from "../data/reference-products";
+import ProductCard from "../components/ProductCard";
+import { toast } from "sonner";
 
 export default function Home() {
-  const navigate = useNavigate();
-  const { addToCart } = useCart();
   const { products } = useProducts();
-
+  const [newsletterEmail, setNewsletterEmail] = useState("");
   useEffect(() => {
-    document.title = 'Free Fire Store – Premium Fashion & Apparel';
+    document.title = "Free Fire Store – Premium Fashion & Apparel";
   }, []);
-
-  const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
-  const stars = (r: number) => '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));
-
-  const handleProductClick = (id: number) => {
-    navigate(`/product/${id}`);
-  };
-
-  const handleCategoryClick = (cat: string) => {
-    navigate(`/collections/${cat}`);
-  };
-
-  // Filter products: featured items (ID 101-399 or featured: true)
-  const featuredProducts = products.filter(p => p.featured || (p.id >= 101 && p.id < 400));
-  // Newly added products with badge === 'NEW'
-  const newArrivals = products.filter(p => p.badge === 'NEW');
-
-  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const hero = products.find((p) => p.sourceId === 1951272);
+  const second = products.find((p) => p.collection === "co-ords");
+  const featured = PRICE_EDITS.flatMap((price) => {
+    const product = products.find((p) => p.sourceId && p.price === price);
+    return product ? [product] : [];
+  });
   const handleNewsletterSubmit = () => {
     if (newsletterEmail.trim()) {
-      toast.success('✓ SUBSCRIBED! WELCOME TO Free Fire Store');
-      setNewsletterEmail('');
-    } else {
-      toast.error('Please enter a valid email address.');
-    }
+      toast.success("✓ SUBSCRIBED! WELCOME TO Free Fire Store");
+      setNewsletterEmail("");
+    } else toast.error("Please enter a valid email address.");
   };
-
-  const optimizeUnsplash = (url: string, width: number, quality: number = 80) => {
-    if (!url) return url;
-    if (url.includes('images.unsplash.com')) {
-      const baseUrl = url.split('?')[0];
-      return `${baseUrl}?auto=format&fit=crop&w=${width}&q=${quality}`;
-    }
-    return url;
-  };
-
-  const renderProductCard = (p: Product) => {
-    const disc = p.orig ? Math.round(((p.orig - p.price) / p.orig) * 100) : 0;
-    return (
-      <div 
-        className="product-card" 
-        key={p.id} 
-        onClick={() => handleProductClick(p.id)}
-        id={`product-card-${p.id}`}
-      >
-        <div className="pc-img">
-          {p.images && p.images.length > 0 ? (
-            <img 
-              src={optimizeUnsplash(p.images[0], 400, 80)} 
-              alt={p.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-              referrerPolicy="no-referrer"
-              loading="lazy"
-            />
-          ) : (
-            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : '👗'}
-              <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
-            </div>
-          )}
-          <div className="pc-badges">
-            {p.badge && <span className={`badge ${p.badge === 'SALE' ? 'badge-sale' : 'badge-new'}`}>{p.badge}</span>}
-            {disc > 0 && <span className="badge badge-sale">-{disc}%</span>}
-          </div>
-          <div className="pc-overlay">ADD TO BAG</div>
-        </div>
-        <div className="pc-body">
-          <div className="pc-cat">{p.cat.toUpperCase()}</div>
-          <div className="pc-name">{p.name}</div>
-          <div className="pc-price">
-            <span className="price-now">{fmt(p.price)}</span>
-            {p.orig > 0 && <span className="price-was">{fmt(p.orig)}</span>}
-            {disc > 0 && <span className="price-save">{disc}% OFF</span>}
-          </div>
-          <div className="pc-stars">
-            {stars(p.rating)}
-            <span>({p.reviews})</span>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div id="page-home-root">
-      {/* Categories (Myntra/Amazon Bubble Style) */}
-      <div className="category-bubbles-section" id="categories-section">
-        <div className="container">
-          <div className="bubbles-container">
-            <div className="bubble-item" onClick={() => handleCategoryClick('men')} id="category-men">
-              <div className="bubble-img-wrapper">
-                <img 
-                  src="https://cms.landmarkshops.in/MAX-Friday/MAX2.O/MAX-Dept-Nav-Men-08JUN26.png" 
-                  alt="Men" 
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
-              </div>
-              <span className="bubble-title">MEN</span>
-            </div>
-            
-            <div className="bubble-item" onClick={() => handleCategoryClick('women')} id="category-women">
-              <div className="bubble-img-wrapper">
-                <img 
-                  src="https://cms.landmarkshops.in/MAX-Friday/MAX2.O/MAX-Dept-Nav-Women-08JUN26.png" 
-                  alt="Women" 
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
-              </div>
-              <span className="bubble-title">WOMEN</span>
-            </div>
+    <div className="store-edit" id="home-page-root">
+      <section className="edit-hero">
+        <div className="edit-copy">
+          <span className="edit-eyebrow">THE FREE FIRE STORE EDIT</span>
+          <h1>
+            Your everyday.
+            <br />
+            <em>Anything but ordinary.</em>
+          </h1>
+          <p>
+            From an easy morning to an evening out. Discover pieces that feel
+            like you, at prices you can feel good about.
+          </p>
+          <div className="edit-actions">
+            <Link className="edit-button" to="/collections/all">
+              Find your next favourite <ArrowUpRight size={18} />
+            </Link>
+            <a className="edit-link" href="#shop-categories">
+              Shop by category <ArrowRight size={16} />
+            </a>
           </div>
+          <span className="edit-eyebrow edit-footnote">
+            YOUR STYLE. YOUR OWN WAY.
+          </span>
         </div>
-      </div>
-
-      {/* Simple Trust Line */}
-      <div className="simple-trust-line" id="trust-strip">
-        <span>Free Shipping</span>
-        <span className="dot">•</span>
-        <span>Secure Payment</span>
-        <span className="dot">•</span>
-        <span>Easy Returns</span>
-      </div>
-
-      {/* Featured Products */}
-      <div className="section" style={{ background: '#fff', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }} id="featured-section">
-        <div className="container">
-          <div className="section-head section-head-row">
-            <div>
-              <h2>FEATURED PRODUCTS</h2>
-              <div className="line"></div>
-              <p>Handpicked bestsellers</p>
-            </div>
-            <button className="view-all" style={{ background: 'none', border: 'none', borderBottom: '1px solid var(--dark)', cursor: 'pointer' }} onClick={() => navigate('/collections/all')}>VIEW ALL</button>
-          </div>
-          <div className="grid-4" id="homeFeatured">
-            {featuredProducts.map(renderProductCard)}
-          </div>
+        <div className="edit-images">
+          {hero && (
+            <Link className="edit-main" to={`/product/${hero.id}`}>
+              <img
+                src={hero.images?.[0]}
+                alt={hero.name}
+                fetchPriority="high"
+              />
+              <span>
+                The statement edit <ArrowUpRight size={18} />
+              </span>
+            </Link>
+          )}
+          {second && (
+            <Link className="edit-inset" to="/collections/co-ords">
+              <img
+                src={second.images?.[0]}
+                alt="Explore matching co-ord sets"
+              />
+              <span>
+                Better together <ArrowUpRight size={16} />
+              </span>
+            </Link>
+          )}
+          <span className="edit-stamp" aria-hidden="true">
+            Everyday<small>WITH A LITTLE EXTRA</small>
+          </span>
         </div>
+      </section>
+      <div className="edit-promises">
+        <Link to="/policies/shipping">
+          <Truck size={21} />
+          <span>
+            <strong>Delivery, explained</strong>
+            <small>Explore our shipping policy</small>
+          </span>
+          <ArrowUpRight size={16} />
+        </Link>
+        <Link to="/policies/refund">
+          <RotateCcw size={21} />
+          <span>
+            <strong>Shop with confidence</strong>
+            <small>Our returns & cancellation policy</small>
+          </span>
+          <ArrowUpRight size={16} />
+        </Link>
+        <Link to="/contact">
+          <Headphones size={21} />
+          <span>
+            <strong>A real person to help</strong>
+            <small>Get in touch with Free Fire Store</small>
+          </span>
+          <ArrowUpRight size={16} />
+        </Link>
       </div>
-
-      {/* New Arrivals */}
-      <div className="section" id="new-arrivals-section">
-        <div className="container">
-          <div className="section-head section-head-row">
-            <div>
-              <h2>NEW ARRIVALS</h2>
-              <div className="line"></div>
-              <p>Fresh drops every week</p>
-            </div>
-            <button className="view-all" style={{ background: 'none', border: 'none', borderBottom: '1px solid var(--dark)', cursor: 'pointer' }} onClick={() => navigate('/collections/all')}>VIEW ALL</button>
+      <section className="edit-section" id="shop-categories">
+        <div className="edit-heading">
+          <div>
+            <span className="edit-eyebrow">FIND YOUR KIND OF STYLE</span>
+            <h2>Start with what you love.</h2>
           </div>
-          <div className="grid-4" id="homeNew">
-            {newArrivals.map(renderProductCard)}
-          </div>
+          <Link className="edit-link" to="/collections/all">
+            Explore everything <ArrowUpRight size={17} />
+          </Link>
         </div>
-      </div>
-
-      {/* Newsletter */}
-      <div className="newsletter" id="newsletter-section">
+        <div className="edit-categories">
+          {COLLECTIONS.map((c, index) => {
+            const product = products.find((p) => p.collection === c.id);
+            return (
+              <Link key={c.id} to={`/collections/${c.id}`}>
+                <div>
+                  <img
+                    src={product?.images?.[0]}
+                    alt={c.label}
+                    loading="lazy"
+                  />
+                  <b>0{index + 1}</b>
+                </div>
+                <h3>
+                  {c.label}
+                  <ArrowUpRight size={18} />
+                </h3>
+                <p>{c.note}</p>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="edit-departments">
+          <span>More to explore</span>
+          {["men", "women", "kids"].map((cat) => (
+            <Link key={cat} to={`/collections/${cat}`}>
+              {cat} <ArrowUpRight size={14} />
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="edit-prices edit-section">
+        <div>
+          <span className="edit-eyebrow">GREAT FINDS. YOUR BUDGET.</span>
+          <h2>A little wardrobe joy.</h2>
+          <p>Four price edits. Plenty of ways to make them yours.</p>
+        </div>
+        <div>
+          {PRICE_EDITS.map((price) => (
+            <Link key={price} to={`/collections/all?price=${price}`}>
+              <small>THE</small>
+              <strong>₹{price.toLocaleString("en-IN")}</strong>
+              <span>
+                edit <ArrowUpRight size={18} />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="edit-section">
+        <div className="edit-heading">
+          <div>
+            <span className="edit-eyebrow">A PIECE FROM EVERY PRICE EDIT</span>
+            <h2>Meet your next favourites.</h2>
+          </div>
+          <Link className="edit-link" to="/collections/new">
+            Discover new arrivals <ArrowUpRight size={17} />
+          </Link>
+        </div>
+        <div className="grid-4">
+          {featured.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
+      <section className="edit-section">
+        <div className="edit-heading">
+          <div>
+            <span className="edit-eyebrow">THE FREE FIRE STORE FAVOURITES</span>
+            <h2>Always in good company.</h2>
+          </div>
+          <Link className="edit-link" to="/collections/all">
+            Shop all pieces <ArrowUpRight size={17} />
+          </Link>
+        </div>
+        <div className="grid-4">
+          {products
+            .filter((p) => p.featured)
+            .slice(0, 4)
+            .map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+        </div>
+      </section>
+      <section className="edit-intro edit-section">
+        <div>
+          <span className="edit-eyebrow">GET TO KNOW FREE FIRE STORE</span>
+          <h2>
+            Good style starts
+            <br />
+            with <em>feeling at home.</em>
+          </h2>
+          <Link className="edit-link" to="/about">
+            Our story <ArrowUpRight size={17} />
+          </Link>
+        </div>
+        <div>
+          <p>
+            Your trusted destination for premium fashion & lifestyle products.
+            Delivered across India with love.
+          </p>
+          <a href="mailto:connectwithgarena@gmail.com">
+            connectwithgarena@gmail.com <ArrowUpRight size={16} />
+          </a>
+          <Link to="/contact">
+            Meet the business & get in touch <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+      <section className="newsletter" id="newsletter-section">
         <div className="container">
           <h2>JOIN THE Free Fire Store FAMILY</h2>
-          <p>Subscribe for exclusive deals, new launches, and style inspiration — straight to your inbox.</p>
+          <p>
+            Subscribe for exclusive deals, new launches, and style inspiration —
+            straight to your inbox.
+          </p>
           <div className="nl-form">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
+            <input
+              type="email"
+              aria-label="Newsletter email"
+              placeholder="Enter your email address"
               value={newsletterEmail}
               onChange={(e) => setNewsletterEmail(e.target.value)}
             />
             <button onClick={handleNewsletterSubmit}>SUBSCRIBE</button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

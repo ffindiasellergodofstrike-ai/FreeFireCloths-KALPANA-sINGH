@@ -8,9 +8,9 @@ export default function ImagePreloader() {
       const imageUrls = new Set<string>();
       
       // Collect all images from the default products
-      PRODUCTS.forEach(product => {
+      PRODUCTS.filter(product => product.featured).slice(0, 4).forEach(product => {
         if (product.images && product.images.length > 0) {
-          product.images.forEach(img => {
+          product.images.slice(0, 1).forEach(img => {
             if (img) imageUrls.add(img);
           });
         }
@@ -22,9 +22,9 @@ export default function ImagePreloader() {
         if (saved) {
           const customProducts = JSON.parse(saved);
           if (Array.isArray(customProducts)) {
-            customProducts.forEach(product => {
+            customProducts.slice(0, 4).forEach(product => {
               if (product.images && product.images.length > 0) {
-                product.images.forEach((img: string) => {
+                product.images.slice(0, 1).forEach((img: string) => {
                   if (img) imageUrls.add(img);
                 });
               }

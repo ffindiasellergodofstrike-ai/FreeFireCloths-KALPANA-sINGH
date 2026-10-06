@@ -11,7 +11,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     ? Math.round(((product.orig - product.price) / product.orig) * 100) 
     : 0;
 
-  const fullStars = Math.floor(product.rating);
+  const fullStars = Math.max(0, Math.min(5, Math.floor(product.rating)));
   const emoji = product.cat === 'men' ? '👕' : product.cat === 'women' ? '👗' : '💻';
 
   const optimizeUnsplash = (url: string, width: number, quality: number = 80) => {
@@ -26,6 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link to={`/product/${product.id}`} className="product-card" id={`product-card-${product.id}`}>
       <div className="pc-img">
+        <span className="pc-image-fallback" aria-hidden="true">{product.name}</span>
         {product.images && product.images.length > 0 ? (
           <img 
             src={optimizeUnsplash(product.images[0], 400, 80)} 
@@ -36,7 +37,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             onError={(e) => {
               const target = e.currentTarget;
               target.onerror = null;
-              target.src = 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop';
+              target.hidden = true;
             }}
           />
         ) : (
@@ -49,20 +50,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.badge && <span className={`badge ${product.badge === 'SALE' ? 'badge-sale' : 'badge-new'}`}>{product.badge}</span>}
           {savings > 0 && <span className="badge badge-sale">-{savings}%</span>}
         </div>
+        <span className="pc-view">Discover this piece ↗</span>
       </div>
       
       <div className="pc-body">
-        <div className="pc-cat">{product.cat.toUpperCase()}</div>
+        <div className="pc-cat">{(product.collection || product.cat).toUpperCase()}</div>
         <div className="pc-name">{product.name}</div>
         <div className="pc-price">
           <span className="price-now">₹{product.price.toLocaleString('en-IN')}</span>
-          {product.orig > 0 && <span className="price-was">₹{product.orig.toLocaleString('en-IN')}</span>}
+          {product.orig > product.price && <span className="price-was">₹{product.orig.toLocaleString('en-IN')}</span>}
           {savings > 0 && <span className="price-save">{savings}% OFF</span>}
         </div>
-        <div className="pc-stars">
+        {product.reviews > 0 && <div className="pc-stars">
           {'★'.repeat(fullStars) + '☆'.repeat(5 - fullStars)}
-          <span>({product.reviews})</span>
-        </div>
+          <span>({product.reviews}){product.sourceId ? ' · Imported reviews' : ''}</span>
+        </div>}
       </div>
     </Link>
   );

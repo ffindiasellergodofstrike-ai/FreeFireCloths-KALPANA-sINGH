@@ -1,3 +1,4 @@
+import { COLLECTIONS } from '../data/reference-products';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -73,6 +74,7 @@ export default function Navbar() {
                   <Link to="/collections/men">MEN</Link>
                   <Link to="/collections/women">WOMEN</Link>
                   <Link to="/collections/kids">KIDS</Link>
+                  {COLLECTIONS.map(c => <Link key={c.id} to={`/collections/${c.id}`}>{c.label}</Link>)}
                 </div>
               </div>
               <div className="nav-item">
@@ -94,7 +96,7 @@ export default function Navbar() {
                 <i className="fa fa-search"></i>
                 <input 
                   type="text" 
-                  placeholder="Search products..." 
+                  aria-label="Search products" placeholder="Search products..."
                   value={searchText}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={handleSearchSubmit}
@@ -102,15 +104,15 @@ export default function Navbar() {
                 />
               </div>
 
-              <Link to={user ? "/my-orders" : "/login"} className="icon-btn" title={user ? "My Profile & Orders" : "Sign In"} id="nav-account-btn">
+              <Link to={user ? "/my-orders" : "/login"} className="icon-btn" title={user ? "My Profile & Orders" : "Sign In"} aria-label={user ? "My Profile & Orders" : "Sign In"} id="nav-account-btn">
                 <i className="fa fa-user"></i>
               </Link>
 
-              <button className="icon-btn" onClick={() => setIsCartOpen(true)} title="Cart" id="nav-cart-btn">
+              <button className="icon-btn" onClick={() => setIsCartOpen(true)} title="Cart" aria-label={`Shopping bag, ${cartCount} items`} id="nav-cart-btn">
                 <i className="fa fa-shopping-bag"></i>
                 <span className="cart-count" id="cartCount">{cartCount}</span>
               </button>
-              <button className="icon-btn hamburger" onClick={() => setMobileDrawerOpen(true)} id="nav-hamburger-btn">
+              <button className="icon-btn hamburger" onClick={() => setMobileDrawerOpen(true)} aria-label="Open menu" aria-expanded={mobileDrawerOpen} aria-controls="mobDrawer" id="nav-hamburger-btn">
                 <i className="fa fa-bars"></i>
               </button>
             </div>
@@ -126,8 +128,8 @@ export default function Navbar() {
       />
       
       {/* Mobile Drawer */}
-      <div className={`mob-drawer ${mobileDrawerOpen ? 'open' : ''}`} id="mobDrawer">
-        <button className="drawer-close" onClick={() => setMobileDrawerOpen(false)} id="drawer-close-btn">
+      <div inert={!mobileDrawerOpen} className={`mob-drawer ${mobileDrawerOpen ? 'open' : ''}`} id="mobDrawer">
+        <button className="drawer-close" onClick={() => setMobileDrawerOpen(false)} aria-label="Close menu" id="drawer-close-btn">
           <i className="fa fa-times"></i>
         </button>
         <div className="drawer-logo" style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '20px' }}>          <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--dark)' }}>FREE FIRE STORE</span>        </div>
@@ -144,7 +146,7 @@ export default function Navbar() {
           <i className="fa fa-search" style={{ color: '#aaa', fontSize: '13px' }}></i>
           <input 
             type="text" 
-            placeholder="Search products..." 
+            aria-label="Search products" placeholder="Search products..."
             value={searchText}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleSearchSubmit}
@@ -156,6 +158,8 @@ export default function Navbar() {
           <Link to="/collections/all" onClick={() => setMobileDrawerOpen(false)}>SHOP ALL</Link>
           <Link to="/collections/men" onClick={() => setMobileDrawerOpen(false)}>MEN</Link>
           <Link to="/collections/women" onClick={() => setMobileDrawerOpen(false)}>WOMEN</Link>
+          <Link to="/collections/kids" onClick={() => setMobileDrawerOpen(false)}>KIDS</Link>
+          {COLLECTIONS.map(c => <Link key={c.id} to={`/collections/${c.id}`} onClick={() => setMobileDrawerOpen(false)}>{c.label}</Link>)}
           <Link to={user ? "/my-orders" : "/login"} onClick={() => setMobileDrawerOpen(false)}>
             {user ? 'MY PROFILE & ORDERS' : 'LOGIN / REGISTER'}
           </Link>
@@ -203,10 +207,10 @@ export default function Navbar() {
       />
 
       {/* Cart Drawer */}
-      <div className={`cart-drawer ${isCartOpen ? 'open' : ''}`} id="cartDrawer">
+      <div inert={!isCartOpen} className={`cart-drawer ${isCartOpen ? 'open' : ''}`} id="cartDrawer">
         <div className="cart-head">
           <h3>YOUR BAG ({cartCount})</h3>
-          <button className="cart-close" onClick={() => setIsCartOpen(false)} id="cart-drawer-close-btn">
+          <button className="cart-close" onClick={() => setIsCartOpen(false)} aria-label="Close bag" id="cart-drawer-close-btn">
             <i className="fa fa-times"></i>
           </button>
         </div>

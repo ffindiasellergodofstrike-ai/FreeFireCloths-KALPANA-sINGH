@@ -1,3 +1,5 @@
+import { isImportedOptionAvailable } from '../data/reference-products';
+import ImportedReviews from '../components/ImportedReviews';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
@@ -25,7 +27,7 @@ export default function ProductDetail() {
 
   // Reset page state, scroll to top smoothly, and dynamically set Open Graph metadata for WhatsApp/Facebook/Instagram scraping
   useEffect(() => {
-    const defaultColor = availableColors[0] || '';
+    const defaultColor = (product?.sourceId ? product.variants?.find(v => v.stock !== 0)?.color : undefined) || availableColors[0] || '';
     setSelectedColor(defaultColor);
     setSelectedSize('');
     setQty(1);
@@ -185,6 +187,10 @@ export default function ProductDetail() {
       return;
     }
     const size = selectedSize || product.sizes[0];
+    if (!isImportedOptionAvailable(product, size, selectedColor)) {
+      toast.warning('This size and colour is unavailable. Please choose another option.');
+      return;
+    }
     const customImage = displayedImages && displayedImages.length > 0 ? displayedImages[0] : undefined;
     addToCart(product, size, qty, selectedColor, customImage);
   };
@@ -195,7 +201,17 @@ export default function ProductDetail() {
       return;
     }
     const size = selectedSize || product.sizes[0];
+    if (!isImportedOptionAvailable(product, size, selectedColor)) {
+      toast.warning('This size and colour is unavailable. Please choose another option.');
+      return;
+    }
     const customImage = displayedImages && displayedImages.length > 0 ? displayedImages[0] : undefined;
+    if (product.sourceId) {
+      // A's cart checkout already preserves quantity, colour and chosen image.
+      addToCart(product, size, qty, selectedColor, customImage);
+      navigate('/checkout');
+      return;
+    }
     navigate('/checkout', { state: { product, size, qty, color: selectedColor, customImage } });
   };
 
@@ -331,14 +347,14 @@ export default function ProductDetail() {
 
             <h1 id="pdName">{product.name}</h1>
 
-            <div className="pd-rating">
-              <span className="pd-stars">★★★★★</span>
-              <span className="pd-revcount" id="pdRating">({product.rating}) · {product.reviews} reviews</span>
-            </div>
+            {product.reviews > 0 && <div className="pd-rating">
+              <span className="pd-stars">{'★'.repeat(Math.max(0, Math.min(5, Math.round(product.rating))))}</span>
+              <span className="pd-revcount" id="pdRating">({product.rating}) · {product.reviews} {product.sourceId ? 'imported reviews' : 'reviews'}</span>
+            </div>}
 
             <div className="pd-price" id="pdPrice">
               {fmt(product.price)}
-              {product.orig > 0 && <span className="was">{fmt(product.orig)}</span>}
+              {product.orig > product.price && <span className="was">{fmt(product.orig)}</span>}
               {disc > 0 && <span className="save">SAVE {disc}%</span>}
             </div>
 
@@ -356,8 +372,11 @@ export default function ProductDetail() {
                       key={color}
                       type="button"
                       className={`color-btn ${selectedColor === color ? 'active' : ''}`}
+                      aria-pressed={selectedColor === color}
+                      disabled={Boolean(product.sourceId) && !product.variants?.some(v => v.color === color && v.stock !== 0)}
                       onClick={() => {
                         setSelectedColor(color);
+                        if (product.sourceId) setSelectedSize('');
                         setActiveThumb(1);
                       }}
                       style={{
@@ -388,6 +407,8 @@ export default function ProductDetail() {
                   key={size}
                   className={`size-btn ${selectedSize === size ? 'active' : ''}`} 
                   onClick={() => handleSizeSelect(size)}
+                  aria-pressed={selectedSize === size}
+                  disabled={!isImportedOptionAvailable(product, size, selectedColor)}
                 >
                   {size}
                 </button>
@@ -435,10 +456,12 @@ export default function ProductDetail() {
               <div className="pd-meta-item"><i className="fa fa-shipping-fast"></i> Free delivery on all orders across India</div>
               <div className="pd-meta-item"><i className="fa fa-undo"></i> Easy 7-day return & exchange policy</div>
               <div className="pd-meta-item"><i className="fa fa-hand-holding-usd"></i> Cash on Delivery (COD) available nationwide</div>
-              <div className="pd-meta-item"><i className="fa fa-check-circle"></i> In stock — ships in 1–2 business days</div>
+              <div className="pd-meta-item"><i className="fa fa-check-circle"></i> {product.sourceId ? 'Availability shown for each size and colour' : 'In stock — ships in 1–2 business days'}</div>
             </div>
           </div>
         </div>
+
+        {product.sourceId && <ImportedReviews sourceId={product.sourceId} />}
 
         {/* Suggested / Related Products Section */}
         {(() => {

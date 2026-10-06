@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Product } from '../data/products';
+import ProductCard from '../components/ProductCard';
 import { useProducts } from '../context/ProductContext';
 
 export default function Search() {
@@ -31,54 +31,9 @@ export default function Search() {
   const filteredProducts = products.filter(p => {
     if (!query.trim()) return false;
     const q = query.toLowerCase();
-    return p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q);
+    return p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || p.collection?.toLowerCase().includes(q);
   });
 
-  const renderProductCard = (p: Product) => {
-    const disc = p.orig ? Math.round(((p.orig - p.price) / p.orig) * 100) : 0;
-    return (
-      <div 
-        className="product-card" 
-        key={p.id} 
-        onClick={() => navigate(`/product/${p.id}`)}
-        id={`product-card-${p.id}`}
-      >
-        <div className="pc-img">
-          {p.images && p.images.length > 0 ? (
-            <img 
-              src={p.images[0]} 
-              alt={p.name} 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-              referrerPolicy="no-referrer"
-            />
-          ) : (
-            <div className={`ph ph-${p.cat}`} style={{ width: '100%', height: '100%', fontSize: '52px' }}>
-              {p.cat === 'men' ? '👔' : '👗'}
-              <span>{p.name.split(' ').slice(0, 2).join(' ').toUpperCase()}</span>
-            </div>
-          )}
-          <div className="pc-badges">
-            {p.badge && <span className={`badge ${p.badge === 'SALE' ? 'badge-sale' : 'badge-new'}`}>{p.badge}</span>}
-            {disc > 0 && <span className="badge badge-sale">-{disc}%</span>}
-          </div>
-          <div className="pc-overlay">ADD TO BAG</div>
-        </div>
-        <div className="pc-body">
-          <div className="pc-cat">{p.cat.toUpperCase()}</div>
-          <div className="pc-name">{p.name}</div>
-          <div className="pc-price">
-            <span className="price-now">{fmt(p.price)}</span>
-            {p.orig > 0 && <span className="price-was">{fmt(p.orig)}</span>}
-            {disc > 0 && <span className="price-save">{disc}% OFF</span>}
-          </div>
-          <div className="pc-stars">
-            {stars(p.rating)}
-            <span>({p.reviews})</span>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div id="search-page-root">
@@ -87,7 +42,7 @@ export default function Search() {
         <form onSubmit={handleSearchSubmit} className="search-bar-lg">
           <input 
             type="text" 
-            placeholder="Search products..." 
+            aria-label="Search products" placeholder="Try a top, shirt or co-ord…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             id="searchMainInput" 
@@ -109,7 +64,7 @@ export default function Search() {
               {filteredProducts.length} RESULTS FOR "{query.toUpperCase()}"
             </div>
             <div className="grid-4">
-              {filteredProducts.map(renderProductCard)}
+              {filteredProducts.map(product => <ProductCard key={product.id} product={product} />)}
             </div>
           </div>
         ) : (
