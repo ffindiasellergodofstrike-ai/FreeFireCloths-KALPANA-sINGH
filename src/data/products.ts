@@ -1,7 +1,7 @@
-import { isRetiredProduct } from './retired-products';
-import { REFERENCE_PRODUCTS } from './reference-products';
-import { KURTI_PRODUCTS } from './kurti-products';
-import { IMPORTED_DRESSES } from './imported_dresses';
+import { isRetiredProduct } from './retired-products.js';
+import { REFERENCE_PRODUCTS } from './reference-products.js';
+import { KURTI_PRODUCTS } from './kurti-products.js';
+import { IMPORTED_DRESSES } from './imported_dresses.js';
 
 export interface ProductVariant {
   size?: string;

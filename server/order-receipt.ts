@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { PRODUCTS } from '../src/data/products';
+import { PRODUCTS } from '../src/data/products.js';
 
 export interface Receipt {
   version: 1; issued: number; expires: number; gid: string; merchantTxnId: string; orderNumber: string;

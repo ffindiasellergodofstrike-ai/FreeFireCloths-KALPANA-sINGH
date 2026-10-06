@@ -1,5 +1,5 @@
-import { createReceiptToken } from '../../server/order-receipt';
-import { isRetiredProduct } from '../../src/data/retired-products';
+import { createReceiptToken } from '../../server/order-receipt.js';
+import { isRetiredProduct } from '../../src/data/retired-products.js';
 import { generateJWEAndJWS } from 'payglocal-js-client';
 import crypto from 'crypto';
 

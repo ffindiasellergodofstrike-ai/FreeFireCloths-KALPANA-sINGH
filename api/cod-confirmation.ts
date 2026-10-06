@@ -1,6 +1,6 @@
-import { emailConfigured } from '../server/email-delivery';
-import { CodEmailError, confirmCodEmail } from '../server/cod-email';
-import { codEmailStore } from '../server/cod-email-store';
+import { emailConfigured } from '../server/email-delivery.js';
+import { CodEmailError, confirmCodEmail } from '../server/cod-email.js';
+import { codEmailStore } from '../server/cod-email-store.js';
 
 export default async function handler(req: any, res: any) {
   res.setHeader('Cache-Control', 'no-store');

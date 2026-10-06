@@ -1,4 +1,4 @@
-import type { Receipt } from './order-receipt';
+import type { Receipt } from './order-receipt.js';
 
 export type OrderEmail = Pick<Receipt, 'email' | 'customer' | 'items' | 'orderNumber' | 'total'> & { payment: 'online' | 'cod' };
 export const escapeHtml = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]!));

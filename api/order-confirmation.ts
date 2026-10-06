@@ -1,5 +1,5 @@
-import { readReceiptToken } from '../server/order-receipt';
-import { deliverOrderEmail } from '../server/email-delivery';
+import { readReceiptToken } from '../server/order-receipt.js';
+import { deliverOrderEmail } from '../server/email-delivery.js';
 
 export default async function handler(req: any, res: any) {
   res.setHeader('Cache-Control','no-store');

@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
-import { PRODUCTS } from '../src/data/products';
-import type { OrderEmail } from './order-message';
-import { deliverOrderEmail } from './email-delivery';
+import { PRODUCTS } from '../src/data/products.js';
+import type { OrderEmail } from './order-message.js';
+import { deliverOrderEmail } from './email-delivery.js';
 
 export class CodEmailError extends Error {
   constructor(public status: number, message: string) { super(message); }

@@ -1,4 +1,4 @@
-import { orderMessage, type OrderEmail } from './order-message';
+import { orderMessage, type OrderEmail } from './order-message.js';
 
 export function emailConfigured() {
   return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);

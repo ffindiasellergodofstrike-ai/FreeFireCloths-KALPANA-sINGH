@@ -1,6 +1,6 @@
 import catalog from "./reference-catalog.json";
 import reviewSummary from "./reference-review-summary.json";
-import type { Product } from "./products";
+import type { Product } from "./products.js";
 
 // Negative IDs reserve a stable namespace without changing A's positive IDs,
 // custom-product allocator, saved carts, order schema, or checkout contracts.
