@@ -1,0 +1,20 @@
+{
+  "productId": 2325892,
+  "reviews": [
+    {
+      "id": "14578343",
+      "productId": 2325892,
+      "author": "N***i",
+      "rating": 5,
+      "date": "27 Sep 2026",
+      "timestamp": 1790516377,
+      "text": "Tooooo goood",
+      "variant": "Brown/L",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280257/freefire_store_migration/reviews_photos_413b6bdf1fc7c749e4750405.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

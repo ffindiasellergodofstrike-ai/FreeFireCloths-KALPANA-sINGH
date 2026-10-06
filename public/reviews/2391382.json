@@ -1,0 +1,20 @@
+{
+  "productId": 2391382,
+  "reviews": [
+    {
+      "id": "14614905",
+      "productId": 2391382,
+      "author": "M***o",
+      "rating": 4,
+      "date": "02 Oct 2026",
+      "timestamp": 1790944906,
+      "text": "So comfortable, same as shown in the picture.",
+      "variant": "Washed Black/L",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280319/freefire_store_migration/reviews_photos_b100941d15d33d4a90c57c49.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

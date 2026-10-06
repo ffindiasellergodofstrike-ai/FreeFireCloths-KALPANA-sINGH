@@ -25,3 +25,7 @@ Keep Website A's deployment configuration and private environment values. No Web
 See [migration mapping and preservation details](docs/MIGRATION.md) for product IDs, source revisions, UI mapping, verification commands, and live-provider validation limitations.
 
 See [validation results and unchanged source limitations](docs/VALIDATION.md) before deployment.
+
+## Images and lightweight source
+
+The 3,667 imported photos are served from Cloudinary. The source now contains their HTTPS URLs instead of 305 MB of image files. See [image management and Google AI Studio workflow](docs/MEDIA_HOSTING.md). Use a current source ZIP for a lightweight copy; cloning the existing Git history still downloads the old image commits.

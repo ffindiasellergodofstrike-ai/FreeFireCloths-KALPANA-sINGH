@@ -1,0 +1,80 @@
+{
+  "productId": 2287102,
+  "reviews": [
+    {
+      "id": "14245517",
+      "productId": 2287102,
+      "author": "4***1",
+      "rating": 5,
+      "date": "12 Aug 2026",
+      "timestamp": 1786572044,
+      "text": "The material is really good and the colour is exactly as shown. Very happy with my purchase.”",
+      "variant": "Apricot/XS",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280275/freefire_store_migration/reviews_photos_5e94ed3c6c4f62cb3146b5c6.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14532941",
+      "productId": 2287102,
+      "author": "V***i",
+      "rating": 5,
+      "date": "21 Sep 2026",
+      "timestamp": 1789991268,
+      "text": "It was an amazing top loved the fitting ,",
+      "variant": "Apricot/M",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280298/freefire_store_migration/reviews_photos_8b5da7fa080347580b5dbabe.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14418810",
+      "productId": 2287102,
+      "author": "S*** ",
+      "rating": 5,
+      "date": "06 Sep 2026",
+      "timestamp": 1788662433,
+      "text": "Stylish and elegant anddd good looking wowww",
+      "variant": "Apricot/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280238/freefire_store_migration/reviews_photos_21bd0c29134a3c42be6a5958.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14470703",
+      "productId": 2287102,
+      "author": "4***8",
+      "rating": 5,
+      "date": "13 Sep 2026",
+      "timestamp": 1789276319,
+      "text": "So pretty",
+      "variant": "Apricot/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280303/freefire_store_migration/reviews_photos_933ffaddcd83635273ba1702.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14599503",
+      "productId": 2287102,
+      "author": "8***4",
+      "rating": 5,
+      "date": "30 Sep 2026",
+      "timestamp": 1790768394,
+      "text": "Chic",
+      "variant": "Apricot/L",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280324/freefire_store_migration/reviews_photos_ba3140e66079d6c9a9775c20.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

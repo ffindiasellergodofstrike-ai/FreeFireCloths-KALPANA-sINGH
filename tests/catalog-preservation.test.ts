@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { PRODUCTS } from "../src/data/products";
 import {
   REFERENCE_PRODUCTS,
@@ -11,6 +11,8 @@ import catalog from "../src/data/reference-catalog.json";
 import reviewSummary from "../src/data/reference-review-summary.json";
 import baseline from "../docs/website-a-baseline.json";
 import provenance from "../docs/catalog-provenance.json";
+import media from "../docs/hosted-media.json";
+import { hostedImageForLegacyUrl } from "../src/lib/hosted-images";
 
 const digest = (data: string | Buffer) =>
   createHash("sha256").update(data).digest("hex");
@@ -79,10 +81,23 @@ test("all 251 imported records map losslessly to unique numeric IDs and original
     }
   }
 });
-test("all imported product and review images are local and present", () => {
+test("all imported product and review images use the verified Cloudinary inventory", () => {
+  const knownUrls = new Set(Object.values(media.assets).map((asset) => asset.url));
+  const usedUrls = new Set<string>();
+  assert.equal(knownUrls.size, 3667);
+  for (const [path, asset] of Object.entries(media.assets)) {
+    assert.match(asset.sha256, /^[a-f0-9]{64}$/);
+    assert.ok(asset.bytes > 0);
+    assert.match(asset.url, /^https:\/\/res\.cloudinary\.com\/smi5oqr3\/image\/upload\/v\d+\/freefire_store_migration\//);
+    assert.equal(
+      hostedImageForLegacyUrl(path, "https://store.example"),
+      asset.url.replace(/\/v\d+\//, "/"),
+      "Persisted legacy image URLs must resolve to the uploaded asset",
+    );
+  }
   const check = (url: string) => {
-    assert.match(url, /^\/(products|reviews)\/[a-zA-Z0-9/._-]+$/);
-    assert.ok(existsSync(`public${url}`), url);
+    assert.ok(knownUrls.has(url), url);
+    usedUrls.add(url);
   };
   let reviewCount = 0;
   for (const product of REFERENCE_PRODUCTS) {
@@ -104,6 +119,21 @@ test("all imported product and review images are local and present", () => {
     }
   }
   assert.equal(reviewCount, 1198);
+  assert.equal(usedUrls.size, knownUrls.size);
+});
+test("hosting migration changes only image URLs in catalog and review records", () => {
+  const originalPaths = new Map(Object.entries(media.assets).map(([path, asset]) => [asset.url, path]));
+  const restore = (value: unknown): unknown => {
+    if (typeof value === "string") return originalPaths.get(value) ?? value;
+    if (Array.isArray(value)) return value.map(restore);
+    if (value && typeof value === "object")
+      return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, restore(child)]));
+    return value;
+  };
+  for (const [file, hash] of Object.entries(media.sourceJsonSha256)) {
+    const current = JSON.parse(readFileSync(file, "utf8"));
+    assert.equal(digest(JSON.stringify(restore(current))), hash, file);
+  }
 });
 test("legacy variant behavior and positive custom-product IDs are preserved", () => {
   const original = PRODUCTS.filter((p) => !p.sourceId);

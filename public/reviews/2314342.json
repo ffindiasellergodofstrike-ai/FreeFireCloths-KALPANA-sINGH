@@ -1,0 +1,20 @@
+{
+  "productId": 2314342,
+  "reviews": [
+    {
+      "id": "14605659",
+      "productId": 2314342,
+      "author": "M*** ",
+      "rating": 5,
+      "date": "01 Oct 2026",
+      "timestamp": 1790842741,
+      "text": "Nice lounge wear. Nice material and proper fitting",
+      "variant": "Red/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280360/freefire_store_migration/reviews_photos_ff90be84a4d8bbccdb90d448.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

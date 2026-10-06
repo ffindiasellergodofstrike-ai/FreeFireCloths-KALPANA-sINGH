@@ -23,13 +23,13 @@ Verified in the task sandbox with Node 24.14.1, npm 11.11.0 and shared Chromium.
 ## Automated checks
 
 - `npm run lint`: pass.
-- `./node_modules/.bin/tsx --test tests/*.test.ts`: six tests pass.
+- `./node_modules/.bin/tsx --test tests/*.test.ts`: six tests passed for the initial redesign. The hosting follow-up runs the six updated catalog checks and one legacy-image resolver check; the unchanged payment contract pass is reused.
 - `npm run build`: pass; Vite reports large bundle sizes and an outdated browser support dataset inherited from the original toolchain.
 - `git diff --check`: pass.
-- All 3,918 imported asset/review files and the published reference catalog compared byte for byte with B.
+- Before hosting migration, all 3,918 imported asset/review files and the published reference catalog compared byte for byte with B. After migration, all 3,667 hosted images were downloaded and SHA-256 verified; catalog/review metadata matches after reversing only the image URL substitutions.
 - Browser: exact-price filter, co-ord category count (108), load more (24 → 48), price sorting, search, variants, mixed cart and checkout handoff pass.
 
-The first catalog validation found stale review counters in B's catalog. Counts/ratings now derive from B's 1,198 published review records; the original source catalog remains byte identical for provenance.
+The first catalog validation found stale review counters in B's catalog. Counts/ratings now derive from B's 1,198 published review records; only image URLs subsequently changed for external hosting; the migration manifest preserves hashes of the original catalog/review records.
 
 ## Unchanged source limitations
 
@@ -41,3 +41,10 @@ The preservation checks establish that A's behavior was retained, not that its e
 - `npm ci` reported 26 dependency advisories (3 low, 10 moderate, 11 high, 2 critical). Dependencies were not changed in this UI/catalog migration.
 
 Live gateway settlement, real account authentication, persistent order creation and fulfillment remain unverified. Emulate v0.0.1's catalog was inspected: it does not provide PayGlocal or Firestore, and A does not expose endpoint overrides for them. Synthetic API contract checks are explicitly local fixtures, not substitutes for live acceptance testing.
+
+## Cloudinary migration follow-up
+
+- All 3,667 uploads completed; each public HTTPS image download matches the source SHA-256. Representative unversioned product/review URLs used for older saved carts also returned identical bytes.
+- Fresh `npm run lint`, seven catalog/media tests, `npm run build`, and `git diff --check` pass. The original payment contract test and its API/dependency inputs are unchanged; its prior pass is reused.
+- Fresh browser verification is blocked: the shared browser service repeatedly returns `browser_runtime_window_manager_not_ready`. The application starts and responds over HTTP; this does not establish a new visual or interactive browser pass. Earlier responsive/cart checks apply to the redesign before external hosting.
+- Live payment/order/account acceptance remains unexecuted as described above.

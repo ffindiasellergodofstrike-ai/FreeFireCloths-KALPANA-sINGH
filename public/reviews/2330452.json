@@ -1,0 +1,20 @@
+{
+  "productId": 2330452,
+  "reviews": [
+    {
+      "id": "14599006",
+      "productId": 2330452,
+      "author": "B***a",
+      "rating": 5,
+      "date": "30 Sep 2026",
+      "timestamp": 1790766482,
+      "text": "Nice",
+      "variant": "Burgundy/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280225/freefire_store_migration/reviews_photos_0b2fe71e883117a4415394fa.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "productId": 2118572,
+  "reviews": [
+    {
+      "id": "14446480",
+      "productId": 2118572,
+      "author": "A***h",
+      "rating": 5,
+      "date": "09 Sep 2026",
+      "timestamp": 1788964699,
+      "text": "Soo cuteee... its looks adorable. Quality is great as well. Love it",
+      "variant": "Pink/XS",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280320/freefire_store_migration/reviews_photos_b44d19e164cb54a9fd84d9c4.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "13657395",
+      "productId": 2118572,
+      "author": "G*** ",
+      "rating": 5,
+      "date": "07 May 2026",
+      "timestamp": 1778140123,
+      "text": "It's same as a picture,, I love it,,,,,",
+      "variant": "Pink/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280329/freefire_store_migration/reviews_photos_c1f641c03ae00f59176d07f5.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "productId": 2362682,
+  "reviews": [
+    {
+      "id": "14461280",
+      "productId": 2362682,
+      "author": "9***5",
+      "rating": 5,
+      "date": "11 Sep 2026",
+      "timestamp": 1789144001,
+      "text": "Pretty❤️",
+      "variant": "Multicolor/XL",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280330/freefire_store_migration/reviews_photos_c27fe0192a1fc7acf3633f9d.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280228/freefire_store_migration/reviews_photos_11c1028a5a66b004e0a3d3f0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280283/freefire_store_migration/reviews_photos_6f1264e532ab8484091df883.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14508853",
+      "productId": 2362682,
+      "author": "A***u",
+      "rating": 5,
+      "date": "18 Sep 2026",
+      "timestamp": 1789735980,
+      "text": "Amazing😍😺",
+      "variant": "Multicolor/XL",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280291/freefire_store_migration/reviews_photos_7ed7b10321278bcc629f6c4f.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14524005",
+      "productId": 2362682,
+      "author": "N****",
+      "rating": 5,
+      "date": "20 Sep 2026",
+      "timestamp": 1789908478,
+      "text": "Cuteeee!!",
+      "variant": "Multicolor/XS",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280312/freefire_store_migration/reviews_photos_a11b833ce1b040c40934f080.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14590082",
+      "productId": 2362682,
+      "author": "J***a",
+      "rating": 5,
+      "date": "29 Sep 2026",
+      "timestamp": 1790667226,
+      "text": "Nice ✨️🧿",
+      "variant": "Multicolor/XL",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280245/freefire_store_migration/reviews_photos_2daf1fb77b796c38b53bf719.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "productId": 2235262,
+  "reviews": [
+    {
+      "id": "14587560",
+      "productId": 2235262,
+      "author": "R***a",
+      "rating": 5,
+      "date": "28 Sep 2026",
+      "timestamp": 1790619692,
+      "text": "Amazing fit and very classy",
+      "variant": "Green/S",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280264/freefire_store_migration/reviews_photos_4e6dfe387bd22678254d975e.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

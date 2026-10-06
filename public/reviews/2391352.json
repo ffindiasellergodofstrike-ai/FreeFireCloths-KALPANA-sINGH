@@ -1,0 +1,39 @@
+{
+  "productId": 2391352,
+  "reviews": [
+    {
+      "id": "14599204",
+      "productId": 2391352,
+      "author": "8***3",
+      "rating": 5,
+      "date": "21 Sep 2026",
+      "timestamp": 1790033344,
+      "text": "The pants are a work of art, absolutely stunning, with their warm, elegant color and their neat, comfortable cut that overwhelms the whole place with its beauty and elegance, giving you a charming and luxurious look that suits every outing and makes you shine with confidence and poise because it combines high taste with a distinctive design that highlights your beauty in an amazing way, and there’s nothing better than it in every detail.",
+      "variant": "Washed Black/XS",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280353/freefire_store_migration/reviews_photos_f1e1e503dc19dae315356c4e.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280304/freefire_store_migration/reviews_photos_939e210a0df77044bb1a960c.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280261/freefire_store_migration/reviews_photos_482d29b2e8564425f5103eba.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    },
+    {
+      "id": "14599206",
+      "productId": 2391352,
+      "author": "8***5",
+      "rating": 5,
+      "date": "03 Sep 2026",
+      "timestamp": 1788427342,
+      "text": "The product ring is good and matches the attached picture.",
+      "variant": "Washed Black/XS",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280305/freefire_store_migration/reviews_photos_9592283ffbd9dd9d3049c663.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280220/freefire_store_migration/reviews_photos_0365ad5eb82859352c6b2386.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280328/freefire_store_migration/reviews_photos_bf54e52d95f91fa83d2a99b6.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

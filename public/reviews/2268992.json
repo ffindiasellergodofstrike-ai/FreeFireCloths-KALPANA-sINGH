@@ -1,0 +1,20 @@
+{
+  "productId": 2268992,
+  "reviews": [
+    {
+      "id": "14517048",
+      "productId": 2268992,
+      "author": "A***b",
+      "rating": 5,
+      "date": "19 Sep 2026",
+      "timestamp": 1789832966,
+      "text": "Nice one with affordable price and love the quality",
+      "variant": "Black/L",
+      "images": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791280312/freefire_store_migration/reviews_photos_a13b441ed328afa027a7aad3.webp"
+      ],
+      "origin": "imported",
+      "verifiedStorePurchase": false
+    }
+  ]
+}

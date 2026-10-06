@@ -31,7 +31,7 @@ Stable IDs are `-sourceId`; all existing A product IDs remain positive and uncha
 
 B's available/unavailable SKU flags map to A's existing variant `stock` field (`0` for unavailable; omitted for available, since no exact quantity is supplied). Every imported variant price equals its product price. Imported size/color choices are disabled when unavailable. These catalog checks leave original A product selection unchanged.
 
-B's catalog review counters were stale (some zero despite published photo reviews); `reference-review-summary.json` reflects the actual 1,198 imported reviews. They are explicitly described as imported, not verified Free Fire Store purchases. All local product and review photographs are preserved byte for byte. B contains physical apparel/accessories; no downloadable product files, demos or product FAQs are declared in its published product schema.
+B's catalog review counters were stale (some zero despite published photo reviews); `reference-review-summary.json` reflects the actual 1,198 imported reviews. They are explicitly described as imported, not verified Free Fire Store purchases. All 3,667 imported product and review photographs are hosted on Cloudinary; each public download was verified byte for byte before the local binaries were removed. Review JSON remains local. See [media hosting](MEDIA_HOSTING.md). B contains physical apparel/accessories; no downloadable product files, demos or product FAQs are declared in its published product schema.
 
 ## Existing purchase flow
 
@@ -51,6 +51,6 @@ npm run build
 npm run dev
 ```
 
-The catalog suite checks original product identity, protected file hashes, all imported mappings/availability, and every referenced local image/review. The payment contract test uses synthetic RSA keys and intercepted fetch responses to exercise A's unchanged encryption/initiation, status response, signed success/failure callbacks and missing-token handling. It makes no real payment or database requests and is not a gateway certification or security audit.
+The catalog suite checks original product identity, protected file hashes, all imported mappings/availability, and every hosted image reference, original catalog/review metadata, and local review record. The payment contract test uses synthetic RSA keys and intercepted fetch responses to exercise A's unchanged encryption/initiation, status response, signed success/failure callbacks and missing-token handling. It makes no real payment or database requests and is not a gateway certification or security audit.
 
 Live settlement, real account registration/login, persistent Firebase order creation and fulfillment require Website A's configured provider environment. Preserve the existing deployment secrets privately. There is no new digital-download subsystem; A's existing delivery/order handling remains responsible for fulfillment.
