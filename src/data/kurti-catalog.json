@@ -1,0 +1,934 @@
+[
+  {
+    "id": -300000001,
+    "sourceId": 300000001,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Beige One Shoulder Backless Short Kurti",
+    "handle": "beige-one-shoulder-backless-short-kurti",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Beige & brown"
+    ],
+    "rating": 5.0,
+    "reviews": 1,
+    "desc": "Elevate your wardrobe with this sophisticated one-shoulder short kurti, adorned with an elegant allover print in refined beige and brown hues. Designed with a graceful backless silhouette and adjustable tie-back detail for a personalized fit, its lightweight construction offers effortless comfort and fluid movement. Perfectly paired with tailored trousers, palazzos, or premium denim, this statement piece seamlessly transitions from daytime elegance to elevated evening styling.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-3.webp"
+    ],
+    "variantImages": {
+      "Beige & brown": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-3.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Beige & brown",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Beige & brown",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Beige & brown",
+        "stock": 0,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Beige & brown",
+        "stock": 0,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless",
+      "One Shoulder"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000002,
+    "sourceId": 300000002,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Tie-Dye Print Spaghetti Strap Ruffle Backless Short Kurti",
+    "handle": "tie-dye-print-spaghetti-strap-ruffle-backless-short-kurti",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Mint blue"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Embrace effortless charm with this playful short kurti, featuring a dreamy mint blue and white tie-dye print that exudes fresh, feminine elegance. Designed with delicate adjustable spaghetti straps, a flattering V-neckline, and a graceful backless silhouette accented by double-tie detailing and cascading ruffles, it offers a perfect balance of sophistication and youthful allure. Lightweight and versatile, it pairs beautifully with trousers, leggings, or traditional bottoms for a chic look that transitions seamlessly from casual outings to elevated occasions.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-4.webp"
+    ],
+    "variantImages": {
+      "Mint blue": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Mint blue",
+        "stock": 0,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Mint blue",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Mint blue",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Mint blue",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000003,
+    "sourceId": 300000003,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Floral Embroidered Corset Back High Slit Halter Neck Short Kurti",
+    "handle": "floral-embroidered-corset-back-high-slit-halter-neck-short-kurti",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Off-white & red"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Exuding timeless femininity, this elegant short kurti is crafted in an off-white hue and adorned with delicate red rose embroidery accented by verdant green leaves. The sophisticated halter neckline is complemented by an adjustable corset-style lace-up back, creating a beautifully sculpted silhouette, while high side slits lend graceful movement and contemporary allure. Blending romantic detailing with modern refinement, this versatile piece pairs effortlessly with trousers, leggings, or palazzos for an elevated look suited to both casual and semi-formal occasions.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-3-4.webp"
+    ],
+    "variantImages": {
+      "Off-white & red": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-3-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Off-white & red",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Off-white & red",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Off-white & red",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Off-white & red",
+        "stock": 0,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Floral",
+      "Backless",
+      "Halter Neck"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000004,
+    "sourceId": 300000004,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Black Floral Embroidered Georgette Kurti with Cut-Out Design",
+    "handle": "black-floral-embroidered-georgette-kurti-with-cut-out-design",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Black"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Make a striking statement with this sophisticated black georgette kurti, where modern design meets refined craftsmanship. Featuring delicate white and red floral embroidery, a structured square neckline, and elegant tie-strap shoulders, this piece is elevated by a chic cut-out detail and fashion-forward cropped silhouette. Crafted from premium georgette for a fluid, lightweight feel, it embodies effortless elegance and bold femininity. Perfectly paired with palazzos, tailored trousers, or traditional bottoms, it transitions seamlessly from elevated daytime dressing to stylish evening occasions.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-4.webp"
+    ],
+    "variantImages": {
+      "Black": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Black",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Black",
+        "stock": 3,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Black",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Black",
+        "stock": 3,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Floral"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000005,
+    "sourceId": 300000005,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Paisley Print Halter Neck Backless Kurti",
+    "handle": "paisley-print-halter-neck-backless-kurti",
+    "price": 650.0,
+    "orig": 2497.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Black & gold"
+    ],
+    "rating": 5.0,
+    "reviews": 1,
+    "desc": "Make a bold yet elegant statement with this halter neck kurti, designed in a sleek black base adorned with intricate golden paisley motifs for a refined ethnic touch. Featuring a modern Y2K-inspired silhouette, it showcases a stylish tie-up neckline and an open-back design with delicate multi-strap detailing for an adjustable, flattering fit. The fitted bodice and sleeveless cut enhance its contemporary appeal while maintaining effortless sophistication. Perfect for festive gatherings, parties, or elevated casual wear, it pairs beautifully with trousers, jeans, or traditional bottoms for a versatile, standout look.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-4.webp"
+    ],
+    "variantImages": {
+      "Black & gold": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Black & gold",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Black & gold",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Black & gold",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Black & gold",
+        "stock": 3,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless",
+      "Halter Neck"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000006,
+    "sourceId": 300000006,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Floral Backless Kurti with Spaghetti Straps",
+    "handle": "floral-backless-kurti-with-spaghetti-straps",
+    "price": 650.0,
+    "orig": 2497.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "White & pink"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Crafted in a soft white cotton-blend, this elegant short kurti features delicate floral prints with pink blooms and green foliage, enhanced by subtle vertical silver stripes that add a refined shimmer. Designed with a flattering V-neckline and adjustable spaghetti straps for a customised fit, it is finished with a contemporary lace-up back and graceful high side slits for added movement and modern appeal. Effortlessly versatile, this relaxed silhouette transitions seamlessly from casual outings to everyday wear or smart-casual settings, pairing beautifully with trousers or leggings for an elevated fusion look.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-4.webp"
+    ],
+    "variantImages": {
+      "White & pink": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "White & pink",
+        "stock": 0,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "White & pink",
+        "stock": 2,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "White & pink",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "White & pink",
+        "stock": 1,
+        "price": 650.0,
+        "orig": 2497.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Floral",
+      "Backless"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "39",
+        "waist": "31",
+        "hips": "41"
+      },
+      {
+        "size": "M",
+        "bust": "35",
+        "waist": "28",
+        "hips": "37"
+      },
+      {
+        "size": "S",
+        "bust": "32",
+        "waist": "25",
+        "hips": "34"
+      },
+      {
+        "size": "XS",
+        "bust": "31",
+        "waist": "24",
+        "hips": "33"
+      }
+    ]
+  },
+  {
+    "id": -300000007,
+    "sourceId": 300000007,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Backless Halter Neck Cotton chatpati Kurti",
+    "handle": "backless-halter-neck-cotton-chatpati-kurti",
+    "price": 650.0,
+    "orig": 2498.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Olive"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Crafted from breathable premium cotton with an inner lining for complete comfort and zero transparency, this standout kurti blends effortless wearability with bold design. Featuring a modern halter neckline and a striking backless tie-up detail, it delivers a rare, fashion-forward silhouette with strong Indo-western appeal. Designed for the style-conscious woman, its vibrant, photogenic aesthetic makes it perfect for everyday chic, brunch outings, or festive moments. Versatile and easy to style, it pairs beautifully with jeans, trousers, or skirts for a polished yet playful look.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-4.webp"
+    ],
+    "variantImages": {
+      "Olive": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Olive",
+        "stock": 10,
+        "price": 650.0,
+        "orig": 2498.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Olive",
+        "stock": 19,
+        "price": 650.0,
+        "orig": 2498.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Olive",
+        "stock": 18,
+        "price": 650.0,
+        "orig": 2498.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Olive",
+        "stock": 6,
+        "price": 650.0,
+        "orig": 2498.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless",
+      "Halter Neck"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "38",
+        "waist": "32",
+        "hips": "40"
+      },
+      {
+        "size": "M",
+        "bust": "36",
+        "waist": "30",
+        "hips": "38"
+      },
+      {
+        "size": "S",
+        "bust": "34",
+        "waist": "28",
+        "hips": "36"
+      },
+      {
+        "size": "XS",
+        "bust": "32",
+        "waist": "26",
+        "hips": "34"
+      }
+    ]
+  },
+  {
+    "id": -300000008,
+    "sourceId": 300000008,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Cotton Black Floral Halter Neck Backless chatpati Kurti",
+    "handle": "cotton-black-floral-halter-neck-backless-chatpati-kurti",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Black floral"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Elevate your contemporary ethnic wardrobe with this striking short kurti. Designed to make a bold statement, the front features a rich black base brought to life by a vibrant pink and green floral lotus print, structured with an edgy, geometric cutout halter neckline. The true show-stopper is the back, boasting an ultra-modern, open-back silhouette secured by delicate, adjustable tie-up fabric straps that allow for a perfect, customized fit. Crafted with an inner lining for maximum comfort, opacity, and a structured drape, this versatile kurti pairs effortlessly with jeans, trousers, or skirts - making it your go-to pick for festival nights, dinner dates, or evening outings.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-3.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-4.webp"
+    ],
+    "variantImages": {
+      "Black floral": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-3.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-4.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Black floral",
+        "stock": 10,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Black floral",
+        "stock": 21,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Black floral",
+        "stock": 19,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Black floral",
+        "stock": 15,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless",
+      "Floral",
+      "Halter Neck"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "38",
+        "waist": "32",
+        "hips": "40"
+      },
+      {
+        "size": "M",
+        "bust": "36",
+        "waist": "30",
+        "hips": "38"
+      },
+      {
+        "size": "S",
+        "bust": "34",
+        "waist": "28",
+        "hips": "36"
+      },
+      {
+        "size": "XS",
+        "bust": "32",
+        "waist": "26",
+        "hips": "34"
+      }
+    ]
+  },
+  {
+    "id": -300000009,
+    "sourceId": 300000009,
+    "collection": "kurtis",
+    "cat": "women",
+    "name": "Backless Halter Neck Indigo Cotton chatpati Kurti",
+    "handle": "backless-halter-neck-indigo-cotton-chatpati-kurti",
+    "price": 650.0,
+    "orig": 2499.0,
+    "sizes": [
+      "L",
+      "M",
+      "S",
+      "XS"
+    ],
+    "colors": [
+      "Indigo"
+    ],
+    "rating": 0,
+    "reviews": 0,
+    "desc": "Bring a wave of contemporary elegance to your fusion collection with this striking indigo short kurti. Showcasing a captivating shibori tie-dye pattern in rich shades of blue and white, the front is designed with a modern geometric cutout halter neckline that adds an effortless edge. The back features a dramatic, ultra-chic open silhouette detailed with adjustable tie-up fabric straps, ensuring a perfectly tailored fit. Thoughtfully designed with an inner lining for complete opacity, structural grace, and all-day comfort, this versatile kurti pairs perfectly with dark denim, sleek trousers, or palazzo pants for an unforgettable evening look.",
+    "badge": "NEW",
+    "featured": true,
+    "images": [
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-1.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-2.webp",
+      "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281910/freefire_store_studio/product-9-3.webp"
+    ],
+    "variantImages": {
+      "Indigo": [
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-1.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-2.webp",
+        "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281910/freefire_store_studio/product-9-3.webp"
+      ]
+    },
+    "variants": [
+      {
+        "size": "L",
+        "color": "Indigo",
+        "stock": 8,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp"
+      },
+      {
+        "size": "M",
+        "color": "Indigo",
+        "stock": 20,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp"
+      },
+      {
+        "size": "S",
+        "color": "Indigo",
+        "stock": 19,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp"
+      },
+      {
+        "size": "XS",
+        "color": "Indigo",
+        "stock": 5,
+        "price": 650.0,
+        "orig": 2499.0,
+        "image": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp"
+      }
+    ],
+    "styleTags": [
+      "Backless",
+      "Halter Neck"
+    ],
+    "sizeChart": [
+      {
+        "size": "L",
+        "bust": "38",
+        "waist": "32",
+        "hips": "40"
+      },
+      {
+        "size": "M",
+        "bust": "36",
+        "waist": "30",
+        "hips": "38"
+      },
+      {
+        "size": "S",
+        "bust": "34",
+        "waist": "28",
+        "hips": "36"
+      },
+      {
+        "size": "XS",
+        "bust": "32",
+        "waist": "26",
+        "hips": "34"
+      }
+    ]
+  }
+]

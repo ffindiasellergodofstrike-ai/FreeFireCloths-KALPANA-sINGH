@@ -415,6 +415,21 @@ export default function ProductDetail() {
               ))}
             </div>
 
+            {product.sizeChart && product.sizeChart.length > 0 && (
+              <details className="studio-size-guide">
+                <summary>Size & fit guide <span>Measurements in inches</span></summary>
+                <div className="studio-size-table">
+                  <table>
+                    <caption>{product.name} — size measurements</caption>
+                    <thead><tr><th scope="col">Size</th><th scope="col">Bust</th><th scope="col">Waist</th><th scope="col">Hips</th></tr></thead>
+                    <tbody>{product.sizeChart.map(row => (
+                      <tr key={row.size}><th scope="row">{row.size}</th><td>{row.bust || '—'}</td><td>{row.waist || '—'}</td><td>{row.hips || '—'}</td></tr>
+                    ))}</tbody>
+                  </table>
+                </div>
+              </details>
+            )}
+
             <div className="qty-row">
               <div className="pd-section-label" style={{ marginBottom: 0 }}>QTY</div>
               <div className="qty-ctrl">

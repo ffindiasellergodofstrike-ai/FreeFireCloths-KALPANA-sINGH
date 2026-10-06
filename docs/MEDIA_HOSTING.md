@@ -1,6 +1,6 @@
 # Hosted images and future editing
 
-## Current setup
+## Initial media migration
 
 - Cloudinary cloud: `smi5oqr3`.
 - 1,980 product images and 1,687 review images are hosted externally (3,667 total).
@@ -33,3 +33,7 @@ Do not use a ZIP from an old commit or copy the existing `.git` directory into a
 When asking AI Studio to edit the site, keep the existing Free Fire Store identity, policy content, PayGlocal integration, checkout, auth, orders, Firebase configuration and environment declarations authoritative. Use hosted URLs for new photos and retain the existing product schema and purchase flow.
 
 The migration upload preset can be disabled in Cloudinary after this migration if you no longer need unsigned uploads; public delivery links continue to work independently of that preset.
+
+## Latest studio collection
+
+The nine-product addition hosts another43 product photographs,2 film posters and2 films with MP4/WebM alternatives (49 active files). Total imported product/review photos:3,710, excluding posters. New media public IDs start with `freefire_store_studio/`; keep these assets available. New product image URLs are in `src/data/kurti-catalog.json`; homepage film URLs are in `src/data/studio-media.json`. See [studio update](STUDIO_UPDATE.md).

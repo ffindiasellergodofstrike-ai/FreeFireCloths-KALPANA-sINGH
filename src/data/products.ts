@@ -1,4 +1,5 @@
 import { REFERENCE_PRODUCTS } from './reference-products';
+import { KURTI_PRODUCTS } from './kurti-products';
 import { IMPORTED_DRESSES } from './imported_dresses';
 
 export interface ProductVariant {
@@ -30,6 +31,8 @@ export interface Product {
   variantImages?: Record<string, string[]>; // Map color -> images array
   handle?: string;
   variants?: ProductVariant[];
+  styleTags?: string[];
+  sizeChart?: { size: string; bust: string; waist: string; hips: string }[];
 }
 
 export interface BlogPost {
@@ -1243,7 +1246,8 @@ export const PRODUCTS: Product[] = [
   { id: 2, cat: 'men', name: 'Slim Fit Chinos', price: 1000, orig: 1899, sizes: ['28', '30', '32', '34', '36'], rating: 4.3, reviews: 64, desc: 'Stretch chinos with a modern slim fit. Wrinkle-resistant fabric, all-day comfort.', badge: 'SALE', images: ['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=800&auto=format&fit=crop'] },
   // CSV Imported Dresses
   ...IMPORTED_DRESSES,
-  ...REFERENCE_PRODUCTS
+  ...REFERENCE_PRODUCTS,
+  ...KURTI_PRODUCTS
 ];
 
 export const BLOG_POSTS: BlogPost[] = [

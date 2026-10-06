@@ -1,0 +1,949 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-06",
+  "previousProductCount": 327,
+  "addedProductCount": 9,
+  "galleryReferenceCount": 43,
+  "variantCount": 36,
+  "reviewCount": 2,
+  "products": [
+    {
+      "sourceProduct": 1,
+      "id": -300000001,
+      "sourceId": 300000001,
+      "name": "Beige One Shoulder Backless Short Kurti",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "45ff51f30b47b6e945944bb293734b71dad742238300c0b50c77c5cab516a470",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 2
+        },
+        {
+          "size": "M",
+          "stock": 2
+        },
+        {
+          "size": "S",
+          "stock": 0
+        },
+        {
+          "size": "XS",
+          "stock": 0
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 4,
+      "reviewCount": 1
+    },
+    {
+      "sourceProduct": 2,
+      "id": -300000002,
+      "sourceId": 300000002,
+      "name": "Tie-Dye Print Spaghetti Strap Ruffle Backless Short Kurti",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "da27fdba5b5dc6151568deef117140bc7189e18ddaf297749308e536a23def7c",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 0
+        },
+        {
+          "size": "M",
+          "stock": 2
+        },
+        {
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "size": "XS",
+          "stock": 2
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 3,
+      "id": -300000003,
+      "sourceId": 300000003,
+      "name": "Floral Embroidered Corset Back High Slit Halter Neck Short Kurti",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "0373b09cda580547a79654cecf5102b9c42e35818bfd1563c39961fe488f1718",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "stock": 2
+        },
+        {
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "size": "XS",
+          "stock": 0
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 4,
+      "id": -300000004,
+      "sourceId": 300000004,
+      "name": "Black Floral Embroidered Georgette Kurti with Cut-Out Design",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "87dc3cd058aae8ba1d05ca9152ed7725c5f43a00e9d4d9f0b68cddae04bb7a8e",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 2
+        },
+        {
+          "size": "M",
+          "stock": 3
+        },
+        {
+          "size": "S",
+          "stock": 2
+        },
+        {
+          "size": "XS",
+          "stock": 3
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 5,
+      "id": -300000005,
+      "sourceId": 300000005,
+      "name": "Paisley Print Halter Neck Backless Kurti",
+      "price": 650.0,
+      "orig": 2497.0,
+      "descriptionSha256": "6c34dd39f584ae1fb6431f77f8e66484a1e6925df204db5543d82683f06c737b",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 1
+        },
+        {
+          "size": "M",
+          "stock": 1
+        },
+        {
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "size": "XS",
+          "stock": 3
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 1
+    },
+    {
+      "sourceProduct": 6,
+      "id": -300000006,
+      "sourceId": 300000006,
+      "name": "Floral Backless Kurti with Spaghetti Straps",
+      "price": 650.0,
+      "orig": 2497.0,
+      "descriptionSha256": "5f85825ab017707e8b15398bf2e23f9f5d5ca2e4e8aac51e6f03e1ef182d6980",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 0
+        },
+        {
+          "size": "M",
+          "stock": 2
+        },
+        {
+          "size": "S",
+          "stock": 1
+        },
+        {
+          "size": "XS",
+          "stock": 1
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "39",
+          "waist": "31",
+          "hips": "41"
+        },
+        {
+          "size": "M",
+          "bust": "35",
+          "waist": "28",
+          "hips": "37"
+        },
+        {
+          "size": "S",
+          "bust": "32",
+          "waist": "25",
+          "hips": "34"
+        },
+        {
+          "size": "XS",
+          "bust": "31",
+          "waist": "24",
+          "hips": "33"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 7,
+      "id": -300000007,
+      "sourceId": 300000007,
+      "name": "Backless Halter Neck Cotton chatpati Kurti",
+      "price": 650.0,
+      "orig": 2498.0,
+      "descriptionSha256": "db3fb10b2a31f0954529721bf48c6c614863afb16d628117b5191b3d83ae5343",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 10
+        },
+        {
+          "size": "M",
+          "stock": 19
+        },
+        {
+          "size": "S",
+          "stock": 18
+        },
+        {
+          "size": "XS",
+          "stock": 6
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "38",
+          "waist": "32",
+          "hips": "40"
+        },
+        {
+          "size": "M",
+          "bust": "36",
+          "waist": "30",
+          "hips": "38"
+        },
+        {
+          "size": "S",
+          "bust": "34",
+          "waist": "28",
+          "hips": "36"
+        },
+        {
+          "size": "XS",
+          "bust": "32",
+          "waist": "26",
+          "hips": "34"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 8,
+      "id": -300000008,
+      "sourceId": 300000008,
+      "name": "Cotton Black Floral Halter Neck Backless chatpati Kurti",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "7892cc11fb98de5faca73869c7bca15ee830542d90c93043b3c3199b90770305",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 10
+        },
+        {
+          "size": "M",
+          "stock": 21
+        },
+        {
+          "size": "S",
+          "stock": 19
+        },
+        {
+          "size": "XS",
+          "stock": 15
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "38",
+          "waist": "32",
+          "hips": "40"
+        },
+        {
+          "size": "M",
+          "bust": "36",
+          "waist": "30",
+          "hips": "38"
+        },
+        {
+          "size": "S",
+          "bust": "34",
+          "waist": "28",
+          "hips": "36"
+        },
+        {
+          "size": "XS",
+          "bust": "32",
+          "waist": "26",
+          "hips": "34"
+        }
+      ],
+      "imageCount": 5,
+      "reviewCount": 0
+    },
+    {
+      "sourceProduct": 9,
+      "id": -300000009,
+      "sourceId": 300000009,
+      "name": "Backless Halter Neck Indigo Cotton chatpati Kurti",
+      "price": 650.0,
+      "orig": 2499.0,
+      "descriptionSha256": "8f4487bb2f2047d72d54cf96f78f46c96ac82a657143148546b68aa3ae657619",
+      "sizes": [
+        {
+          "size": "L",
+          "stock": 8
+        },
+        {
+          "size": "M",
+          "stock": 20
+        },
+        {
+          "size": "S",
+          "stock": 19
+        },
+        {
+          "size": "XS",
+          "stock": 5
+        }
+      ],
+      "sizeChart": [
+        {
+          "size": "L",
+          "bust": "38",
+          "waist": "32",
+          "hips": "40"
+        },
+        {
+          "size": "M",
+          "bust": "36",
+          "waist": "30",
+          "hips": "38"
+        },
+        {
+          "size": "S",
+          "bust": "34",
+          "waist": "28",
+          "hips": "36"
+        },
+        {
+          "size": "XS",
+          "bust": "32",
+          "waist": "26",
+          "hips": "34"
+        }
+      ],
+      "imageCount": 4,
+      "reviewCount": 0
+    }
+  ],
+  "media": {
+    "hero-poster.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281903/freefire_store_studio/hero-poster.webp",
+      "sha256": "35fc57f8d22f13e6b359707296d6f7a49c0074006e94db4de95e7402c36ed440",
+      "bytes": 21826,
+      "resourceType": "image",
+      "width": 1080,
+      "height": 608,
+      "verified": true
+    },
+    "hero.mp4": {
+      "url": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791281903/freefire_store_studio/hero.mp4",
+      "sha256": "cd9440cd62a4af3a8a3146afb4662805ca0e4631bdac2fea4bb63ca90967d8a2",
+      "bytes": 1126826,
+      "resourceType": "video",
+      "width": 1080,
+      "height": 608,
+      "verified": true
+    },
+    "product-1-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-0.webp",
+      "sha256": "ce24fe3d9497ccc58646a356ef646971577c9a800bcb89a8366c9576cadef838",
+      "bytes": 218922,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-1-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-1.webp",
+      "sha256": "8a9e0b6f97b930bcf828b6375ba45001b3d20e5f471bc023fbd1a23ae0af83ab",
+      "bytes": 134484,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-1-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-3.webp",
+      "sha256": "5bef26f6e652350223f856981ed1d66ded3e783e893591c41ded5385a48cea5f",
+      "bytes": 151454,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-2-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-2-0.webp",
+      "sha256": "af26af4505b812ee1645099fedb577c4e4dadb28af3887124b26065db1235249",
+      "bytes": 225052,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-1-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281904/freefire_store_studio/product-1-2.webp",
+      "sha256": "c2adbc9c10654017760bb8da869b1c5a01cd348ace830e9ea13960cd91e781ec",
+      "bytes": 163446,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-2-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-3.webp",
+      "sha256": "5ad012a1b64c6adca65c77d5348131f5fc24c87b673940e48e5d68f80db91f9c",
+      "bytes": 196800,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-2-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-2.webp",
+      "sha256": "4bfd872f3ccf3d020a6e8a6fc23702925f286bc01daaef9e2bdbfe9134bc90b0",
+      "bytes": 186654,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-2-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-1.webp",
+      "sha256": "f5811f775e23f75a7e7b1c03700fd82198033c6d31bc09eb50d5046d82085162",
+      "bytes": 181582,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-2-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-2-4.webp",
+      "sha256": "14ae9cd1829f6c75f314bbd728247b33840559bdacb90d54fe6ecac741ea4563",
+      "bytes": 159680,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-3-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-1.webp",
+      "sha256": "8acb1c786b71247b8d65bbed9851d801edfaac7f8432e32a5d6205b53b96ce75",
+      "bytes": 218326,
+      "resourceType": "image",
+      "width": 1341,
+      "height": 2000,
+      "verified": true
+    },
+    "product-3-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-2.webp",
+      "sha256": "a7bfdebeca54d16515f556bda6ee109138862b46ded50006287a6769ebc56a34",
+      "bytes": 139582,
+      "resourceType": "image",
+      "width": 1349,
+      "height": 2000,
+      "verified": true
+    },
+    "product-3-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-0.webp",
+      "sha256": "17e6f899da21751de72dff0343b5c89493a54fc1aa33a901ff00085d013bb862",
+      "bytes": 149480,
+      "resourceType": "image",
+      "width": 1381,
+      "height": 2000,
+      "verified": true
+    },
+    "product-3-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281905/freefire_store_studio/product-3-3.webp",
+      "sha256": "e490a413507a39372d83968ba1e3c1e0fb5b134b59348e686e94e4d4c26a9ec0",
+      "bytes": 137378,
+      "resourceType": "image",
+      "width": 1354,
+      "height": 2000,
+      "verified": true
+    },
+    "product-3-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-3-4.webp",
+      "sha256": "25b08d02e940fa1ae90944fd994a14a02d0e503584026fe070cefa0eeba00bde",
+      "bytes": 140688,
+      "resourceType": "image",
+      "width": 1354,
+      "height": 2000,
+      "verified": true
+    },
+    "product-4-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-0.webp",
+      "sha256": "9ffea0112edd0fc4b0c86e48f399870b0ae383024019bf8155b71bb4df11d4fc",
+      "bytes": 116908,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-4-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-1.webp",
+      "sha256": "86bf55425810d4ecaca08a6ead0742b1b516f7c80043fe06385132c355e3752b",
+      "bytes": 109606,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-4-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-3.webp",
+      "sha256": "a2e5b2e40f8fe0e3e7181e8ae873ea09b07d300648a47d749cbdad0437bbd6f3",
+      "bytes": 108680,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-4-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-4.webp",
+      "sha256": "cf501364d6e9ae060d09facac2f2a4b7c0edf582d6f290f51767a3df2f4ec78d",
+      "bytes": 215296,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-5-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-5-0.webp",
+      "sha256": "7e9f50d9235589c7d07d499ab71f3c806a62d8ba221b782b6f091c8e470e5846",
+      "bytes": 127810,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-5-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-1.webp",
+      "sha256": "c78948734ecd938a28ac836a4658470e93b6a8f241eb8564e172077e4dd277ef",
+      "bytes": 169080,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-5-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-2.webp",
+      "sha256": "c852385dd06768d6eb528af04ea562980ff42aebbbb871ae706cf39d5a97dead",
+      "bytes": 234412,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-4-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281906/freefire_store_studio/product-4-2.webp",
+      "sha256": "70c451249fe4768dc514e3cf438a2a27e5f9609c1352a9fe12c4a277053f8f39",
+      "bytes": 106088,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-5-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-4.webp",
+      "sha256": "312550c6397bdce8a370ec96e473aaa8db8d735ae3f3517b6462a7a4f8372d35",
+      "bytes": 113892,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-6-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-1.webp",
+      "sha256": "dc3fd7c99f9f01c57734d95782174e1a705dd77dc8c59791bd3736508169f201",
+      "bytes": 191918,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-6-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-6-0.webp",
+      "sha256": "264f703aae5c01aa1b237c2f939d9891dba989bc56ce71c9e312a300e7173e1d",
+      "bytes": 226954,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-5-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281907/freefire_store_studio/product-5-3.webp",
+      "sha256": "3aef08cb8fbc86749023420b03a1cda9f3a887f420c401cc739600837464c6b3",
+      "bytes": 161392,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-6-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-3.webp",
+      "sha256": "d6510dd450606cc53afd2066a34f4523b92c5e6b440f8bd6a1f7224f0743bac5",
+      "bytes": 211068,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-6-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-4.webp",
+      "sha256": "bf4fe65bf53bb3aa5a30122a470332d7c68d2c7de366cad7cff9484edeedc1d0",
+      "bytes": 183320,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-7-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-0.webp",
+      "sha256": "61e960f1e6d531136dc24152e0fc14efd7a8afff6fef418f8a3e5a952acaffc6",
+      "bytes": 124266,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-6-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-6-2.webp",
+      "sha256": "7b20cbf2c17d90b39eba5a34757bc6f65f7271df4612363dee165322203d8db4",
+      "bytes": 165336,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-7-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-1.webp",
+      "sha256": "9f85fbcb4b980e9d1ee19ed32472b14cf12e2c533a7f186c0c9d1afedfb4cd2f",
+      "bytes": 164532,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-7-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-3.webp",
+      "sha256": "ba8566185b0cab4c718cf36c1b7ce36f80c8fb218f8c5773ed7159970c8af2f8",
+      "bytes": 191776,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-7-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-2.webp",
+      "sha256": "32b3b86b8ed2793e8cad4c950f0eb97c2e0409f835f3389659b37a0105bc0ed1",
+      "bytes": 198058,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-8-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-8-0.webp",
+      "sha256": "9b6c589d1f04ddde6a4bc153d8435fd04fde5d9bd00ddd2375702282d0a22392",
+      "bytes": 182582,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-8-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-1.webp",
+      "sha256": "47d74e175722c51c5117a8aa8123df37ce565f9a865a25ba2915782b72745608",
+      "bytes": 109600,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-8-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-2.webp",
+      "sha256": "8494d9f784d6e2333e6ec615ebcc444b8d3111ecc5250a05991575e430be6e66",
+      "bytes": 318796,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-7-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281908/freefire_store_studio/product-7-4.webp",
+      "sha256": "f6df55285c7c510b1242e8a13d757130eecb8dde0fe832f69cd51316d372eeab",
+      "bytes": 161204,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-9-1.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-1.webp",
+      "sha256": "634d806eb15d7de9cb2e9cf5ad57a43e892d16834dd4891e29681bbf875205a1",
+      "bytes": 122336,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-8-4.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-4.webp",
+      "sha256": "e7ba53b701367655c3f0576a84698aa4808b9c1563ef9dad5ba1939f10b207fc",
+      "bytes": 181154,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-8-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-8-3.webp",
+      "sha256": "48d426ef6b5fb5fc04011314fabaa35cd3963800b31ca5beb11dbb6fd07ce3bc",
+      "bytes": 144614,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-9-0.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-0.webp",
+      "sha256": "b253fd471ab39657185a701ac0a575982eb942605bdba8abca689c839a9e6750",
+      "bytes": 183222,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-9-3.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281910/freefire_store_studio/product-9-3.webp",
+      "sha256": "b253fd471ab39657185a701ac0a575982eb942605bdba8abca689c839a9e6750",
+      "bytes": 183222,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "product-9-2.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281909/freefire_store_studio/product-9-2.webp",
+      "sha256": "1c1f6f3b413c82c75c6ee8680749f3866e6dcb411576c577b46f3f19e31be10a",
+      "bytes": 225060,
+      "resourceType": "image",
+      "width": 1333,
+      "height": 2000,
+      "verified": true
+    },
+    "indigo-film-v2-compatible.webm": {
+      "url": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/indigo-film-v2-compatible.webm",
+      "sha256": "09ce05c0e7b55e932ab769a13c415e28fb8f240919fab1bf060561c3c38625d7",
+      "bytes": 1298674,
+      "resourceType": "video",
+      "width": 540,
+      "height": 960,
+      "verified": true
+    },
+    "hero-compatible.webm": {
+      "url": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/hero-compatible.webm",
+      "sha256": "aa9a584edbbebecbbda065355d356a0172515c0c5e97bfc69e49badb8ccc8004",
+      "bytes": 825321,
+      "resourceType": "video",
+      "width": 1080,
+      "height": 608,
+      "verified": true
+    },
+    "indigo-film-v2.mp4": {
+      "url": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/indigo-film-v2.mp4",
+      "sha256": "246c62d44201e524dc601a2c8d882ba929038406c012c65d4b538b9b37fef517",
+      "bytes": 1422112,
+      "resourceType": "video",
+      "width": 540,
+      "height": 960,
+      "verified": true
+    },
+    "indigo-film-v2-poster.webp": {
+      "url": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791282347/freefire_store_studio/indigo-film-v2-poster.webp",
+      "sha256": "d54e5584581f3199ccdc85c7ef24ce73c22eddb8c5b6c1c0ae1327d2c38049d2",
+      "bytes": 124920,
+      "resourceType": "image",
+      "width": 540,
+      "height": 960,
+      "verified": true
+    }
+  }
+}

@@ -18,6 +18,7 @@ export const REFERENCE_PRODUCTS: Product[] = catalog.map((item) => ({
 }));
 
 export const COLLECTIONS = [
+  { id: "kurtis", label: "Kurtis", note: "A fresh take on the familiar." },
   { id: "tops", label: "Tops", note: "A little statement. Every day." },
   { id: "denim", label: "Denim", note: "Find your everyday fit." },
   { id: "co-ords", label: "Co-ords", note: "Better, together." },

@@ -1,0 +1,16 @@
+{
+  "productId": 300000001,
+  "reviews": [
+    {
+      "id": "studio-1",
+      "productId": 300000001,
+      "author": "Neha",
+      "rating": 5,
+      "date": "2026-06-24",
+      "text": "Really classy and well fitted, loved it!",
+      "variant": "",
+      "images": [],
+      "verifiedStorePurchase": false
+    }
+  ]
+}

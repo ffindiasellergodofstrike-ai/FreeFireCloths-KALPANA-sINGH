@@ -1,0 +1,16 @@
+{
+  "productId": 300000005,
+  "reviews": [
+    {
+      "id": "studio-2",
+      "productId": 300000005,
+      "author": "Priya",
+      "rating": 5,
+      "date": "2026-06-25",
+      "text": "Unique and soo pretty!",
+      "variant": "",
+      "images": [],
+      "verifiedStorePurchase": false
+    }
+  ]
+}

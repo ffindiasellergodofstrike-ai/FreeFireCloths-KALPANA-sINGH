@@ -29,3 +29,7 @@ See [validation results and unchanged source limitations](docs/VALIDATION.md) be
 ## Images and lightweight source
 
 The 3,667 imported photos are served from Cloudinary. The source now contains their HTTPS URLs instead of 305 MB of image files. See [image management and Google AI Studio workflow](docs/MEDIA_HOSTING.md). Use a current source ZIP for a lightweight copy; cloning the existing Git history still downloads the old image commits.
+
+## Latest homepage and products
+
+The homepage now features an editorial kurti collection with hosted photography and films. Nine products, 36 size variants and two published reviews are added to the existing catalog (336 products total). See [homepage/catalog update](docs/STUDIO_UPDATE.md) for mapping and validation details.

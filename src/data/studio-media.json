@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "src": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791281903/freefire_store_studio/hero.mp4",
+    "webm": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/hero-compatible.webm",
+    "poster": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791281903/freefire_store_studio/hero-poster.webp"
+  },
+  "indigo": {
+    "src": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/indigo-film-v2.mp4",
+    "webm": "https://res.cloudinary.com/smi5oqr3/video/upload/v1791282347/freefire_store_studio/indigo-film-v2-compatible.webm",
+    "poster": "https://res.cloudinary.com/smi5oqr3/image/upload/v1791282347/freefire_store_studio/indigo-film-v2-poster.webp"
+  }
+}

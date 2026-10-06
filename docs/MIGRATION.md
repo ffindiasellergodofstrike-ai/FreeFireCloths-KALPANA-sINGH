@@ -54,3 +54,7 @@ npm run dev
 The catalog suite checks original product identity, protected file hashes, all imported mappings/availability, and every hosted image reference, original catalog/review metadata, and local review record. The payment contract test uses synthetic RSA keys and intercepted fetch responses to exercise A's unchanged encryption/initiation, status response, signed success/failure callbacks and missing-token handling. It makes no real payment or database requests and is not a gateway certification or security audit.
 
 Live settlement, real account registration/login, persistent Firebase order creation and fulfillment require Website A's configured provider environment. Preserve the existing deployment secrets privately. There is no new digital-download subsystem; A's existing delivery/order handling remains responsible for fulfillment.
+
+## Subsequent homepage update
+
+Nine kurti products were later added, bringing the combined catalog to336 without changing the prior327 records. The latest homepage uses hosted photography and films; see [studio update](STUDIO_UPDATE.md). The initial source-migration facts above describe the original A/B import.

@@ -48,3 +48,7 @@ Live gateway settlement, real account authentication, persistent order creation 
 - Fresh `npm run lint`, seven catalog/media tests, `npm run build`, and `git diff --check` pass. The original payment contract test and its API/dependency inputs are unchanged; its prior pass is reused.
 - Fresh browser verification is blocked: the shared browser service repeatedly returns `browser_runtime_window_manager_not_ready`. The application starts and responds over HTTP; this does not establish a new visual or interactive browser pass. Earlier responsive/cart checks apply to the redesign before external hosting.
 - Live payment/order/account acceptance remains unexecuted as described above.
+
+## Subsequent homepage and kurti collection
+
+The shared-browser prerequisite was repaired; the previous browser blocker is resolved. The new homepage and nine-product addition pass10 relevant catalog/preservation tests, typecheck and production build. New media was publicly downloaded and hash-verified. Desktop/tablet/mobile layouts, both video playback controls, reduced-motion behavior, style filters, galleries, size chart, disabled sizes, mixed original/new cart and Buy Now handoff were checked in shared Chromium. Legacy local image paths in persisted carts also render through the Cloudinary compatibility handler without changing stored data. See [studio update](STUDIO_UPDATE.md). Live provider acceptance remains unexecuted.
