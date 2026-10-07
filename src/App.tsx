@@ -27,7 +27,6 @@ import Search from './pages/Search';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import MyOrders from './pages/MyOrders';
-import GarenaCheckout from './pages/GarenaCheckout';
 import PageMetadata from './components/PageMetadata';
 import NotFound from './pages/NotFound';
 
