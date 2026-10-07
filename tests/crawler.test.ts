@@ -14,6 +14,9 @@ test('sitemap lists all active products but no checkout/account/retired pages', 
   for (const p of PRODUCTS) assert.ok(paths.includes(`/product/${p.id}`));
   for (const id of retiredIds) assert.ok(!paths.includes(`/product/${id}`));
   for (const p of Object.keys(privatePages)) assert.ok(!paths.includes(p));
+  for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
+    assert.ok(!paths.includes(p));
+  }
   const xml = sitemapXml(PRODUCTS);
   assert.match(xml, /^<\?xml/);
   assert.equal((xml.match(/<loc>/g) || []).length, paths.length);
@@ -27,7 +30,13 @@ test('metadata follows the page, canonical domain and index eligibility', () => 
   assert.equal(product.canonical, `${site.origin}/product/-1881672`);
   assert.equal(product.robots, 'index, follow');
   assert.equal(pageMetadata('/product/99999999', PRODUCTS).robots, 'noindex, follow');
-  for (const p of Object.keys(privatePages)) assert.equal(pageMetadata(p, PRODUCTS).robots, 'noindex, follow');
+  for (const p of Object.keys(privatePages)) {
+    const expectedRobots = p.toLowerCase().includes('garena') ? 'noindex, nofollow, noarchive' : 'noindex, follow';
+    assert.equal(pageMetadata(p, PRODUCTS).robots, expectedRobots);
+  }
+  for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
+    assert.equal(pageMetadata(p, PRODUCTS).canonical, site.origin);
+  }
   assert.equal(pageMetadata('/not-real', PRODUCTS).found, false);
   assert.match(pageMetadata('/collections/women/', PRODUCTS).title, /^Women/);
   assert.equal(pageMetadata('/', PRODUCTS).image, site.image);
@@ -47,6 +56,14 @@ test('public routes exclude archived checkout and web output excludes server bun
   assert.equal(deployment.rewrites.find((r: { source: string }) => r.source.startsWith('/product/')).destination, '/product-fallback');
   assert.ok(!deployment.rewrites.some((r: { source: string }) => r.source === '/(.*)'));
   assert.ok(readFileSync('public/robots.txt', 'utf8').includes(`Sitemap: ${site.origin}/sitemap.xml`));
+  const robots = readFileSync('public/robots.txt', 'utf8');
+  for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
+    assert.ok(robots.includes(`Disallow: ${p}`));
+  }
+  for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
+    assert.ok(deployment.headers.some((rule: { source: string; headers: { key: string; value: string }[] }) =>
+      rule.source === p && rule.headers.some(header => header.key === 'X-Robots-Tag' && header.value === 'noindex, nofollow, noarchive')));
+  }
 });
 
 test('all previous media origins have verified same-content hosted replacements', () => {

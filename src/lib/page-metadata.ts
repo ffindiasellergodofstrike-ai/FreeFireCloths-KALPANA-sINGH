@@ -17,9 +17,14 @@ export const privatePages: Record<string, string> = {
   '/GarenaCheckout': 'Verification', '/Garenacheckout': 'Verification',
   '/garenaCheckout': 'Verification',
 };
+const garenaCheckoutPages = new Set([
+  '/garena-checkout', '/garenacheckout', '/GarenaCheckout',
+  '/Garenacheckout', '/garenaCheckout',
+]);
 const collections = [{ id: 'all', label: 'All clothing' }, { id: 'new', label: 'New arrivals' }, ...DEPARTMENTS, ...SHOP_CATEGORIES];
 export function pageMetadata(pathname: string, products: Product[]) {
   const path = pathname.replace(/\/+$/, '') || '/';
+  const isGarenaCheckout = garenaCheckoutPages.has(path);
   let title = publicPages[path] || privatePages[path];
   let description = site.description;
   let image = site.image;
@@ -40,8 +45,8 @@ export function pageMetadata(pathname: string, products: Product[]) {
   return {
     title: path === '/' ? homepage.pageTitle : `${title || 'Page not found'} – ${site.name}`,
     description, image, type, found,
-    canonical: site.origin + path,
-    robots: found && !privatePages[path] ? 'index, follow' : 'noindex, follow',
+    canonical: isGarenaCheckout ? site.origin : site.origin + path,
+    robots: isGarenaCheckout ? 'noindex, nofollow, noarchive' : found && !privatePages[path] ? 'index, follow' : 'noindex, follow',
   };
 }
 export function indexablePaths(products: Product[]): string[] {

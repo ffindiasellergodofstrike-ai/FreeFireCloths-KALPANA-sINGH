@@ -4,6 +4,7 @@ Disallow: /api/
 Disallow: /garena-checkout
 Disallow: /garenacheckout
 Disallow: /GarenaCheckout
+Disallow: /Garenacheckout
 Disallow: /garenaCheckout
 
 Sitemap: https://www.ffstreetwear.shop/sitemap.xml

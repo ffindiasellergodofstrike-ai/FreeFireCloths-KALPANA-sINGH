@@ -30,6 +30,26 @@
       ]
     },
     {
+      "source": "/garena-checkout",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/garenacheckout",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/GarenaCheckout",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/Garenacheckout",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
+      "source": "/garenaCheckout",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {

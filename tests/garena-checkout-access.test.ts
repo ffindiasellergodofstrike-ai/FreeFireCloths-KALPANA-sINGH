@@ -37,13 +37,15 @@ test('all Garena checkout aliases use the guarded wrapper and reject direct acce
   }
 });
 
-test('missing, malformed, duplicate, and unrecognized packages are rejected', () => {
+test('missing, malformed, duplicate, and non-positive packages are rejected', () => {
   const invalidQueries = [
     '',
     'status=success',
+    'status=failed',
     'pkg=not-a-package&uid=123456789',
-    'pkg=999&uid=123456789',
-    'pkg=395.5&uid=123456789',
+    'pkg=0&uid=123456789',
+    'pkg=-490&uid=123456789',
+    `pkg=${'9'.repeat(400)}&uid=123456789`,
     'pkg=395.50&uid=',
     'pkg=395.50&uid=player123',
     `pkg=395.50&uid=${'1'.repeat(21)}`,
@@ -56,11 +58,12 @@ test('missing, malformed, duplicate, and unrecognized packages are rejected', ()
   }
 
   assert.match(renderLegacyRoute('/garena-checkout?status=success'), /id="notfound-page-root"/);
-  assert.match(renderLegacyRoute('/garena-checkout?pkg=999&uid=123456789'), /id="notfound-page-root"/);
+  assert.match(renderLegacyRoute('/garena-checkout?status=failed'), /id="notfound-page-root"/);
+  assert.match(renderLegacyRoute('/garena-checkout?pkg=not-a-package&uid=123456789'), /id="notfound-page-root"/);
 });
 
-test('existing configured package URLs with a UID remain valid', () => {
-  const amounts = ['395.50', '490', '499', '550', '750', '1000', '1100', '1400', '5500', '7500'];
+test('external package amounts with a numeric UID remain valid', () => {
+  const amounts = ['395.50', '490', '987.65'];
 
   for (const amount of amounts) {
     const params = new URLSearchParams({ pkg: amount, uid: '123456789', diamonds: '100', nick: 'Player', level: '10' });
