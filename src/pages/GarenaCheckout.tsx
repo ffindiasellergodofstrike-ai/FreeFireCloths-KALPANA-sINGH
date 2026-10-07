@@ -439,7 +439,7 @@ export default function GarenaCheckout() {
         // Detect cancellation if user returned to this page after initiating payment
         if (sessionStorage.getItem('payment_initiated') === 'true') {
           sessionStorage.removeItem('payment_initiated');
-          window.location.href = 'https://www.codashop.online/?status=failed&reason=user_cancelled';
+          window.location.href = 'https://www.codashop.online/?status=failed';
         }
       }
     };

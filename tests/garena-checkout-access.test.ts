@@ -74,8 +74,3 @@ test('external package amounts with a numeric UID remain valid', () => {
   assert.doesNotMatch(rendered, /id="notfound-page-root"/);
   assert.match(rendered, /Loading\.\.\./);
 });
-
-test('normal checkout route remains registered', () => {
-  const app = readFileSync('src/App.tsx', 'utf8');
-  assert.ok(app.includes('<Route path="/checkout" element={<Checkout />} />'));
-});

@@ -52,7 +52,7 @@ async function runServer() {
       const page = pageMetadata(req.path, PRODUCTS);
       // Custom products remain supported by the original browser catalog.
       if (page.found || /^\/product\/-?\d+\/?$/.test(req.path)) {
-        if (privatePages[req.path] || !page.found) res.set('X-Robots-Tag', 'noindex, follow');
+        if (privatePages[req.path] || !page.found) res.set('X-Robots-Tag', page.robots || 'noindex, follow');
         return res.sendFile(path.join(distPath, page.found ? "index.html" : "product-fallback.html"));
       }
       res.status(404).set('X-Robots-Tag', 'noindex, follow').sendFile(path.join(distPath, '404.html'));
