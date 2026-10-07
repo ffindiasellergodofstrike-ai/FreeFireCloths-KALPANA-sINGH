@@ -424,6 +424,11 @@ export default function GarenaCheckout() {
     const handlePageShow = (e: PageTransitionEvent) => {
       if ((e as any).persisted || document.visibilityState === 'visible') {
         setLoading(false);
+        // Detect cancellation if user returned to this page after initiating payment
+        if (sessionStorage.getItem('payment_initiated') === 'true') {
+          sessionStorage.removeItem('payment_initiated');
+          window.location.href = 'https://www.codashop.online/?status=failed&reason=user_cancelled';
+        }
       }
     };
     window.addEventListener('pageshow', handlePageShow);
@@ -517,6 +522,8 @@ export default function GarenaCheckout() {
     setShowPayModal(false);
     setLoading(true);
     setLoadingMessage('Initializing secure checkout...');
+
+    sessionStorage.setItem('payment_initiated', 'true');
 
     try {
       // Mandated 5-Second Loading Period before redirection
