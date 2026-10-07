@@ -150,11 +150,11 @@ export default async function handler(req, res) {
     const isSuccess = ['SENT_FOR_CAPTURE', 'CAPTURED', 'SUCCESS', 'APPROVED', 'PAID'].includes(String(status).toUpperCase());
 
     if (isGarenaCheckout) {
-      // Isolate Garena checkout redirects: Return to internal GarenaCheckout screen first
+      // Isolate Garena checkout redirects: Return to Codashop site without GID
       if (isSuccess) {
-        return res.redirect(302, `/garena-checkout?status=success&gid=${encodeURIComponent(gid)}`);
+        return res.redirect(302, `https://www.codashop.online/?status=success`);
       } else {
-        return res.redirect(302, `/garena-checkout?status=failed&gid=${encodeURIComponent(gid)}&reason=${encodeURIComponent(status)}`);
+        return res.redirect(302, `https://www.codashop.online/?status=failed&reason=${encodeURIComponent(status)}`);
       }
     }
 
