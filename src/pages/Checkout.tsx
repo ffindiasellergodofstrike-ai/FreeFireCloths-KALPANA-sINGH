@@ -152,6 +152,7 @@ export default function Checkout() {
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [successOrderNumber, setSuccessOrderNumber] = useState<number | null>(null);
   const [codOrderId, setCodOrderId] = useState<string | null>(null);
   const [previousPaymentIncomplete, setPreviousPaymentIncomplete] = useState(false);
 
@@ -293,6 +294,7 @@ export default function Checkout() {
         createdAt: new Date().toISOString()
       });
       setCodOrderId(savedOrder.id);
+      setSuccessOrderNumber(orderNumber);
       setIsProcessing(false);
       setIsSuccess(true);
       if (!directProduct) clearCart();
@@ -314,10 +316,18 @@ export default function Checkout() {
         <div style={{ width: '80px', height: '80px', background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
           <i className="fa fa-check" style={{ fontSize: '36px', color: '#166534' }}></i>
         </div>
-        <h1 style={{ fontSize: '28px', marginBottom: '12px', fontFamily: 'var(--font-h)' }}>ORDER SECURED!</h1>
+        <h1 style={{ fontSize: '28px', marginBottom: '12px', fontFamily: 'var(--font-h)', fontWeight: '800' }}>YOUR ORDER HAS BEEN SUCCESSFULLY PLACED!</h1>
         <p style={{ color: 'var(--gray)', maxWidth: '480px', margin: '0 auto 32px', fontSize: '15px' }}>
-          Thank you for shopping with Free Fire Store. Your order has been placed successfully and will be delivered to your address soon.
+          Thank you for shopping with Free Fire Store. Your order has been received and will be delivered to your address soon.
         </p>
+
+        {successOrderNumber && (
+          <div style={{ background: '#f9fafb', border: '1px dashed #d1d5db', borderRadius: '8px', padding: '16px', marginBottom: '32px', maxWidth: '300px', margin: '0 auto 32px' }}>
+            <p style={{ margin: 0, fontSize: '12px', color: '#6b7280', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold' }}>Order Number</p>
+            <p style={{ margin: 0, fontSize: '24px', fontWeight: 'bold', color: '#111827', fontFamily: 'monospace' }}>#{successOrderNumber}</p>
+          </div>
+        )}
+
         {codOrderId && <CodConfirmation key={codOrderId} orderId={codOrderId} autoSend />}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
           <Link to="/" className="btn btn-black btn-lg">RETURN TO HOME</Link>

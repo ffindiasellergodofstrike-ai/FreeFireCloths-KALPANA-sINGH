@@ -29,17 +29,27 @@
 }
 .announce {
   background: var(--edit-wine);
+  overflow: hidden;
+  white-space: nowrap;
 }
 .announce-track {
-  animation: none;
-  justify-content: center;
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-ltr 25s linear infinite;
 }
-.announce-track > :nth-child(n + 6) {
-  display: none;
+@keyframes marquee-ltr {
+  0% { transform: translateX(-33.3333%); }
+  100% { transform: translateX(0); }
 }
 .announce-track span {
-  font-size: 9px;
-  letter-spacing: 0.7px;
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  opacity: 0.95;
+  margin: 0 14px;
+}
+.announce-sep {
+  opacity: 0.5;
+  font-size: 10px;
 }
 .cart-count {
   background: var(--edit-wine);

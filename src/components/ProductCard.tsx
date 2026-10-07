@@ -65,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
         {product.reviews > 0 && <div className="pc-stars">
           {'★'.repeat(fullStars) + '☆'.repeat(5 - fullStars)}
-          <span>({product.reviews}){product.sourceId ? ' · Imported reviews' : ''}</span>
+          <span>({product.reviews})</span>
         </div>}
       </div>
     </Link>

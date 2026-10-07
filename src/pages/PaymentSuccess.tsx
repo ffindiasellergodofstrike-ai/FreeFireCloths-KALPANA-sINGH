@@ -81,9 +81,9 @@ export default function PaymentSuccess() {
           <i className="fa fa-check" style={{ fontSize: '36px', color: '#10b981' }}></i>
         </div>
         
-        <h1 style={{ fontSize: '32px', marginBottom: '8px', fontFamily: 'var(--font-h)', fontWeight: '800', color: '#111827' }}>Payment Successful!</h1>
+        <h1 style={{ fontSize: '32px', marginBottom: '8px', fontFamily: 'var(--font-h)', fontWeight: '800', color: '#111827' }}>YOUR ORDER HAS BEEN SUCCESSFULLY PLACED!</h1>
         <p style={{ color: '#4b5563', margin: '0 auto 24px', fontSize: '16px', lineHeight: '1.6' }}>
-          Thank you for shopping with Free Fire Store. Your order has been placed securely.
+          Thank you for shopping with Free Fire Store. Your order has been received and will be delivered to your address soon.
         </p>
 
         {orderId && (
@@ -93,14 +93,8 @@ export default function PaymentSuccess() {
           </div>
         )}
 
-        <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '32px' }}>{status}</p>
+        <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '32px' }}></p>
 
-        {emailStatus && <p role="status" className="email-status">{emailStatus}</p>}
-        {emailStatus.includes('could not be sent') || emailStatus.includes('temporarily unavailable') ? (
-          <button type="button" className="btn btn-outline" disabled={isEmailSending} onClick={() => void requestOrderEmail()}>
-            {isEmailSending ? 'SENDING…' : 'RETRY CONFIRMATION EMAIL'}
-          </button>
-        ) : null}
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/" className="btn btn-outline btn-lg" style={{ flex: 1, minWidth: '180px' }}>RETURN TO HOME</Link>
           <Link to="/my-orders" className="btn btn-black btn-lg" style={{ flex: 1, minWidth: '180px' }}>VIEW MY ORDERS</Link>

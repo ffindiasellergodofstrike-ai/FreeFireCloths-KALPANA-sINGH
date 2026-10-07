@@ -13,6 +13,9 @@ export const privatePages: Record<string, string> = {
   '/cart': 'Shopping bag', '/checkout': 'Checkout', '/login': 'Sign in',
   '/register': 'Create account', '/my-orders': 'My orders', '/search': 'Search',
   '/payment/success': 'Payment result', '/payment/failure': 'Payment result',
+  '/garena-checkout': 'Verification', '/garenacheckout': 'Verification',
+  '/GarenaCheckout': 'Verification', '/Garenacheckout': 'Verification',
+  '/garenaCheckout': 'Verification',
 };
 const collections = [{ id: 'all', label: 'All clothing' }, { id: 'new', label: 'New arrivals' }, ...DEPARTMENTS, ...SHOP_CATEGORIES];
 export function pageMetadata(pathname: string, products: Product[]) {

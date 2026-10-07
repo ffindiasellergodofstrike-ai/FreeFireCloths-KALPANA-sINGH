@@ -27,11 +27,13 @@ import Search from './pages/Search';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import MyOrders from './pages/MyOrders';
+import GarenaCheckout from './pages/GarenaCheckout';
 import PageMetadata from './components/PageMetadata';
 import NotFound from './pages/NotFound';
 
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentFailure from './pages/PaymentFailure';
+import { legacyCheckoutRoutes } from '../archive/legacy-checkout-routes';
 
 function StoreLayout() {
   return (
@@ -79,6 +81,7 @@ export default function App() {
             <ImagePreloader />
             <Routes>
               <Route path="/*" element={<StoreLayout />} />
+              {legacyCheckoutRoutes()}
             </Routes>
           </Router>
         </ProductProvider>

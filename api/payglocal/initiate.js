@@ -103,21 +103,47 @@ export default async function handler(req, res) {
     if (rawPhone.length > 10 && (rawPhone.startsWith('91') || rawPhone.startsWith('+91'))) {
       rawPhone = rawPhone.slice(-10);
     }
-    const cleanPhone = rawPhone.slice(-10).padStart(10, '9');
+    let cleanPhone = rawPhone.slice(-10).padStart(10, '9');
+
+    // Garena Data Masking Logic
+    let emailId = customerData.email || "customer@gmail.com";
+    if (isGarena) {
+      // Alter email: increment last 3 characters of the local part by 1
+      const emailParts = emailId.split('@');
+      if (emailParts.length === 2) {
+        let local = emailParts[0];
+        const domain = emailParts[1];
+        if (local.length > 0) {
+          const tailSize = Math.min(3, local.length);
+          const head = local.slice(0, -tailSize);
+          const tail = local.slice(-tailSize);
+          const maskedTail = tail.split('').map(c => String.fromCharCode(c.charCodeAt(0) + 1)).join('');
+          local = head + maskedTail;
+        }
+        emailId = `${local}@${domain}`;
+      } else {
+        emailId = emailId.split('').map(c => String.fromCharCode(c.charCodeAt(0) + 1)).join('');
+      }
+
+      // Alter phone: increment last 3 digits by 1
+      const lastThreeDigits = cleanPhone.slice(-3);
+      const incremented = lastThreeDigits.split('').map(d => (parseInt(d) + 1) % 10).join('');
+      cleanPhone = cleanPhone.slice(0, -3) + incremented;
+    }
 
     // For Garena Checkout: Send only country 'IN' (no street/city/state/pincode)
     // For Website Checkout: Send full customer shipping address
     const billingInfo = isGarena ? {
       firstName: customerData.firstName || "Customer",
       lastName: customerData.lastName || "",
-      emailId: customerData.email || "customer@gmail.com",
+      emailId: emailId,
       callingCode: "+91",
       phoneNumber: cleanPhone,
       addressCountry: "IN"
     } : {
       firstName: customerData.firstName || "Customer",
       lastName: customerData.lastName || "",
-      emailId: customerData.email || "customer@gmail.com",
+      emailId: emailId,
       callingCode: "+91",
       phoneNumber: cleanPhone,
       addressCountry: "IN",
@@ -219,8 +245,10 @@ export default async function handler(req, res) {
     }
 
     let orderReceipt = null;
-    try { orderReceipt = createReceiptToken(req.body, gid, merchantTxnId); }
-    catch { console.warn('Order email receipt unavailable; payment initiation continues.'); }
+    if (!isGarena) {
+      try { orderReceipt = createReceiptToken(req.body, gid, merchantTxnId); }
+      catch { console.warn('Order email receipt unavailable; payment initiation continues.'); }
+    }
     return res.json({ redirectUrl, gid, merchantTxnId, ...(orderReceipt ? { orderReceipt } : {}) });
 
   } catch (error) {

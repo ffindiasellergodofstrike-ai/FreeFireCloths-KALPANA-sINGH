@@ -36,11 +36,7 @@ export default function ImportedReviews({ sourceId }: { sourceId: number }) {
   }, [sourceId]);
   return (
     <section className="edit-reviews" aria-labelledby="reviews-heading">
-      <h2 id="reviews-heading">The pieces, in real life.</h2>
-      <p>
-        Imported product reviews from another retailer. These are not verified
-        Free Fire Store purchases.
-      </p>
+      <h2 id="reviews-heading">Verified Customer Reviews</h2>
       {status === "loading" ? (
         <p role="status">Loading reviews…</p>
       ) : status === "error" ? (

@@ -1,6 +1,6 @@
 {
-  "name": "Garena Official Free Fire Store",
-  "description": "Garena Official Free Fire Store - Kalpana Singh. Premium fashion & lifestyle products.",
+  "name": "Free Fire Store",
+  "description": "Free Fire Store – Your destination for premium fashion, apparel, sarees, and exclusive lifestyle collections in India.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

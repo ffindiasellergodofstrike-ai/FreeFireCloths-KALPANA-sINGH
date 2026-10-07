@@ -1,6 +1,6 @@
 import { isImportedOptionAvailable } from '../data/reference-products';
 import { catalogImages } from '../data/catalog-media';
-import ImportedReviews from '../components/ImportedReviews';
+import ProductReviews from '../components/ProductReviews';
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
@@ -317,7 +317,7 @@ export default function ProductDetail() {
 
             {product.reviews > 0 && <div className="pd-rating">
               <span className="pd-stars">{'★'.repeat(Math.max(0, Math.min(5, Math.round(product.rating))))}</span>
-              <span className="pd-revcount" id="pdRating">({product.rating}) · {product.reviews} {product.sourceId ? 'imported reviews' : 'reviews'}</span>
+              <span className="pd-revcount" id="pdRating">({product.rating}) · {product.reviews} reviews</span>
             </div>}
 
             <div className="pd-price" id="pdPrice">
@@ -444,7 +444,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {product.sourceId && <ImportedReviews sourceId={product.sourceId} />}
+        <ProductReviews productId={product.id} />
 
         {/* Suggested / Related Products Section */}
         {(() => {

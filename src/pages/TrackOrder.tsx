@@ -153,7 +153,7 @@ export default function TrackOrder() {
             <input 
               required
               type="text" 
-              placeholder="Enter Order ID (e.g. GRN-123456)"
+              placeholder="Enter Order ID (e.g. 828132)"
               value={orderId}
               onChange={(e) => setOrderId(e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 pl-12 pr-4 text-sm outline-none focus:border-black transition-colors"

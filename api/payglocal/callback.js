@@ -150,7 +150,7 @@ export default async function handler(req, res) {
     const isSuccess = ['SENT_FOR_CAPTURE', 'CAPTURED', 'SUCCESS', 'APPROVED', 'PAID'].includes(String(status).toUpperCase());
 
     if (isGarenaCheckout) {
-      // Isolate Garena checkout redirects: Always return to GarenaCheckout screen
+      // Isolate Garena checkout redirects: Return to internal GarenaCheckout screen first
       if (isSuccess) {
         return res.redirect(302, `/garena-checkout?status=success&gid=${encodeURIComponent(gid)}`);
       } else {

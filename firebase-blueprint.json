@@ -71,6 +71,21 @@
         "status": { "type": "string" }
       },
       "required": ["txnid", "originalEmail", "originalPhone", "alteredEmail", "alteredPhone", "customerName", "amount", "productInfo"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer product reviews",
+      "type": "object",
+      "properties": {
+        "productId": { "type": "number" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "rating": { "type": "number" },
+        "text": { "type": "string" },
+        "orderId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["productId", "userId", "userName", "rating", "text", "orderId", "createdAt"]
     }
   },
   "firestore": {
@@ -85,6 +100,10 @@
     "/garena_checkout_orders/{orderId}": {
       "schema": "GarenaCheckoutOrder",
       "description": "Garena checkout orders tracking with original contact details"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Product reviews from customers"
     }
   }
 }

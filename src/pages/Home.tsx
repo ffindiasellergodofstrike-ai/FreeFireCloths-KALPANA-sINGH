@@ -90,8 +90,7 @@ export default function Home() {
       </section>}
 
       {featuredReviews.length > 0 && <section className="studio-section studio-reviews" aria-labelledby="studio-reviews-title">
-        <span className="studio-kicker">NOTES ON THE COLLECTION</span><h2 id="studio-reviews-title">A few words, <em>on the details.</em></h2>
-        <p className="studio-review-disclosure">Imported product reviews. These are not verified Free Fire Store purchases.</p>
+        <span className="studio-kicker">CUSTOMER EXPERIENCES</span><h2 id="studio-reviews-title">Real Stories from <em>our community.</em></h2>
         <div className="studio-review-grid">{featuredReviews.map(review => <figure key={review.id}>
           <div className="studio-review-stars" aria-label={`${review.rating} out of 5 stars`}>{Array.from({ length: review.rating }, (_, i) => <Star key={i} size={13} fill="currentColor" />)}</div>
           <blockquote>“{review.text}”</blockquote>

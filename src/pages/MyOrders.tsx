@@ -324,7 +324,6 @@ export default function MyOrders() {
                       </div>
                     ))}
                   </div>
-                  {order.paymentMethod === 'Cash on Delivery (COD)' && typeof order.createdAt === 'string' && Date.now() - Date.parse(order.createdAt) < 23 * 3600000 && <CodConfirmation orderId={order.id} />}
                   <OrderDetails order={order} />
                 </div>
               );

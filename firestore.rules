@@ -26,5 +26,10 @@ service cloud.firestore {
     match /garena_checkout_orders/{orderId} {
       allow create, update, write, read, get, list: if true;
     }
+
+    match /reviews/{reviewId} {
+      allow read, get, list: if true;
+      allow create, update, write: if true;
+    }
   }
 }

@@ -18,9 +18,9 @@ export default function Success() {
         <div className="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-25"></div>
         <ShieldCheck size={48} className="text-green-600 relative z-10" id="success-icon-main" />
       </div>
-      <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-4 uppercase" id="success-title">Order Secured!</h2>
+      <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-4 uppercase" id="success-title">YOUR ORDER HAS BEEN SUCCESSFULLY PLACED!</h2>
       <p className="text-slate-500 mb-10 max-w-md mx-auto text-sm sm:text-base leading-relaxed" id="success-desc">
-        Prepaid payment confirmed. Your official order has been secured and broadcasted to our dispatch hub. Tracking details will be available shortly.
+        Thank you for shopping with Free Fire Store. Your order has been received and will be delivered to your address soon.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm mx-auto" id="success-actions">
         <Link to="/my-orders" className="flex-1 bg-black text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition-all shadow-xl text-center" id="success-btn-orders">
