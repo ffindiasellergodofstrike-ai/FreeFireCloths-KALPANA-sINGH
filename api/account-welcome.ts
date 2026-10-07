@@ -1,6 +1,6 @@
 import { emailConfigured } from '../server/email-delivery.js';
 import { createWelcomeEmailStore, sendWelcomeEmail, WelcomeEmailError } from '../server/account-welcome.js';
-import { firebaseAdminDatabase } from '../server/cod-email-store.js';
+import { readPublicUser } from '../server/firebase-public.js';
 
 export default async function handler(req: any, res: any) {
   res.setHeader('Cache-Control', 'no-store');
@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
   }
   if (!emailConfigured()) return res.status(503).json({ error: 'Welcome email is not configured' });
   try {
-    await sendWelcomeEmail(createWelcomeEmailStore(firebaseAdminDatabase()), email);
+    await sendWelcomeEmail(createWelcomeEmailStore(readPublicUser), email);
     return res.json({ sent: true });
   } catch (error) {
     if (error instanceof WelcomeEmailError) return res.status(error.status).json({ error: error.message });

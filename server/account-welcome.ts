@@ -1,11 +1,10 @@
 import { createHash } from 'node:crypto';
 import { deliverEmail } from './email-delivery.js';
-import { firebaseAdminDatabase } from './cod-email-store.js';
 
 const clean = (value: unknown, max = 120) => typeof value === 'string'
   ? value.replace(/[\x00-\x1f\x7f]/g, ' ').trim().slice(0, max)
   : '';
-const emailKey = (email: string) => createHash('sha256').update(email).digest('hex');
+const emailKey = (email: string, createdAt: number) => createHash('sha256').update(`${email}/${createdAt}`).digest('hex');
 
 export class WelcomeEmailError extends Error {
   constructor(public status: number, message: string) { super(message); }
@@ -14,15 +13,11 @@ export class WelcomeEmailError extends Error {
 export type WelcomeEmailJob = {
   email: string;
   name: string;
-  sent: boolean;
-  expires: number;
-  leaseUntil: number;
+  createdAt: number;
 };
 
 export interface WelcomeEmailStore {
   reserve(email: string, now: number): Promise<WelcomeEmailJob>;
-  complete(email: string): Promise<void>;
-  release(email: string): Promise<void>;
 }
 
 export function welcomeEmailMessage(name: string) {
@@ -37,45 +32,23 @@ export function welcomeEmailMessage(name: string) {
   };
 }
 
-export function createWelcomeEmailStore(db: ReturnType<typeof firebaseAdminDatabase>): WelcomeEmailStore {
-  const jobRef = (email: string) => db.collection('_order_email_delivery').doc(`welcome-${emailKey(email)}`);
+export function createWelcomeEmailStore(readUser: (email: string) => Promise<unknown>): WelcomeEmailStore {
   return {
-    reserve: (email, now) => db.runTransaction(async transaction => {
-      const userRef = db.collection('users').doc(email);
-      const ref = jobRef(email);
-      const [userSnapshot, existingSnapshot] = await Promise.all([
-        transaction.get(userRef),
-        transaction.get(ref),
-      ]);
-
-      if (existingSnapshot.exists) {
-        const job = existingSnapshot.data() as WelcomeEmailJob;
-        if (job.sent) return job;
-        if (job.expires <= now) throw new WelcomeEmailError(410, 'Welcome email retry period has ended');
-        if (job.leaseUntil > now) throw new WelcomeEmailError(409, 'Welcome email is already being sent');
-        transaction.update(ref, { leaseUntil: now + 45000 });
-        return job;
-      }
-
-      if (!userSnapshot.exists) throw new WelcomeEmailError(404, 'Account not found');
-      const user = userSnapshot.data();
-      const createdAt = typeof user?.createdAt === 'string' ? Date.parse(user.createdAt) : NaN;
-      if (typeof user?.email !== 'string' || user.email.toLowerCase() !== email
+    reserve: async (email, now) => {
+      const user = await readUser(email);
+      if (!user || typeof user !== 'object') throw new WelcomeEmailError(404, 'Account not found');
+      const profile = user as Record<string, unknown>;
+      const createdAt = typeof profile.createdAt === 'string' ? Date.parse(profile.createdAt) : NaN;
+      if (typeof profile.email !== 'string' || profile.email.toLowerCase() !== email
         || !Number.isFinite(createdAt) || createdAt > now + 60000 || createdAt < now - 15 * 60000) {
         throw new WelcomeEmailError(404, 'New account not found');
       }
-      const job: WelcomeEmailJob = {
+      return {
         email,
-        name: clean(user.name),
-        sent: false,
-        expires: now + 23 * 3600000,
-        leaseUntil: now + 45000,
+        name: clean(profile.name),
+        createdAt,
       };
-      transaction.create(ref, job);
-      return job;
-    }),
-    complete: async email => { await jobRef(email).update({ sent: true, leaseUntil: 0 }); },
-    release: async email => { await jobRef(email).update({ leaseUntil: 0 }); },
+    },
   };
 }
 
@@ -86,12 +59,5 @@ export async function sendWelcomeEmail(
   send = (to: string, name: string, key: string) => deliverEmail(to, key, welcomeEmailMessage(name)),
 ) {
   const job = await store.reserve(email, now);
-  if (job.sent) return;
-  try {
-    await send(job.email, job.name, `welcome/${emailKey(job.email)}`);
-    await store.complete(email);
-  } catch (error) {
-    await store.release(email).catch(() => {});
-    throw error;
-  }
+  await send(job.email, job.name, `welcome/${emailKey(job.email, job.createdAt)}`);
 }

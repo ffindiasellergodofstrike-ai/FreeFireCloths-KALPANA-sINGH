@@ -20,34 +20,29 @@ Set these in the deployment's server environment, then redeploy/restart. Never p
 | `RESEND_API_KEY` | Your Resend sending API key |
 | `RESEND_FROM_EMAIL` | Plain address on a Resend-verified domain; no display name or angle brackets |
 | `ORDER_EMAIL_SECRET` | Stable random secret of at least 32 characters for online receipts |
-| `FIREBASE_SERVICE_ACCOUNT_JSON` | Firebase Admin service account JSON for the existing project in `firebase-applet-config.json`; server only |
 
 Generate the online signing secret locally using `node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))"` and save it in deployment secrets. A verified sender is required; a domain/address is not invented by the app.
 
-### Vercel Firebase setup for COD email
+### Vercel Firebase setup for email
 
-In Vercel, add `FIREBASE_SERVICE_ACCOUNT_JSON` under **Project → Settings → Environment Variables** for every environment where COD email should work, then redeploy. Paste the complete JSON key contents from a service account in the Firebase project's Google Cloud IAM service accounts page. Do not add the variable with a `VITE_` prefix, commit the key, or place it in client code. The key's `project_id` must match `projectId` in `firebase-applet-config.json`.
-
-Grant that service account permission to read the existing `users` and `orders` collections and create/read/update documents in the private `_order_email_delivery` collection. Do not make the ledger public. The function requires this credential on Vercel instead of probing Google metadata credentials; a missing or mismatched key is reported in Vercel function logs.
-
-On an appropriately configured Google-hosted server other than Vercel, Firebase Admin may alternatively use Application Default Credentials. The server always selects the existing named Firestore database from `firebase-applet-config.json`.
+No Firebase Admin service-account key is required. The email API uses the existing public Firebase app configuration to read the just-created account or saved order, according to the current Firestore read rules. Keep `RESEND_API_KEY` server-side; it must never use a `VITE_` prefix.
 
 Leave `RESEND_BASE_URL` unset in production. Keep all existing PayGlocal keys/configuration unchanged. A confirmation can only work live once the real credentials and sender are configured. If email configuration is missing, an already saved order is retained and the UI shows email unavailability with a retry option.
 
-After registration saves a new profile, `/api/account-welcome` reads the account from Firestore and sends a one-time welcome message. The endpoint accepts only the email address, verifies that the matching profile was created recently, and uses a private idempotency ledger to avoid duplicate messages. The account remains created if email delivery is temporarily unavailable; the registration screen reports that separately.
+After registration saves a new profile, `/api/account-welcome` reads the account from Firestore and sends a welcome message. The endpoint accepts only the email address and verifies that the matching profile was created recently. Resend receives a stable idempotency key for retries. The account remains created if email delivery is temporarily unavailable; the registration screen reports that separately.
 
 ## COD flow and retries
 
 1. Checkout saves the order in the existing `orders` collection with its existing fields.
 2. Only after that write succeeds, the confirmation component requests `/api/cod-confirmation` with the saved document ID. It sends no recipient, prices or message text to this endpoint.
 3. The server reads that order, checks its COD status, age, address and totals, and maps all products to the current active catalog. Removed items, invalid quantities/sizes/colours/prices and mismatched totals cannot send email.
-4. A Firestore transaction writes an immutable message snapshot into `_order_email_delivery`, a new **private email-delivery ledger**. It does not modify the order or authentication schema. The same transaction reserves a per-recipient limit of five new COD confirmations in a rolling 24-hour window.
-5. Resend gets a stable per-order idempotency key. Concurrent sends use a 45-second lease; failed attempts retry the same content. Completed jobs return success without another send. Unsent jobs expire after 23 hours, within Resend's 24-hour deduplication window.
+4. The endpoint re-reads the saved order through the public Firebase client configuration and checks its COD status, age, address and totals.
+5. Resend gets a stable per-order idempotency key. Retries use the same key and content; orders become ineligible after 23 hours, within Resend's 24-hour idempotency window.
 6. The success screen offers retry after a failed email request. Recent COD orders in My Orders also offer a confirmation button. A retry never creates another order.
 
-COD creation still uses the original client authentication and Firestore rules, which allow public order writes. The ledger and validation prevent arbitrary email body/recipient overrides at the email endpoint and limit repeats; they do **not** upgrade the existing authentication or guarantee that public order records were created by an authenticated account. Browser-only Admin products not in the server catalog are ineligible for COD email until the catalog is synchronized. Their original order flow remains available.
+COD creation still uses the original client authentication and Firestore rules, which allow public order reads and writes. Validation prevents arbitrary email body/recipient overrides at the email endpoint, and Resend idempotency prevents duplicate sends for the same order during its 24-hour key window; the system no longer has a private send ledger or a per-recipient rolling limit. These checks do **not** upgrade the existing authentication or guarantee that public order records were created by an authenticated account. Browser-only Admin products not in the server catalog are ineligible for COD email until the catalog is synchronized. Their original order flow remains available.
 
-There is no autonomous mail worker: automatic sending is triggered by the success screen; retry is available in My Orders. Closing the browser before that request completes may require a later retry. Cancelled or old orders cannot start a new confirmation. Sent records remain for durable deduplication; set an appropriate retention policy for private ledger/customer snapshots in deployment.
+There is no autonomous mail worker: automatic sending is triggered by the success screen; retry is available in My Orders. Closing the browser before that request completes may require a later retry. Cancelled or old orders cannot start a new confirmation.
 
 ## Online flow
 
@@ -79,4 +74,4 @@ node /home/vercel-sandbox/runtime/emulate/v0.0.1/dist/index.js start --service r
 RESEND_BASE_URL=http://localhost:4000 ./node_modules/.bin/tsx scripts/verify-order-email.mts
 ```
 
-The smoke test uses synthetic online status and COD storage, then actual local Resend send/read. Neither PayGlocal nor Firestore is in that emulator catalog. Live Firebase Admin access, live Resend sender/delivery, live payment, production account/order writes and actual shipment remain unverified. The ZIP includes setup/docs, source and catalog JSON; no credentials, dependencies, build artifacts, photos, invoice font or PDFs.
+The smoke test uses synthetic online status and COD storage, then actual local Resend send/read. Neither PayGlocal nor Firestore is in that emulator catalog. Live Firebase public-rule reads, live Resend sender/delivery, live payment, production account/order writes and actual shipment remain unverified. The ZIP includes setup/docs, source and catalog JSON; no credentials, dependencies, build artifacts, photos, invoice font or PDFs.
