@@ -1,24 +1,59 @@
-import { applicationDefault, cert, getApps, initializeApp } from 'firebase-admin/app';
+import { applicationDefault, cert, getApps, initializeApp, type Credential, type ServiceAccount } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import config from '../firebase-applet-config.json' with { type: 'json' };
 import { CodEmailError, codOrderMessage, recipientKey, type CodEmailStore, type EmailJob } from './cod-email.js';
 
-function database() {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+export function parseFirebaseServiceAccount(value: string, projectId: string): ServiceAccount {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(value);
+  } catch (error) {
+    throw new Error('FIREBASE_SERVICE_ACCOUNT_JSON must contain valid JSON', { cause: error });
+  }
+  if (!isRecord(parsed)) throw new Error('FIREBASE_SERVICE_ACCOUNT_JSON must contain a service-account object');
+  const { project_id, client_email, private_key } = parsed;
+  if (typeof project_id !== 'string' || !project_id.trim()
+    || typeof client_email !== 'string' || !client_email.trim()
+    || typeof private_key !== 'string' || !private_key.trim()) {
+    throw new Error('FIREBASE_SERVICE_ACCOUNT_JSON is missing project_id, client_email, or private_key');
+  }
+  if (project_id !== projectId) throw new Error('Firebase project mismatch');
+  return {
+    projectId,
+    clientEmail: client_email,
+    privateKey: private_key.replace(/\\n/g, '\n'),
+  };
+}
+
+export function createFirebaseCredential(
+  serviceAccountJson: string | undefined,
+  onVercel: boolean,
+): Credential {
+  if (serviceAccountJson) return cert(parseFirebaseServiceAccount(serviceAccountJson, config.projectId));
+  if (onVercel) throw new Error('FIREBASE_SERVICE_ACCOUNT_JSON is required for COD email on Vercel');
+  return applicationDefault();
+}
+
+export function firebaseAdminDatabase() {
   const name = 'order-email-server';
   let app = getApps().find(app => app.name === name);
   if (!app) {
-    const value = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
-    const account = value ? JSON.parse(value) : undefined;
-    if (account && account.project_id !== config.projectId) throw new Error('Firebase project mismatch');
-    app = initializeApp({ projectId: config.projectId, credential: account ? cert(account) : applicationDefault() }, name);
+    app = initializeApp({
+      projectId: config.projectId,
+      credential: createFirebaseCredential(process.env.FIREBASE_SERVICE_ACCOUNT_JSON, Boolean(process.env.VERCEL)),
+    }, name);
   }
   return getFirestore(app, config.firestoreDatabaseId);
 }
 
 // This collection is covered by the existing default-deny rule. Clients cannot create email jobs.
-export function codEmailStore(): CodEmailStore { return createCodEmailStore(database()); }
+export function codEmailStore(): CodEmailStore { return createCodEmailStore(firebaseAdminDatabase()); }
 
-export function createCodEmailStore(db: ReturnType<typeof database>): CodEmailStore {
+export function createCodEmailStore(db: ReturnType<typeof firebaseAdminDatabase>): CodEmailStore {
   const jobRef = (id: string) => db.collection('_order_email_delivery').doc(`cod-${id}`);
   return {
     reserve: (id, now) => db.runTransaction(async transaction => {

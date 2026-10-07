@@ -4,7 +4,7 @@
 
 For the current source, use `freefire-store-public-cleanup.zip` and see `AI_STUDIO_GUIDE.md`. The email-only implementation described here replaces the earlier PDF-email version.
 
-- COD and verified online PayGlocal orders request a Resend confirmation.
+- New accounts, COD orders and verified online PayGlocal orders can receive Resend emails.
 - No invoice, PDF attachment, merchant owner name, merchant address or merchant contact details are included in either email.
 - The email includes Free Fire Store, order number, canonical product names, sizes/colours, quantities, unit prices, total, customer name/email/phone and delivery address.
 - COD says payment is due on delivery; online confirmation says payment confirmed. Email does not invent a delivery date.
@@ -24,9 +24,17 @@ Set these in the deployment's server environment, then redeploy/restart. Never p
 
 Generate the online signing secret locally using `node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))"` and save it in deployment secrets. A verified sender is required; a domain/address is not invented by the app.
 
-For COD, Firebase Admin may alternatively use Application Default Credentials on an appropriately configured Google-hosted server. The server always selects the existing named Firestore database from `firebase-applet-config.json`. A supplied service-account project ID must match that existing project. Grant server access to read `orders` and transact on the private email ledger. The existing client rules already deny access to that ledger; do not make it public.
+### Vercel Firebase setup for COD email
+
+In Vercel, add `FIREBASE_SERVICE_ACCOUNT_JSON` under **Project → Settings → Environment Variables** for every environment where COD email should work, then redeploy. Paste the complete JSON key contents from a service account in the Firebase project's Google Cloud IAM service accounts page. Do not add the variable with a `VITE_` prefix, commit the key, or place it in client code. The key's `project_id` must match `projectId` in `firebase-applet-config.json`.
+
+Grant that service account permission to read the existing `users` and `orders` collections and create/read/update documents in the private `_order_email_delivery` collection. Do not make the ledger public. The function requires this credential on Vercel instead of probing Google metadata credentials; a missing or mismatched key is reported in Vercel function logs.
+
+On an appropriately configured Google-hosted server other than Vercel, Firebase Admin may alternatively use Application Default Credentials. The server always selects the existing named Firestore database from `firebase-applet-config.json`.
 
 Leave `RESEND_BASE_URL` unset in production. Keep all existing PayGlocal keys/configuration unchanged. A confirmation can only work live once the real credentials and sender are configured. If email configuration is missing, an already saved order is retained and the UI shows email unavailability with a retry option.
+
+After registration saves a new profile, `/api/account-welcome` reads the account from Firestore and sends a one-time welcome message. The endpoint accepts only the email address, verifies that the matching profile was created recently, and uses a private idempotency ledger to avoid duplicate messages. The account remains created if email delivery is temporarily unavailable; the registration screen reports that separately.
 
 ## COD flow and retries
 

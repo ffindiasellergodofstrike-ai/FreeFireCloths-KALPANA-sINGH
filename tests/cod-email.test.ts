@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { codOrderMessage, confirmCodEmail } from '../server/cod-email';
-import { createCodEmailStore } from '../server/cod-email-store';
+import { createCodEmailStore, createFirebaseCredential, parseFirebaseServiceAccount } from '../server/cod-email-store';
 import { orderMessage } from '../server/order-message';
 import handler from '../api/cod-confirmation';
 
@@ -29,6 +29,22 @@ export class MemoryDatabase {
 const now = Date.now();
 export const codFixture = () => ({ paymentMethod: 'Cash on Delivery (COD)', status: 'Order Placed (COD)', createdAt: new Date(now).toISOString(), orderNumber: 123456, userEmail: 'cod-test@example.invalid', total: 550,
   shippingAddress: { email: 'cod-test@example.invalid', firstName: 'Demo <script>', lastName: 'Customer', address: '12 Sample Street', city: 'Lucknow', state: 'Uttar Pradesh', pincode: '226001', phone: '0000000000' }, items: [{ id: 301, name: 'Untrusted product name', size: 'S', qty: 1, price: 550 }] });
+
+test('Vercel COD email requires valid Firebase service-account credentials without metadata lookup fallback', () => {
+  const projectId = 'existing-project';
+  const serviceAccount = parseFirebaseServiceAccount(JSON.stringify({
+    project_id: projectId,
+    client_email: 'firebase-admin@example.invalid',
+    private_key: 'private-key\\nline',
+  }), projectId);
+  assert.equal(serviceAccount.projectId, projectId);
+  assert.equal(serviceAccount.privateKey, 'private-key\nline');
+  assert.throws(() => parseFirebaseServiceAccount('{}', projectId), /missing project_id, client_email, or private_key/);
+  assert.throws(() => parseFirebaseServiceAccount(JSON.stringify({
+    project_id: 'wrong-project', client_email: 'firebase-admin@example.invalid', private_key: 'key',
+  }), projectId), /Firebase project mismatch/);
+  assert.throws(() => createFirebaseCredential(undefined, true), /FIREBASE_SERVICE_ACCOUNT_JSON is required for COD email on Vercel/);
+});
 
 test('COD email uses saved canonical products, accurate unpaid copy and customer-only details', () => {
   const message = codOrderMessage(codFixture(), now);
@@ -70,4 +86,36 @@ test('COD endpoint rejects malformed requests and handles missing email setup wi
     const disabled = response(); await handler({ method: 'POST', body: { orderId: 'abcdefghijklmnopqrst' } }, disabled); assert.equal(disabled.code, 503);
     const method = response(); await handler({ method: 'GET' }, method); assert.equal(method.code, 405);
   } finally { if (env !== undefined) process.env.RESEND_API_KEY = env; }
+});
+
+test('COD endpoint returns a controlled error on Vercel when Firebase credentials are missing', async () => {
+  const previous = {
+    vercel: process.env.VERCEL,
+    firebase: process.env.FIREBASE_SERVICE_ACCOUNT_JSON,
+    resendKey: process.env.RESEND_API_KEY,
+    resendFrom: process.env.RESEND_FROM_EMAIL,
+  };
+  process.env.VERCEL = '1';
+  delete process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+  process.env.RESEND_API_KEY = 'test-key';
+  process.env.RESEND_FROM_EMAIL = 'store@example.invalid';
+  const response = { code: 200, body: null as any, setHeader() {}, status(code: number) { this.code = code; return this; }, json(body: any) { this.body = body; return this; } };
+  const originalError = console.error;
+  console.error = () => {};
+  try {
+    await handler({ method: 'POST', body: { orderId: 'abcdefghijklmnopqrst' } }, response);
+    assert.equal(response.code, 503);
+    assert.deepEqual(response.body, { error: 'Order email is temporarily unavailable. Your order remains saved.' });
+  } finally {
+    console.error = originalError;
+    for (const [key, value] of Object.entries({
+      VERCEL: previous.vercel,
+      FIREBASE_SERVICE_ACCOUNT_JSON: previous.firebase,
+      RESEND_API_KEY: previous.resendKey,
+      RESEND_FROM_EMAIL: previous.resendFrom,
+    })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
 });

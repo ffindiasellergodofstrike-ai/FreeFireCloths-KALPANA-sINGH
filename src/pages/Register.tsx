@@ -43,10 +43,24 @@ export default function Register() {
         createdAt: new Date().toISOString()
       });
 
+      let welcomeEmailSent = false;
+      try {
+        const response = await fetch('/api/account-welcome', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailLower }),
+        });
+        welcomeEmailSent = response.ok && (await response.json()).sent === true;
+      } catch {
+        welcomeEmailSent = false;
+      }
+
       // Log user session
       login(emailLower, fullName.trim(), mobile.trim());
       toast.dismiss(toastId);
       toast.success('Account created successfully! Welcome to Free Fire Store.');
+      if (welcomeEmailSent) toast.success('A welcome email has been sent to your email address.');
+      else toast.info('Your account was created, but we could not send the welcome email right now.');
       
       // Redirect to original product page if redirect_product_id is saved
       const redirectId = localStorage.getItem('redirect_product_id');

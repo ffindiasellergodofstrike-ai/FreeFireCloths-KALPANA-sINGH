@@ -13,6 +13,7 @@ export default async function handler(req: any, res: any) {
     return res.json({ sent: true });
   } catch (error) {
     if (error instanceof CodEmailError) return res.status(error.status).json({ error: error.message });
+    console.error('COD email confirmation failed:', error instanceof Error ? error.message : 'Unknown error');
     return res.status(503).json({ error: 'Order email is temporarily unavailable. Your order remains saved.' });
   }
 }
