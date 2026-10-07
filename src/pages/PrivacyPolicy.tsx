@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
-            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
+            <p><strong>Support Email:</strong> support@fashion-store.com</p>
           </div>
 
           <p>Free Fire Store ("we", "us", "our") is owned and operated by Kalpana Singh. This Privacy Policy describes how we collect, use, store, and disclose your personal information when you visit or make a purchase from our Site.</p>

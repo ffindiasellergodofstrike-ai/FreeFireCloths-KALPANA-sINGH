@@ -36,7 +36,7 @@ export default function ShippingPolicy() {
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
-            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
+            <p><strong>Support Email:</strong> support@fashion-store.com</p>
           </div>
 
           <h2>OVERVIEW</h2>
@@ -184,7 +184,7 @@ export default function ShippingPolicy() {
           <ul>
             <li>Tracking updates may take up to 24 to 48 hours to appear on the courier partner's website after dispatch.</li>
             <li>Use your tracking number on the courier partner's website to check your delivery status in real time.</li>
-            <li>If tracking shows no update for more than 5 business days, contact us at connectwithgarena@gmail.com with your Order ID and we will investigate with the courier partner.</li>
+            <li>If tracking shows no update for more than 5 business days, contact us via email with your Order ID and we will investigate with the courier partner.</li>
           </ul>
 
           <h2>SECTION 8 — DELIVERY ATTEMPTS</h2>
@@ -206,8 +206,7 @@ export default function ShippingPolicy() {
             <li>Pin code (6-digit)</li>
             <li>Mobile number</li>
           </ul>
-          <p>If you notice an address error AFTER placing your order, contact us <strong>IMMEDIATELY</strong>:</p>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
+          <p>If you notice an address error AFTER placing your order, contact us <strong>IMMEDIATELY</strong> via our support email.</p>
           <p>We will try to update the address before dispatch. Once dispatched, address changes are NOT possible.</p>
 
           <h2>SECTION 10 — DAMAGED OR TAMPERED PACKAGES</h2>
@@ -221,8 +220,7 @@ export default function ShippingPolicy() {
             <li>Take clear photographs of the item <strong>AND</strong> the packaging immediately, before opening fully.</li>
             <li>Contact us within 24 hours of delivery:</li>
           </ul>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
-          <p>We will arrange a free replacement or full refund as per our Refund and Return Policy.</p>
+          <p>If you have already accepted a damaged package, contact us within 24 hours of delivery via our support email.</p>
           <p>Damage claims raised after 24 hours of delivery will not be accepted.</p>
 
           <h2>SECTION 11 — LOST PACKAGES IN TRANSIT</h2>
@@ -255,8 +253,8 @@ export default function ShippingPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
-            <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
+            <p><strong>Email:</strong> support@fashion-store.com</p>
+            <p><strong>Phone / WhatsApp:</strong> +91 9999999999</p>
             <p><strong>Business Name:</strong> Free Fire Store</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>

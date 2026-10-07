@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /garena-checkout
+Disallow: /garenacheckout
+Disallow: /GarenaCheckout
+Disallow: /garenaCheckout
 
 Sitemap: https://www.ffstreetwear.shop/sitemap.xml

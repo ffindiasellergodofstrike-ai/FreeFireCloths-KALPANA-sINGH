@@ -195,6 +195,18 @@ export default function GarenaCheckout() {
   const [vw, setVw] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 390
   );
+
+  // Hide from crawlers
+  useEffect(() => {
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex, nofollow';
+    document.head.appendChild(meta);
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, []);
+
   useEffect(() => {
     const handler = () => setVw(window.innerWidth);
     window.addEventListener('resize', handler);

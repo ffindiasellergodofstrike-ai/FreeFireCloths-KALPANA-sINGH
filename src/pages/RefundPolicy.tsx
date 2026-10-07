@@ -36,7 +36,7 @@ export default function RefundPolicy() {
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
-            <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
+            <p><strong>Support Email:</strong> support@fashion-store.com</p>
           </div>
 
           <p>At Free Fire Store, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
@@ -72,7 +72,7 @@ export default function RefundPolicy() {
           </ul>
 
           <h2>4. DAMAGED, DEFECTIVE, OR INCORRECT ITEMS</h2>
-          <p>If you receive an item that is damaged, defective, or incorrect (wrong product, wrong size, or wrong colour), please contact us within <strong>48 hours</strong> of delivery at connectwithgarena@gmail.com or +91 7393845435.</p>
+          <p>If you receive an item that is damaged, defective, or incorrect, please contact us within <strong>48 hours</strong> of delivery via our support email.</p>
           <p>You must provide:</p>
           <ul>
             <li>Your Order ID and registered mobile number</li>
@@ -112,7 +112,7 @@ export default function RefundPolicy() {
             <li>Pack the item securely in its original packaging to prevent damage during transit.</li>
             <li>Clearly write your Order ID and registered mobile number on the outside of the package.</li>
             <li>Use a trackable courier service. We recommend India Post Speed Post for the widest coverage across India.</li>
-            <li>Share the tracking number with us at connectwithgarena@gmail.com after shipping.</li>
+            <li>Share the tracking number with us via email after shipping.</li>
             <li>Free Fire Store is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
             <li>Self-shipping costs are borne by the customer, except in cases of damaged, defective, or incorrect items.</li>
           </ul>
@@ -226,8 +226,8 @@ export default function RefundPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
-            <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
-            <p><strong>Phone:</strong> +91 7393845435</p>
+            <p><strong>Email:</strong> support@fashion-store.com</p>
+            <p><strong>Phone:</strong> N/A</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
