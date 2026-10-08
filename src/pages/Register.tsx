@@ -86,10 +86,10 @@ export default function Register() {
     <div id="register-page-root" className="account-page">
       <div className="container account-layout"><AccountIntro register />
         <div className="account-form-panel">
-          <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', textAlign: 'center', marginBottom: '8px' }}>
-            CREATE ACCOUNT
+          <h2 className="account-title">
+            Create account
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--gray)', textAlign: 'center', marginBottom: '24px' }}>
+          <p className="account-subtitle">
             Join Free Fire Store for premium fashion and exclusive drops
           </p>
 
@@ -143,13 +143,13 @@ export default function Register() {
               />
             </div>
 
-            <button type="submit" className="btn btn-black btn-full btn-lg" style={{ marginTop: '12px' }}>
-              CREATE ACCOUNT
+            <button type="submit" className="btn btn-black btn-full btn-lg">
+              Create account
             </button>
           </form>
 
-          <p style={{ fontSize: '12px', color: 'var(--gray)', textAlign: 'center', marginTop: '24px' }}>
-            Already have an account? <Link to="/login" style={{ color: 'var(--dark)', fontWeight: 700, textDecoration: 'underline' }}>Sign in</Link>
+          <p className="account-switch">
+            Already have an account? <Link to="/login">Sign in</Link>
           </p>
         </div>
       </div>

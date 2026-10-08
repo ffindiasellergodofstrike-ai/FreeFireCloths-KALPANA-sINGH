@@ -35,7 +35,7 @@ import PaymentFailure from './pages/PaymentFailure';
 
 function StoreLayout() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+    <div className="storefront-shell" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
       <Navbar />
       <AuthModal />
       <main style={{ flex: 1 }}>
