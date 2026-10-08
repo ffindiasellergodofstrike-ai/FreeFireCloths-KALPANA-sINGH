@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { randomBytes } from 'node:crypto';
-import { readCheckoutParameters } from '../src/lib/garena-checkout-access';
+import { readCheckoutParameters } from '../src/lib/garena-checkout-access.js';
 
 export const isCheckoutPath = (pathname: string) => /^\/garena-?checkout\/?$/i.test(pathname);
 
