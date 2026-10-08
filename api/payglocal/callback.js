@@ -1,6 +1,5 @@
 import * as jose from 'jose';
 import crypto from 'crypto';
-import { createCheckoutResultToken, readCheckoutReturnToken } from '../../server/checkout-return.js';
 
 function loadKey(raw) {
   if (!raw) return '';
@@ -13,11 +12,7 @@ function loadKey(raw) {
 }
 
 async function redirectGarenaResult(res, query, status, gid, callbackTxnId = '') {
-  const state = await readCheckoutReturnToken(query.state);
-  if (typeof query.txnId !== 'string' || query.txnId !== state.merchantTxnId) throw new Error('Checkout transaction mismatch');
-  if (callbackTxnId && callbackTxnId !== state.merchantTxnId) throw new Error('Gateway transaction mismatch');
-  const result = await createCheckoutResultToken(state, status, gid);
-  return res.redirect(302, `/GarenaCheckout?result=${encodeURIComponent(result)}`);
+  return res.redirect(302, `/GarenaCheckout?status=${encodeURIComponent(status)}`);
 }
 
 async function getRawBody(req) {

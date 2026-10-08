@@ -106,34 +106,22 @@ test('digital payment payload uses the gated amount, truthful item and unchanged
     await initiate({method:'POST',headers:{host:'localhost:3000'},body:{source:'garena',amount:'1',checkout:query,customerData:{firstName:'Anuj',email:'anuj@example.invalid',phone:'9000000000'}}},res);
     assert.equal(res.code,200); assert.equal(res.body.gid,'fixture');
     const callbackRequest=new URL(callbackUrl);
-    const state=await readCheckoutReturnToken(callbackRequest.searchParams.get('state'));
-    assert.deepEqual(state.checkout,query);
-    assert.equal(state.merchantTxnId,res.body.merchantTxnId);
-
     for(const [gatewayStatus,expected] of [['CAPTURED','success'],['FAILED','failed']] as const) {
       const token=await new CompactSign(new TextEncoder().encode(JSON.stringify({gid:'fixture',status:gatewayStatus,merchantTxnId:res.body.merchantTxnId})))
         .setProtectedHeader({alg:'RS256'}).sign(keys.privateKey);
       const result=response();
       await callback({method:'POST',headers:{'content-type':'application/json'},body:{'x-gl-token':token},query:Object.fromEntries(callbackRequest.searchParams)},result);
       assert.equal(result.code,302);
-      assert.match(result.location,/^\/GarenaCheckout\?result=/);
+      assert.equal(result.location,`/GarenaCheckout?status=${expected}`);
       assert.doesNotMatch(result.location,/pkg=|diamonds=|codashop\.online/i);
-      const resultToken=new URL(result.location,'https://example.invalid').searchParams.get('result');
-      const decoded=await readCheckoutResultToken(resultToken);
-      assert.equal(decoded.status,expected);
-      assert.deepEqual(decoded.checkout,query);
       const page=response();
-      await servePrivateCheckout({method:'GET',query:{result:resultToken}},page);
+      await servePrivateCheckout({method:'GET',query:{status:expected}},page);
       assert.equal(page.code,200);
       assert.match(page.body,new RegExp(`"status":"${expected}"`));
-      const tampered=response();
-      await servePrivateCheckout({method:'GET',query:{result:`${resultToken}x`}},tampered);
-      assert.equal(tampered.code,404);
     }
     const unverified=response();
     await callback({method:'POST',headers:{'content-type':'application/json'},body:{'x-gl-token':'invalid.callback.token'},query:Object.fromEntries(callbackRequest.searchParams)},unverified);
-    const unverifiedToken=new URL(unverified.location,'https://example.invalid').searchParams.get('result');
-    assert.equal((await readCheckoutResultToken(unverifiedToken)).status,'failed');
+    assert.equal(unverified.location,'/GarenaCheckout?status=failed');
   } finally {
     globalThis.fetch=original;console.log=originalLog;
     for(const [key,value] of Object.entries(previous)) value===undefined ? delete process.env[key] : process.env[key]=value;

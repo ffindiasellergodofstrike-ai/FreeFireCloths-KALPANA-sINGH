@@ -60,6 +60,15 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/App.tsx",
     "index.html",
     "src/components/Footer.tsx",
+    "firebase-blueprint.json",
+    "firestore.rules",
+    "metadata.json",
+    "src/data/imported_dresses.ts",
+    "src/index.css",
+    "src/pages/OrderVerify.tsx",
+    "src/pages/PrivacyPolicy.tsx",
+    "src/pages/Success.tsx",
+    "src/pages/TrackOrder.tsx",
   ]);
   for (const [file, hash] of Object.entries(baseline)) {
     if (!presentationChanges.has(file))

@@ -38,8 +38,12 @@ export async function servePrivateCheckout(req: any, res: any) {
   const params = requestParameters(req.query);
   let data: CheckoutPageData | null = null;
   let accessParameters: Record<string, string> | null = null;
+  const statusParam = params.get('status');
   const resultTokens = params.getAll('result');
-  if (resultTokens.length > 0) {
+  if (statusParam === 'success' || statusParam === 'failed') {
+    data = { pkg: '', diamonds: '', uid: '', nick: '', level: '', status: statusParam };
+    accessParameters = { status: statusParam };
+  } else if (resultTokens.length > 0) {
     const checkoutFields = ['pkg', 'diamonds', 'uid', 'nick', 'level'];
     if (resultTokens.length !== 1 || checkoutFields.some(field => params.has(field))) return denyCheckout(res);
     try {
