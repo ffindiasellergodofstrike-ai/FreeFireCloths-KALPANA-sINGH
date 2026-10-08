@@ -1,5 +1,6 @@
 import * as jose from 'jose';
 import crypto from 'crypto';
+import { createCheckoutResultToken, readCheckoutReturnToken } from '../../server/checkout-return.js';
 
 function loadKey(raw) {
   if (!raw) return '';
@@ -9,6 +10,14 @@ function loadKey(raw) {
   }
   k = k.replace(/\\n/g, '\n');
   return k;
+}
+
+async function redirectGarenaResult(res, query, status, gid, callbackTxnId = '') {
+  const state = await readCheckoutReturnToken(query.state);
+  if (typeof query.txnId !== 'string' || query.txnId !== state.merchantTxnId) throw new Error('Checkout transaction mismatch');
+  if (callbackTxnId && callbackTxnId !== state.merchantTxnId) throw new Error('Gateway transaction mismatch');
+  const result = await createCheckoutResultToken(state, status, gid);
+  return res.redirect(302, `/GarenaCheckout?result=${encodeURIComponent(result)}`);
 }
 
 async function getRawBody(req) {
@@ -44,6 +53,7 @@ export default async function handler(req, res) {
     const rawBody = await getRawBody(req);
     const contentType = req.headers['content-type'] || 'none';
     const query = req.query || {};
+    const isGarenaCheckout = query.src === 'garena';
 
     let parsedBody = {};
     if (req.body && typeof req.body === 'object' && Object.keys(req.body).length > 0) {
@@ -93,41 +103,28 @@ export default async function handler(req, res) {
         query,
         queryKeys: Object.keys(query)
       });
+      if (isGarenaCheckout) {
+        try { return await redirectGarenaResult(res, query, 'failed', 'missing-token'); }
+        catch { return res.redirect(302, '/payment/failure?reason=invalid_return'); }
+      }
       return res.redirect(302, '/payment/failure?reason=no_token');
     }
 
-    // 4. If a token is found: decode JWS payload
+    // A payment result is trusted only when PayGlocal's JWS signature verifies.
     let payloadString = '';
     try {
       const pubKeyRaw = loadKey(process.env.PAYGLOCAL_PUBLIC_KEY);
-      let publicKey;
-      if (pubKeyRaw) {
-        try {
-          publicKey = crypto.createPublicKey(pubKeyRaw);
-        } catch (e) {
-          console.warn("Could not create public key strict format:", e.message);
-        }
-      }
-
-      if (publicKey) {
-        try {
-          const { payload } = await jose.compactVerify(token, publicKey);
-          payloadString = new TextDecoder().decode(payload);
-        } catch (e) {
-          console.warn("jose strict verification failed:", e.message);
-        }
-      }
-
-      if (!payloadString) {
-        const parts = token.split('.');
-        if (parts.length >= 2) {
-          const base64Url = parts[1];
-          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-          payloadString = Buffer.from(base64, 'base64').toString('utf8');
-        }
-      }
+      if (!pubKeyRaw) throw new Error('PayGlocal public key is not configured');
+      const publicKey = crypto.createPublicKey(pubKeyRaw);
+      const { payload } = await jose.compactVerify(token, publicKey);
+      payloadString = new TextDecoder().decode(payload);
     } catch (e) {
-      console.error("Token decoding error:", e);
+      console.error("PayGlocal callback verification failed:", e.message);
+      if (isGarenaCheckout) {
+        try { return await redirectGarenaResult(res, query, 'failed', 'unverified'); }
+        catch { return res.redirect(302, '/payment/failure?reason=invalid_callback'); }
+      }
+      return res.redirect(302, '/payment/failure?reason=invalid_callback');
     }
 
     console.log("PayGlocal Callback FULL decoded payload:", payloadString);
@@ -143,19 +140,14 @@ export default async function handler(req, res) {
 
     const gid = payloadObj.gid || payloadObj.data?.gid || query.gid || parsedBody.gid || 'unknown';
     const status = payloadObj.status || payloadObj.data?.status || 'UNKNOWN';
-    const isGarenaCheckout = query.src === 'garena';
+    const callbackTxnId = payloadObj.merchantTxnId || payloadObj.data?.merchantTxnId || '';
 
     console.log(`PayGlocal Payment Decision - GID: ${gid}, Status: ${status}, isGarena: ${isGarenaCheckout}`);
 
     const isSuccess = ['SENT_FOR_CAPTURE', 'CAPTURED', 'SUCCESS', 'APPROVED', 'PAID'].includes(String(status).toUpperCase());
 
     if (isGarenaCheckout) {
-      // Isolate Garena checkout redirects: Return to Codashop site without GID or reason
-      if (isSuccess) {
-        return res.redirect(302, `https://www.codashop.online/?status=success`);
-      } else {
-        return res.redirect(302, `https://www.codashop.online/?status=failed`);
-      }
+      return redirectGarenaResult(res, query, isSuccess ? 'success' : 'failed', String(gid), String(callbackTxnId));
     }
 
     // Default E-Commerce website redirects

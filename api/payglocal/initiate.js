@@ -4,6 +4,7 @@ import { generateJWEAndJWS } from 'payglocal-js-client';
 import crypto from 'crypto';
 import { readCheckoutParameters } from '../../src/lib/garena-checkout-access.js';
 import { denyCheckout, protectedHeaders } from '../../server/private-checkout.js';
+import { createCheckoutReturnToken } from '../../server/checkout-return.js';
 
 // Products mapping from website catalog based on checkout price
 const WEBSITE_PRODUCT_CATALOG = {
@@ -105,6 +106,7 @@ export default async function handler(req, res) {
     const merchantTxnId = `PG-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const host = req.headers.host || 'localhost:3000';
     const protocol = req.headers['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
+    const checkoutReturnToken = checkout ? await createCheckoutReturnToken(checkout, merchantTxnId) : null;
     
     // Digital purchases must be described accurately to the payment gateway.
     const resolvedProductName = checkout ? `Free Fire Diamonds (${checkout.diamonds})` : getRandomProductForPrice(amount);
@@ -165,7 +167,7 @@ export default async function handler(req, res) {
           }
         ]
       },
-      merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}${callbackSourceParam}`
+      merchantCallbackURL: `${protocol}://${host}/api/payglocal/callback?txnId=${merchantTxnId}${callbackSourceParam}${checkoutReturnToken ? `&state=${encodeURIComponent(checkoutReturnToken)}` : ''}`
     };
 
     console.log(`[Backend Gateway Init] TxnId: ${merchantTxnId}, Amount: ₹${formattedAmount}, Product: "${resolvedProductName}"`);

@@ -254,6 +254,7 @@ export default function GarenaCheckout() {
   // Success page auto-redirection countdown
   useEffect(() => {
     if (status === 'success') {
+      sessionStorage.removeItem('payment_initiated');
       const timer = setInterval(() => {
         setCountdown(c => {
           if (c <= 1) {
@@ -270,13 +271,20 @@ export default function GarenaCheckout() {
   // Failure page auto-redirection & progress bar
   useEffect(() => {
     if (status === 'failed') {
+      sessionStorage.removeItem('payment_initiated');
       const t1 = setTimeout(() => setBarWidth('0%'), 50);
-      const t2 = setTimeout(() => {
-        window.location.href = 'https://www.codashop.online/?status=failed';
-      }, 2000);
+      const timer = setInterval(() => {
+        setCountdown(c => {
+          if (c <= 1) {
+            clearInterval(timer);
+            window.location.href = 'https://www.codashop.online/?status=failed';
+          }
+          return c - 1;
+        });
+      }, 1000);
       return () => {
         clearTimeout(t1);
-        clearTimeout(t2);
+        clearInterval(timer);
       };
     }
   }, [status]);
@@ -541,7 +549,7 @@ export default function GarenaCheckout() {
               fontSize: 12,
               color: '#888'
             }}>
-              Redirecting in <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 16 }}>{countdown} seconds</span>…
+              Continuing to codashop.online in <span style={{ fontWeight: 800, color: '#ee2c24', fontSize: 16 }}>{countdown} seconds</span>…
             </div>
 
             <div style={{ textAlign: 'center', fontSize: 11, color: '#ccc' }}>
@@ -627,7 +635,7 @@ export default function GarenaCheckout() {
               color: '#aaa',
               boxSizing: 'border-box'
             }}>
-              Taking you back in 2 seconds…
+              Continuing to codashop.online in {countdown} seconds…
               <div style={{
                 width: '100%',
                 height: 4,
@@ -640,7 +648,7 @@ export default function GarenaCheckout() {
                   width: barWidth,
                   height: '100%',
                   background: 'linear-gradient(90deg, #ee2c24, #c0392b)',
-                  transition: 'width 2s linear'
+                  transition: 'width 5s linear'
                 }} />
               </div>
             </div>

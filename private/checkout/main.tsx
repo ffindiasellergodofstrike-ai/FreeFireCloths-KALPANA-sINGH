@@ -2,9 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from 'react-router-dom';
 import GarenaCheckout from '../../src/pages/GarenaCheckout';
-import type { CheckoutParameters } from '../../src/lib/garena-checkout-access';
+import type { CheckoutPageData } from '../../server/private-checkout';
 
-declare global { interface Window { __CHECKOUT__: CheckoutParameters } }
+declare global { interface Window { __CHECKOUT__: CheckoutPageData } }
 
 // The data and this bundle are supplied only by the parameter-gated server handler.
 const data = window.__CHECKOUT__;

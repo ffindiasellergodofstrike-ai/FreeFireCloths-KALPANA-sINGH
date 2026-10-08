@@ -1,7 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { randomBytes } from 'node:crypto';
-import { readCheckoutParameters } from '../src/lib/garena-checkout-access.js';
+import { readCheckoutParameters, type CheckoutParameters } from '../src/lib/garena-checkout-access.js';
+import { readCheckoutResultToken, type CheckoutOutcome } from './checkout-return.js';
+
+export type CheckoutPageData = CheckoutParameters & { status?: CheckoutOutcome };
 
 export const isCheckoutPath = (pathname: string) => /^\/garena-?checkout\/?$/i.test(pathname);
 
@@ -33,9 +36,25 @@ export function requestParameters(query: Record<string, unknown> = {}) {
 
 export async function servePrivateCheckout(req: any, res: any) {
   const params = requestParameters(req.query);
-  const data = readCheckoutParameters(params);
+  let data: CheckoutPageData | null = null;
+  let accessParameters: Record<string, string> | null = null;
+  const resultTokens = params.getAll('result');
+  if (resultTokens.length > 0) {
+    const checkoutFields = ['pkg', 'diamonds', 'uid', 'nick', 'level'];
+    if (resultTokens.length !== 1 || checkoutFields.some(field => params.has(field))) return denyCheckout(res);
+    try {
+      const result = await readCheckoutResultToken(resultTokens[0]);
+      data = { ...result.checkout, status: result.status };
+      accessParameters = { result: resultTokens[0] };
+    } catch {
+      return denyCheckout(res);
+    }
+  } else {
+    data = readCheckoutParameters(params);
+    if (data) accessParameters = { ...data };
+  }
   // Apply the same rule to people and all user agents, including asset requests.
-  if (req.method !== 'GET' || !data) return denyCheckout(res);
+  if (req.method !== 'GET' || !data || !accessParameters) return denyCheckout(res);
   protectedHeaders(res);
   if (params.has('asset')) {
     if (params.getAll('asset').length !== 1 || params.get('asset') !== 'checkout.js') return denyCheckout(res);
@@ -49,7 +68,7 @@ export async function servePrivateCheckout(req: any, res: any) {
     }
   }
   const nonce = randomBytes(18).toString('base64');
-  const assetQuery = new URLSearchParams({ ...data, asset: 'checkout.js' });
+  const assetQuery = new URLSearchParams({ ...accessParameters, asset: 'checkout.js' });
   const assetUrl = '/api/private-checkout?' + assetQuery.toString();
   const json = JSON.stringify(data).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
   const escape = (text: string) => text.replace(/[&"<>]/g, char => ({ '&':'&amp;', '"':'&quot;', '<':'&lt;', '>':'&gt;' })[char]!);
