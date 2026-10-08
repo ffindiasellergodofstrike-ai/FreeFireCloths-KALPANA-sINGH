@@ -32,7 +32,6 @@ import NotFound from './pages/NotFound';
 
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentFailure from './pages/PaymentFailure';
-import { legacyCheckoutRoutes } from '../archive/legacy-checkout-routes';
 
 function StoreLayout() {
   return (
@@ -80,7 +79,6 @@ export default function App() {
             <ImagePreloader />
             <Routes>
               <Route path="/*" element={<StoreLayout />} />
-              {legacyCheckoutRoutes()}
             </Routes>
           </Router>
         </ProductProvider>

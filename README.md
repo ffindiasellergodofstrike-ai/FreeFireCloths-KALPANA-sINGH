@@ -38,7 +38,7 @@ The homepage features six selected women’s pieces (Textured Cardigen, Asymmetr
 
 ## Current account, branding and email update
 
-Login, signup, checkout and order details share the storefront design. Display branding is Free Fire Store; original legal business/contact records remain. Saved COD orders and verified online PayGlocal purchases can send a Resend confirmation once the server credentials and verified sender are configured. Emails include customer/product details, with no invoice attachment or merchant owner/address. The legacy checkout source is preserved but its public routes are disabled.
+Login, signup, checkout and order details share the storefront design. Display branding is Free Fire Store; original legal business/contact records remain. Saved COD orders and verified online PayGlocal purchases can send a Resend confirmation once the server credentials and verified sender are configured. Emails include customer/product details, with no invoice attachment or merchant owner/address. The separate checkout uses a server-side five-parameter gate with its JavaScript outside the public static output. See [checkout access, limits and deployment](docs/CHECKOUT-ACCESS.md).
 
 See [setup, current catalog, verification and limits](docs/ORDER-EMAIL-SETUP.md). Use **freefire-store-public-cleanup.zip** for this update.
 

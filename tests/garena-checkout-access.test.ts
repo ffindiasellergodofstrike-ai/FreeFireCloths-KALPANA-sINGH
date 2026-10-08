@@ -62,7 +62,7 @@ test('missing, malformed, duplicate, and non-positive packages are rejected', ()
   assert.match(renderLegacyRoute('/garena-checkout?pkg=not-a-package&uid=123456789'), /id="notfound-page-root"/);
 });
 
-test('external package amounts with a numeric UID remain valid', () => {
+test('complete parameter links remain valid; incomplete numeric links are rejected', () => {
   const amounts = ['395.50', '490', '987.65'];
 
   for (const amount of amounts) {
@@ -70,7 +70,9 @@ test('external package amounts with a numeric UID remain valid', () => {
     assert.equal(hasValidGarenaCheckoutPackage(params), true, amount);
   }
 
-  const rendered = renderLegacyRoute('/garena-checkout?pkg=490&uid=123456789&diamonds=100');
+  assert.equal(hasValidGarenaCheckoutPackage(new URLSearchParams('pkg=550&uid=11111111&diamonds=2180')), false);
+  assert.equal(hasValidGarenaCheckoutPackage(new URLSearchParams('pkg=550&diamonds=2180&uid=11111111&nick=anuj&level=45')), true);
+  const rendered = renderLegacyRoute('/garena-checkout?pkg=490&uid=123456789&diamonds=100&nick=Player&level=10');
   assert.doesNotMatch(rendered, /id="notfound-page-root"/);
   assert.match(rendered, /Loading\.\.\./);
 });

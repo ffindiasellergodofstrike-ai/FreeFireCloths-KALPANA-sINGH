@@ -1,6 +1,14 @@
 {
   "version": 2,
+  "functions": {
+    "api/private-checkout.ts": { "includeFiles": "build/private-checkout/**" }
+  },
   "rewrites": [
+    { "source": "/garena-checkout", "destination": "/api/private-checkout" },
+    { "source": "/garenacheckout", "destination": "/api/private-checkout" },
+    { "source": "/GarenaCheckout", "destination": "/api/private-checkout" },
+    { "source": "/Garenacheckout", "destination": "/api/private-checkout" },
+    { "source": "/garenaCheckout", "destination": "/api/private-checkout" },
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
