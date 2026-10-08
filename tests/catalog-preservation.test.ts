@@ -52,6 +52,7 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/components/ProductCard.tsx",
     "src/data/products.ts",
     "src/main.tsx",
+    "src/components/AuthModal.tsx",
     "src/pages/Collection.tsx",
     "src/pages/Home.tsx",
     "src/pages/ProductDetail.tsx",

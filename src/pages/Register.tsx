@@ -90,7 +90,7 @@ export default function Register() {
             Create account
           </h2>
           <p className="account-subtitle">
-            Join Free Fire Store for premium fashion and exclusive drops
+            Create an account to manage orders and track deliveries
           </p>
 
           <form onSubmit={handleSubmit}>

@@ -147,15 +147,15 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                   <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
                 </div>
                 <h2 className="text-xl sm:text-2xl font-black mb-1 sm:mb-2">Account Created!</h2>
-                <p className="text-slate-500 text-[10px] sm:text-sm mb-6 sm:mb-8">Your official credentials for Free Fire Shop.</p>
+                <p className="text-slate-500 text-[10px] sm:text-sm mb-6 sm:mb-8">Your account credentials for Free Fire Store.</p>
                 
                 <div className="bg-slate-50 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left border border-slate-100 space-y-3 sm:space-y-4">
                   <div>
-                    <span className="block text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Login ID / Gmail</span>
+                    <span className="block text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Email</span>
                     <p className="text-xs sm:text-sm font-bold text-black break-all">{successData.email}</p>
                   </div>
                   <div>
-                    <span className="block text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Secure Password</span>
+                    <span className="block text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Password</span>
                     <p className="text-xs sm:text-sm font-bold text-black">{successData.password}</p>
                   </div>
                 </div>
@@ -179,9 +179,9 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                 className="flex flex-col"
               >
                 <div className="text-center mb-6 sm:mb-8">
-                  <h2 className="text-xl sm:text-2xl font-black mb-1.5 sm:mb-2 uppercase tracking-tight">Free Fire Shop</h2>
+                  <h2 className="text-xl sm:text-2xl font-black mb-1.5 sm:mb-2 uppercase tracking-tight">Free Fire Store</h2>
                   <p className="text-slate-500 text-[10px] sm:text-xs font-medium leading-relaxed max-w-[240px] mx-auto">
-                    Login or Register to secure your official order items
+                    Sign in or create an account to manage orders
                   </p>
                 </div>
 
@@ -191,13 +191,13 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                     onClick={() => setActiveTab('login')}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all ${activeTab === 'login' ? 'bg-white text-black shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                   >
-                    <LogIn size={12} /> Login
+                    <LogIn size={12} /> Sign in
                   </button>
                   <button 
                     onClick={() => setActiveTab('register')}
                     className={`flex-1 flex items-center justify-center gap-2 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-bold transition-all ${activeTab === 'register' ? 'bg-white text-black shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                   >
-                    <UserPlus size={12} /> Register
+                    <UserPlus size={12} /> Create account
                   </button>
                 </div>
 
@@ -205,7 +205,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                   {activeTab === 'register' && (
                     <>
                       <div className="space-y-1">
-                        <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Full Identity Name</label>
+                        <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Full name</label>
                         <div className="relative">
                           <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                           <input 
@@ -222,7 +222,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div className="space-y-1">
-                          <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Mobile Contact</label>
+                          <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Mobile number</label>
                           <div className="relative">
                             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                             <input 
@@ -237,7 +237,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                           </div>
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">PIN Code</label>
+                          <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">PIN code</label>
                           <div className="relative">
                             <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                             <input 
@@ -256,7 +256,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                   )}
 
                   <div className="space-y-1">
-                    <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Gmail Account</label>
+                    <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Email</label>
                     <div className="relative">
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                       <input 
@@ -273,7 +273,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
 
                   <div className={`grid ${activeTab === 'register' ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'} gap-3 sm:gap-4`}>
                     <div className="space-y-1">
-                      <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Secret Password</label>
+                      <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Password</label>
                       <div className="relative">
                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                         <input 
@@ -290,7 +290,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
 
                     {activeTab === 'register' && (
                       <div className="space-y-1">
-                        <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Confirm Secret</label>
+                        <label className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-slate-400 ml-1">Confirm password</label>
                         <div className="relative">
                           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
                           <input 
@@ -315,14 +315,14 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                     {isLoading ? (
                       <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                     ) : (
-                      activeTab === 'login' ? 'Login' : 'Verify & Register'
+                      activeTab === 'login' ? 'Sign in' : 'Create account'
                     )}
                   </button>
                 </form>
 
                 <p className="text-center text-[8px] sm:text-[9px] text-slate-400 mt-6 sm:mt-8 leading-relaxed font-medium">
                   Secure checkout enabled. By continuing, you accept our <br className="hidden sm:block"/>
-                  <Link to="/policies/terms" onClick={closeAuthModal} className="text-black font-bold hover:underline">Terms of Service</Link> and <Link to="/policies/privacy" onClick={closeAuthModal} className="text-black font-bold hover:underline">Privacy Protocol</Link>.
+                  <Link to="/policies/terms" onClick={closeAuthModal} className="text-black font-bold hover:underline">Terms of Service</Link> and <Link to="/policies/privacy" onClick={closeAuthModal} className="text-black font-bold hover:underline">Privacy Policy</Link>.
                 </p>
               </motion.div>
             )}

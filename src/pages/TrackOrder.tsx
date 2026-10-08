@@ -129,9 +129,12 @@ export default function TrackOrder() {
           <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
             <Clock size={40} />
           </div>
-          <h2 className="text-2xl font-black mb-4">Authentication Required</h2>
-          <p className="text-slate-500 mb-8 text-sm leading-relaxed">Please login to your official account to track your orders and view shipping status.</p>
-          <button className="w-full bg-black text-white font-bold py-4 rounded-xl text-xs hover:bg-slate-800 transition-colors uppercase tracking-widest">
+          <h2 className="text-2xl font-black mb-4">Sign In Required</h2>
+          <p className="text-slate-500 mb-8 text-sm leading-relaxed">Please sign in to your account to track your orders and view shipping status.</p>
+          <button 
+            onClick={() => navigate('/')}
+            className="w-full bg-black text-white font-bold py-4 rounded-xl text-xs hover:bg-slate-800 transition-colors uppercase tracking-widest"
+          >
             Back to Home
           </button>
         </div>

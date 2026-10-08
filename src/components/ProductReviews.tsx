@@ -3,7 +3,7 @@ import { catalogImages } from '../data/catalog-media';
 import { db, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, query, where, getDocs, addDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { 
   Star, 
@@ -284,8 +284,8 @@ export default function ProductReviews({ productId }: { productId: number }) {
       setErrorModal({
         isOpen: true,
         type: 'not_logged_in',
-        title: 'Sign In Required to Review',
-        message: 'To keep all customer reviews 100% genuine and protect against spam, only customers with a delivered order can write a review. Please sign in to verify your purchase.'
+        title: 'Sign in to write a review',
+        message: 'Sign in to continue.'
       });
       return;
     }
@@ -307,8 +307,8 @@ export default function ProductReviews({ productId }: { productId: number }) {
         setErrorModal({
           isOpen: true,
           type: 'not_delivered',
-          title: 'Order Delivery Pending',
-          message: `We found your purchase order (${result.orderId}), but its current delivery status is "${result.orderStatus}". Reviews can only be submitted once your order has been successfully delivered!`,
+          title: 'Order delivery pending',
+          message: 'Reviews can be submitted once your order has been delivered.',
           orderId: result.orderId,
           orderStatus: result.orderStatus
         });
@@ -316,8 +316,8 @@ export default function ProductReviews({ productId }: { productId: number }) {
         setErrorModal({
           isOpen: true,
           type: 'no_order',
-          title: 'Verified Purchase Required',
-          message: 'Only verified buyers who have received delivery of this product can write a review. We could not find a delivered order for this item under your account.'
+          title: 'Purchase required',
+          message: 'Only customers who have purchased and received this product can write a review.'
         });
       }
     } catch {
@@ -413,135 +413,90 @@ export default function ProductReviews({ productId }: { productId: number }) {
 
   return (
     <section 
-      className="edit-reviews" 
+      className="product-reviews edit-reviews" 
       aria-labelledby="reviews-heading" 
-      style={{ marginTop: '72px', borderTop: '1px solid #e2e8f0', paddingTop: '56px' }}
+      style={{ marginTop: '56px', borderTop: '1px solid var(--polish-line, #e2d9cf)', paddingTop: '32px' }}
     >
       {/* Title & Action Bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
+      <div className="review-heading">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-            <span style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '6px', 
-              fontSize: '11px', 
-              fontWeight: 800, 
-              letterSpacing: '1px', 
-              textTransform: 'uppercase', 
-              color: '#047857', 
-              background: '#ecfdf5', 
-              padding: '4px 10px', 
-              borderRadius: '999px', 
-              border: '1px solid #a7f3d0' 
-            }}>
-              <ShieldCheck size={13} /> 100% Genuine Customer Ratings
-            </span>
-          </div>
-          <h2 id="reviews-heading" style={{ margin: 0, fontFamily: 'var(--font-h)', fontSize: '24px', fontWeight: '800', letterSpacing: '0.5px' }}>
-            Customer Feedback & Reviews
-          </h2>
-          <p style={{ margin: '6px 0 0', color: '#64748b', fontSize: '13px' }}>
-            Authentic experiences from verified buyers across India
-          </p>
+          <h2 id="reviews-heading">Customer Reviews ({reviews.length})</h2>
+          {reviews.length > 0 && (
+            <p style={{ margin: '4px 0 0', fontSize: '13px', color: 'var(--polish-muted, #75685d)' }}>
+              Average rating: <strong>{stats.avgRating}</strong> out of 5
+            </p>
+          )}
         </div>
 
         {!showForm && (
           <button 
+            type="button"
             onClick={handleWriteReviewClick}
             disabled={checkingEligibility}
-            className="btn btn-black btn-sm"
-            style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '8px', 
-              padding: '12px 24px', 
-              borderRadius: '8px', 
-              fontWeight: 700,
-              cursor: checkingEligibility ? 'wait' : 'pointer',
-              opacity: checkingEligibility ? 0.85 : 1,
-              boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
-            }}
+            className="btn btn-black"
           >
             {checkingEligibility ? (
               <>
-                <Loader2 size={16} style={{ animation: 'spin 1s linear infinite' }} /> VERIFYING...
+                <Loader2 size={14} style={{ animation: 'spin 1s linear infinite', display: 'inline', marginRight: '6px' }} /> Verifying...
               </>
             ) : (
-              <>
-                <MessageSquare size={16} /> WRITE A REVIEW
-              </>
+              'Write a review'
             )}
           </button>
         )}
       </div>
 
-      {/* Review Submission Form Modal / Box */}
+      {/* Review Submission Form */}
       {showForm && (
-        <div className="review-form-container" style={{ background: '#f8fafc', padding: '32px', borderRadius: '16px', marginBottom: '40px', border: '1px solid #cbd5e1', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <div>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, fontFamily: 'var(--font-h)', letterSpacing: '0.5px' }}>WRITE A VERIFIED REVIEW</h3>
-              <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#64748b' }}>Help fellow shoppers make the right choice.</p>
-            </div>
+        <div className="review-form-container">
+          <div className="review-form-heading">
+            <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 500 }}>Write a review</h3>
             <button 
+              type="button"
               onClick={() => setShowForm(false)} 
-              style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', fontSize: '12px', fontWeight: 700, padding: '4px 8px' }}
+              className="review-cancel"
             >
-              CANCEL
+              Cancel
             </button>
           </div>
           
           <form onSubmit={handleSubmitReview}>
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
+            <div className="form-group" style={{ marginBottom: '16px' }}>
+              <label className="form-label" style={{ display: 'block', marginBottom: '6px' }}>
                 Your Rating
               </label>
-              <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+              <div className="review-rating-picker">
                 {[1, 2, 3, 4, 5].map(num => (
                   <button 
                     key={num}
                     type="button"
                     onClick={() => setRating(num)}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', transition: 'transform 0.1s' }}
                     aria-label={`Rate ${num} star`}
                   >
                     <Star 
-                      size={28} 
+                      size={24} 
                       fill={num <= rating ? "#f59e0b" : "none"} 
                       color={num <= rating ? "#f59e0b" : "#cbd5e1"} 
                     />
                   </button>
                 ))}
-                <span style={{ marginLeft: '12px', fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
-                  {rating === 5 ? '⭐⭐⭐⭐⭐ Excellent' : rating === 4 ? '⭐⭐⭐⭐ Good' : rating === 3 ? '⭐⭐⭐ Average' : `${rating} Stars`}
+                <span style={{ marginLeft: '12px', fontSize: '13px', fontWeight: 600, color: 'var(--polish-ink, #372b22)', alignSelf: 'center' }}>
+                  {rating === 5 ? '5 Stars — Excellent' : rating === 4 ? '4 Stars — Good' : rating === 3 ? '3 Stars — Average' : `${rating} Stars`}
                 </span>
               </div>
             </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', fontSize: '11px', fontWeight: 800, color: '#475569', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
-                Your Experience & Fit Feedback
+            <div className="form-group" style={{ marginBottom: '20px' }}>
+              <label className="form-label" style={{ display: 'block', marginBottom: '6px' }}>
+                Your review
               </label>
               <textarea 
                 required
                 value={reviewText}
                 onChange={e => setReviewText(e.target.value)}
-                placeholder="Share your thoughts on the fabric quality, stitching, comfort, and fitting..."
-                style={{ 
-                  width: '100%', 
-                  minHeight: '120px', 
-                  padding: '16px', 
-                  borderRadius: '10px', 
-                  border: '1px solid #cbd5e1', 
-                  background: '#fff',
-                  fontFamily: 'inherit',
-                  fontSize: '14px',
-                  color: '#0f172a',
-                  outline: 'none',
-                  resize: 'vertical',
-                  boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.02)'
-                }}
+                placeholder="Share your thoughts on the quality, comfort and fit..."
+                className="form-input"
+                style={{ width: '100%', minHeight: '120px' }}
               />
             </div>
 
@@ -549,132 +504,84 @@ export default function ProductReviews({ productId }: { productId: number }) {
               type="submit" 
               disabled={submitting}
               className="btn btn-black"
-              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px', borderRadius: '8px' }}
             >
-              {submitting ? 'PUBLISHING...' : <><Send size={16} /> SUBMIT VERIFIED REVIEW</>}
+              {submitting ? 'Submitting...' : 'Submit review'}
             </button>
           </form>
         </div>
       )}
 
-      {/* Aggregate Rating Summary Card */}
+      {/* Aggregate Rating Breakdown */}
       {reviews.length > 0 && (
         <div style={{ 
-          background: '#ffffff', 
-          border: '1px solid #e2e8f0', 
-          borderRadius: '16px', 
-          padding: '28px', 
-          marginBottom: '36px',
-          boxShadow: '0 2px 8px -2px rgba(0,0,0,0.05)'
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
+          gap: '24px', 
+          alignItems: 'center',
+          padding: '20px 0',
+          borderBlock: '1px solid var(--polish-line, #e2d9cf)',
+          marginBottom: '24px'
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px', alignItems: 'center' }}>
-            {/* Left: Overall Score */}
-            <div style={{ textAlign: 'center', borderRight: '1px solid #f1f5f9', paddingRight: '16px' }}>
-              <div style={{ fontSize: '48px', fontWeight: 900, fontFamily: 'var(--font-h)', color: '#0f172a', lineHeight: 1 }}>
-                {stats.avgRating}
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '3px', margin: '8px 0 6px' }}>
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={18} 
-                    fill={i < Math.round(stats.avgRating) ? "#f59e0b" : "none"} 
-                    color={i < Math.round(stats.avgRating) ? "#f59e0b" : "#cbd5e1"} 
-                  />
-                ))}
-              </div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
-                Based on {reviews.length} Verified {reviews.length === 1 ? 'Review' : 'Reviews'}
-              </div>
-              <div style={{ fontSize: '12px', color: '#16a34a', fontWeight: 600, marginTop: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                <Sparkles size={12} /> {stats.recommendRate}% of buyers recommend this product
-              </div>
+          {/* Overall score */}
+          <div>
+            <div style={{ fontSize: '36px', fontWeight: 700, color: 'var(--polish-ink, #372b22)', lineHeight: 1 }}>
+              {stats.avgRating} <span style={{ fontSize: '16px', fontWeight: 400, color: 'var(--polish-muted, #75685d)' }}>/ 5</span>
             </div>
-
-            {/* Middle: Rating Breakdown Bars */}
-            <div>
-              <div style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.8px', color: '#64748b', marginBottom: '10px' }}>
-                Rating Distribution
-              </div>
-              {[5, 4, 3, 2, 1].map(starNum => {
-                const count = stats.counts[starNum] || 0;
-                const pct = stats.percentages[starNum] || 0;
-                return (
-                  <div 
-                    key={starNum}
-                    onClick={() => setFilterRating(prev => prev === starNum ? 'all' : starNum)}
-                    style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      gap: '8px', 
-                      marginBottom: '6px', 
-                      cursor: 'pointer',
-                      padding: '2px 4px',
-                      borderRadius: '4px',
-                      background: filterRating === starNum ? '#f1f5f9' : 'transparent',
-                      transition: 'background 0.15s'
-                    }}
-                    title={`Filter by ${starNum} star`}
-                  >
-                    <span style={{ fontSize: '12px', fontWeight: 700, minWidth: '32px', color: '#334155', display: 'flex', alignItems: 'center', gap: '3px' }}>
-                      {starNum} <Star size={11} fill="#f59e0b" color="#f59e0b" />
-                    </span>
-                    <div style={{ flex: 1, height: '8px', background: '#e2e8f0', borderRadius: '999px', overflow: 'hidden' }}>
-                      <div 
-                        style={{ 
-                          width: `${pct}%`, 
-                          height: '100%', 
-                          background: starNum >= 4 ? '#f59e0b' : '#94a3b8', 
-                          borderRadius: '999px',
-                          transition: 'width 0.4s ease'
-                        }} 
-                      />
-                    </div>
-                    <span style={{ fontSize: '11px', color: '#64748b', minWidth: '28px', textAlign: 'right' }}>
-                      {count}
-                    </span>
-                  </div>
-                );
-              })}
+            <div style={{ display: 'flex', gap: '3px', margin: '8px 0 6px' }}>
+              {[...Array(5)].map((_, i) => (
+                <Star 
+                  key={i} 
+                  size={16} 
+                  fill={i < Math.round(stats.avgRating) ? "#f59e0b" : "none"} 
+                  color={i < Math.round(stats.avgRating) ? "#f59e0b" : "#cbd5e1"} 
+                />
+              ))}
             </div>
-
-            {/* Right: Trust Assurances */}
-            <div style={{ borderLeft: '1px solid #f1f5f9', paddingLeft: '16px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.8px', color: '#64748b', marginBottom: '12px' }}>
-                Buyer Guarantee
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#ecfdf5', color: '#047857', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <ShieldCheck size={16} />
-                  </div>
-                  <div>
-                    <strong style={{ display: 'block', fontSize: '12px', color: '#0f172a' }}>100% Verified Buyers</strong>
-                    <span style={{ fontSize: '11px', color: '#64748b' }}>Only completed delivered orders can review</span>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Truck size={16} />
-                  </div>
-                  <div>
-                    <strong style={{ display: 'block', fontSize: '12px', color: '#0f172a' }}>Express Tracked Shipping</strong>
-                    <span style={{ fontSize: '11px', color: '#64748b' }}>Fast dispatch across all India pin codes</span>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#fffbeb', color: '#b45309', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <RefreshCw size={16} />
-                  </div>
-                  <div>
-                    <strong style={{ display: 'block', fontSize: '12px', color: '#0f172a' }}>7-Day Easy Returns</strong>
-                    <span style={{ fontSize: '11px', color: '#64748b' }}>Hassle-free size replacement guarantee</span>
-                  </div>
-                </div>
-              </div>
+            <div style={{ fontSize: '13px', color: 'var(--polish-muted, #75685d)' }}>
+              Based on {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
             </div>
+          </div>
+
+          {/* Rating breakdown bars */}
+          <div>
+            {[5, 4, 3, 2, 1].map(starNum => {
+              const count = stats.counts[starNum] || 0;
+              const pct = stats.percentages[starNum] || 0;
+              return (
+                <div 
+                  key={starNum}
+                  onClick={() => setFilterRating(prev => prev === starNum ? 'all' : starNum)}
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '8px', 
+                    marginBottom: '4px', 
+                    cursor: 'pointer',
+                    padding: '2px 4px',
+                    borderRadius: '2px'
+                  }}
+                  title={`Filter by ${starNum} star`}
+                >
+                  <span style={{ fontSize: '12px', minWidth: '40px', color: 'var(--polish-muted, #75685d)' }}>
+                    {starNum} star
+                  </span>
+                  <div style={{ flex: 1, height: '6px', background: '#eee5d8', borderRadius: '2px', overflow: 'hidden' }}>
+                    <div 
+                      style={{ 
+                        width: `${pct}%`, 
+                        height: '100%', 
+                        background: '#876340', 
+                        borderRadius: '2px',
+                        transition: 'width 0.3s ease'
+                      }} 
+                    />
+                  </div>
+                  <span style={{ fontSize: '11px', color: 'var(--polish-muted, #75685d)', minWidth: '24px', textAlign: 'right' }}>
+                    {count}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
@@ -683,328 +590,130 @@ export default function ProductReviews({ productId }: { productId: number }) {
       {reviews.length > 0 && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
           <button
+            type="button"
             onClick={() => setFilterRating('all')}
             style={{
-              padding: '8px 16px',
-              borderRadius: '20px',
+              padding: '6px 14px',
+              borderRadius: '2px',
               fontSize: '12px',
-              fontWeight: 700,
+              fontWeight: 600,
               cursor: 'pointer',
               border: '1px solid',
-              borderColor: filterRating === 'all' ? '#0f172a' : '#cbd5e1',
-              background: filterRating === 'all' ? '#0f172a' : '#ffffff',
-              color: filterRating === 'all' ? '#ffffff' : '#334155',
-              transition: 'all 0.15s ease'
+              borderColor: filterRating === 'all' ? 'var(--polish-accent, #67492f)' : 'var(--polish-line, #e2d9cf)',
+              background: filterRating === 'all' ? 'var(--polish-accent, #67492f)' : 'transparent',
+              color: filterRating === 'all' ? '#ffffff' : 'var(--polish-ink, #372b22)',
             }}
           >
-            All Reviews ({reviews.length})
+            All ({reviews.length})
           </button>
 
-          {stats.counts[5] > 0 && (
+          {[5, 4].map(s => stats.counts[s] > 0 && (
             <button
-              onClick={() => setFilterRating(prev => prev === 5 ? 'all' : 5)}
+              key={s}
+              type="button"
+              onClick={() => setFilterRating(prev => prev === s ? 'all' : s)}
               style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
+                padding: '6px 14px',
+                borderRadius: '2px',
                 fontSize: '12px',
-                fontWeight: 700,
+                fontWeight: 600,
                 cursor: 'pointer',
                 border: '1px solid',
-                borderColor: filterRating === 5 ? '#f59e0b' : '#cbd5e1',
-                background: filterRating === 5 ? '#fef3c7' : '#ffffff',
-                color: filterRating === 5 ? '#92400e' : '#334155',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                transition: 'all 0.15s ease'
+                borderColor: filterRating === s ? 'var(--polish-accent, #67492f)' : 'var(--polish-line, #e2d9cf)',
+                background: filterRating === s ? 'var(--polish-accent, #67492f)' : 'transparent',
+                color: filterRating === s ? '#ffffff' : 'var(--polish-ink, #372b22)',
               }}
             >
-              <Star size={12} fill="#f59e0b" color="#f59e0b" /> 5 Stars ({stats.counts[5]})
+              {s} Stars ({stats.counts[s]})
             </button>
-          )}
-
-          {stats.counts[4] > 0 && (
-            <button
-              onClick={() => setFilterRating(prev => prev === 4 ? 'all' : 4)}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
-                fontSize: '12px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                border: '1px solid',
-                borderColor: filterRating === 4 ? '#f59e0b' : '#cbd5e1',
-                background: filterRating === 4 ? '#fef3c7' : '#ffffff',
-                color: filterRating === 4 ? '#92400e' : '#334155',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <Star size={12} fill="#f59e0b" color="#f59e0b" /> 4 Stars ({stats.counts[4]})
-            </button>
-          )}
+          ))}
 
           {stats.photosCount > 0 && (
             <button
+              type="button"
               onClick={() => setFilterRating(prev => prev === 'photos' ? 'all' : 'photos')}
               style={{
-                padding: '8px 16px',
-                borderRadius: '20px',
+                padding: '6px 14px',
+                borderRadius: '2px',
                 fontSize: '12px',
-                fontWeight: 700,
+                fontWeight: 600,
                 cursor: 'pointer',
                 border: '1px solid',
-                borderColor: filterRating === 'photos' ? '#2563eb' : '#cbd5e1',
-                background: filterRating === 'photos' ? '#eff6ff' : '#ffffff',
-                color: filterRating === 'photos' ? '#1d4ed8' : '#334155',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                transition: 'all 0.15s ease'
+                borderColor: filterRating === 'photos' ? 'var(--polish-accent, #67492f)' : 'var(--polish-line, #e2d9cf)',
+                background: filterRating === 'photos' ? 'var(--polish-accent, #67492f)' : 'transparent',
+                color: filterRating === 'photos' ? '#ffffff' : 'var(--polish-ink, #372b22)',
               }}
             >
-              <Camera size={13} /> With Photos ({stats.photosCount})
+              With photos ({stats.photosCount})
             </button>
           )}
         </div>
       )}
 
-      {/* Review Cards Grid or Empty State */}
+      {/* Review List or Empty State */}
       {status === "loading" ? (
-        <div style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
-          <div style={{ display: 'inline-block', width: '24px', height: '24px', border: '3px solid #cbd5e1', borderTopColor: '#0f172a', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-          <p style={{ marginTop: '12px', fontSize: '13px' }}>Loading verified customer reviews…</p>
-        </div>
+        <p className="review-empty">Loading reviews…</p>
       ) : filteredReviews.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '48px 20px', background: '#f8fafc', border: '1px dashed #cbd5e1', borderRadius: '16px' }}>
-          <p style={{ color: '#475569', fontWeight: 600, margin: 0, fontSize: '15px' }}>
-            {reviews.length === 0 ? "Be the first to review this piece." : "No reviews found matching the selected filter."}
-          </p>
-          {reviews.length === 0 && !showForm && (
-            <div style={{ marginTop: '16px' }}>
-              <button 
-                onClick={handleWriteReviewClick}
-                disabled={checkingEligibility}
-                className="btn btn-black btn-sm"
-                style={{ 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  gap: '8px',
-                  padding: '10px 20px',
-                  borderRadius: '8px',
-                  fontWeight: 700,
-                  cursor: checkingEligibility ? 'wait' : 'pointer'
-                }}
-              >
-                {checkingEligibility ? (
-                  <>
-                    <Loader2 size={15} style={{ animation: 'spin 1s linear infinite' }} /> Verifying...
-                  </>
-                ) : (
-                  <>
-                    <MessageSquare size={15} /> Write a Review
-                  </>
-                )}
-              </button>
-            </div>
-          )}
-          {user && !isEligible && reviews.length === 0 && (
-            <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '12px', marginBottom: 0 }}>
-              Only customers who have purchased and received this product can write a verified review.
-            </p>
-          )}
+        <div className="review-empty">
+          <p>{reviews.length === 0 ? "No reviews for this piece yet." : "No reviews matching the selected filter."}</p>
           {filterRating !== 'all' && (
             <button 
+              type="button"
               onClick={() => setFilterRating('all')} 
-              className="btn btn-outline btn-sm" 
-              style={{ marginTop: '16px', padding: '8px 16px' }}
+              className="btn btn-outline" 
+              style={{ marginTop: '12px' }}
             >
-              View All Reviews
+              View all reviews
             </button>
           )}
         </div>
       ) : (
-        <div 
-          className="reviews-unified-card" 
-          style={{ 
-            background: '#ffffff', 
-            border: '1px solid #e2e8f0', 
-            borderRadius: '16px',
-            overflow: 'hidden',
-            boxShadow: '0 2px 8px -2px rgba(0,0,0,0.04)',
-            marginBottom: '32px'
-          }}
-        >
-          {/* Header row inside the unified card - Amazon & Flipkart style */}
-          <div style={{ 
-            padding: '20px 28px', 
-            background: '#f8fafc', 
-            borderBottom: '1px solid #f1f5f9', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '12px'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a', letterSpacing: '0.3px', textTransform: 'uppercase' }}>
-                Customer Reviews
-              </span>
-              <span style={{ 
-                fontSize: '12px', 
-                fontWeight: 700, 
-                color: '#475569', 
-                background: '#e2e8f0', 
-                padding: '2px 8px', 
-                borderRadius: '12px' 
-              }}>
-                {filteredReviews.length}
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: '#16a34a', fontWeight: 600 }}>
-              <ShieldCheck size={14} />
-              <span>100% Genuine Buyer Feedback</span>
-            </div>
-          </div>
+        <>
+          <div className="edit-review-grid">
+            {filteredReviews.slice(0, limit).map((review) => (
+              <article key={review.id} className="review-entry">
+                <div className="review-author">
+                  <strong>{review.author}</strong>
+                  <small>
+                    {review.variant ? `${review.variant} · ` : ''}{review.date}
+                  </small>
+                </div>
 
-          {/* List of reviews inside this single unified card */}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {filteredReviews.slice(0, limit).map((review, idx, arr) => {
-              const initial = (review.author || 'C').charAt(0).toUpperCase();
-              const isLast = idx === arr.length - 1;
-              return (
-                <article 
-                  key={review.id} 
-                  style={{ 
-                    padding: '24px 28px', 
-                    borderBottom: isLast ? 'none' : '1px solid #f1f5f9',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '12px',
-                    background: '#ffffff',
-                    transition: 'background-color 0.15s ease'
-                  }}
-                >
-                  {/* Review Header: Author, Avatar & Certified Buyer */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <div style={{ 
-                        width: '36px', 
-                        height: '36px', 
-                        borderRadius: '50%', 
-                        background: '#0f172a', 
-                        color: '#ffffff', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        fontWeight: 800, 
-                        fontSize: '13px',
-                        flexShrink: 0
-                      }}>
-                        {initial}
-                      </div>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                          <strong style={{ fontSize: '14px', color: '#0f172a', fontWeight: 700 }}>
-                            {review.author}
-                          </strong>
-                          <span style={{ 
-                            fontSize: '11px', 
-                            color: '#047857', 
-                            fontWeight: 700, 
-                            display: 'inline-flex', 
-                            alignItems: 'center', 
-                            gap: '3px', 
-                            background: '#ecfdf5',
-                            padding: '2px 7px',
-                            borderRadius: '4px'
-                          }}>
-                            <CheckCircle2 size={11} color="#059669" /> Certified Buyer
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div style={{ fontSize: '12px', color: '#64748b', fontWeight: 500 }}>
-                      {review.date}
-                    </div>
+                <div className="review-content">
+                  <div className="review-stars">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        size={13} 
+                        fill={i < review.rating ? "#f59e0b" : "none"} 
+                        color={i < review.rating ? "#f59e0b" : "#cbd5e1"} 
+                      />
+                    ))}
                   </div>
 
-                  {/* Rating + Variant row (Amazon / Flipkart style) */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                    <div style={{ 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '3px', 
-                      background: review.rating >= 4 ? '#15803d' : review.rating === 3 ? '#d97706' : '#dc2626', 
-                      color: '#ffffff', 
-                      padding: '2px 8px', 
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      fontWeight: 800
-                    }}>
-                      <span>{review.rating}</span>
-                      <Star size={11} fill="#ffffff" color="#ffffff" />
-                    </div>
+                  <p>{review.text}</p>
 
-                    <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          size={13} 
-                          fill={i < review.rating ? "#f59e0b" : "none"} 
-                          color={i < review.rating ? "#f59e0b" : "#cbd5e1"} 
-                        />
-                      ))}
-                    </div>
-
-                    {review.variant && (
-                      <span style={{ fontSize: '12px', color: '#64748b', fontWeight: 500 }}>
-                        <span style={{ color: '#cbd5e1' }}>•</span> Variant: <strong style={{ color: '#334155' }}>{review.variant}</strong>
-                      </span>
-                    )}
-                  </div>
-                  
-                  {/* Review Text */}
-                  <p style={{ fontSize: '14px', lineHeight: '1.7', color: '#334155', margin: '2px 0 4px', whiteSpace: 'pre-line' }}>
-                    "{review.text}"
-                  </p>
-
-                  {/* Customer Photos */}
                   {review.images && review.images.length > 0 && (
-                    <div style={{ display: 'flex', gap: '10px', margin: '4px 0', overflowX: 'auto', paddingBottom: '4px' }}>
+                    <div className="review-photos">
                       {catalogImages(review.images).map((url, imgIdx) => (
                         <button
                           key={imgIdx}
                           type="button"
                           onClick={() => setActiveModalImage(url)}
-                          style={{ 
-                            border: '1px solid #cbd5e1', 
-                            borderRadius: '8px', 
-                            padding: 0, 
-                            cursor: 'pointer', 
-                            overflow: 'hidden',
-                            flexShrink: 0,
-                            background: '#f8fafc',
-                            transition: 'transform 0.15s, border-color 0.15s'
-                          }}
-                          aria-label={`View full customer photo ${imgIdx + 1}`}
+                          style={{ border: 'none', padding: 0, background: 'transparent', cursor: 'pointer' }}
+                          aria-label={`View customer photo ${imgIdx + 1}`}
                         >
                           <img
                             src={url}
                             alt={`Review photo ${imgIdx + 1}`}
                             loading="lazy"
-                            style={{ width: '68px', height: '68px', objectFit: 'cover' }}
                           />
                         </button>
                       ))}
                     </div>
                   )}
 
-                  {/* Footer: Helpful feedback button & Verification badge */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '6px' }}>
+                  <div style={{ marginTop: '14px' }}>
                     <button
                       type="button"
                       onClick={() => handleHelpfulClick(review.id)}
@@ -1012,98 +721,38 @@ export default function ProductReviews({ productId }: { productId: number }) {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '6px',
-                        background: userVoted[review.id] ? '#f1f5f9' : '#ffffff',
-                        border: '1px solid',
-                        borderColor: userVoted[review.id] ? '#94a3b8' : '#e2e8f0',
-                        borderRadius: '6px',
-                        padding: '5px 12px',
+                        background: userVoted[review.id] ? '#eee5d8' : 'transparent',
+                        border: '1px solid var(--polish-line, #e2d9cf)',
+                        borderRadius: '2px',
+                        padding: '4px 10px',
                         fontSize: '11px',
-                        fontWeight: 700,
-                        color: userVoted[review.id] ? '#0f172a' : '#475569',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
+                        fontWeight: 600,
+                        color: 'var(--polish-ink, #372b22)',
+                        cursor: 'pointer'
                       }}
                     >
-                      <ThumbsUp size={11} color={userVoted[review.id] ? "#0f172a" : "#64748b"} />
+                      <ThumbsUp size={11} />
                       <span>Helpful ({helpfulVotes[review.id] || 0})</span>
                     </button>
-
-                    <span style={{ fontSize: '11px', color: '#94a3b8' }}>
-                      Verified Purchase • Free Fire Store
-                    </span>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+              </article>
+            ))}
           </div>
           
-          {/* Load More Reviews inside the bottom of the unified card */}
           {filteredReviews.length > limit && (
-            <div style={{ 
-              textAlign: 'center', 
-              padding: '20px', 
-              background: '#fafbfc', 
-              borderTop: '1px solid #f1f5f9' 
-            }}>
+            <div className="review-more" style={{ marginTop: '24px' }}>
               <button
-                className="btn btn-outline btn-sm"
+                type="button"
+                className="btn btn-outline"
                 onClick={() => setLimit((value) => value + 6)}
-                style={{ borderRadius: '8px', padding: '10px 28px', fontWeight: 700, fontSize: '13px', background: '#ffffff' }}
               >
-                LOAD MORE REVIEWS ({filteredReviews.length - limit} REMAINING)
+                Load more reviews
               </button>
             </div>
           )}
-        </div>
+        </>
       )}
-
-      {/* Trust & Guarantee Banner at Bottom of Reviews */}
-      <div style={{ 
-        marginTop: '48px', 
-        padding: '24px 28px', 
-        background: '#f8fafc', 
-        borderRadius: '16px', 
-        border: '1px solid #e2e8f0',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-        gap: '20px'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#ecfdf5', color: '#047857', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Award size={18} />
-          </div>
-          <div>
-            <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a', fontWeight: 800 }}>100% Quality Tested</strong>
-            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b', lineHeight: 1.4 }}>
-              Every apparel piece is pre-shrunk, bio-washed and stitch-inspected before dispatch.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Truck size={18} />
-          </div>
-          <div>
-            <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a', fontWeight: 800 }}>Safe Pan-India Delivery</strong>
-            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b', lineHeight: 1.4 }}>
-              Shipped via trusted courier partners with end-to-end SMS tracking.
-            </p>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: '#fffbeb', color: '#b45309', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <ShieldCheck size={18} />
-          </div>
-          <div>
-            <strong style={{ display: 'block', fontSize: '13px', color: '#0f172a', fontWeight: 800 }}>Authentic Customer Policy</strong>
-            <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#64748b', lineHeight: 1.4 }}>
-              Zero fabricated reviews. Real customers, real photos, transparent ratings.
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Photo Lightbox Modal */}
       {activeModalImage && (
@@ -1122,7 +771,7 @@ export default function ProductReviews({ productId }: { productId: number }) {
         >
           <div 
             onClick={(e) => e.stopPropagation()} 
-            style={{ position: 'relative', maxWidth: '640px', width: '100%', background: '#000', borderRadius: '12px', overflow: 'hidden' }}
+            style={{ position: 'relative', maxWidth: '640px', width: '100%', background: '#000', borderRadius: '4px', overflow: 'hidden' }}
           >
             <button
               onClick={() => setActiveModalImage(null)}
@@ -1154,15 +803,15 @@ export default function ProductReviews({ productId }: { productId: number }) {
         </div>
       )}
 
-      {/* Verified Review Eligibility Error Modal */}
+      {/* Simplified Review Eligibility Modal */}
       {errorModal && (
         <div 
           onClick={() => setErrorModal(null)}
           style={{ 
             position: 'fixed', 
             inset: 0, 
-            background: 'rgba(15, 23, 42, 0.65)', 
-            backdropFilter: 'blur(6px)', 
+            background: 'rgba(0, 0, 0, 0.4)', 
+            backdropFilter: 'blur(2px)', 
             zIndex: 9999, 
             display: 'flex', 
             alignItems: 'center', 
@@ -1171,203 +820,131 @@ export default function ProductReviews({ productId }: { productId: number }) {
           }}
           role="dialog"
           aria-modal="true"
+          aria-labelledby="review-modal-title"
         >
           <div 
             onClick={(e) => e.stopPropagation()} 
             style={{ 
               position: 'relative', 
-              maxWidth: '460px', 
+              maxWidth: '420px', 
               width: '100%', 
-              background: '#ffffff', 
-              borderRadius: '20px', 
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', 
+              background: '#fcfaf6', 
+              borderRadius: '4px', 
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)', 
               overflow: 'hidden',
-              border: '1px solid #e2e8f0',
-              animation: 'fadeInUp 0.2s ease-out'
+              border: '1px solid #d6c9bd',
+              padding: '28px 24px'
             }}
           >
-            {/* Header close button */}
             <button
               onClick={() => setErrorModal(null)}
               style={{
                 position: 'absolute',
-                top: '16px',
-                right: '16px',
-                background: '#f1f5f9',
+                top: '14px',
+                right: '14px',
+                background: 'transparent',
                 border: 'none',
-                borderRadius: '50%',
-                width: '32px',
-                height: '32px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 cursor: 'pointer',
-                color: '#64748b'
+                color: '#75685d',
+                padding: '4px'
               }}
               aria-label="Close"
             >
-              <X size={16} />
+              <X size={18} />
             </button>
 
-            <div style={{ padding: '32px 28px' }}>
-              {/* Badge & Icon */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
-                <div style={{
-                  width: '52px',
-                  height: '52px',
-                  borderRadius: '14px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  background: errorModal.type === 'not_logged_in' ? '#fef2f2' : errorModal.type === 'not_delivered' ? '#eff6ff' : '#fff7ed',
-                  color: errorModal.type === 'not_logged_in' ? '#dc2626' : errorModal.type === 'not_delivered' ? '#2563eb' : '#ea580c',
-                  border: `1px solid ${errorModal.type === 'not_logged_in' ? '#fecaca' : errorModal.type === 'not_delivered' ? '#bfdbfe' : '#fed7aa'}`
-                }}>
-                  {errorModal.type === 'not_logged_in' && <Lock size={24} />}
-                  {errorModal.type === 'not_delivered' && <Truck size={24} />}
-                  {errorModal.type === 'no_order' && <ShieldCheck size={24} />}
-                </div>
+            {errorModal.type === 'not_logged_in' ? (
+              <div>
+                <h3 id="review-modal-title" style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 600, color: '#372b22' }}>
+                  Sign in to write a review
+                </h3>
+                <p style={{ margin: '0 0 20px', fontSize: '14px', color: '#75685d', lineHeight: 1.6 }}>
+                  Sign in to continue.
+                </p>
 
-                <div>
-                  <span style={{
-                    display: 'inline-block',
-                    fontSize: '11px',
-                    fontWeight: 800,
-                    letterSpacing: '0.8px',
-                    textTransform: 'uppercase',
-                    color: errorModal.type === 'not_logged_in' ? '#b91c1c' : errorModal.type === 'not_delivered' ? '#1d4ed8' : '#c2410c',
-                    background: errorModal.type === 'not_logged_in' ? '#fee2e2' : errorModal.type === 'not_delivered' ? '#dbeafe' : '#ffedd5',
-                    padding: '3px 8px',
-                    borderRadius: '6px',
-                    marginBottom: '4px'
-                  }}>
-                    {errorModal.type === 'not_logged_in' ? 'Account Sign In Required' : errorModal.type === 'not_delivered' ? 'Delivery In Progress' : 'Verified Buyer Policy'}
-                  </span>
-                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 800, color: '#0f172a', fontFamily: 'var(--font-h)' }}>
-                    {errorModal.title}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Message */}
-              <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#475569' }}>
-                {errorModal.message}
-              </p>
-
-              {/* Specific info card depending on type */}
-              <div style={{
-                background: '#f8fafc',
-                border: '1px solid #e2e8f0',
-                borderRadius: '12px',
-                padding: '14px 16px',
-                marginBottom: '24px',
-                fontSize: '12px',
-                color: '#334155',
-                lineHeight: 1.5
-              }}>
-                {errorModal.type === 'not_logged_in' && (
-                  <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                    <ShieldCheck size={16} color="#047857" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <span>
-                      <strong>Why this is required:</strong> We maintain 100% spam-free, authentic buyer reviews. Logging in allows us to verify your delivered order.
-                    </span>
-                  </div>
-                )}
-                {errorModal.type === 'not_delivered' && (
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontWeight: 700, color: '#0f172a' }}>
-                      <span>Order Number:</span>
-                      <span style={{ fontFamily: 'monospace', color: '#2563eb' }}>{errorModal.orderId}</span>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: '#64748b' }}>
-                      <span>Current Status:</span>
-                      <span style={{ 
-                        fontWeight: 700, 
-                        color: '#d97706',
-                        background: '#fef3c7',
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '11px',
-                        textTransform: 'uppercase'
-                      }}>
-                        {errorModal.orderStatus || 'In Transit'}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#64748b', borderTop: '1px dashed #cbd5e1', paddingTop: '8px', marginTop: '4px' }}>
-                      Once our courier marks your package as <strong>Delivered</strong>, you can write and publish your review anytime!
-                    </div>
-                  </div>
-                )}
-                {errorModal.type === 'no_order' && (
-                  <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                    <ShieldCheck size={16} color="#047857" style={{ flexShrink: 0, marginTop: '2px' }} />
-                    <span>
-                      <strong>Authenticity Guarantee:</strong> Only verified customers who ordered and received this piece can review it. If you placed this order under another email, please switch accounts.
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '10px', flexDirection: 'column' }}>
-                {errorModal.type === 'not_logged_in' && (
+                <div style={{ display: 'flex', gap: '10px' }}>
                   <button
                     onClick={() => {
                       setErrorModal(null);
                       navigate('/login');
                     }}
                     className="btn btn-black"
-                    style={{ width: '100%', padding: '12px', borderRadius: '10px', fontWeight: 700, fontSize: '13px' }}
+                    style={{ flex: 1 }}
                   >
-                    SIGN IN TO VERIFY PURCHASE
+                    Sign in
                   </button>
-                )}
-
-                {errorModal.type === 'not_delivered' && (
                   <button
-                    onClick={() => {
-                      setErrorModal(null);
-                      navigate('/my-orders');
-                    }}
-                    className="btn btn-black"
-                    style={{ width: '100%', padding: '12px', borderRadius: '10px', fontWeight: 700, fontSize: '13px' }}
+                    onClick={() => setErrorModal(null)}
+                    className="btn btn-outline"
+                    style={{ flex: 1 }}
                   >
-                    TRACK MY ORDERS
+                    Cancel
                   </button>
-                )}
+                </div>
 
-                {errorModal.type === 'no_order' && (
-                  <button
-                    onClick={() => {
-                      setErrorModal(null);
-                      navigate('/my-orders');
-                    }}
-                    className="btn btn-black"
-                    style={{ width: '100%', padding: '12px', borderRadius: '10px', fontWeight: 700, fontSize: '13px' }}
-                  >
-                    VIEW MY ORDERS
-                  </button>
-                )}
-
-                <button
-                  onClick={() => setErrorModal(null)}
-                  style={{
-                    width: '100%',
-                    padding: '10px',
-                    borderRadius: '10px',
-                    border: '1px solid #cbd5e1',
-                    background: '#ffffff',
-                    color: '#475569',
-                    fontSize: '13px',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Close
-                </button>
+                <p style={{ margin: '16px 0 0', fontSize: '13px', color: '#75685d', textAlign: 'center' }}>
+                  New to Free Fire Store? <Link to="/register" onClick={() => setErrorModal(null)} style={{ color: '#372b22', fontWeight: 600, textDecoration: 'underline' }}>Create account</Link>
+                </p>
               </div>
-            </div>
+            ) : errorModal.type === 'not_delivered' ? (
+              <div>
+                <h3 id="review-modal-title" style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 600, color: '#372b22' }}>
+                  Order delivery pending
+                </h3>
+                <p style={{ margin: '0 0 20px', fontSize: '14px', color: '#75685d', lineHeight: 1.6 }}>
+                  Reviews can be submitted once your order has been delivered.
+                </p>
+
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => {
+                      setErrorModal(null);
+                      navigate('/my-orders');
+                    }}
+                    className="btn btn-black"
+                    style={{ flex: 1 }}
+                  >
+                    View orders
+                  </button>
+                  <button
+                    onClick={() => setErrorModal(null)}
+                    className="btn btn-outline"
+                    style={{ flex: 1 }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <h3 id="review-modal-title" style={{ margin: '0 0 8px', fontSize: '18px', fontWeight: 600, color: '#372b22' }}>
+                  Purchase required
+                </h3>
+                <p style={{ margin: '0 0 20px', fontSize: '14px', color: '#75685d', lineHeight: 1.6 }}>
+                  Only customers who have purchased and received this product can write a review.
+                </p>
+
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => {
+                      setErrorModal(null);
+                      navigate('/my-orders');
+                    }}
+                    className="btn btn-black"
+                    style={{ flex: 1 }}
+                  >
+                    View orders
+                  </button>
+                  <button
+                    onClick={() => setErrorModal(null)}
+                    className="btn btn-outline"
+                    style={{ flex: 1 }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
