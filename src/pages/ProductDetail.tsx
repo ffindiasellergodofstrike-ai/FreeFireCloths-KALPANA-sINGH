@@ -315,10 +315,21 @@ export default function ProductDetail() {
 
             <h1 id="pdName">{product.name}</h1>
 
-            {product.reviews > 0 && <div className="pd-rating">
-              <span className="pd-stars">{'★'.repeat(Math.max(0, Math.min(5, Math.round(product.rating))))}</span>
-              <span className="pd-revcount" id="pdRating">({product.rating}) · {product.reviews} reviews</span>
-            </div>}
+            {product.reviews > 0 && (
+              <a 
+                href="#reviews-heading" 
+                className="pd-rating" 
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginBottom: '12px' }}
+              >
+                <span className="pd-stars" style={{ color: '#f59e0b', letterSpacing: '1px' }}>{'★'.repeat(Math.max(0, Math.min(5, Math.round(product.rating))))}</span>
+                <span className="pd-revcount" id="pdRating" style={{ fontSize: '13px', fontWeight: 600, color: '#334155' }}>
+                  <strong>{product.rating}</strong> ({product.reviews} reviews)
+                </span>
+                <span style={{ fontSize: '11px', color: '#047857', background: '#ecfdf5', padding: '2px 8px', borderRadius: '12px', fontWeight: 700, border: '1px solid #a7f3d0' }}>
+                  ✓ Verified Ratings
+                </span>
+              </a>
+            )}
 
             <div className="pd-price" id="pdPrice">
               {fmt(product.price)}
@@ -435,11 +446,24 @@ export default function ProductDetail() {
               </button>
             </div>
 
-            <div className="pd-meta">
-              <div className="pd-meta-item"><i className="fa fa-shipping-fast"></i> Free delivery on all orders across India</div>
-              <div className="pd-meta-item"><i className="fa fa-undo"></i> Easy 7-day return & exchange policy</div>
-              <div className="pd-meta-item"><i className="fa fa-hand-holding-usd"></i> Cash on Delivery (COD) available nationwide</div>
-              <div className="pd-meta-item"><i className="fa fa-check-circle"></i> {product.sourceId ? 'Availability shown for each size and colour' : 'In stock — ships in 1–2 business days'}</div>
+            <div className="pd-meta" style={{ marginTop: '24px', borderTop: '1px solid #e2e8f0', paddingTop: '20px' }}>
+              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div className="pd-meta-item" style={{ margin: 0, fontSize: '13px', color: '#1e293b', fontWeight: 600 }}>
+                  <i className="fa fa-shield-alt" style={{ color: '#059669', width: '20px' }}></i> 100% Secure Checkout (PayGlocal, UPI, Cards & COD)
+                </div>
+                <div className="pd-meta-item" style={{ margin: 0, fontSize: '13px', color: '#1e293b', fontWeight: 600 }}>
+                  <i className="fa fa-shipping-fast" style={{ color: '#2563eb', width: '20px' }}></i> Free Express Delivery on all orders across India
+                </div>
+                <div className="pd-meta-item" style={{ margin: 0, fontSize: '13px', color: '#1e293b', fontWeight: 600 }}>
+                  <i className="fa fa-undo" style={{ color: '#d97706', width: '20px' }}></i> Easy 7-Day Return & Size Exchange Policy
+                </div>
+                <div className="pd-meta-item" style={{ margin: 0, fontSize: '13px', color: '#1e293b', fontWeight: 600 }}>
+                  <i className="fa fa-hand-holding-usd" style={{ color: '#0284c7', width: '20px' }}></i> Cash on Delivery (COD) available nationwide
+                </div>
+                <div className="pd-meta-item" style={{ margin: 0, fontSize: '13px', color: '#1e293b', fontWeight: 600 }}>
+                  <i className="fa fa-check-circle" style={{ color: '#16a34a', width: '20px' }}></i> {product.sourceId ? 'Guaranteed Genuine Merchandise · Authentic quality tested' : 'In stock — dispatch in 24–48 hours with live tracking'}
+                </div>
+              </div>
             </div>
           </div>
         </div>

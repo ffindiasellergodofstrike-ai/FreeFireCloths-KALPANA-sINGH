@@ -35,7 +35,7 @@ export default function RefundPolicy() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Email:</strong> support@fashion-store.com</p>
           </div>
 
@@ -185,7 +185,7 @@ export default function RefundPolicy() {
           <ul>
             <li>Refund timelines after initiation depend on your bank or payment provider and are outside our control.</li>
             <li>COD orders will <strong>NOT</strong> receive a cash refund or bank transfer. Refunds for COD orders are issued exclusively as store credit to your registered email ID.</li>
-            <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on www.garenaofficialfreefire.shop.</li>
+            <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on https://www.ffstreetwear.shop/.</li>
             <li>Store credit cannot be extended beyond its validity period, transferred to another account, or converted to cash.</li>
             <li>The original COD handling fee (if any) is non-refundable and will be deducted from the refund amount.</li>
             <li>Original shipping charges are non-refundable, except in cases where Free Fire Store dispatched a wrong or defective item.</li>
@@ -244,7 +244,7 @@ export default function RefundPolicy() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
         </div>

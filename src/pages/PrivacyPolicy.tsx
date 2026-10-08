@@ -35,7 +35,7 @@ export default function PrivacyPolicy() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Email:</strong> support@fashion-store.com</p>
           </div>
 
@@ -356,7 +356,7 @@ export default function PrivacyPolicy() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
         </div>

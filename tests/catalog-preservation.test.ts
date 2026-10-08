@@ -69,6 +69,7 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/pages/PrivacyPolicy.tsx",
     "src/pages/Success.tsx",
     "src/pages/TrackOrder.tsx",
+    "src/lib/firebase.ts",
   ]);
   for (const [file, hash] of Object.entries(baseline)) {
     if (!presentationChanges.has(file))

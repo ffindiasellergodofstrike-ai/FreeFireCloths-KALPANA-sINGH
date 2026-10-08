@@ -35,7 +35,7 @@ export default function Terms() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
@@ -264,7 +264,7 @@ export default function Terms() {
           <p>The headings used in this agreement are included for convenience only and shall not limit or otherwise affect the interpretation of these Terms.</p>
 
           <h2>SECTION 26 - CHANGES TO TERMS OF SERVICE</h2>
-          <p>You can review the most current version of these Terms of Service at any time at www.garenaofficialfreefire.shop/policies/terms-of-service.</p>
+          <p>You can review the most current version of these Terms of Service at any time at https://www.ffstreetwear.shop/policies/terms-of-service.</p>
           <p>We reserve the right, in our sole discretion, to update, change, or replace any part of these Terms of Service by posting updates on our website. It is your responsibility to check this page periodically for changes. Your continued use of or access to the website following the posting of any changes constitutes your acceptance of those changes.</p>
 
           <h2>SECTION 27 - GRIEVANCE OFFICER</h2>
@@ -294,7 +294,7 @@ export default function Terms() {
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
-            <p><strong>Website:</strong> www.garenaofficialfreefire.shop</p>
+            <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
             <p><strong>Support Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
         </div>
