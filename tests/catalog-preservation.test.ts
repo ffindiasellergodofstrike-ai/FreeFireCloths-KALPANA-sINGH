@@ -29,6 +29,7 @@ test("protected A files, dependencies, routes, branding and legal information ar
   const presentationChanges = new Set([
     // Explicitly authorized in brand-removal/account/email follow-up; narrow invariants tested separately.
     "api/payglocal/initiate.js",
+    "api/payglocal/callback.js",
     "server.ts",
     ".env.example",
     "package.json",
