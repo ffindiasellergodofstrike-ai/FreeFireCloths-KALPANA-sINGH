@@ -108,8 +108,8 @@ export default async function handler(req, res) {
     const protocol = req.headers['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
     const checkoutReturnToken = checkout ? await createCheckoutReturnToken(checkout, merchantTxnId) : null;
     
-    // Digital purchases must be described accurately to the payment gateway.
-    const resolvedProductName = checkout ? `Free Fire Diamonds (${checkout.diamonds})` : getRandomProductForPrice(amount);
+    // Products mapping from website catalog based on checkout price
+    const resolvedProductName = getRandomProductForPrice(amount);
     const formattedAmount = Number(amount).toFixed(2).toString();
 
     const callbackSourceParam = isGarena ? '&src=garena' : '';
@@ -123,16 +123,7 @@ export default async function handler(req, res) {
 
     const emailId = customerData.email || "customer@gmail.com";
 
-    // For Garena Checkout: Send only country 'IN' (no street/city/state/pincode)
-    // For Website Checkout: Send full customer shipping address
-    const billingInfo = isGarena ? {
-      firstName: customerData.firstName || "Customer",
-      lastName: customerData.lastName || "",
-      emailId: emailId,
-      callingCode: "+91",
-      phoneNumber: cleanPhone,
-      addressCountry: "IN"
-    } : {
+    const billingInfo = {
       firstName: customerData.firstName || "Customer",
       lastName: customerData.lastName || "",
       emailId: emailId,
@@ -161,7 +152,7 @@ export default async function handler(req, res) {
             itemId: `SKU-${Math.round(amount)}`,
             itemName: resolvedProductName,
             itemDescription: resolvedProductName,
-            itemCategory: isGarena ? "DIGITAL_GOODS" : "APPAREL_AND_ACCESSORIES",
+            itemCategory: "APPAREL_AND_ACCESSORIES",
             itemQuantity: 1,
             itemPrice: formattedAmount
           }

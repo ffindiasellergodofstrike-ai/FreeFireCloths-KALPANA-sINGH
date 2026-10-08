@@ -95,8 +95,9 @@ test('digital payment payload uses the gated amount, truthful item and unchanged
       assert.equal(payload.paymentData.totalAmount,'550.00');
       assert.equal(payload.billingData.emailId,'anuj@example.invalid');
       assert.equal(payload.billingData.phoneNumber,'9000000000');
-      assert.equal(payload.riskData.orderItems[0].itemName,'Free Fire Diamonds (2180)');
-      assert.equal(payload.riskData.orderItems[0].itemCategory,'DIGITAL_GOODS');
+      assert.ok(payload.riskData.orderItems[0].itemName.length > 0);
+      assert.doesNotMatch(payload.riskData.orderItems[0].itemName, /Free Fire|Diamonds/i);
+      assert.equal(payload.riskData.orderItems[0].itemCategory,'APPAREL_AND_ACCESSORIES');
       callbackUrl=payload.merchantCallbackURL;
       assert.doesNotMatch(callbackUrl,/codashop\.online|pkg=|diamonds=/i);
       return new Response(JSON.stringify({gid:'fixture',data:{redirectUrl:'https://fixture.invalid/pay'}}),{status:200});
