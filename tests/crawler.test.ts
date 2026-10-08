@@ -35,7 +35,7 @@ test('metadata follows the page, canonical domain and index eligibility', () => 
     assert.equal(pageMetadata(p, PRODUCTS).robots, expectedRobots);
   }
   for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
-    assert.equal(pageMetadata(p, PRODUCTS).canonical, site.origin);
+    assert.equal(pageMetadata(p, PRODUCTS).found, false);
   }
   assert.equal(pageMetadata('/not-real', PRODUCTS).found, false);
   assert.match(pageMetadata('/collections/women/', PRODUCTS).title, /^Women/);
@@ -58,7 +58,7 @@ test('public routes exclude archived checkout and web output excludes server bun
   assert.ok(readFileSync('public/robots.txt', 'utf8').includes(`Sitemap: ${site.origin}/sitemap.xml`));
   const robots = readFileSync('public/robots.txt', 'utf8');
   for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
-    assert.ok(robots.includes(`Disallow: ${p}`));
+    assert.ok(!robots.includes(p));
   }
   for (const p of ['/garena-checkout', '/garenacheckout', '/GarenaCheckout', '/Garenacheckout', '/garenaCheckout']) {
     assert.ok(deployment.headers.some((rule: { source: string; headers: { key: string; value: string }[] }) =>

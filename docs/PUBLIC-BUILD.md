@@ -1,5 +1,7 @@
 # Public deployment and crawling
 
+Current checkout access is documented in [CHECKOUT-ACCESS.md](CHECKOUT-ACCESS.md). The server now serves the five-parameter checkout with its own gated asset outside `dist`; the historical byte-preservation/disabled-route description below refers to an earlier release and is superseded for that flow. Checkout component validation and payment descriptions/contact handling have been updated. Use the current build, tests and deployment instructions in that document.
+
 ## What this update changes
 
 - The existing `src/pages/GarenaCheckout.tsx` is retained byte-for-byte. Its five route registrations are preserved in `archive/legacy-checkout-routes.tsx`, outside the active application's import graph. The public storefront no longer serves those legacy checkout URLs. Their checkout/payment source has not been deleted or rewritten. Existing legacy payment callback redirects still point to those now-unpublished pages; use this release only when that old flow is no longer in use. The current clothing `/checkout` and PayGlocal API handlers remain intact.

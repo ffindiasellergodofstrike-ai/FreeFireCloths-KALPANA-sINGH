@@ -2,6 +2,8 @@ import { createReceiptToken } from '../../server/order-receipt.js';
 import { isRetiredProduct } from '../../src/data/retired-products.js';
 import { generateJWEAndJWS } from 'payglocal-js-client';
 import crypto from 'crypto';
+import { readCheckoutParameters } from '../../src/lib/garena-checkout-access.js';
+import { denyCheckout, protectedHeaders } from '../../server/private-checkout.js';
 
 // Products mapping from website catalog based on checkout price
 const WEBSITE_PRODUCT_CATALOG = {
@@ -80,22 +82,34 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
   
   try {
-    const { amount, customerData, source } = req.body;
+    const { customerData, source } = req.body;
+    const isGarena = source === 'garena';
+    let checkout = null;
+    if (isGarena) {
+      protectedHeaders(res);
+      const supplied = req.body.checkout;
+      if (!supplied || typeof supplied !== 'object' || Array.isArray(supplied) || Object.values(supplied).some(value => typeof value !== 'string')) return denyCheckout(res);
+      checkout = readCheckoutParameters(new URLSearchParams(supplied));
+      if (!checkout) return denyCheckout(res);
+    }
+    const amount = checkout ? checkout.pkg : req.body.amount;
     if (Array.isArray(req.body.items) && req.body.items.some(item => isRetiredProduct(item.id))) return res.status(400).json({ error: 'A product in your bag is no longer available' });
     
     if (!amount || !customerData) {
       return res.status(400).json({ error: 'Missing required fields' });
+    }
+    if (isGarena && (typeof customerData.firstName !== 'string' || customerData.firstName.trim().length < 2 || customerData.firstName.length > 120 || typeof customerData.email !== 'string' || customerData.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerData.email) || typeof customerData.phone !== 'string' || !/^\d{10}$/.test(customerData.phone))) {
+      return res.status(400).json({ error: 'Invalid customer details' });
     }
 
     const merchantTxnId = `PG-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const host = req.headers.host || 'localhost:3000';
     const protocol = req.headers['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
     
-    // Pick a random matching legitimate website product purely on backend
-    const resolvedProductName = getRandomProductForPrice(amount);
+    // Digital purchases must be described accurately to the payment gateway.
+    const resolvedProductName = checkout ? `Free Fire Diamonds (${checkout.diamonds})` : getRandomProductForPrice(amount);
     const formattedAmount = Number(amount).toFixed(2).toString();
 
-    const isGarena = source === 'garena';
     const callbackSourceParam = isGarena ? '&src=garena' : '';
 
     // Format phone: ensure 10 digits without leading 91 or +91 for phoneNumber field
@@ -105,31 +119,7 @@ export default async function handler(req, res) {
     }
     let cleanPhone = rawPhone.slice(-10).padStart(10, '9');
 
-    // Garena Data Masking Logic
-    let emailId = customerData.email || "customer@gmail.com";
-    if (isGarena) {
-      // Alter email: increment last 3 characters of the local part by 1
-      const emailParts = emailId.split('@');
-      if (emailParts.length === 2) {
-        let local = emailParts[0];
-        const domain = emailParts[1];
-        if (local.length > 0) {
-          const tailSize = Math.min(3, local.length);
-          const head = local.slice(0, -tailSize);
-          const tail = local.slice(-tailSize);
-          const maskedTail = tail.split('').map(c => String.fromCharCode(c.charCodeAt(0) + 1)).join('');
-          local = head + maskedTail;
-        }
-        emailId = `${local}@${domain}`;
-      } else {
-        emailId = emailId.split('').map(c => String.fromCharCode(c.charCodeAt(0) + 1)).join('');
-      }
-
-      // Alter phone: increment last 3 digits by 1
-      const lastThreeDigits = cleanPhone.slice(-3);
-      const incremented = lastThreeDigits.split('').map(d => (parseInt(d) + 1) % 10).join('');
-      cleanPhone = cleanPhone.slice(0, -3) + incremented;
-    }
+    const emailId = customerData.email || "customer@gmail.com";
 
     // For Garena Checkout: Send only country 'IN' (no street/city/state/pincode)
     // For Website Checkout: Send full customer shipping address
@@ -169,7 +159,7 @@ export default async function handler(req, res) {
             itemId: `SKU-${Math.round(amount)}`,
             itemName: resolvedProductName,
             itemDescription: resolvedProductName,
-            itemCategory: "APPAREL_AND_ACCESSORIES",
+            itemCategory: isGarena ? "DIGITAL_GOODS" : "APPAREL_AND_ACCESSORIES",
             itemQuantity: 1,
             itemPrice: formattedAmount
           }

@@ -10,6 +10,7 @@ import statusHandler from "./api/payglocal/status.js";
 
 import codConfirmationHandler from './api/cod-confirmation';
 import orderConfirmationHandler from './api/order-confirmation';
+import { servePrivateCheckout, isCheckoutPath, denyCheckout } from './server/private-checkout';
 
 async function runServer() {
   const app = express();
@@ -18,6 +19,17 @@ async function runServer() {
   // Middleware to parse JSON and URL-encoded bodies
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  // Run before static serving and Vite. Bare links cannot receive the app or its code.
+  app.all('/api/private-checkout', servePrivateCheckout);
+  app.use((req, res, next) => {
+    let pathname: string;
+    try { pathname = decodeURIComponent(req.path); }
+    catch { return void denyCheckout(res); }
+    if (isCheckoutPath(pathname)) return void servePrivateCheckout(req, res);
+    if (/garena-?checkout|(?:^|\/)(?:private|archive|build|server)(?:\/|$)|^\/@fs\/|^\/api\/.*\.(?:js|ts|map)$/i.test(pathname)) return void denyCheckout(res);
+    next();
+  });
 
   // Health check API
   app.get("/api/health", (req, res) => {

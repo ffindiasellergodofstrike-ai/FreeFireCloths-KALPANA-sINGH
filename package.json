@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
-    "build": "vite build && tsx scripts/build-crawler-pages.mts && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=build/server.cjs",
+    "dev": "tsx scripts/build-private-checkout.mts && tsx server.ts",
+    "build": "vite build && tsx scripts/build-crawler-pages.mts && tsx scripts/check-public-build.mts && tsx scripts/build-private-checkout.mts && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=build/server.cjs",
     "start": "node build/server.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist build",
