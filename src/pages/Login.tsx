@@ -60,10 +60,10 @@ export default function Login() {
     <div id="login-page-root" className="account-page">
       <div className="container account-layout"><AccountIntro />
         <div className="account-form-panel">
-          <h2 style={{ fontSize: '1.4rem', fontFamily: 'var(--font-h)', fontWeight: 700, letterSpacing: '1px', textAlign: 'center', marginBottom: '8px' }}>
-            WELCOME BACK
+          <h2 className="account-title">
+            Welcome back
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--gray)', textAlign: 'center', marginBottom: '24px' }}>
+          <p className="account-subtitle">
             Sign in to your Free Fire Store account
           </p>
 
@@ -81,10 +81,9 @@ export default function Login() {
             </div>
 
             <div className="form-group">
-              <label className="form-label" htmlFor="login-password" style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <label className="form-label account-password-label" htmlFor="login-password">
                 PASSWORD *
                 <button type="button" className="account-forgot"
-                  style={{ fontSize: '11px', color: 'var(--accent)', cursor: 'pointer', textTransform: 'uppercase', fontWeight: 'bold' }} 
                   onClick={() => {
                     setShowResetNotice(true);
                     toast.info("Contact owner to reset your password.");
@@ -104,27 +103,18 @@ export default function Login() {
             </div>
 
             {showResetNotice && (
-              <div style={{ 
-                margin: '16px 0', 
-                padding: '12px 16px', 
-                background: '#fef2f2', 
-                border: '1px solid #fee2e2', 
-                borderRadius: '4px',
-                color: '#991b1b', 
-                fontSize: '12px', 
-                lineHeight: '1.5' 
-              }}>
-                <strong>Reset Password:</strong> Please contact the website owner at <a href="tel:+917393845435" style={{ fontWeight: 'bold', textDecoration: 'underline', color: 'inherit' }}>+91-7393845435</a> to reset your credentials.
+              <div className="account-notice">
+                <strong>Reset Password:</strong> Please contact the website owner at <a href="tel:+917393845435">+91-7393845435</a> to reset your credentials.
               </div>
             )}
 
-            <button type="submit" className="btn btn-black btn-full btn-lg" style={{ marginTop: '12px' }}>
-              SIGN IN
+            <button type="submit" className="btn btn-black btn-full btn-lg">
+              Sign in
             </button>
           </form>
 
-          <p style={{ fontSize: '12px', color: 'var(--gray)', textAlign: 'center', marginTop: '24px' }}>
-            New to Free Fire Store? <Link to="/register" style={{ color: 'var(--dark)', fontWeight: 700, textDecoration: 'underline' }}>Create account</Link>
+          <p className="account-switch">
+            New to Free Fire Store? <Link to="/register">Create account</Link>
           </p>
         </div>
       </div>

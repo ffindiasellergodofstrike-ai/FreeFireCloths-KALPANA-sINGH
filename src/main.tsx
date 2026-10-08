@@ -8,6 +8,7 @@ import {installHostedImageFallback} from './lib/hosted-images.ts';
 import './index.css';
 import './storefront.css';
 import './account.css';
+import './presentation.css';
 
 installHostedImageFallback();
 
