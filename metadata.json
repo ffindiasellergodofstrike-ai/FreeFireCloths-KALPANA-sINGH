@@ -1,6 +1,6 @@
 {
-  "name": "Free Fire Store",
-  "description": "Free Fire Store – Your destination for premium fashion, apparel, sarees, and exclusive lifestyle collections in India.",
+  "name": "ffstreetwear",
+  "description": "Shop men's and women's everyday clothing, tops, shirts, co-ord sets and more at ffstreetwear. Explore sizes, colours and delivery options across India.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
