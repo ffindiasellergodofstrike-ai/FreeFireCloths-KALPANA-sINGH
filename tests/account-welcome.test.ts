@@ -41,7 +41,7 @@ test('welcome email uses Resend with a stable idempotency key', async () => {
     assert.equal(requests.length, 2);
     assert.equal(requests[0].url, 'https://api.resend.com/emails');
     assert.deepEqual(requests[0].body.to, [email]);
-    assert.match(requests[0].body.subject, /Welcome to Free Fire Store/);
+    assert.match(requests[0].body.subject, /Welcome to ffstreetwear/);
     assert.match(requests[0].body.html, /New &lt;script&gt;Customer&lt;\/script&gt;/);
     assert.doesNotMatch(JSON.stringify(requests[0].body), /must-not-be-emailed|password/i);
     assert.match(requests[0].body.text, /happy you’re here/);

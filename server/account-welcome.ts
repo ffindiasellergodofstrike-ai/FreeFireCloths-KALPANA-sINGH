@@ -26,9 +26,9 @@ export function welcomeEmailMessage(name: string) {
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   })[char]!);
   return {
-    subject: 'Welcome to Free Fire Store!',
-    html: `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"/></head><body style="margin:0;background:#f7f3ed;color:#33291f;font-family:Arial,sans-serif"><table role="presentation" style="width:100%;max-width:620px;margin:0 auto;background:#fffdf9;border-collapse:collapse"><tr><td style="padding:32px 24px"><p style="font-weight:bold;letter-spacing:2px">FREE FIRE STORE</p><h1 style="font:32px Georgia,serif">A warm welcome, ${htmlName}!</h1><p>We’re happy you’re here. Your account has been created, and you’re all set to explore the collection.</p><p>Thanks for joining our community. We hope you find something you love!</p><p style="margin-top:32px">With thanks,<br/><strong>Free Fire Store</strong></p></td></tr></table></body></html>`,
-    text: `Welcome to Free Fire Store, ${safeName}!\n\nWe’re happy you’re here. Your account has been created, and you’re all set to explore the collection.\n\nThanks for joining our community. We hope you find something you love!\n\nWith thanks,\nFree Fire Store`,
+    subject: 'Welcome to ffstreetwear!',
+    html: `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"/></head><body style="margin:0;background:#f7f3ed;color:#33291f;font-family:Arial,sans-serif"><table role="presentation" style="width:100%;max-width:620px;margin:0 auto;background:#fffdf9;border-collapse:collapse"><tr><td style="padding:32px 24px"><p style="font-weight:bold;letter-spacing:2px">FFSTREETWEAR</p><h1 style="font:32px Georgia,serif">A warm welcome, ${htmlName}!</h1><p>We’re happy you’re here. Your account has been created, and you’re all set to explore the collection.</p><p>Thanks for joining our community. We hope you find something you love!</p><p style="margin-top:32px">With thanks,<br/><strong>ffstreetwear</strong></p></td></tr></table></body></html>`,
+    text: `Welcome to ffstreetwear, ${safeName}!\n\nWe’re happy you’re here. Your account has been created, and you’re all set to explore the collection.\n\nThanks for joining our community. We hope you find something you love!\n\nWith thanks,\nffstreetwear`,
   };
 }
 

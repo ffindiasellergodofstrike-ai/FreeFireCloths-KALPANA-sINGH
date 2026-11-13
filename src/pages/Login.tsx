@@ -64,7 +64,7 @@ export default function Login() {
             Welcome back
           </h2>
           <p className="account-subtitle">
-            Sign in to your Free Fire Store account
+            Sign in to your ffstreetwear account
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -114,7 +114,7 @@ export default function Login() {
           </form>
 
           <p className="account-switch">
-            New to Free Fire Store? <Link to="/register">Create account</Link>
+            New to ffstreetwear? <Link to="/register">Create account</Link>
           </p>
         </div>
       </div>

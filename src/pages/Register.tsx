@@ -64,7 +64,7 @@ export default function Register() {
       // Log user session
       login(emailLower, fullName.trim(), mobile.trim());
       toast.dismiss(toastId);
-      toast.success('Account created successfully! Welcome to Free Fire Store.');
+      toast.success('Account created successfully! Welcome to ffstreetwear.');
       if (welcomeEmailSent) toast.success('A welcome email has been sent to your email address.');
       else toast.info('Your account was created, but we could not send the welcome email right now.');
       

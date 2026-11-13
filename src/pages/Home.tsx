@@ -28,7 +28,7 @@ export default function Home() {
   }));
   const handleNewsletterSubmit = () => {
     if (newsletterEmail.trim()) {
-      toast.success("✓ SUBSCRIBED! WELCOME TO Free Fire Store");
+      toast.success("✓ SUBSCRIBED! WELCOME TO ffstreetwear");
       setNewsletterEmail("");
     } else toast.error("Please enter a valid email address.");
   };
@@ -112,10 +112,10 @@ export default function Home() {
       <div className="edit-promises studio-promises">
         <Link to="/policies/shipping"><Truck size={21} /><span><strong>Delivery, explained</strong><small>Explore our shipping policy</small></span><ArrowUpRight size={16} /></Link>
         <Link to="/policies/refund"><RotateCcw size={21} /><span><strong>Shop with confidence</strong><small>Our returns & cancellation policy</small></span><ArrowUpRight size={16} /></Link>
-        <Link to="/contact"><Headphones size={21} /><span><strong>A real person to help</strong><small>Get in touch with Free Fire Store</small></span><ArrowUpRight size={16} /></Link>
+        <Link to="/contact"><Headphones size={21} /><span><strong>A real person to help</strong><small>Get in touch with ffstreetwear</small></span><ArrowUpRight size={16} /></Link>
       </div>
       <section className="newsletter studio-newsletter" id="newsletter-section">
-        <div className="container"><span className="studio-kicker">STAY A LITTLE CLOSER</span><h2>A little style in your inbox.</h2><p>New launches, wardrobe inspiration and updates from Free Fire Store.</p>
+        <div className="container"><span className="studio-kicker">STAY A LITTLE CLOSER</span><h2>A little style in your inbox.</h2><p>New launches, wardrobe inspiration and updates from ffstreetwear.</p>
           <div className="nl-form"><input type="email" aria-label="Newsletter email" placeholder="Your email address" value={newsletterEmail} onChange={e => setNewsletterEmail(e.target.value)} /><button onClick={handleNewsletterSubmit}>SUBSCRIBE <ArrowRight size={16} /></button></div>
         </div>
       </section>

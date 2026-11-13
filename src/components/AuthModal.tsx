@@ -147,7 +147,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                   <ShieldCheck className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
                 </div>
                 <h2 className="text-xl sm:text-2xl font-black mb-1 sm:mb-2">Account Created!</h2>
-                <p className="text-slate-500 text-[10px] sm:text-sm mb-6 sm:mb-8">Your account credentials for Free Fire Store.</p>
+                <p className="text-slate-500 text-[10px] sm:text-sm mb-6 sm:mb-8">Your account credentials for ffstreetwear.</p>
                 
                 <div className="bg-slate-50 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left border border-slate-100 space-y-3 sm:space-y-4">
                   <div>
@@ -179,7 +179,7 @@ export default function AuthModal({ onSuccess }: AuthModalProps) {
                 className="flex flex-col"
               >
                 <div className="text-center mb-6 sm:mb-8">
-                  <h2 className="text-xl sm:text-2xl font-black mb-1.5 sm:mb-2 uppercase tracking-tight">Free Fire Store</h2>
+                  <h2 className="text-xl sm:text-2xl font-black mb-1.5 sm:mb-2 uppercase tracking-tight">ffstreetwear</h2>
                   <p className="text-slate-500 text-[10px] sm:text-xs font-medium leading-relaxed max-w-[240px] mx-auto">
                     Sign in or create an account to manage orders
                   </p>

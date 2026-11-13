@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function RefundPolicy() {
   useEffect(() => {
-    document.title = 'Refund & Cancellation Policy – Free Fire Store';
+    document.title = 'Refund & Cancellation Policy – ffstreetwear';
   }, []);
   return (
     <div id="refund-policy-page-root">
@@ -21,7 +21,7 @@ export default function RefundPolicy() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>RETURN AND REFUND POLICY</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> Free Fire Store</span>
+            <span><strong>Trade Name:</strong> ffstreetwear</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,17 +29,17 @@ export default function RefundPolicy() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
-            <p><strong>Support Email:</strong> support@fashion-store.com</p>
+            <p><strong>Support Email:</strong> support@ffstreetwear.shop</p>
           </div>
 
-          <p>At Free Fire Store, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
+          <p>At ffstreetwear, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
 
           <h2>1. RETURN ELIGIBILITY</h2>
           <p>We offer a 7-day return policy from the date of delivery.</p>
@@ -79,12 +79,12 @@ export default function RefundPolicy() {
             <li>Clear photographs of the item from multiple angles showing the damage or defect</li>
             <li>A photograph of the original packaging and shipping label</li>
           </ul>
-          <p>Once verified, we will arrange a free pickup from your address and offer you a full refund or replacement, as per your preference. All shipping costs for damaged or incorrect item returns are borne by Free Fire Store.</p>
+          <p>Once verified, we will arrange a free pickup from your address and offer you a full refund or replacement, as per your preference. All shipping costs for damaged or incorrect item returns are borne by ffstreetwear.</p>
           <p><strong>Please note:</strong> Damage claims raised after 48 hours of delivery will not be accepted.</p>
 
           <h2>5. HOW TO INITIATE A RETURN</h2>
           <p><strong>Step 1:</strong> Contact us within 7 days of delivery:<br />
-          Email: <strong>connectwithgarena@gmail.com</strong><br />
+          Email: <strong>support@ffstreetwear.shop</strong><br />
           Phone / WhatsApp: <strong>+91 7393845435</strong></p>
           <p><strong>Step 2:</strong> Share your Order ID, registered mobile number, reason for return, and clear photographs of the item and its original packaging.</p>
           <p><strong>Step 3:</strong> Our support team will review your request and respond with an approval or rejection within 1 to 2 business days.</p>
@@ -101,7 +101,7 @@ export default function RefundPolicy() {
           <p>If reverse pickup is not available at your pin code, please ship the item to the following address at your own cost:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Return Address:</strong></p>
-            <p>Free Fire Store</p>
+            <p>ffstreetwear</p>
             <p>C/O Kalpana Singh</p>
             <p>PRANNATHPUR BACHHARIYA, SULTANPUR,</p>
             <p>UTTAR PRADESH, INDIA, 228171</p>
@@ -113,7 +113,7 @@ export default function RefundPolicy() {
             <li>Clearly write your Order ID and registered mobile number on the outside of the package.</li>
             <li>Use a trackable courier service. We recommend India Post Speed Post for the widest coverage across India.</li>
             <li>Share the tracking number with us via email after shipping.</li>
-            <li>Free Fire Store is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
+            <li>ffstreetwear is NOT responsible for items lost, stolen, or damaged during self-shipping. Customers are advised to use insured courier services for high-value returns.</li>
             <li>Self-shipping costs are borne by the customer, except in cases of damaged, defective, or incorrect items.</li>
           </ul>
 
@@ -188,19 +188,19 @@ export default function RefundPolicy() {
             <li>Store credit is valid for 6 months from the date of issue and can be used for any future purchase on https://www.ffstreetwear.shop/.</li>
             <li>Store credit cannot be extended beyond its validity period, transferred to another account, or converted to cash.</li>
             <li>The original COD handling fee (if any) is non-refundable and will be deducted from the refund amount.</li>
-            <li>Original shipping charges are non-refundable, except in cases where Free Fire Store dispatched a wrong or defective item.</li>
+            <li>Original shipping charges are non-refundable, except in cases where ffstreetwear dispatched a wrong or defective item.</li>
           </ul>
 
           <h2>10. LATE OR MISSING REFUNDS</h2>
           <p>If you have not received your refund within the stated timeframe after we have initiated it, please follow these steps:</p>
           <p><strong>Step 1:</strong> Check your bank account, card statement, or UPI app again.</p>
           <p><strong>Step 2:</strong> Contact your bank or card issuer, as refund posting times vary between financial institutions.</p>
-          <p><strong>Step 3:</strong> If the refund still has not appeared after 7 business days from our initiation date, contact us at connectwithgarena@gmail.com with your Order ID and we will investigate with our payment gateway partner.</p>
+          <p><strong>Step 3:</strong> If the refund still has not appeared after 7 business days from our initiation date, contact us at support@ffstreetwear.shop with your Order ID and we will investigate with our payment gateway partner.</p>
 
           <h2>11. ORDER CANCELLATION AND REFUND</h2>
           <p><strong>Cancellation by Customer (Before Dispatch):</strong></p>
           <ul>
-            <li>You may cancel your order within 24 hours of placing it by contacting us at connectwithgarena@gmail.com or +91 7393845435.</li>
+            <li>You may cancel your order within 24 hours of placing it by contacting us at support@ffstreetwear.shop or +91 7393845435.</li>
             <li>A full refund will be processed to your original payment method within 5 to 7 business days.</li>
             <li>COD orders cancelled before dispatch will not attract any cancellation charge.</li>
           </ul>
@@ -210,7 +210,7 @@ export default function RefundPolicy() {
             <li>If you refuse delivery, the item will be returned to us. A refund will be issued after deducting the original and return shipping charges from the order value.</li>
             <li>COD orders where delivery is refused will not receive any refund, as no payment was made by the customer.</li>
           </ul>
-          <p><strong>Cancellation by Free Fire Store:</strong></p>
+          <p><strong>Cancellation by ffstreetwear:</strong></p>
           <ul>
             <li>We may cancel orders due to stock unavailability, payment failure, pricing errors, incomplete address, or suspected fraud.</li>
             <li>A full refund will be issued within 5 to 7 business days of cancellation and you will be notified by email or SMS.</li>
@@ -218,7 +218,7 @@ export default function RefundPolicy() {
 
           <h2>12. PAYMENT GATEWAY AND CHARGEBACK POLICY</h2>
           <p>All online refunds are processed through our authorised payment gateway partners including PayU Payments Private Limited, Razorpay, CCAvenue, Cashfree, and Shopify Payments. These gateways are PCI-DSS compliant and authorised by the Reserve Bank of India (RBI).</p>
-          <p>If you believe an incorrect or unauthorised charge has occurred, please contact us at connectwithgarena@gmail.com BEFORE initiating a chargeback with your bank. We will investigate and resolve the issue promptly.</p>
+          <p>If you believe an incorrect or unauthorised charge has occurred, please contact us at support@ffstreetwear.shop BEFORE initiating a chargeback with your bank. We will investigate and resolve the issue promptly.</p>
           <p>Initiating a chargeback for a legitimate and fulfilled order without first contacting us may be considered fraudulent. In such cases, we reserve the right to submit transaction evidence to the payment gateway and your bank, and to take appropriate legal action.</p>
 
           <h2>13. GRIEVANCE OFFICER</h2>
@@ -226,7 +226,7 @@ export default function RefundPolicy() {
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
-            <p><strong>Email:</strong> support@fashion-store.com</p>
+            <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone:</strong> N/A</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
@@ -236,11 +236,11 @@ export default function RefundPolicy() {
           <h2>14. CONTACT US</h2>
           <p>For any return, refund, exchange, or cancellation queries, please contact us:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Email:</strong> connectwithgarena@gmail.com</p>
+            <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

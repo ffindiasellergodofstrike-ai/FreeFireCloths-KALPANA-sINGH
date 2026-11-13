@@ -71,13 +71,17 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/pages/Success.tsx",
     "src/pages/TrackOrder.tsx",
     "src/lib/firebase.ts",
+    // Authorized ffstreetwear brand and support@ffstreetwear.shop update.
+    "src/pages/About.tsx",
+    "src/pages/BlogPost.tsx",
+    "src/pages/Contact.tsx",
   ]);
   for (const [file, hash] of Object.entries(baseline)) {
     if (!presentationChanges.has(file))
       assert.equal(digest(restoreOriginSource(readFileSync(file, "utf8"))), hash, file);
   }
   const header = readFileSync("src/components/Navbar.tsx", "utf8");
-  assert.match(header, /<span className="logo-main">FREE FIRE STORE<\/span>/);
+  assert.match(header, /<span className="logo-main">FFSTREETWEAR<\/span>/);
 });
 test("all 251 imported records map losslessly to unique numeric IDs and original schema", () => {
   assert.equal(REFERENCE_PRODUCTS.length, provenance.websiteB.count);

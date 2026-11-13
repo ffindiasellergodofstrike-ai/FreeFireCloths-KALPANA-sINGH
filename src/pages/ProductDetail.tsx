@@ -92,12 +92,12 @@ export default function ProductDetail() {
   const handleShareProduct = async () => {
     if (!product) return;
     const shareUrl = window.location.href;
-    const shareText = `Check out ${product.name} at Free Fire Store – ₹${product.price}`;
+    const shareText = `Check out ${product.name} at ffstreetwear – ₹${product.price}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${product.name} – Free Fire Store`,
+          title: `${product.name} – ffstreetwear`,
           text: shareText,
           url: shareUrl
         });

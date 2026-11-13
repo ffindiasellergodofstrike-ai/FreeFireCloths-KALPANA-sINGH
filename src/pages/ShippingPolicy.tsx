@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function ShippingPolicy() {
   useEffect(() => {
-    document.title = 'Shipping Policy – Free Fire Store';
+    document.title = 'Shipping Policy – ffstreetwear';
   }, []);
   return (
     <div id="shipping-policy-page-root">
@@ -21,7 +21,7 @@ export default function ShippingPolicy() {
         <div className="policy-header">
           <h1 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>SHIPPING POLICY</h1>
           <div className="policy-meta">
-            <span><strong>Trade Name:</strong> Free Fire Store</span>
+            <span><strong>Trade Name:</strong> ffstreetwear</span>
             <span><strong>Owner:</strong> Kalpana Singh</span>
             <span><strong>Updated:</strong> July 28, 2026</span>
           </div>
@@ -29,18 +29,18 @@ export default function ShippingPolicy() {
 
         <div className="policy-body">
           <div className="policy-info-box">
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
-            <p><strong>Support Email:</strong> support@fashion-store.com</p>
+            <p><strong>Support Email:</strong> support@ffstreetwear.shop</p>
           </div>
 
           <h2>OVERVIEW</h2>
-          <p>Thank you for shopping with Free Fire Store! We are committed to delivering your fashion and lifestyle products accurately, in perfect condition, and as swiftly as possible anywhere in India. Please read this Shipping Policy carefully to understand how and when your orders will arrive.</p>
+          <p>Thank you for shopping with ffstreetwear! We are committed to delivering your fashion and lifestyle products accurately, in perfect condition, and as swiftly as possible anywhere in India. Please read this Shipping Policy carefully to understand how and when your orders will arrive.</p>
 
           <h2>SECTION 1 — ORDER PROCESSING TIME</h2>
           <p>All orders are processed within 1 to 3 business days after you receive your Order Confirmation email.</p>
@@ -78,7 +78,7 @@ export default function ShippingPolicy() {
             </table>
           </div>
           <p>Shipping charges are shown clearly at checkout before you complete your payment.</p>
-          <p>Shipping fees are <strong>NON-REFUNDABLE</strong>, except in cases where Free Fire Store dispatched a wrong or defective item.</p>
+          <p>Shipping fees are <strong>NON-REFUNDABLE</strong>, except in cases where ffstreetwear dispatched a wrong or defective item.</p>
 
           <h2>SECTION 3 — DELIVERY TIMEFRAMES</h2>
           <p>Estimated delivery times AFTER dispatch:</p>
@@ -108,7 +108,7 @@ export default function ShippingPolicy() {
           </div>
           <p><strong>IMPORTANT:</strong> These are estimated timelines and are NOT guaranteed. Actual delivery may vary based on your pin code, courier workload, weather, or other external factors.</p>
           <p>If your order has not arrived within 15 days of your Shipping Confirmation email, contact us immediately at:</p>
-          <p><strong>Email:</strong> connectwithgarena@gmail.com &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
+          <p><strong>Email:</strong> support@ffstreetwear.shop &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
 
           <h2>SECTION 4 — CASH ON DELIVERY (COD)</h2>
           <p>COD is available for most pin codes across India.</p>
@@ -161,7 +161,7 @@ export default function ShippingPolicy() {
               </tbody>
             </table>
           </div>
-          <p>All transactions are SSL encrypted. Free Fire Store does NOT store your card, UPI, or banking credentials.</p>
+          <p>All transactions are SSL encrypted. ffstreetwear does NOT store your card, UPI, or banking credentials.</p>
 
           <h2>SECTION 6 — SERVICE AREAS AND COURIER PARTNERS</h2>
           <p>We ship to ALL states and union territories within India.</p>
@@ -196,7 +196,7 @@ export default function ShippingPolicy() {
           </ul>
 
           <h2>SECTION 9 — INCORRECT SHIPPING ADDRESS</h2>
-          <p>Free Fire Store is <strong>NOT</strong> responsible for non-delivery or delays caused by an incorrect, incomplete, or invalid delivery address provided by you at checkout.</p>
+          <p>ffstreetwear is <strong>NOT</strong> responsible for non-delivery or delays caused by an incorrect, incomplete, or invalid delivery address provided by you at checkout.</p>
           <p>Before placing your order, please verify:</p>
           <ul>
             <li>Full name</li>
@@ -231,10 +231,10 @@ export default function ShippingPolicy() {
             <li>We will raise a formal investigation with the courier partner within 1 to 2 business days.</li>
             <li>Resolution will be provided within 7 business days.</li>
           </ul>
-          <p>Free Fire Store is not legally liable for packages lost by the courier partner after dispatch. However, we will actively coordinate with the courier partner on your behalf and work to resolve the issue at the earliest.</p>
+          <p>ffstreetwear is not legally liable for packages lost by the courier partner after dispatch. However, we will actively coordinate with the courier partner on your behalf and work to resolve the issue at the earliest.</p>
 
           <h2>SECTION 12 — DELAYS AND DISRUPTIONS</h2>
-          <p>Free Fire Store will not be held liable for delivery delays caused by:</p>
+          <p>ffstreetwear will not be held liable for delivery delays caused by:</p>
           <ul>
             <li>Courier partner delays or logistics issues</li>
             <li>Natural disasters, floods, or extreme weather</li>
@@ -251,11 +251,11 @@ export default function ShippingPolicy() {
           <h2>SECTION 14 — CONTACT US</h2>
           <p>For any shipping or delivery related queries, please contact us:</p>
           <div className="policy-info-box" style={{ marginTop: '12px' }}>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Email:</strong> support@fashion-store.com</p>
+            <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone / WhatsApp:</strong> +91 9999999999</p>
-            <p><strong>Business Name:</strong> Free Fire Store</p>
+            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

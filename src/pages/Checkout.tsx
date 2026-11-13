@@ -299,7 +299,7 @@ export default function Checkout() {
       setIsSuccess(true);
       if (!directProduct) clearCart();
       toast.dismiss(loadingToast);
-      toast.success('Free Fire Store Order Confirmed!');
+      toast.success('ffstreetwear Order Confirmed!');
     } catch (error: any) {
       setIsProcessing(false);
       toast.dismiss(loadingToast);
@@ -318,7 +318,7 @@ export default function Checkout() {
         </div>
         <h1 style={{ fontSize: '28px', marginBottom: '12px', fontFamily: 'var(--font-h)', fontWeight: '800' }}>YOUR ORDER HAS BEEN SUCCESSFULLY PLACED!</h1>
         <p style={{ color: 'var(--gray)', maxWidth: '480px', margin: '0 auto 32px', fontSize: '15px' }}>
-          Thank you for shopping with Free Fire Store. Your order has been received and will be delivered to your address soon.
+          Thank you for shopping with ffstreetwear. Your order has been received and will be delivered to your address soon.
         </p>
 
         {successOrderNumber && (
@@ -387,7 +387,7 @@ export default function Checkout() {
                   letterSpacing: '1.5px',
                   textTransform: 'uppercase'
                 }}>
-                  Free Fire Store
+                  ffstreetwear
                 </span>
               </div>
               <Link 

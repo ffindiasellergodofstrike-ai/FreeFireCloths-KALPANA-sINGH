@@ -83,7 +83,7 @@ export default function PaymentSuccess() {
         
         <h1 style={{ fontSize: '32px', marginBottom: '8px', fontFamily: 'var(--font-h)', fontWeight: '800', color: '#111827' }}>YOUR ORDER HAS BEEN SUCCESSFULLY PLACED!</h1>
         <p style={{ color: '#4b5563', margin: '0 auto 24px', fontSize: '16px', lineHeight: '1.6' }}>
-          Thank you for shopping with Free Fire Store. Your order has been received and will be delivered to your address soon.
+          Thank you for shopping with ffstreetwear. Your order has been received and will be delivered to your address soon.
         </p>
 
         {orderId && (

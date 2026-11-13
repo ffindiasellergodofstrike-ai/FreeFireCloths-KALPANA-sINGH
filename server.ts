@@ -33,7 +33,7 @@ async function runServer() {
 
   // Health check API
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", store: "Free Fire Store" });
+    res.json({ status: "ok", store: "ffstreetwear" });
   });
 
   // PayGlocal integration routes

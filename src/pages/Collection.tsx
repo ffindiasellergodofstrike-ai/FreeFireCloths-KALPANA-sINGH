@@ -24,7 +24,7 @@ export default function Collection() {
     if (key === 'range') next.delete('price');
     setParams(next);
   };
-  useEffect(() => { document.title = `${label} – Free Fire Store`; }, [label]);
+  useEffect(() => { document.title = `${label} – ffstreetwear`; }, [label]);
   useEffect(() => { setLimit(24); }, [category, params]);
   const items = base.filter(p =>
     (type === 'all' || categoryOf(p) === type) &&
@@ -39,7 +39,7 @@ export default function Collection() {
   return (
     <section className="edit-section edit-collection" id="collection-page-root">
       <div className="edit-collection-title">
-        <span className="edit-eyebrow">THE FREE FIRE STORE WARDROBE</span>
+        <span className="edit-eyebrow">THE FFSTREETWEAR WARDROBE</span>
         <h1>{label}{inDepartment ? '’s collection' : ''}</h1>
         <p>{base.length} products to explore. Old favourites and fresh arrivals, together.</p>
       </div>

@@ -9,7 +9,7 @@ export async function deliverEmail(to: string, key: string, message: { subject: 
   const response = await fetch(`${endpoint}/emails`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': key },
-    body: JSON.stringify({ from: `Free Fire Store <${process.env.RESEND_FROM_EMAIL}>`, to: [to], ...message }),
+    body: JSON.stringify({ from: `ffstreetwear <${process.env.RESEND_FROM_EMAIL}>`, to: [to], ...message }),
     signal: AbortSignal.timeout(15000),
   });
   if (!response.ok) throw new Error('Email delivery request failed');

@@ -883,7 +883,7 @@ export default function ProductReviews({ productId }: { productId: number }) {
                 </div>
 
                 <p style={{ margin: '16px 0 0', fontSize: '13px', color: '#75685d', textAlign: 'center' }}>
-                  New to Free Fire Store? <Link to="/register" onClick={() => setErrorModal(null)} style={{ color: '#372b22', fontWeight: 600, textDecoration: 'underline' }}>Create account</Link>
+                  New to ffstreetwear? <Link to="/register" onClick={() => setErrorModal(null)} style={{ color: '#372b22', fontWeight: 600, textDecoration: 'underline' }}>Create account</Link>
                 </p>
               </div>
             ) : errorModal.type === 'not_delivered' ? (

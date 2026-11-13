@@ -4,7 +4,7 @@ import { ShoppingBag, Truck, Heart } from 'lucide-react';
 
 export default function AccountIntro({ register = false }: { register?: boolean }) {
   return <aside className="account-intro">
-    <Link to="/" className="account-wordmark">FREE FIRE STORE</Link>
+    <Link to="/" className="account-wordmark">FFSTREETWEAR</Link>
     <span className="edit-eyebrow">CLOTHING &amp; APPAREL</span>
     <h1>{register ? <>Make room for<br /><em>something you.</em></> : <>Good to have<br /><em>you back.</em></>}</h1>
     <p>Your favourites, your next find, your own little corner of the store.</p>
