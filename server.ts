@@ -10,11 +10,13 @@ import statusHandler from "./api/payglocal/status.js";
 
 import codConfirmationHandler from './api/cod-confirmation';
 import orderConfirmationHandler from './api/order-confirmation';
+import contactHandler from './api/contact';
+import { existsSync } from 'node:fs';
 import { servePrivateCheckout, isCheckoutPath, denyCheckout } from './server/private-checkout';
 
 async function runServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   // Middleware to parse JSON and URL-encoded bodies
   app.use(express.json());
@@ -44,6 +46,7 @@ async function runServer() {
   app.post("/api/order-confirmation", orderConfirmationHandler);
 
   app.post("/api/cod-confirmation", codConfirmationHandler);
+  app.post("/api/contact", contactHandler);
 
   // Crawlers receive the same catalog URLs as visitors; no user-agent branching.
   app.get("/sitemap.xml", (_req, res) => res.type("application/xml").send(sitemapXml(PRODUCTS)));
@@ -59,13 +62,24 @@ async function runServer() {
   } else {
     console.log("Starting server in PRODUCTION mode...");
     const distPath = path.join(process.cwd(), "dist");
+    app.use((req, res, next) => {
+      const normalized = req.path.replace(/\/+$/, '') || '/';
+      if (privatePages[normalized]) {
+        const page = pageMetadata(normalized, PRODUCTS);
+        res.set('X-Robots-Tag', page.robots || 'noindex, follow');
+      }
+      next();
+    });
     app.use(express.static(distPath, { extensions: ['html'], dotfiles: 'deny' }));
     app.get("*", (req, res) => {
-      const page = pageMetadata(req.path, PRODUCTS);
+      const normalized = req.path.replace(/\/+$/, '') || '/';
+      const page = pageMetadata(normalized, PRODUCTS);
       // Custom products remain supported by the original browser catalog.
       if (page.found || /^\/product\/-?\d+\/?$/.test(req.path)) {
-        if (privatePages[req.path] || !page.found) res.set('X-Robots-Tag', page.robots || 'noindex, follow');
-        return res.sendFile(path.join(distPath, page.found ? "index.html" : "product-fallback.html"));
+        if (privatePages[normalized] || !page.found) res.set('X-Robots-Tag', page.robots || 'noindex, follow');
+        const staticFile = normalized === '/' ? 'index.html' : `${normalized.slice(1)}.html`;
+        const candidate = path.join(distPath, staticFile);
+        return res.sendFile(page.found && existsSync(candidate) ? candidate : path.join(distPath, page.found ? "index.html" : "product-fallback.html"));
       }
       res.status(404).set('X-Robots-Tag', 'noindex, follow').sendFile(path.join(distPath, '404.html'));
     });

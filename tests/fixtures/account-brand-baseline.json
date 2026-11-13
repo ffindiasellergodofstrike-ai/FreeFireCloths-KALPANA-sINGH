@@ -1,7 +1,7 @@
 {
   "src/pages/Login.tsx": "445d588b0813d74e6c5714d756d9e1c33cfa7d15ec26fd5eae7e78e8af98d391",
   "src/pages/Register.tsx": "2524bcbcd67b6c3eb3384623dcd1d7912f461827a309d9b1071d8a014fae7ca6",
-  "src/pages/Terms.tsx": "4a2b1b823c74bdafdf85294691a793b892449ff180c0691aa12b2abadd12473e",
-  "src/pages/RefundPolicy.tsx": "f4ce2081c6f59343472cb04f2bcfcc63682faf481bc6fac852b95881f495ef3e",
-  "src/pages/ShippingPolicy.tsx": "b1c024888e226c77d2f8bac03b757aa5f882b5c5712236e43ee777d4647fa6a8"
+  "src/pages/Terms.tsx": "e47a86d6d1b9860844ff5211dc004794f01c18253b83e7120b86aacefc29ae13",
+  "src/pages/RefundPolicy.tsx": "819cd410885f8507d1fb0fac3c1d20e96d1863ea5653be662e8d163101a907ae",
+  "src/pages/ShippingPolicy.tsx": "cbed37de6edcc60de208340287915712aad5d2fc0423a41cafcfaf6c4dfde68d"
 }

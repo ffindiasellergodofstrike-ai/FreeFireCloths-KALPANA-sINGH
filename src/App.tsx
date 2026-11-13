@@ -67,22 +67,28 @@ function StoreLayout() {
   );
 }
 
-export default function App() {
+export function AppShell() {
   return (
     <AuthProvider>
       <CartProvider>
         <ProductProvider>
-          <Router>
-            <Toaster position="top-center" richColors />
-            <ScrollToTop />
-            <PageMetadata />
-            <ImagePreloader />
-            <Routes>
-              <Route path="/*" element={<StoreLayout />} />
-            </Routes>
-          </Router>
+          <Toaster position="top-center" richColors />
+          <ScrollToTop />
+          <PageMetadata />
+          <ImagePreloader />
+          <Routes>
+            <Route path="/*" element={<StoreLayout />} />
+          </Routes>
         </ProductProvider>
       </CartProvider>
     </AuthProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppShell />
+    </Router>
   );
 }

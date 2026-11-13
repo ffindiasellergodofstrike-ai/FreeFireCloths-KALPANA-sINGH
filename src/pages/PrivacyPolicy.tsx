@@ -36,11 +36,11 @@ export default function PrivacyPolicy() {
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
-            <p><strong>Support Email:</strong> support@ffstreetwear.shop</p>
+            <p><strong>Support Email:</strong> support@ffstreetwear.shop &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
           <p>ffstreetwear ("we", "us", "our") is owned and operated by Kalpana Singh. This Privacy Policy describes how we collect, use, store, and disclose your personal information when you visit or make a purchase from our Site.</p>
-          <p>This website is hosted on Shopify Inc., which enables us to provide our Services to you.</p>
+          <p>This website is hosted on secure cloud infrastructure at https://www.ffstreetwear.shop/, enabling us to provide our Services to you reliably and securely.</p>
           <p>By using our Site, you agree to this Privacy Policy. If you do not agree, please do not use our Site.</p>
           <p>For any conflict between our Terms of Service and this Privacy Policy, this Privacy Policy shall govern with respect to the collection, processing, and disclosure of your personal information.</p>
 
@@ -105,11 +105,8 @@ export default function PrivacyPolicy() {
             <li>
               <strong>FROM OUR SERVICE PROVIDERS</strong>
               <ul>
-                <li>Shopify (e-commerce platform & website hosting)</li>
-                <li>PayU Payments Private Limited (payment processing)</li>
-                <li>Razorpay Software Private Limited (payment processing)</li>
-                <li>CCAvenue / Infibeam Avenues (payment processing)</li>
-                <li>Cashfree Payments (payment processing)</li>
+                <li>Cloud hosting & database infrastructure (website hosting, authentication & order storage)</li>
+                <li>Authorised RBI-regulated PCI-DSS compliant payment gateways (online payment processing)</li>
                 <li>Delhivery, Shiprocket, BlueDart, DTDC, India Post (shipping)</li>
                 <li>Google Analytics (website analytics)</li>
                 <li>Meta / Facebook (advertising & remarketing)</li>
@@ -173,12 +170,12 @@ export default function PrivacyPolicy() {
           </div>
 
           <h2>SECTION 4 — PAYMENT PROCESSING & DATA SECURITY</h2>
-          <p>Online payment modes are currently disabled on our store. All current purchases are processed via Cash on Delivery (COD). When online payment gateways are enabled, payments are processed by our authorised payment gateway partners:</p>
+          <p>We support both Prepaid Online Payments (Cards, UPI, Net Banking, Wallets) and Cash on Delivery (COD). Online payments are processed securely by our authorised RBI-regulated PCI-DSS compliant payment gateway partners:</p>
           <ul>
-            <li>Authorised RBI-regulated PCI-DSS compliant payment gateways</li>
+            <li>Authorised RBI-regulated PCI-DSS compliant payment gateways (including PayGlocal / PayU)</li>
           </ul>
           <p><strong>IMPORTANT:</strong> ffstreetwear does NOT store your card numbers, CVV, UPI PIN, net banking login, or any sensitive payment credentials on our servers.</p>
-          <p>All transactions on our website are protected by SSL (Secure Socket Layer) 256-bit encryption.</p>
+          <p>All transactions on our website are protected by HTTPS/TLS encryption.</p>
 
           <h2>SECTION 5 — HOW WE SHARE YOUR INFORMATION</h2>
           <p>We do NOT sell your personal information to any third party.</p>
@@ -201,8 +198,8 @@ export default function PrivacyPolicy() {
                   <td >To process order transactions securely</td>
                 </tr>
                 <tr >
-                  <td >Shopify Inc.</td>
-                  <td >To host and operate our online store</td>
+                  <td >Cloud Hosting &amp; Database Providers</td>
+                  <td >To host, secure, and operate our online store and order records</td>
                 </tr>
                 <tr >
                   <td >Google Analytics</td>
@@ -313,11 +310,9 @@ export default function PrivacyPolicy() {
           </ul>
           <p>Please review the privacy policy of any third-party site you visit before sharing your information.</p>
 
-          <h2>SECTION 11 — RELATIONSHIP WITH SHOPIFY</h2>
-          <p>Our website is hosted and powered by Shopify Inc. Shopify collects and processes certain personal data about your access to our Site to provide and improve their platform services.</p>
-          <p>Shopify operates as an independent data processor and is responsible for the personal data it collects separately.</p>
-          <p>To learn more about how Shopify handles your data, visit: <a href="https://www.shopify.com/legal/privacy" target="_blank" rel="noreferrer">https://www.shopify.com/legal/privacy</a></p>
-          <p>To exercise your rights over data processed by Shopify, visit: <a href="https://privacy.shopify.com/en" target="_blank" rel="noreferrer">https://privacy.shopify.com/en</a></p>
+          <h2>SECTION 11 — PLATFORM &amp; HOSTING INFRASTRUCTURE</h2>
+          <p>Our website is operated directly by ffstreetwear on modern cloud web hosting and database infrastructure. Authorised cloud infrastructure and payment gateway providers process only the technical or transaction data required to serve pages, store your account/orders securely, and complete payments.</p>
+          <p>We ensure all third-party infrastructure and payment processors adhere to industry-standard encryption and applicable Indian data protection laws.</p>
 
           <h2>SECTION 12 — CHANGES TO THIS PRIVACY POLICY</h2>
           <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or business operations.</p>
@@ -337,7 +332,6 @@ export default function PrivacyPolicy() {
             <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -352,7 +346,6 @@ export default function PrivacyPolicy() {
             <p><strong>Owner:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

@@ -31,12 +31,11 @@ export default function RefundPolicy() {
           <div className="policy-info-box">
             <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
-            <p><strong>Support Email:</strong> support@ffstreetwear.shop</p>
+            <p><strong>Support Email:</strong> support@ffstreetwear.shop &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
           <p>At ffstreetwear, we are committed to ensuring you have a seamless and satisfying shopping experience. If you are not entirely happy with your purchase, we are here to help. Please read our Return and Refund Policy carefully before placing your order.</p>
@@ -217,7 +216,7 @@ export default function RefundPolicy() {
           </ul>
 
           <h2>12. PAYMENT GATEWAY AND CHARGEBACK POLICY</h2>
-          <p>All online refunds are processed through our authorised payment gateway partners including PayU Payments Private Limited, Razorpay, CCAvenue, Cashfree, and Shopify Payments. These gateways are PCI-DSS compliant and authorised by the Reserve Bank of India (RBI).</p>
+          <p>All online refunds are processed through our authorised RBI-regulated PCI-DSS compliant payment gateway partners (including PayGlocal / PayU) back to your original payment source.</p>
           <p>If you believe an incorrect or unauthorised charge has occurred, please contact us at support@ffstreetwear.shop BEFORE initiating a chargeback with your bank. We will investigate and resolve the issue promptly.</p>
           <p>Initiating a chargeback for a legitimate and fulfilled order without first contacting us may be considered fraudulent. In such cases, we reserve the right to submit transaction evidence to the payment gateway and your bank, and to take appropriate legal action.</p>
 
@@ -227,7 +226,7 @@ export default function RefundPolicy() {
             <p><strong>Name:</strong> Kalpana Singh</p>
             <p><strong>Designation:</strong> Proprietor and Grievance Officer</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
-            <p><strong>Phone:</strong> N/A</p>
+            <p><strong>Phone:</strong> +91 7393845435</p>
             <p><strong>Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Working Hours:</strong> Monday to Saturday, 10:00 AM to 6:00 PM IST</p>
           </div>
@@ -240,7 +239,6 @@ export default function RefundPolicy() {
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

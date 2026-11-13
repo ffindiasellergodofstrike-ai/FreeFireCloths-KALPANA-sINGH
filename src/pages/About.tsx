@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useProducts } from '../context/ProductContext';
 
 export default function About() {
   const navigate = useNavigate();
+  const { products } = useProducts();
   const [email, setEmail] = useState('');
 
   useEffect(() => {
@@ -37,12 +39,24 @@ export default function About() {
               From carefully curated menswear and women's fashion to trending everyday apparel, every product in our store is handpicked for quality, value, and style. We partner with trusted manufacturers and logistics networks to ensure your order reaches you safely and on time.
             </p>
             <p style={{ fontSize: '15px', color: 'var(--gray)', lineHeight: 1.8, marginBottom: '24px' }}>
-              With free express shipping, a transparent return policy, and a dedicated support team, we're committed to giving you the best online shopping experience in India.
+              With free shipping across India, a transparent return policy, and a dedicated support team, we're committed to giving you the best online shopping experience.
             </p>
 
             {/* Business & Registration Information Box */}
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '20px', borderRadius: '8px', marginBottom: '24px' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', borderBottom: '1px solid #cbd5e1', paddingBottom: '8px' }}>BUSINESS & REGISTRATION DETAILS</h3>
+              <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', borderBottom: '1px solid #cbd5e1', paddingBottom: '8px' }}>BUSINESS &amp; REGISTRATION DETAILS</h3>
+              <p style={{ fontSize: '13px', color: '#334155', margin: '0 0 6px', lineHeight: '1.6' }}>
+                <strong>Trade Name:</strong> ffstreetwear &nbsp;|&nbsp; <strong>Proprietor:</strong> Kalpana Singh
+              </p>
+              <p style={{ fontSize: '13px', color: '#334155', margin: '0 0 6px', lineHeight: '1.6' }}>
+                <strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799
+              </p>
+              <p style={{ fontSize: '13px', color: '#334155', margin: '0 0 6px', lineHeight: '1.6' }}>
+                <strong>Support Email:</strong> support@ffstreetwear.shop &nbsp;|&nbsp; <strong>Phone:</strong> +91-7393845435
+              </p>
+              <p style={{ fontSize: '13px', color: '#334155', margin: '0 0 6px', lineHeight: '1.6' }}>
+                <strong>Support Hours:</strong> Monday – Saturday, 10:00 AM – 6:00 PM IST
+              </p>
               <p style={{ fontSize: '13px', color: '#334155', margin: 0, lineHeight: '1.6' }}>
                 <strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171
               </p>
@@ -59,8 +73,8 @@ export default function About() {
             <div className="lbl">Happy Customers</div>
           </div>
           <div className="stat-box">
-            <div className="num">30+</div>
-            <div className="lbl">Premium Products</div>
+            <div className="num">{products.length}</div>
+            <div className="lbl">Curated Styles</div>
           </div>
           <div className="stat-box">
             <div className="num">500+</div>

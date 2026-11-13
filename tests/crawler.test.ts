@@ -19,6 +19,8 @@ test('sitemap lists all active products but no checkout/account/retired pages', 
   }
   const xml = sitemapXml(PRODUCTS);
   assert.match(xml, /^<\?xml/);
+  assert.match(xml, /xmlns:image="http:\/\/www\.google\.com\/schemas\/sitemap-image\/1\.1"/);
+  assert.ok(xml.includes('<image:image><image:loc>'));
   assert.equal((xml.match(/<loc>/g) || []).length, paths.length);
   assert.ok(xml.includes(`<loc>${site.origin}/product/-1881672</loc>`));
 });
@@ -29,6 +31,19 @@ test('metadata follows the page, canonical domain and index eligibility', () => 
   assert.equal(product.type, 'product');
   assert.equal(product.canonical, `${site.origin}/product/-1881672`);
   assert.equal(product.robots, 'index, follow');
+  assert.equal(product.product?.currency, 'INR');
+  assert.equal(product.product?.availability, 'in stock');
+  const graph = (product.schema as { '@graph': Array<Record<string, unknown>> })['@graph'];
+  const orgNode = graph.find(node => node['@type'] === 'Organization');
+  const productNode = graph.find(node => node['@type'] === 'Product') as {
+    offers?: { priceCurrency?: string; availability?: string };
+    name?: string;
+  } | undefined;
+  assert.ok(orgNode);
+  assert.equal(orgNode.legalName, 'Kalpana Singh');
+  assert.ok(productNode);
+  assert.equal(productNode.offers?.priceCurrency, 'INR');
+  assert.equal(productNode.offers?.availability, 'https://schema.org/InStock');
   assert.equal(pageMetadata('/product/99999999', PRODUCTS).robots, 'noindex, follow');
   for (const p of Object.keys(privatePages)) {
     const expectedRobots = p.toLowerCase().includes('garena') ? 'noindex, nofollow, noarchive' : 'noindex, follow';

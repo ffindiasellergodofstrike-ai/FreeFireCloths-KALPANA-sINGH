@@ -71,10 +71,12 @@ test("protected A files, dependencies, routes, branding and legal information ar
     "src/pages/Success.tsx",
     "src/pages/TrackOrder.tsx",
     "src/lib/firebase.ts",
-    // Authorized ffstreetwear brand and support@ffstreetwear.shop update.
+    // Authorized ffstreetwear brand, SSR build configuration, and support@ffstreetwear.shop updates.
     "src/pages/About.tsx",
     "src/pages/BlogPost.tsx",
     "src/pages/Contact.tsx",
+    "src/pages/Cart.tsx",
+    "vite.config.ts",
   ]);
   for (const [file, hash] of Object.entries(baseline)) {
     if (!presentationChanges.has(file))

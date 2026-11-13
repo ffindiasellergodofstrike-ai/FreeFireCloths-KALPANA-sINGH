@@ -4,17 +4,17 @@ import legacy from '@vitejs/plugin-legacy';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({mode, isSsrBuild}) => {
   const env = loadEnv(mode, '.', '');
   return {
     base: '/',
     plugins: [
-      react(), 
+      react(),
       tailwindcss(),
-      legacy({
+      ...(!isSsrBuild ? [legacy({
         targets: ['defaults', 'not IE 11'],
         additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-      })
+      })] : []),
     ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -25,13 +25,13 @@ export default defineConfig(({mode}) => {
       },
     },
     build: {
-      target: 'es2015',
+      target: isSsrBuild ? 'node20' : 'es2015',
       cssTarget: 'chrome61',
-      outDir: 'dist',
+      outDir: isSsrBuild ? 'build/ssr' : 'dist',
       assetsDir: 'assets',
       sourcemap: false,
-      minify: 'terser',
-      rollupOptions: {
+      minify: isSsrBuild ? false : 'terser',
+      rollupOptions: isSsrBuild ? undefined : {
         output: {
           manualChunks: {
             vendor: ['react', 'react-dom', 'react-router-dom'],

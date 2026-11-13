@@ -31,12 +31,11 @@ export default function ShippingPolicy() {
           <div className="policy-info-box">
             <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Owner / Proprietor:</strong> Kalpana Singh</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
             <p><strong>Website:</strong> https://www.ffstreetwear.shop/</p>
-            <p><strong>Support Email:</strong> support@ffstreetwear.shop</p>
+            <p><strong>Support Email:</strong> support@ffstreetwear.shop &nbsp;|&nbsp; <strong>Phone:</strong> +91 7393845435</p>
           </div>
 
           <h2>OVERVIEW</h2>
@@ -63,22 +62,18 @@ export default function ShippingPolicy() {
               </thead>
               <tbody>
                 <tr >
-                  <td >Prepaid Orders above Rs.999</td>
+                  <td >All Prepaid Orders</td>
                   <td >FREE — No shipping charge</td>
                 </tr>
                 <tr >
-                  <td >Prepaid Orders below Rs.999</td>
-                  <td >Rs. 80 flat shipping fee</td>
-                </tr>
-                <tr >
                   <td >Cash on Delivery (COD) Orders</td>
-                  <td >Rs. 50 non-refundable COD handling fee added at checkout</td>
+                  <td >FREE — No extra COD handling fee currently charged at checkout</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p>Shipping charges are shown clearly at checkout before you complete your payment.</p>
-          <p>Shipping fees are <strong>NON-REFUNDABLE</strong>, except in cases where ffstreetwear dispatched a wrong or defective item.</p>
+          <p>All applicable shipping or handling charges (currently ₹0 / FREE across India) are shown clearly at checkout before you complete your order.</p>
+          <p>If any paid shipping option is introduced in the future, such fees are <strong>NON-REFUNDABLE</strong>, except in cases where ffstreetwear dispatched a wrong or defective item.</p>
 
           <h2>SECTION 3 — DELIVERY TIMEFRAMES</h2>
           <p>Estimated delivery times AFTER dispatch:</p>
@@ -113,7 +108,7 @@ export default function ShippingPolicy() {
           <h2>SECTION 4 — CASH ON DELIVERY (COD)</h2>
           <p>COD is available for most pin codes across India.</p>
           <ul>
-            <li>A non-refundable COD handling fee of Rs. 50 is added at checkout for all COD orders.</li>
+            <li>Standard Cash on Delivery orders currently carry no additional handling fee at checkout.</li>
             <li>COD availability depends on your pin code and our courier partner's serviceability. You will be notified at checkout if COD is unavailable for your location.</li>
             <li>Please keep the <strong>EXACT</strong> amount ready at the time of delivery. Courier executives may not carry change.</li>
             <li>COD refunds are issued as store credit only. See our Refund Policy for full details.</li>
@@ -254,8 +249,7 @@ export default function ShippingPolicy() {
             <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
-            <p><strong>Phone / WhatsApp:</strong> +91 9999999999</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
+            <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

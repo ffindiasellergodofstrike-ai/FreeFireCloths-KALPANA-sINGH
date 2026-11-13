@@ -31,19 +31,19 @@ export default function Navbar() {
       {/* Announcement Bar */}
       <div className="announce" id="announcement-bar-main">
         <div className="announce-track">
-          <span>🔥 FREE EXPRESS SHIPPING ON ALL ORDERS</span>
+          <span>🔥 FREE SHIPPING ON ALL ORDERS</span>
           <span className="announce-sep">•</span>
           <span>🔒 100% SECURE CHECKOUT</span>
           <span className="announce-sep">•</span>
           <span>🔄 EASY 7-DAY RETURNS</span>
           <span className="announce-sep">•</span>
-          <span>🔥 FREE EXPRESS SHIPPING ON ALL ORDERS</span>
+          <span>🔥 FREE SHIPPING ON ALL ORDERS</span>
           <span className="announce-sep">•</span>
           <span>🔒 100% SECURE CHECKOUT</span>
           <span className="announce-sep">•</span>
           <span>🔄 EASY 7-DAY RETURNS</span>
           <span className="announce-sep">•</span>
-          <span>🔥 FREE EXPRESS SHIPPING ON ALL ORDERS</span>
+          <span>🔥 FREE SHIPPING ON ALL ORDERS</span>
           <span className="announce-sep">•</span>
           <span>🔒 100% SECURE CHECKOUT</span>
           <span className="announce-sep">•</span>

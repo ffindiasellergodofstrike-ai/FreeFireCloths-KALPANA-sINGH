@@ -90,26 +90,26 @@ export default function Terms() {
           <h2>SECTION 4 - PRICES AND BILLING</h2>
           <p>All prices displayed on our website are in Indian Rupees (INR) and are inclusive of applicable GST (Goods and Services Tax) unless otherwise stated.</p>
           <p>Prices, discounts, and promotions are subject to change without prior notice. The price charged for a product will be the price at the time the order is placed, as confirmed in your order confirmation email.</p>
-          <p>Posted prices do not include shipping charges or Cash on Delivery (COD) handling fees, unless expressly stated. These are shown separately at checkout.</p>
+          <p>Free standard shipping is available on all orders across India, as shown at checkout. Any applicable delivery or handling charges, if introduced for specific orders, are always displayed clearly before payment.</p>
           <p>We may offer time-limited promotions governed by their own separate terms and conditions. In the event of a conflict between promotion terms and these Terms, the promotion terms shall govern.</p>
           <p>We reserve the right to correct pricing errors at any time, including after an order has been submitted. If a pricing error is discovered, we will inform you and give you the option to proceed at the correct price or cancel for a full refund.</p>
 
           <h2>SECTION 5 - PAYMENT METHODS</h2>
+          <p><strong>Online Payments:</strong></p>
+          <p>We accept Prepaid Online Payments via Credit Cards, Debit Cards, Net Banking, UPI, and supported digital wallets processed securely through our authorised PCI-DSS compliant payment gateway partners. ffstreetwear does NOT store your card numbers, CVV, UPI PIN, net banking credentials, or any sensitive payment information on our servers.</p>
           <p><strong>Cash on Delivery (COD):</strong></p>
           <ul>
-            <li>All orders currently operate via Cash on Delivery (COD) across eligible pin codes in India</li>
-            <li>A non-refundable COD handling fee applies, displayed at checkout</li>
+            <li>Cash / Pay on Delivery (COD) is available across eligible pin codes in India as displayed at checkout</li>
+            <li>No additional COD handling fee is currently charged unless explicitly shown at checkout prior to order confirmation</li>
             <li>Please keep the exact amount ready at the time of delivery</li>
             <li>COD orders may be subject to order value limits at our discretion</li>
           </ul>
-          <p><strong>Online Payment Gateway Status:</strong></p>
-          <p>Online payment modes (Credit Cards, Debit Cards, Net Banking, UPI, Wallets) are temporarily disabled. ffstreetwear does NOT store your card numbers, CVV, UPI PIN, net banking credentials, or any sensitive payment information on our servers.</p>
           <p>By completing a payment, you confirm and warrant that:</p>
           <ul>
             <li>The payment information you provide is true, correct, and complete</li>
             <li>You are the authorised holder or user of the payment method being used</li>
             <li>Charges incurred by you will be honoured by your bank, card issuer, or payment provider</li>
-            <li>You will pay all charges including the product price, applicable shipping fees, COD fees, and taxes</li>
+            <li>You will pay all charges including the product price, applicable shipping fees, and taxes</li>
           </ul>
           <p>In case of a failed transaction, please check with your bank or payment provider before retrying. ffstreetwear is not responsible for any bank charges, transaction fees, or interest arising from failed or declined transactions.</p>
 
@@ -166,11 +166,11 @@ export default function Terms() {
 
           <h2>SECTION 11 - PRIVACY POLICY</h2>
           <p>All personal information we collect through the Services is subject to our Privacy Policy, available at <Link to="/policies/privacy">Privacy Policy</Link>. By using the Services, you acknowledge that you have read and understood our Privacy Policy and consent to the collection, use, and disclosure of your information as described therein.</p>
-          <p>Because the Services are hosted on Shopify, Shopify also collects and processes certain personal information. Your information may also be processed by our payment gateway partners as necessary to complete transactions. These third parties operate under their own privacy policies.</p>
+          <p>Your payment and order information may be processed by our authorised cloud hosting, logistics, and payment gateway partners solely as necessary to fulfil your order and complete transactions securely. These third parties operate under their own privacy policies and applicable data protection regulations.</p>
 
-          <h2>SECTION 12 - RELATIONSHIP WITH SHOPIFY</h2>
-          <p>ffstreetwear is powered by Shopify Inc., which provides us with the e-commerce platform that enables us to operate our online store. Any sales and purchases made on our website are made directly with ffstreetwear, and not with Shopify.</p>
-          <p>By using the Services, you acknowledge and agree that Shopify is not responsible for any aspect of any sales, transactions, or disputes between you and ffstreetwear. You hereby expressly release Shopify and its affiliates from all claims, damages, and liabilities arising from or related to your purchases and transactions with ffstreetwear.</p>
+          <h2>SECTION 12 - PLATFORM AND PAYMENT PROCESSING</h2>
+          <p>ffstreetwear operates directly through https://www.ffstreetwear.shop/. Any sales and purchases made on our website are made directly with ffstreetwear (Proprietor: Kalpana Singh).</p>
+          <p>Online transactions are routed securely through authorised RBI-regulated payment gateway partners. Neither our payment gateway partners nor hosting infrastructure providers are responsible for product quality, sizing, or order fulfilment obligations of ffstreetwear.</p>
 
           <h2>SECTION 13 - FEEDBACK AND USER SUBMISSIONS</h2>
           <p>If you submit reviews, ratings, ideas, suggestions, feedback, or other content (collectively "Feedback"), you grant ffstreetwear a perpetual, worldwide, royalty-free license to use, reproduce, modify, publish, and display such Feedback for any purpose, including commercial use, without compensation to you.</p>
@@ -229,7 +229,7 @@ export default function Terms() {
           <p>OUR TOTAL LIABILITY TO YOU IN ANY EVENT SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE SPECIFIC ORDER GIVING RISE TO THE CLAIM.</p>
 
           <h2>SECTION 20 - INDEMNIFICATION</h2>
-          <p>You agree to indemnify, defend, and hold harmless ffstreetwear, Shopify, and our respective affiliates, partners, officers, directors, employees, agents, contractors, licensors, and service providers from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from:</p>
+          <p>You agree to indemnify, defend, and hold harmless ffstreetwear and its proprietor, employees, agents, contractors, licensors, and service providers from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable legal fees) arising from:</p>
           <ol>
             <li>Your breach of these Terms of Service or any policy referenced herein</li>
             <li>Your violation of any applicable law or the rights of any third party</li>
@@ -264,7 +264,7 @@ export default function Terms() {
           <p>The headings used in this agreement are included for convenience only and shall not limit or otherwise affect the interpretation of these Terms.</p>
 
           <h2>SECTION 26 - CHANGES TO TERMS OF SERVICE</h2>
-          <p>You can review the most current version of these Terms of Service at any time at https://www.ffstreetwear.shop/policies/terms-of-service.</p>
+          <p>You can review the most current version of these Terms of Service at any time at https://www.ffstreetwear.shop/policies/terms.</p>
           <p>We reserve the right, in our sole discretion, to update, change, or replace any part of these Terms of Service by posting updates on our website. It is your responsibility to check this page periodically for changes. Your continued use of or access to the website following the posting of any changes constitutes your acceptance of those changes.</p>
 
           <h2>SECTION 27 - GRIEVANCE OFFICER</h2>
@@ -275,7 +275,6 @@ export default function Terms() {
             <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>
@@ -290,7 +289,6 @@ export default function Terms() {
             <p><strong>Proprietor:</strong> Kalpana Singh</p>
             <p><strong>Email:</strong> support@ffstreetwear.shop</p>
             <p><strong>Phone / WhatsApp:</strong> +91 7393845435</p>
-            <p><strong>Business Name:</strong> ffstreetwear</p>
             <p><strong>Udyam Reg. No:</strong> UDYAM-UP-03-0123799</p>
             <p><strong>Business Type:</strong> We sell clothes and premium clothing in India.</p>
             <p><strong>Registered Address:</strong> PRANNATHPUR BACHHARIYA, SULTANPUR, UTTAR PRADESH, INDIA, 228171</p>

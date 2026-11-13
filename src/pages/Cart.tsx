@@ -94,7 +94,7 @@ export default function Cart() {
                 <span>Shipping</span>
                 <span style={{ color: '#166534', fontFamily: 'var(--font-h)', fontWeight: 700 }}>FREE</span>
               </div>
-              <div className="os-ship">✓ FREE EXPRESS SHIPPING APPLIED</div>
+              <div className="os-ship">✓ FREE SHIPPING APPLIED</div>
               
               <div className="coupon-row">
                 <input 

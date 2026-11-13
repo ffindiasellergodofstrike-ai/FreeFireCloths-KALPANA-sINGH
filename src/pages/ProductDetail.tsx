@@ -334,6 +334,23 @@ export default function ProductDetail() {
               {disc > 0 && <span className="save">SAVE {disc}%</span>}
             </div>
 
+            {(() => {
+              const inStock = product.variants?.length ? product.variants.some(v => v.stock !== 0) : true;
+              return (
+                <div
+                  id="pdAvailability"
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    color: inStock ? '#166534' : '#b91c1c',
+                    marginBottom: '12px',
+                  }}
+                >
+                  {inStock ? 'In Stock — Ready to Ship' : 'Out of Stock'}
+                </div>
+              );
+            })()}
+
             <p className="pd-desc" id="pdDesc">{product.desc}</p>
 
             {/* Color Selector */}

@@ -29,22 +29,27 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    try {
-      const saved = localStorage.getItem('gs_cart_v2');
-      return saved ? JSON.parse(saved).filter((item: CartItem) => !isRetiredProduct(item.id)) : [];
-    } catch (e) {
-      return [];
-    }
-  });
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cartLoaded, setCartLoaded] = useState(false);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     try {
+      const saved = localStorage.getItem('gs_cart_v2');
+      if (saved) {
+        setCart(JSON.parse(saved).filter((item: CartItem) => !isRetiredProduct(item.id)));
+      }
+    } catch (e) {}
+    setCartLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!cartLoaded) return;
+    try {
       localStorage.setItem('gs_cart_v2', JSON.stringify(cart));
     } catch (e) {}
-  }, [cart]);
+  }, [cart, cartLoaded]);
 
   const addToCart = (product: any, size?: string, qty: number = 1, color?: string, customImage?: string) => {
     if (isRetiredProduct(product.id)) return;
